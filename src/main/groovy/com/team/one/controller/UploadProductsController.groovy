@@ -40,7 +40,8 @@ class UploadProductsController {
   @RequestMapping(value="/save", method=RequestMethod.POST)
   @ResponseBody String handleFileUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) {
     if(!file.isEmpty()) {
-      def CountOfRowsSaved = uploadProductsService.uploadProductsInValuarte(file)
+      def countOfRowsSaved = uploadProductsService.uploadProductsInValuarte(file)
+      "El numero de filas procesadas fue de ${countOfRowsSaved}"
     } else {
       "You faild to upload ${name} because the file was empty"
     }
