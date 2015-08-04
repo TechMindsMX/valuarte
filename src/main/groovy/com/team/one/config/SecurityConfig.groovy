@@ -23,7 +23,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
   void configure(HttpSecurity http)throws Exception {
     http.csrf().disable()
       .authorizeRequests()
-      .antMatchers("/", "/public/**","/home/**").permitAll()
+      .antMatchers("/", "/public/**","/home/**","/Users/**").permitAll()
       .anyRequest().fullyAuthenticated()
       .and()
       .formLogin()
