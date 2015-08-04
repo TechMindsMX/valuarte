@@ -44,15 +44,15 @@ class UserController {
     binder.addValidators(userCreateFormValidator);
   }
 
-  @PreAuthorize("hasAuthority('USER')")
+//  @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(value="/create", method=RequestMethod.GET)
   String form(Model model) {
     LOGGER.info("render view Form for userController")
     model.addAttribute("user", new UserCommand())
     "user/form"
   }
-  
-  @PreAuthorize("hasAuthority('USER')")
+
+//  @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(value="/save", method=RequestMethod.POST)
   ModelAndView save(@Valid @ModelAttribute("form") UserCommand form, BindingResult bindingResult) {
     LOGGER.info "begin save of new user"
