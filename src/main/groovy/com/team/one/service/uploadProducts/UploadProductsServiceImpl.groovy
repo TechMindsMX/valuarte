@@ -38,4 +38,8 @@ class UploadProductsServiceImpl implements UploadProductsService {
     }
   }
 
+  void uploadImagesInValuarte(MultipartFile file){
+    LOGGER.info "Ready to upload"
+  }
+
 }

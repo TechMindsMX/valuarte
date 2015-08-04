@@ -38,24 +38,15 @@ class UploadProductsController {
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(value="/save", method=RequestMethod.POST)
-  @ResponseBody String handleFileUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) {
+  @ResponseBody String handleFileUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file, @RequestParam("zipFile") MultipartFile zipFile) {
     if(!file.isEmpty()) {
       def countOfRowsSaved = uploadProductsService.uploadProductsInValuarte(file)
       "El numero de filas procesadas fue de ${countOfRowsSaved}"
     } else {
       "You faild to upload ${name} because the file was empty"
     }
-  }
 
-  @PreAuthorize("hasAuthority('USER')")
-  @RequestMapping(value="/uploadZip", method=RequestMethod.POST)
-  @ResponseBody String handleZipFileUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) {
-    if(!file.isEmpty()) {
-      "File is not empty"
-    } else {
-      "You failed to upload ${name} because the file was empty"
-    }
+    uploadProductsService.uploadImagesInValuarte()
   }
-
 
 }
