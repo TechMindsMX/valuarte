@@ -47,5 +47,15 @@ class UploadProductsController {
     }
   }
 
+  @PreAuthorize("hasAuthority('USER')")
+  @RequestMapping(value="/uploadZip", method=RequestMethod.POST)
+  @ResponseBody String handleZipFileUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) {
+    if(!file.isEmpty()) {
+      "File is not empty"
+    } else {
+      "You failed to upload ${name} because the file was empty"
+    }
+  }
+
 
 }
