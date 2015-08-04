@@ -46,7 +46,7 @@ class UploadProductsController {
       "You faild to upload ${name} because the file was empty"
     }
 
-    uploadProductsService.uploadImagesInValuarte()
+    uploadProductsService.uploadImagesInValuarte(zipFile)
   }
 
 }

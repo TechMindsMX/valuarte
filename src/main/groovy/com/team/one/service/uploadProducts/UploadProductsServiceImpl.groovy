@@ -40,6 +40,9 @@ class UploadProductsServiceImpl implements UploadProductsService {
 
   void uploadImagesInValuarte(MultipartFile file){
     LOGGER.info "Ready to upload"
+    def directoryDestination = new File(System.getProperty("java.io.tmpdir"))
+    File fileDestination = new File(directoryDestination,file.name)
+    file.transferTo(fileDestination)
   }
 
 }
