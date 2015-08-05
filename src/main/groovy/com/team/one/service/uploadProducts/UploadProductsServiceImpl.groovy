@@ -17,6 +17,7 @@ class UploadProductsServiceImpl implements UploadProductsService {
 
   static final String COMPRESS_EXTENSION = ".zip"
   static final Logger LOGGER = LoggerFactory.getLogger(UploadProductsServiceImpl.class)
+
   Integer uploadProductsInValuarte(MultipartFile file) {
     try {
       Workbook archivoExcel = Workbook.getWorkbook(file.getInputStream())
@@ -45,13 +46,10 @@ class UploadProductsServiceImpl implements UploadProductsService {
     def fileName = TokenGenerator.generateToken() + COMPRESS_EXTENSION
 
     LOGGER.info "Storing zip file as: ${directoryDestination}/${fileName}"
-    File fileDestination = new File(directoryDestination,fileName)
+    File fileDestination = new File(directoryDestination, fileName)
     file.transferTo(fileDestination)
 
-    def ant = new AntBuilder()
-    ant.unzip(  src:fileDestination.absolutePath,
-                dest:fileDestination.parent,
-                overwrite:"false" )
+    new AntBuilder().unzip(src:fileDestination.absolutePath, dest:fileDestination.parent, overwrite:"true")
   }
 
 }
