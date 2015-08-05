@@ -47,6 +47,11 @@ class UploadProductsServiceImpl implements UploadProductsService {
     LOGGER.info "Storing zip file as: ${directoryDestination}/${fileName}"
     File fileDestination = new File(directoryDestination,fileName)
     file.transferTo(fileDestination)
+
+    def ant = new AntBuilder()
+    ant.unzip(  src:fileDestination.absolutePath,
+                dest:fileDestination.parent,
+                overwrite:"false" )
   }
 
 }
