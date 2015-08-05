@@ -1,9 +1,9 @@
 package com.team.one.service.uploadProducts
 
 import com.team.one.domain.*
-import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.*
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.*
 import org.springframework.web.multipart.MultipartFile
 import com.team.one.service.uploadProducts.UploadProductsService
 import com.team.one.util.TokenGenerator
@@ -17,6 +17,9 @@ class UploadProductsServiceImpl implements UploadProductsService {
 
   static final String COMPRESS_EXTENSION = ".zip"
   static final Logger LOGGER = LoggerFactory.getLogger(UploadProductsServiceImpl.class)
+
+  @Value('${images.path}')
+  String imagesPath
 
   Integer uploadProductsInValuarte(MultipartFile file) {
     try {
@@ -42,6 +45,7 @@ class UploadProductsServiceImpl implements UploadProductsService {
   }
 
   void uploadImagesInValuarte(MultipartFile file){
+    LOGGER.info "imagesPath: ${imagesPath}"
     def directoryDestination = new File(System.getProperty("java.io.tmpdir"))
     def fileName = TokenGenerator.generateToken() + COMPRESS_EXTENSION
 
