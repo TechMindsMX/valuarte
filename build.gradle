@@ -6,8 +6,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-      classpath 'mysql:mysql-connector-java:5.1.36'
-      classpath "org.liquibase:liquibase-gradle-plugin:1.1.0"
+ //     classpath 'mysql:mysql-connector-java:5.1.34'
+ //     classpath "org.liquibase:liquibase-gradle-plugin:1.1.0"
       classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
@@ -15,7 +15,7 @@ buildscript {
 apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-apply plugin: 'org.liquibase.gradle'
+
 
 jar {
     baseName = 'valuarte'
@@ -39,20 +39,20 @@ dependencies {
     compile("mysql:mysql-connector-java:5.1.34")
     testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
     testCompile("org.springframework.boot:spring-boot-starter-test")
-    runtime 'org.liquibase:liquibase-groovy-dsl:1.1.0'
+//    runtime 'org.liquibase:liquibase-groovy-dsl:1.1.0'
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
 
-liquibase {
+/*liquibase {
   activities {
     main {
      changeLogFile "${project.projectDir}/src/main/db/changelogs.groovy"
-     url 'jdbc:mysql://localhost/valuarte'
+     url 'jdbc:mysql://localhost:3306/valuarte'
      username 'root'
      password ''
     }
   }
-}
+}*/
