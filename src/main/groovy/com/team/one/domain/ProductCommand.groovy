@@ -1,7 +1,7 @@
 package com.team.one.domain
 
 import org.hibernate.validator.constraints.NotEmpty
-import javax.validator.constraints.NotNull
+import javax.validation.constraints.NotNull
 
 class ProductCommand {
 
