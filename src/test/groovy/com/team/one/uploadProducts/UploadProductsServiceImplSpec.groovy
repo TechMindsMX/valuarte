@@ -16,11 +16,11 @@ class UploadProductsServiceImplSpec extends Specification {
 
   void "obtains all values of excel"() {
     when:
-      FileInputStream inputFile = new FileInputStream( "/Users/says/Documents/mabe.xls")
+      FileInputStream inputFile = new FileInputStream( "/Users/makingdevs/Documents/mabe/mabe.xls")
       MockMultipartFile file = new MockMultipartFile("file", "NameOfTheFile", "multipart/form-data", inputFile)
       def count = uploadP.uploadProductsInValuarte(file)
     then:
-      count == 4
+      count == 10
   }
 
 }
