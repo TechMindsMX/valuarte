@@ -24,6 +24,8 @@ class UploadProductsServiceImpl implements UploadProductsService {
     try {
       Workbook fileExcel = Workbook.getWorkbook(file.getInputStream())
       int numRows
+      String token = callService.getTokenTimOneForBeginTransactions()
+
       (0..fileExcel.numberOfSheets-1).each{ sheetNo ->
         Sheet page = fileExcel.getSheet(sheetNo)
         int numColumns = page.columns
@@ -35,7 +37,7 @@ class UploadProductsServiceImpl implements UploadProductsService {
             data = page.getCell(column, row).contents
             listElementInRow.add(data)
           }
-          def result = callService.createProductTramaPost(listElementInRow)
+          def result = callService.createProductTramaPost(listElementInRow,token)
         }
       }
       numRows
