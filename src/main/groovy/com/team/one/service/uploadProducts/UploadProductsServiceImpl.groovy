@@ -10,29 +10,35 @@ import jxl.*
 import java.io.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import com.team.one.service.CallService
 
 @Service
 class UploadProductsServiceImpl implements UploadProductsService {
 
   static final Logger LOGGER = LoggerFactory.getLogger(UploadProductsServiceImpl.class)
+  @Autowired
+  CallService callService
+
+
   Integer uploadProductsInValuarte(MultipartFile file) {
     try {
-      Workbook archivoExcel = Workbook.getWorkbook(file.getInputStream())
-      int numFilas
-      (0..archivoExcel.numberOfSheets-1).each{ sheetNo ->
-        Sheet hoja = archivoExcel.getSheet(sheetNo)
-        int numColumnas = hoja.columns
-        numFilas = hoja.rows
+      Workbook fileExcel = Workbook.getWorkbook(file.getInputStream())
+      int numRows
+      (0..fileExcel.numberOfSheets-1).each{ sheetNo ->
+        Sheet page = fileExcel.getSheet(sheetNo)
+        int numColumns = page.columns
+        numRows = page.rows
         String data
-        (0..numFilas-1).each { fila ->
-          (0..numColumnas-1).each { columna ->
-            data = hoja.getCell(columna, fila).contents
-            LOGGER.info(data + " ")
+        (0..numRows-1).each { row ->
+          def listElementInRow = []
+          (0..numColumns-1).each { column ->
+            data = page.getCell(column, row).contents
+            listElementInRow.add(data)
           }
-          LOGGER.info("-----------------")
+          def result = callService.createProductTramaPost(listElementInRow)
         }
       }
-      numFilas
+      numRows
     } catch (Exception ioe) {
       LOGGER.info ioe.printStackTrace()
     }
