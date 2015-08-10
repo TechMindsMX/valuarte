@@ -27,6 +27,7 @@ class CallServiceImpl implements CallService {
       propertiesCreateProduct.description = descripcion.toString()
       propertiesCreateProduct.photos = params[2].toString()
       propertiesCreateProduct.token = token
+      propertiesCreateProduct.status = 0
       RestTemplate restTemplate = new RestTemplate()
       def resp = restTemplate.postForObject(pathCreateProject, propertiesCreateProduct, String.class)
       resp
@@ -40,4 +41,44 @@ class CallServiceImpl implements CallService {
     token
   }
 
+  String getProductById(Integer productId){
+
+  }
+
+}
+
+class ProjectCommand {
+  Long id
+  String name
+  String showground
+  String inclosure
+  String url
+  String banner
+  String avatar
+  Integer subcategory
+  Integer status
+  String videoPublic
+  String audioPublic
+  String imagePublic
+  String infoPublic
+  Long timeCreated
+  String type
+  String projectFinancialData
+  String projectRate
+  String projectVideos
+  String projectSoundclouds
+  String projectPhotos
+  String providers
+  String tags
+  String logs
+  String description
+  String cast
+  BigDecimal tri
+  BigDecimal cre
+  BigDecimal trf
+  BigDecimal tra
+  BigDecimal fundedAmount
+  BigDecimal investedAmount
+  Float rating
+  Long userId
 }
