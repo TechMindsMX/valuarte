@@ -11,10 +11,10 @@ import org.springframework.util.*
 @Service
 class CallServiceImpl implements CallService {
 
-   @Value('${timOne.path.create.product}')
-   String pathCreateProject
-   @Value('${timOne.path.get.token}')
-   String pathGetToken
+  @Value('${timOne.path.create.product}')
+  String pathCreateProject
+  @Value('${timOne.path.get.token}')
+  String pathGetToken
 
   String createProductTramaPost(def params,String token) {
     if(params[0] != ""){
@@ -44,7 +44,7 @@ class CallServiceImpl implements CallService {
   String getProductById(){
     RestTemplate restTemplate = new RestTemplate()
     def response = restTemplate.getForObject('http://api-stage.timone.mx/timone/services/project/get/13',String.class)
-    log.info "response: ${response}"
+    println "response: ${response}"
   }
 
 }

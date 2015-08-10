@@ -15,17 +15,18 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import com.team.one.service.uploadProducts.UploadProductsService
+import com.team.one.service.CallService
 
 @Controller
 @RequestMapping("/upload")
 class UploadProductsController {
 
-  static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class)
+  static final Logger LOGGER = LoggerFactory.getLogger(UploadProductsController.class)
 
   @Autowired
   UploadProductsService uploadProductsService
   @Autowired
-
+  CallService callService
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(value="/create", method=RequestMethod.GET)
@@ -54,7 +55,7 @@ class UploadProductsController {
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(value="/show", method=RequestMethod.GET)
   @ResponseBody String showProject() {
-
+    callService.getProductById()
   }
 
 }
