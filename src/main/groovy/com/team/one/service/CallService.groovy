@@ -5,4 +5,7 @@ interface CallService {
 	String createProductTramaPost(def params,String token)
 
   String getTokenTimOneForBeginTransactions()
+
+  String getProductById()
+
 }

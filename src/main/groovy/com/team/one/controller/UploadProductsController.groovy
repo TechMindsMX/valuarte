@@ -21,8 +21,11 @@ import com.team.one.service.uploadProducts.UploadProductsService
 class UploadProductsController {
 
   static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class)
+
   @Autowired
   UploadProductsService uploadProductsService
+  @Autowired
+
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(value="/create", method=RequestMethod.GET)
@@ -46,6 +49,12 @@ class UploadProductsController {
     } else {
       "You faild to upload ${name} because the file was empty"
     }
+  }
+
+  @PreAuthorize("hasAuthority('USER')")
+  @RequestMapping(value="/show", method=RequestMethod.GET)
+  @ResponseBody String showProject() {
+
   }
 
 }

@@ -41,8 +41,10 @@ class CallServiceImpl implements CallService {
     token
   }
 
-  String getProductById(Integer productId){
-
+  String getProductById(){
+    RestTemplate restTemplate = new RestTemplate()
+    def response = restTemplate.getForObject('http://api-stage.timone.mx/timone/services/project/get/13',String.class)
+    log.info "response: ${response}"
   }
 
 }
