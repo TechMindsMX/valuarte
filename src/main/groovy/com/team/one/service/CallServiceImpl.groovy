@@ -46,9 +46,9 @@ class CallServiceImpl implements CallService {
     token
   }
 
-  String getProductById(){
+  String getProductById(Integer productId){
     RestTemplate restTemplate = new RestTemplate()
-    def json = restTemplate.getForObject(pathGetProduct,String.class)
+    def json = restTemplate.getForObject(pathGetProduct + productId,String.class)
     ProjectCommand command = new Gson().fromJson(json, ProjectCommand.class);
     command
   }

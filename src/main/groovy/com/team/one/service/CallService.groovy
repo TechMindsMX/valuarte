@@ -6,7 +6,7 @@ interface CallService {
 
   String getTokenTimOneForBeginTransactions()
 
-  String getProductById()
+  String getProductById(Integer productId)
 
   def getProducts()
 
