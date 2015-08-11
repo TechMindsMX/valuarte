@@ -8,4 +8,6 @@ interface CallService {
 
   String getProductById()
 
+  def getProducts()
+
 }
