@@ -53,10 +53,10 @@ class CallServiceImpl implements CallService {
     command
   }
 
-  String getProducts(){
+  def getProducts(){
     RestTemplate restTemplate = new RestTemplate()
     def json = restTemplate.getForObject(pathGetProducts,String.class)
-    List<ProjectCommand> products = new Gson().fromJson(json, ProjectCommand.class);
+    List<ProjectCommand> products = new Gson().fromJson(json, List.class);
     products
   }
 
