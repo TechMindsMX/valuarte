@@ -16,9 +16,10 @@ class CallServiceImpl implements CallService {
   String pathCreateProject
   @Value('${timOne.path.get.token}')
   String pathGetToken
-  @Value('${timOne.path.get.project}')
-  String pathGetProject
-
+  @Value('${timOne.path.get.product}')
+  String pathGetProduct
+  @Value('${timOne.path.get.products}')
+  String pathGetProducts
 
   String createProductTramaPost(def params,String token) {
     if(params[0] != ""){
@@ -47,9 +48,16 @@ class CallServiceImpl implements CallService {
 
   String getProductById(){
     RestTemplate restTemplate = new RestTemplate()
-    def json = restTemplate.getForObject(pathGetProject,String.class)
+    def json = restTemplate.getForObject(pathGetProduct,String.class)
     ProjectCommand command = new Gson().fromJson(json, ProjectCommand.class);
     command
+  }
+
+  String getProducts(){
+    RestTemplate restTemplate = new RestTemplate()
+    def json = restTemplate.getForObject(pathGetProducts,String.class)
+    List<ProjectCommand> products = new Gson().fromJson(json, ProjectCommand.class);
+    products
   }
 
 }
