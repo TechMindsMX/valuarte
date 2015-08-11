@@ -7,6 +7,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import com.team.one.service.CallService
 import org.springframework.util.*
+import com.google.gson.Gson
 
 @Service
 class CallServiceImpl implements CallService {
@@ -46,8 +47,9 @@ class CallServiceImpl implements CallService {
 
   String getProductById(){
     RestTemplate restTemplate = new RestTemplate()
-    def response = restTemplate.getForObject(pathGetProject,String.class)
-    response
+    def json = restTemplate.getForObject(pathGetProject,String.class)
+    ProjectCommand command = new Gson().fromJson(json, ProjectCommand.class);
+    command
   }
 
 }
@@ -70,12 +72,12 @@ class ProjectCommand {
   String type
   String projectFinancialData
   String projectRate
-  String projectVideos
-  String projectSoundclouds
-  String projectPhotos
-  String providers
-  String tags
-  String logs
+  def projectVideos
+  def projectSoundclouds
+  def projectPhotos
+  def providers
+  def tags
+  def logs
   String description
   String cast
   BigDecimal tri
