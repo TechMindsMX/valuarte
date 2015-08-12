@@ -6,6 +6,7 @@ import org.springframework.web.client.RestTemplate
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import com.team.one.service.CallService
+import com.team.one.service.uploadProducts.PhotoNameGeneratorService
 import org.springframework.util.*
 import com.google.gson.Gson
 
@@ -22,18 +23,18 @@ class CallServiceImpl implements CallService {
   String pathGetProducts
 
   @Autowired
-  PhotoNameGenerator photoNameGenerator
+  PhotoNameGeneratorService photoNameGeneratorService
 
   String createProductTramaPost(def params,String token) {
     if(params[0] != ""){
       MultiValueMap<String, String> propertiesCreateProduct = new LinkedMultiValueMap<String, String>()
-      String name = "${params[0]}-${params[3]}"
-      String descripcion = "${params[2]}-${params[4]}-${params[5]}"
+      String name = "${params[0]}-${params[4]}"
+      String descripcion = "${params[2]}-${params[5]}-${params[6]}"
       propertiesCreateProduct.userId = 1
       propertiesCreateProduct.name = name.toString()
       propertiesCreateProduct.subcategory = params[1]
       propertiesCreateProduct.description = descripcion.toString()
-      propertiesCreateProduct.photos = params[2].toString()
+      propertiesCreateProduct.photos = photoNameGeneratorService.getNames(params[2].toString(), params[3])
       propertiesCreateProduct.token = token
       propertiesCreateProduct.status = 0
       RestTemplate restTemplate = new RestTemplate()
