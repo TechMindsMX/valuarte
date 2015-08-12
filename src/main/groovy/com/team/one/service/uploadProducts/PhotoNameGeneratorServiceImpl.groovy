@@ -1,6 +1,6 @@
 package com.team.one.util
 
-class PhotoNameGenerator {
+class PhotoNameGeneratorServiceImpl implements PhotoNameGeneratorService {
 
   String getNames(String sku, Integer photoNumber) {
     def sb = new StringBuilder()
@@ -11,3 +11,5 @@ class PhotoNameGenerator {
   }
 
 }
+
+
