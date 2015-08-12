@@ -52,6 +52,7 @@ class UploadProductsServiceImpl implements UploadProductsService {
   }
 
   void uploadImagesInValuarte(MultipartFile file){
+    if(file.isEmpty())return
     LOGGER.info "imagesPath: ${imagesPath}"
     def directoryDestination = new File(System.getProperty("java.io.tmpdir"))
     def fileName = TokenGenerator.generateToken() + COMPRESS_EXTENSION
