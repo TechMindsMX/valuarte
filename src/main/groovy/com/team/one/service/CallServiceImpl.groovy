@@ -30,7 +30,7 @@ class CallServiceImpl implements CallService {
       propertiesCreateProduct.name = name.toString()
       propertiesCreateProduct.subcategory = params[1]
       propertiesCreateProduct.description = descripcion.toString()
-      propertiesCreateProduct.photos = params[2].toString()
+      propertiesCreateProduct.photos = params[2].toString() + "-1.jpg"
       propertiesCreateProduct.token = token
       propertiesCreateProduct.status = 0
       RestTemplate restTemplate = new RestTemplate()
