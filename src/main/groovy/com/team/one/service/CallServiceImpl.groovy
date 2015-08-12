@@ -21,6 +21,9 @@ class CallServiceImpl implements CallService {
   @Value('${timOne.path.get.products}')
   String pathGetProducts
 
+  @Autowired
+  PhotoNameGenerator photoNameGenerator
+
   String createProductTramaPost(def params,String token) {
     if(params[0] != ""){
       MultiValueMap<String, String> propertiesCreateProduct = new LinkedMultiValueMap<String, String>()
