@@ -1,5 +1,8 @@
 package com.team.one.service.uploadProducts
 
+import org.springframework.stereotype.*
+
+@Service
 class PhotoNameGeneratorServiceImpl implements PhotoNameGeneratorService {
 
   String getNames(String sku, Integer photoNumber) {
