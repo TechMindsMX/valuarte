@@ -25,6 +25,8 @@ class CallServiceImpl implements CallService {
   @Autowired
   PhotoNameGeneratorService photoNameGeneratorService
 
+  static final Logger log = LoggerFactory.getLogger(this.getClass())
+
   String createProductTramaPost(def params,String token) {
     if(params[0] != ""){
       MultiValueMap<String, String> propertiesCreateProduct = new LinkedMultiValueMap<String, String>()
@@ -54,6 +56,8 @@ class CallServiceImpl implements CallService {
     RestTemplate restTemplate = new RestTemplate()
     def json = restTemplate.getForObject(pathGetProduct + productId,String.class)
     ProjectCommand command = new Gson().fromJson(json, ProjectCommand.class);
+    log.info "Project: ${command.dump()}"
+    log.info "Uploaded photos: ${command.projectPhotos?.size()}"
     command
   }
 
