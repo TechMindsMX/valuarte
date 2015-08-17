@@ -57,8 +57,15 @@ class UserController {
   ModelAndView save(@Valid @ModelAttribute("form") UserCommand form, BindingResult bindingResult) {
     LOGGER.info "begin save of new user"
     if (bindingResult.hasErrors()) {
+      def mapErrors = []
+      def errores = bindingResult.getAllErrors()
+      bindingResult.getFieldErrors().each{ error ->
+        mapErrors.add("${error.field} ${ error.defaultMessage}")
+      }
       LOGGER.info "the method save in userController had a problem in validate form"
-      new ModelAndView("user/create","error", form)
+      ModelAndView error =  new ModelAndView("user/form","user", form)
+      error.addObject("error", mapErrors)
+      return error
     }
     User user = userService.create(form)
     new ModelAndView("user/result", "user", user)
