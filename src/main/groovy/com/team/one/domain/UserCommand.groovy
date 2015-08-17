@@ -14,11 +14,11 @@ class UserCommand {
   @NotEmpty
   String passwordRepeated
 
-  @NotEmpty
   String firstName
 
-  @NotEmpty
   String lastName
+
+  String email
 
   @NotNull
   Role role = Role.USER
