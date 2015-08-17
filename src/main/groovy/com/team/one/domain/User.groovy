@@ -12,10 +12,12 @@ class User {
   String username
   @Column(nullable = false)
   String password
-  @Column(nullable = false)
+  @Column(nullable = true)
   String firstName
-  @Column(nullable = false)
+  @Column(nullable = true)
   String lastName
+  @Column(nullable = true)
+  String email
   @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   Role role

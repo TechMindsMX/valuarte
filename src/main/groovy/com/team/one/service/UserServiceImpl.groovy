@@ -34,6 +34,7 @@ class UserServiceImpl implements UserService {
       user.role = Role.USER
       user.firstName = command.firstName
       user.lastName = command.lastName
+      user.email = command.email
       userRepository.save(user)
     }
 

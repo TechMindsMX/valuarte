@@ -1,22 +1,28 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Valuarte</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
   <body align="center">
-    This is a form page
+    Valuarte
+    Ingresa tus datos y comienza a navegar
+    <div th:if="${error}">
+      <p th:each="er : ${error}">
+        <font color="red"> <p th:text="${er}"/></font>
+      </p>
+    </div>
     <form action="#" th:action="@{/Users/save}" th:object="${user}" method="post" >
       <p>
-        User Name :
+      <label>Username<font color="red">*</font> :</label>
         <input type="text" th:field="*{username}" />
       </p>
       <p>
-        Password :
+        Password <font color="red">*</font>:
         <input type="password" th:field="*{password}" />
       </p>
       <p>
-        Repeat Password :
+        Repeat Password <font color="red">*</font>:
         <input type="password" th:field="*{passwordRepeated}" />
       </p>
       <p>
@@ -26,6 +32,13 @@
       <p>
         Last Name :
         <input type="text" th:field="*{lastName}" />
+      </p>
+      <p>
+        Email :
+        <input type="email" th:field="*{email}" />
+      </p>
+      <p>
+        <font color="red">* Campos Obligatorios</font>
       </p>
       <p>
         <input type="reset" value="Reset" />

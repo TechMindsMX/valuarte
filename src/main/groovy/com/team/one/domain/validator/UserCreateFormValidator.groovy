@@ -33,7 +33,7 @@ class UserCreateFormValidator implements Validator {
 
   //@Override
   void validateEmail(Errors errors, UserCommand command) {
-    if (userService.getUserByUsername(command.username) != null)
+    if (!userService.getUserByUsername(command.username).empty())
       errors.reject("email.exists", "User with this email already exists")
   }
 
