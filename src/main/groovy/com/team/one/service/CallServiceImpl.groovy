@@ -9,6 +9,7 @@ import com.team.one.service.CallService
 import com.team.one.service.uploadProducts.PhotoNameGeneratorService
 import org.springframework.util.*
 import com.google.gson.Gson
+import com.team.one.command.ProjectCommand
 
 @Service
 class CallServiceImpl implements CallService {
@@ -52,7 +53,7 @@ class CallServiceImpl implements CallService {
     token
   }
 
-  String getProductById(Integer productId){
+  ProjectCommand getProductById(Integer productId){
     RestTemplate restTemplate = new RestTemplate()
     def json = restTemplate.getForObject(pathGetProduct + productId,String.class)
     ProjectCommand command = new Gson().fromJson(json, ProjectCommand.class);
@@ -70,38 +71,4 @@ class CallServiceImpl implements CallService {
 
 }
 
-class ProjectCommand {
-  Long id
-  String name
-  String showground
-  String inclosure
-  String url
-  String banner
-  String avatar
-  Integer subcategory
-  Integer status
-  String videoPublic
-  String audioPublic
-  String imagePublic
-  String infoPublic
-  Long timeCreated
-  String type
-  String projectFinancialData
-  String projectRate
-  def projectVideos
-  def projectSoundclouds
-  def projectPhotos
-  def providers
-  def tags
-  def logs
-  String description
-  String cast
-  BigDecimal tri
-  BigDecimal cre
-  BigDecimal trf
-  BigDecimal tra
-  BigDecimal fundedAmount
-  BigDecimal investedAmount
-  Float rating
-  Long userId
-}
+
