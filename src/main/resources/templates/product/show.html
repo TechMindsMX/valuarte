@@ -9,7 +9,7 @@
     <p th:text="'id : '+ ${product.id}" />
     <p th:text="'name: ' + ${product.name}" />
     <p th:text="'category: Producto'" />
-    <p th:text="${'Current date is : '+beans.dateFormatter.getCurrentDate()}" />
+    <p th:text="${'dateCreated: '+beans.dateFormatter.format(product.timeCreated)}" />
     <br/>
   </body>
 </html>
