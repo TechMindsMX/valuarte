@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <p th:each="product : ${products}">
+      <p th:text="'name: ' + ${product.name}" />
+      <p th:text="'category: Producto'" />
+      <p th:text="'Financiadores: 0%'" />
+      <p th:text="'Inversionistas: 0%'" />
+      <p th:text="'Description: ' + ${product.description}" />
+      <img th:attr="src=@{'http://192.168.0.122/photos/' + ${product.projectPhotos.get(0).url}},title=#{logo},alt=#{logo}" />
+    </p>
+  </body>
+</html>
