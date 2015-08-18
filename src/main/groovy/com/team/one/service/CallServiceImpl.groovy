@@ -6,6 +6,7 @@ import org.springframework.web.client.RestTemplate
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import com.team.one.service.CallService
+import com.team.one.service.uploadProducts.PhotoNameGeneratorService
 import org.springframework.util.*
 import com.google.gson.Gson
 
@@ -21,16 +22,21 @@ class CallServiceImpl implements CallService {
   @Value('${timOne.path.get.products}')
   String pathGetProducts
 
+  @Autowired
+  PhotoNameGeneratorService photoNameGeneratorService
+
+  static final Logger log = LoggerFactory.getLogger(this.getClass())
+
   String createProductTramaPost(def params,String token) {
     if(params[0] != ""){
       MultiValueMap<String, String> propertiesCreateProduct = new LinkedMultiValueMap<String, String>()
-      String name = "${params[0]}-${params[3]}"
-      String descripcion = "${params[2]}-${params[4]}-${params[5]}"
+      String name = "${params[0]}-${params[4]}"
+      String descripcion = "${params[2]}-${params[5]}-${params[6]}"
       propertiesCreateProduct.userId = 1
       propertiesCreateProduct.name = name.toString()
       propertiesCreateProduct.subcategory = params[1]
       propertiesCreateProduct.description = descripcion.toString()
-      propertiesCreateProduct.photos = params[2].toString() + "-1.jpg"
+      propertiesCreateProduct.photos = photoNameGeneratorService.getNames(params[2].toString(), params[3].toInteger())
       propertiesCreateProduct.token = token
       propertiesCreateProduct.status = 0
       RestTemplate restTemplate = new RestTemplate()
@@ -50,6 +56,8 @@ class CallServiceImpl implements CallService {
     RestTemplate restTemplate = new RestTemplate()
     def json = restTemplate.getForObject(pathGetProduct + productId,String.class)
     ProjectCommand command = new Gson().fromJson(json, ProjectCommand.class);
+    log.info "Project: ${command.dump()}"
+    log.info "Uploaded photos: ${command.projectPhotos?.size()}"
     command
   }
 

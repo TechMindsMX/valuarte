@@ -52,16 +52,4 @@ class UploadProductsController {
     }
   }
 
-  @PreAuthorize("hasAuthority('USER')")
-  @RequestMapping(value="/show", method=RequestMethod.GET)
-  @ResponseBody String showProduct(@RequestParam("productId") Integer productId) {
-    callService.getProductById(productId)
-  }
-
-  @PreAuthorize("hasAuthority('USER')")
-  @RequestMapping(value="/show/all", method=RequestMethod.GET)
-  @ResponseBody String showProducts() {
-    callService.getProducts()
-  }
-
 }
