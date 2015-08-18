@@ -34,7 +34,7 @@ class ProductController {
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(value="/list", method=RequestMethod.GET)
-  ModelAndView String showProducts() {
+  ModelAndView showProducts() {
     def products = callService.getProducts()
     ModelAndView modelAndView = new ModelAndView("product/list")
     modelAndView.addObject("products", products)
