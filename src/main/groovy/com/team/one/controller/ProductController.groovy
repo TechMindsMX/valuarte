@@ -23,8 +23,11 @@ class ProductController {
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(value="/show", method=RequestMethod.GET)
-  @ResponseBody String showProduct(@RequestParam("productId") Integer productId) {
-    callService.getProductById(productId)
+  ModelAndView showProduct(@RequestParam("productId") Integer productId) {
+    def product = callService.getProductById(productId)
+    ModelAndView modelAndView = new ModelAndView("product/show")
+    modelAndView.addObject("product", product)
+  	modelAndView
   }
 
   @PreAuthorize("hasAuthority('USER')")
