@@ -16,7 +16,7 @@ class ProjectCommand {
   String infoPublic
   Long timeCreated
   String type
-  String projectFinancialData
+  def projectFinancialData
   String projectRate
   def projectVideos
   def projectSoundclouds

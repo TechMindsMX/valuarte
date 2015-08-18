@@ -10,6 +10,10 @@
     <p th:text="'name: ' + ${product.name}" />
     <p th:text="'category: Producto'" />
     <p th:text="${'dateCreated: '+beans.dateFormatter.format(product.timeCreated)}" />
+    <p th:text="'ROI Financiadores: 0%'" />
+    <p th:text="'ROI Inversionistas: 0%'" />
+    <p th:text="'Balance: $0.00'" />
+    <img th:attr="src=@{'http://192.168.0.122/avatar/' + ${product.avatar}},title=#{logo},alt=#{logo}" />
     <br/>
   </body>
-</html>
+  </html>
