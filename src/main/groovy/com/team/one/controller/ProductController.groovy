@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.servlet.ModelAndView
 import com.team.one.service.CallService
+import com.team.one.command.ProjectCommand
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -25,7 +26,7 @@ class ProductController {
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(value="/show", method=RequestMethod.GET)
   ModelAndView showProduct(@RequestParam("productId") Integer productId) {
-    def product = callService.getProductById(productId)
+    ProjectCommand product  = callService.getProductById(productId)
     ModelAndView modelAndView = new ModelAndView("product/show")
     modelAndView.addObject("product", product)
   	modelAndView
