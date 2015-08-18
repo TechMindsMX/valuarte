@@ -33,9 +33,12 @@ class ProductController {
   }
 
   @PreAuthorize("hasAuthority('USER')")
-  @RequestMapping(value="/show/all", method=RequestMethod.GET)
-  @ResponseBody String showProducts() {
-    callService.getProducts()
+  @RequestMapping(value="/list", method=RequestMethod.GET)
+  ModelAndView String showProducts() {
+    def products = callService.getProducts()
+    ModelAndView modelAndView = new ModelAndView("product/list")
+    modelAndView.addObject("products", products)
+  	modelAndView
   }
 
 }
