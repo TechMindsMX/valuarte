@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>Getting Started: Serving Web Content</title>
@@ -7,6 +8,8 @@
   <body>
     <p th:text="'id : '+ ${product.id}" />
     <p th:text="'name: ' + ${product.name}" />
+    <p th:text="'category: Producto'" />
+    <p th:text="'creationDate: ' + ${#dates.format(#calendars.createToday(), 'dd-MM-yyyy')}" />
     <br/>
   </body>
 </html>
