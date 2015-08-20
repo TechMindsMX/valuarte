@@ -1,0 +1,105 @@
+@font-face {
+  font-family: Multi;
+  src: url(/Fonts/Multi-Bold.ttf),
+  url(Fonts/Multi-Italic.ttf),
+  url(Fonts/Multi-SemiBold.ttf),
+  url(Fonts/Multi.ttf);
+}
+
+.body {
+  background-image: url("../images/Fondo.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+/*font-family: Multi !important;*/
+}
+
+.contenedor {
+  width: 1200px;
+}
+.container,
+.navbar-static-top .container,
+.navbar-fixed-top .container,
+.navbar-fixed-bottom .container {
+  width: 1340px !important;
+}
+
+.abajo {
+  background-image: url("../images/BarraAviso.jpg") !important;
+  background-size: 400% !important;
+  background-repeat: no-repeat !important;
+ }
+.sendForm {
+  background-image: url("../images/BotonEnviar.png");
+  background-size: 100% 250%;
+  background-repeat: no-repeat;
+}
+
+.carrousel {
+	background-image: url("../images/BarraVideo.jpg");
+	background-size:  99%;
+  background-repeat: no-repeat;
+}
+
+.back-lines {
+	background-image: url("../images/PlastaQuinesSomos.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.back-lines-who {
+  background-image: url("../images/PlastaQuinesSomos.jpg");
+  background-size: 1745px 800px;
+  background-repeat: no-repeat;
+}
+
+.back-lines-benefi {
+  background-image: url("../images/FondoEdit.jpg");
+  background-size: 1745px 458px;
+  background-repeat: no-repeat;
+}
+
+.back-lines-edu {
+  background-image: url("../images/PlecaEducacion.jpg");
+  background-size: 100% 200%;
+  background-repeat: no-repeat;
+}
+
+img.carrusel {
+    max-width: 100% !important;
+    height: auto !important;      
+}
+
+.info {
+  padding-left:2em
+}
+
+.text {
+  font-size: 22px !important;
+}
+
+.textList {
+  font-size: 20px !important;
+}
+
+.textBenefit {
+  font-size: 16px !important;
+}
+
+.textaviso {
+  font-size: 14px !important;
+}
+.diagramaBeneficios {
+  background-image: url("../images/PlastaBeneficios2.jpg");
+  width: 1290px !important;
+  height: 870px;
+}
+
+.privacidad {
+  background-image: url("../images/PlecaAviso.jpg");
+}
+.navbar-inner a{
+  font-weight: bold !important;
+  font-family: arial !important;
+  font-style: normal !important;
+  font-size: 16px !important;
+}

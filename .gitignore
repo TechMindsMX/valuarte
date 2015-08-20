@@ -2,4 +2,5 @@
 .gradletasknamecache
 build/
 .DS_Store
+src/main/resources/static/assets/third-party/
 src/main/resources/application.properties
