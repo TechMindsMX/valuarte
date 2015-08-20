@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.stereotype.Controller
 import org.springframework.web.servlet.ModelAndView
+import org.springframework.web.context.request.WebRequest
 import java.util.Optional
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -19,7 +20,7 @@ class LoginController {
 
   @RequestMapping(value="/login", method=RequestMethod.GET)
   ModelAndView index(@RequestParam Optional<String> error){
-  	ModelAndView modelAndView = new ModelAndView("login/index")
+  	ModelAndView modelAndView = new ModelAndView("login/login")
     if (error.isPresent())
   		modelAndView.addObject("error", "Invalid username and password!")
   	modelAndView
