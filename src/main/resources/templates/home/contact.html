@@ -43,7 +43,7 @@
               <h1><font size="5">CONTACTO</font></h1>
               <H2><font size="4">Si tienes cualquier duda o comentario, ponte en contacto con nosotros.</font></H2>
               <div class="span11">
-                <div class="span5">
+                <div class="span7">
                   <form name="contactValuarte" th:object="${contact}" method="post" action="#" th:action="@{/send}" >
                   <fieldset>
                     <label><h3>Nombre*</h3></label>
@@ -56,17 +56,16 @@
                     <input type="text" class="span10 search-query" th:field="*{subject}" />
                     <label><h3>Mensaje*</h3></label>
                   </fieldset>
-                  <textarea rows="5" th:field="*{message}" style="overflow:auto;resize:none"  class="span10"></textarea>
+                  <textarea rows="9" th:field="*{message}" style="overflow:auto;resize:none; border-radius: 20px;" class="span10"></textarea>
                     <p></p>
                     <div align="right">
-                      <button type="submit" class="btn btn-primary" align="center">Enviar</button>
+                      <input type="image" src="images/BotonEnviar.png" alt="Submit" />
                     </div>
                 </form>
                 </div>
-                <div class="span2"></div>
                 <div class="span5" align="left">
                   <h1>Dirección</h1>
-                  <h1>Prolongacion Paseo de la Reforma No. 1190 Oficina 2709 Col. Cruz Manca, Cuajimalpa, CP. 05349, México, D.F.</h1>
+                  <h1>Prolongación Paseo de la Reforma No. 1190 Oficina 2709 Col. Cruz Manca, Cuajimalpa, CP. 05349, México, D.F.</h1>
                   <p>
                   <h1>Teléfono</h1>
                   <h1>01(55) 1664    6771    (72)</h1>
