@@ -6,11 +6,11 @@ import spock.lang.AutoCleanup
 import spock.lang.Shared
 import spock.lang.Specification
 
-import com.team.one.service.CallServiceImpl
+import com.team.one.service.ClientServiceImpl
 
-class CallServiceImplSpec extends Specification {
+class ClientServiceImplSpec extends Specification {
 
-  CallServiceImpl rest = new CallServiceImpl()
+  ClientServiceImpl rest = new ClientServiceImpl()
 
   void "obtain a error in call rest service"() {
     when:

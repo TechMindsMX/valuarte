@@ -11,7 +11,7 @@ import jxl.*
 import java.io.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import com.team.one.service.CallService
+import com.team.one.service.ClientService
 
 @Service
 class UploadProductsServiceImpl implements UploadProductsService {
@@ -22,14 +22,14 @@ class UploadProductsServiceImpl implements UploadProductsService {
   @Value('${images.path}')
   String imagesPath
   @Autowired
-  CallService callService
+  ClientService ClientService
 
 
   Integer uploadProductsInValuarte(MultipartFile file) {
     try {
       Workbook fileExcel = Workbook.getWorkbook(file.getInputStream())
       int numRows
-      String token = callService.getTokenTimOneForBeginTransactions()
+      String token = ClientService.getTokenTimOneForBeginTransactions()
 
       (0..fileExcel.numberOfSheets-1).each{ sheetNo ->
         Sheet page = fileExcel.getSheet(sheetNo)
@@ -42,7 +42,7 @@ class UploadProductsServiceImpl implements UploadProductsService {
             data = page.getCell(column, row).contents
             listElementInRow.add(data)
           }
-          def result = callService.createProductTramaPost(listElementInRow,token)
+          def result = ClientService.createProductTramaPost(listElementInRow,token)
         }
       }
       numRows

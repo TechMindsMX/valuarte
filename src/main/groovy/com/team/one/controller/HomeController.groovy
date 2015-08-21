@@ -1,10 +1,26 @@
 package com.team.one.controller
 
 import org.springframework.stereotype.Controller
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.WebDataBinder
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.RequestMethod
+import javax.validation.Valid
 import org.springframework.web.bind.annotation.RequestMapping
+import com.team.one.service.ClientService
+import org.springframework.web.bind.annotation.ModelAttribute
+import org.springframework.web.servlet.ModelAndView
+import org.springframework.validation.BindingResult
+import com.team.one.domain.ContactCommand
+import org.springframework.ui.Model
+import com.team.one.domain.ContactCommand
 
 @Controller
 class HomeController {
+
+    @Autowired
+    ClientService clientService
 
     @RequestMapping("/")
     String getHomePage() {
@@ -32,7 +48,8 @@ class HomeController {
     }
 
     @RequestMapping("/contact")
-    String getContactPage() {
+    String getContactPage(Model model) {
+      model.addAttribute("contact",new ContactCommand())
       return "home/contact"
     }
 
@@ -44,5 +61,13 @@ class HomeController {
     @RequestMapping("/privacy")
     String getPrivacyPage() {
       return "home/privacy"
+    }
+
+    @RequestMapping("/send")
+    ModelAndView sendEmailContacToValuare(@Valid @ModelAttribute("form") ContactCommand contact, BindingResult result) {
+      clientService.sendEmailContact(contact)
+      def modelAndView = new ModelAndView("redirect:/contact")
+      modelAndView.addObject("contact", new ContactCommand())
+      modelAndView
     }
 }
