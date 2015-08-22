@@ -15,7 +15,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import com.team.one.service.uploadProducts.UploadProductsService
-import com.team.one.service.CallService
+import com.team.one.service.ClientService
 
 @Controller
 @RequestMapping("/upload")
@@ -26,7 +26,7 @@ class UploadProductsController {
   @Autowired
   UploadProductsService uploadProductsService
   @Autowired
-  CallService callService
+  ClientService ClientService
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(value="/create", method=RequestMethod.GET)

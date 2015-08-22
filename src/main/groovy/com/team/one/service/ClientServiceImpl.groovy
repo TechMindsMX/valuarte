@@ -5,14 +5,15 @@ import org.springframework.beans.factory.annotation.*
 import org.springframework.web.client.RestTemplate
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import com.team.one.service.CallService
+import com.team.one.service.ClientService
 import com.team.one.service.uploadProducts.PhotoNameGeneratorService
 import org.springframework.util.*
 import com.google.gson.Gson
 import com.team.one.command.ProjectCommand
+import org.springframework.http.*
 
 @Service
-class CallServiceImpl implements CallService {
+class ClientServiceImpl implements ClientService {
 
   @Value('${timOne.path.create.product}')
   String pathCreateProject
@@ -22,6 +23,8 @@ class CallServiceImpl implements CallService {
   String pathGetProduct
   @Value('${timOne.path.get.products}')
   String pathGetProducts
+  @Value('${timOne.path.form.contact}')
+  String pathFormContact
 
   @Autowired
   PhotoNameGeneratorService photoNameGeneratorService
@@ -41,7 +44,7 @@ class CallServiceImpl implements CallService {
       propertiesCreateProduct.token = token
       propertiesCreateProduct.status = 0
       RestTemplate restTemplate = new RestTemplate()
-      def resp = restTemplate.postForObject(pathCreateProject, propertiesCreateProduct, String.class)
+      def resp = restTemplate.postForObject(pathCreateProject, propertiesCreateProduct, JSON.class)
       resp
     }
     "no available"
@@ -67,6 +70,15 @@ class CallServiceImpl implements CallService {
     def json = restTemplate.getForObject(pathGetProducts,String.class)
     List<ProjectCommand> products = new Gson().fromJson(json, List.class);
     products
+  }
+
+  def sendEmailContact(def jsonContact) {
+    RestTemplate restTemplate = new RestTemplate()
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    HttpEntity<String> entity = new HttpEntity<String>(jsonContact,headers);
+    def status = restTemplate.postForObject(pathFormContact, entity,String.class);
+    log.info status
   }
 
 }
