@@ -1,136 +1,150 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <meta name="HandheldFriendly" content="True" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Valuarte</title>
-    <script src="../../assets/third-party/jquery/jquery.js" th:src="@{/assets/third-party/jquery/jquery.js}"/>
-    <link rel="stylesheet" th:href="@{/assets/valuarte.css}" href="../../assets/valuarte.css"/>
-    <link rel="stylesheet" th:href="@{/assets/gantry/css/grid-responsive.css}" href="../../assets/gantry/css/grid-responsive.css"/>
-    <link rel="stylesheet" th:href="@{/assets/third-party/bootstrap/docs/assets/css/bootstrap.css}" href="../../assets/third-party/bootstrap/docs/assets/css/bootstrap.css"/>
-    <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css-compiled/master-2a71248fdddc7d84748cd15f74ded47e.css}" href="../../assets/rt_hexeris/css-compiled/master-2a71248fdddc7d84748cd15f74ded47e.css"/>
-    <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css-compiled/section-2a71248fdddc7d84748cd15f74ded47e.css}" href="../../assets/rt_hexeris/css-compiled/section-2a71248fdddc7d84748cd15f74ded47e.css"/>
-    <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css-compiled/mediaqueries.css}" href="../../assets/rt_hexeris/css-compiled/mediaqueries.css"/>
-    <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css-compiled/rtl.css}" href="../../assets/rt_hexeris/css-compiled/rtl.css"/>
-    <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css-compiled/thirdparty-k2.css}" href="../../assets/rt_hexeris/css-compiled/thirdparty-k2.css"/>
-    <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css/rt_hexeris-custom.css}" href="../../assets/rt_hexeris/css/rt_hexeris-custom.css"/>
-    <link rel="stylesheet" th:href="@{/assets/mod_carrete/css/mod_carrete.css}" href="../../assets/mod_carrete/css/mod_carrete.css"/>
-    <link rel="stylesheet" th:href="@{/assets/third-party/jQuery-Validation-Engine/css/validationEngine.jquery.css}" href="../../assets/third-party/jQuery-Validation-Engine/css/validationEngine.jquery.css"/>
-    <link rel="stylesheet" th:href="@{/assets/rt_hexeris/roksprocket/layouts/headlines/themes/default/headlines.css}" href="../../assets/rt_hexeris/roksprocket/layouts/headlines/themes/default/headlines.css"/>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Valuarte</title>
+  <script src="../../assets/third-party/jquery/jquery.js" th:src="@{/assets/third-party/jquery/jquery.js}"/>
+  <link rel="stylesheet" th:href="@{/assets/valuarte.css}" href="../../assets/valuarte.css"/>
+  <link rel="stylesheet" th:href="@{/assets/gantry/css/grid-responsive.css}" href="../../assets/gantry/css/grid-responsive.css"/>
+  <link rel="stylesheet" th:href="@{/assets/third-party/bootstrap/docs/assets/css/bootstrap.css}" href="../../assets/third-party/bootstrap/docs/assets/css/bootstrap.css"/>
+  <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css-compiled/master-2a71248fdddc7d84748cd15f74ded47e.css}" href="../../assets/rt_hexeris/css-compiled/master-2a71248fdddc7d84748cd15f74ded47e.css"/>
+  <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css-compiled/section-2a71248fdddc7d84748cd15f74ded47e.css}" href="../../assets/rt_hexeris/css-compiled/section-2a71248fdddc7d84748cd15f74ded47e.css"/>
+  <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css-compiled/mediaqueries.css}" href="../../assets/rt_hexeris/css-compiled/mediaqueries.css"/>
+  <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css-compiled/rtl.css}" href="../../assets/rt_hexeris/css-compiled/rtl.css"/>
+  <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css-compiled/thirdparty-k2.css}" href="../../assets/rt_hexeris/css-compiled/thirdparty-k2.css"/>
+  <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css/rt_hexeris-custom.css}" href="../../assets/rt_hexeris/css/rt_hexeris-custom.css"/>
+  <link rel="stylesheet" th:href="@{/assets/mod_carrete/css/mod_carrete.css}" href="../../assets/mod_carrete/css/mod_carrete.css"/>
+  <link rel="stylesheet" th:href="@{/assets/third-party/jQuery-Validation-Engine/css/validationEngine.jquery.css}" href="../../assets/third-party/jQuery-Validation-Engine/css/validationEngine.jquery.css"/>
+  <link rel="stylesheet" th:href="@{/assets/rt_hexeris/roksprocket/layouts/headlines/themes/default/headlines.css}" href="../../assets/rt_hexeris/roksprocket/layouts/headlines/themes/default/headlines.css"/>
 
-    <script th:src="@{/assets/third-party/bootstrap/docs/assets/js/bootstrap.js}" src="../../assets/third-party/bootstrap/docs/assets/js/bootstrap.js"/>
-    <script th:src="@{/assets/media/system/js/mootools-core.js}" src="../../assets/media/system/js/mootools-core.js"/>
-    <script th:src="@{/assets/media/system/js/core.js}" src="../../assets/media/system/js/core.js"/>
-    <script th:src="@{/assets/media/system/js/mootools-more.js}" src="../../assets/media/system/js/mootools-more.js"></script>
-    <script th:src="@{/assets/rokbox/assets/js/rokbox.js}" src="../../assets/rokbox/assets/js/rokbox.js"></script>
-    <script th:src="@{/assets/gantry/js/browser-engines.js}" />
-    <script th:src="@{/assets/rt_hexeris/js/rokmediaqueries.js}" />
+  <script th:src="@{/assets/third-party/bootstrap/docs/assets/js/bootstrap.js}" src="../../assets/third-party/bootstrap/docs/assets/js/bootstrap.js"/>
+  <script th:src="@{/assets/media/system/js/mootools-core.js}" src="../../assets/media/system/js/mootools-core.js"/>
+  <script th:src="@{/assets/media/system/js/core.js}" src="../../assets/media/system/js/core.js"/>
+  <script th:src="@{/assets/media/system/js/mootools-more.js}" src="../../assets/media/system/js/mootools-more.js"></script>
+  <script th:src="@{/assets/rokbox/assets/js/rokbox.js}" src="../../assets/rokbox/assets/js/rokbox.js"></script>
+  <script th:src="@{/assets/gantry/js/browser-engines.js}" />
+  <script th:src="@{/assets/rt_hexeris/js/rokmediaqueries.js}" />
 
-    <script th:src="@{/assets/mod_busqueda_tags/js/lib.js}"></script>
-    <script th:src="@{/assets/third-party/jQuery-Validation-Engine/js/jquery.validationEngine.js}"></script>
-    <script th:src="@{/assets/third-party/jQuery-Validation-Engine/js/languages/jquery.validationEngine-es.js}"></script>
-    <script th:src="@{/assets/components/com_roksprocket/assets/js/mootools-mobile.js}"></script>
-    <script th:src="@{/assets/components/com_roksprocket/assets/js/rokmediaqueries.js}"></script>
-    <script th:src="@{/assets/components/com_roksprocket/assets/js/roksprocket.js}"></script>
-    <script th:src="@{/assets/components/com_roksprocket/layouts/headlines/themes/default/headlines.js}"></script>
-<script type="text/javascript">
+  <script th:src="@{/assets/mod_busqueda_tags/js/lib.js}"></script>
+  <script th:src="@{/assets/third-party/jQuery-Validation-Engine/js/jquery.validationEngine.js}"></script>
+  <script th:src="@{/assets/third-party/jQuery-Validation-Engine/js/languages/jquery.validationEngine-es.js}"></script>
+  <script th:src="@{/assets/components/com_roksprocket/assets/js/mootools-mobile.js}"></script>
+  <script th:src="@{/assets/components/com_roksprocket/assets/js/rokmediaqueries.js}"></script>
+  <script th:src="@{/assets/components/com_roksprocket/assets/js/roksprocket.js}"></script>
+  <script th:src="@{/assets/components/com_roksprocket/layouts/headlines/themes/default/headlines.js}"></script>
+  <script type="text/javascript">
     if (typeof RokBoxSettings == 'undefined') RokBoxSettings = {pc: '100'}
 
 
-    window.addEvent('domready', function(){
-      RokSprocket.instances.headlines = new RokSprocket.Headlines();
-    });
+      window.addEvent('domready', function(){
+        RokSprocket.instances.headlines = new RokSprocket.Headlines();
+      });
 
     window.addEvent('domready', function(){
      RokSprocket.instances.headlines.attach(153, '{"accordion":1,"autoplay":"0","delay":"5"}');
    });
 
   </script>
-  </head>
-  <body class="body">
-      <div id="rt-drawer">
-         <div class="rt-container">
-          <div class="rt-grid-12 rt-alpha rt-omega">
-            <div class="rt-block ">
-              <div class="module-surround">
-                <div class="module-content">
-                  <div class="custom"  align="center">
-                   <p><a th:href="@{'/'}"><img th:src="@{/images/LogotipoPágianweb_Valuarte.png}" src="../../images/LogotipoPágianweb_Valuarte.png"  alt="Valuarte" height="1300" width="900" border="0" align="middle"/></a></p></div>
-                   <div class="custom" >
-                    <div  align="center">
-                      <a th:href="@{'/'}"><img src="images/Inicio.png" /></a>
-                       <div class="span12"></div>
-                    </div>
+</head>
+<body class="body">
+  <div id="rt-drawer">
+   <div class="rt-container">
+    <div class="rt-grid-12 rt-alpha rt-omega">
+      <div class="rt-block ">
+        <div class="module-surround">
+          <div class="module-content">
+            <div class="custom"  align="center">
+             <p><a th:href="@{'/'}"><img th:src="@{/images/LogotipoPágianweb_Valuarte.png}" src="../../images/LogotipoPágianweb_Valuarte.png"  alt="Valuarte" height="1300" width="900" border="0" align="middle"/></a></p></div>
+             <div class="custom" >
+              <div  align="center">
+                <a th:href="@{'/'}"><img src="images/Inicio.png" /></a>
+                <div class="span12"></div>
+              </div>
 
-                   </div>
-                 </div>
-               </div>
-             </div>
-           </div>
-           <div class="clear"></div>
-         </div>
-       </div>
-      <header id="rt-top-surround" class="rt-dark">
-        <div class="rt-topbar"></div>
-          <div id="span12">
-            <div>
-             <div class="rt-grid-12 rt-alpha rt-omega">
-              </div>
-              <div class="row-fluid">
-                <div class="span12">
-                  <div class="navbar navbar-inverse">
-                    <div class="navbar-inner" >
-                      <div class="container">
-                        <div class="span2"></div>
-                        <ul class="nav" >
-                          <li class="dropdown">
-                            <a th:href="@{'/who'}" data-toggle="dropdown" class="dropdown-toggle">QUIÉNES SOMOS<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                              <li><a th:href="@{'/mision'}">MISIÓN/VISIÓN</a></li>
-                            </ul>
-                          </li>
-                          <li><a th:href="@{'/products'}">PRODUCTOS</a></li>
-                          <li><a th:href="@{'/benefits'}">BENEFICIOS</a></li>
-                          <li><a th:href="@{'/contact'}">CONTACTO</a></li>
-                          <li><a th:href="@{'/education'}">EDUCACION FINANCIERA</a></li>
-                          <li><a th:href="@{'/privacy'}">AVISO DE PRIVACIDAD</a></li>
-                        </ul> 
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="clear"></div>
             </div>
           </div>
-        <div class="clear"></div>
-      </header>
-    <div>
-      <div layout:fragment="content">
-
+        </div>
       </div>
     </div>
-  </body>
-  <footer th:fragment="footer" >
-      <img src="images/footer.png" width="100%" />  
-      <script>
-        $(document).ready(function(){
-          $(".gf-menu-toggle").addClass("hidden");
-        });
-        $(document).ready(function(){
-          setInterval(click, 3000);
-          $(".dropdown-toggle").mouseover(function(){
-            $(".dropdown-menu").show();
-          });
-          $(".dropdown-toggle").on('click',function(){
-            window.location.href = $(this).attr("href");
-          });
-        });
-        var click = function(){
-          $("span.arrow.next").click();
-        };
+    <div class="clear"></div>
+  </div>
+</div>
+<header id="rt-top-surround" class="rt-dark">
+  <div class="rt-topbar"></div>
+  <div id="span12">
+    <div>
+     <div class="rt-grid-12 rt-alpha rt-omega">
+     </div>
+     <div class="row-fluid">
+      <div class="span12">
+        <div class="navbar navbar-inverse">
+          <div class="navbar-inner" >
+            <div class="container">
+              <div class="span2"></div>
+              <ul class="nav" >
+                <li class="dropdown">
+                  <a th:href="@{'/who'}" data-toggle="dropdown" class="dropdown-toggle">QUIÉNES SOMOS<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a th:href="@{'/mision'}">MISIÓN/VISIÓN</a></li>
+                  </ul>
+                </li>
+                <li><a th:href="@{'/products'}">PRODUCTOS</a></li>
+                <li><a th:href="@{'/benefits'}">BENEFICIOS</a></li>
+                <li><a th:href="@{'/contact'}">CONTACTO</a></li>
+                <li><a th:href="@{'/education'}">EDUCACION FINANCIERA</a></li>
+                <li><a th:href="@{'/privacy'}">AVISO DE PRIVACIDAD</a></li>
+              </ul> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<div class="clear"></div>
+</header>
+<div>
+  <div layout:fragment="content">
 
-      </script>   
-    </footer> 
+  </div>
+</div>
+</body>
+<script>
+  $(document).ready(function(){
+    $(".gf-menu-toggle").addClass("hidden");
+  });
+  $(document).ready(function(){
+    setInterval(click, 3000);
+    $(".dropdown-toggle").mouseover(function(){
+      $(".dropdown-menu").show();
+    });
+    $(".dropdown-toggle").on('click',function(){
+      window.location.href = $(this).attr("href");
+    });
+  });
+  var click = function(){
+    $("span.arrow.next").click();
+  };
+</script>   
+<div id="footer" class="footer">
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="span6">
+         <br />
+         CONTACTO<br />
+         Teléfono: 0155 1664 6771      Mail: servicio@valuarte.mx  
+         <p></p>
+         AVISO DE PRIVACIDAD 2015<br />
+         Servicios Financieros con Valores S.A. de C.V. (VALUARTE)<br />
+         Sistemas de Inversiones al Consumo S.A. de C.V.
+         <p><br /></p>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
 </html>
