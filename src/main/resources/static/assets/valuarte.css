@@ -1,24 +1,25 @@
-@font-face {
-  font-family: Multi;
-  src: url(/Fonts/Multi-Bold.ttf),
-  url(Fonts/Multi-Italic.ttf),
-  url(Fonts/Multi-SemiBold.ttf),
-  url(Fonts/Multi.ttf);
-}
+
 
 .body {
   background-image: url("../images/Fondo.jpg");
-  background-size:100% 280%;
+  background-size:100% 435%;
   background-repeat: no-repeat;
-/*font-family: Multi !important;*/
+  line-height:1.8em; 
+  font-size: 1em;
+  font-family: 'Muli', sans-serif !important;
 }
+
+#myCarousel{ margin:0px !important; }
+
+.pharma>div{ height:700px !important; }
 
 .footer {
   background-image: url("../images/BarraAviso.jpg") !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
   color: #ffffff;
-  font-size: 16px !important;
+  font-family: 'Muli', sans-serif;
+  font-size: 1.2em;
   font-style: normal !important;
 }
 
@@ -47,27 +48,20 @@
   background-repeat: no-repeat;
 }
 
-.carrousel {
-	background-image: url("../images/BarraVideo.jpg");
-	background-size:  99%;
-  background-repeat: no-repeat;
-}
-
 .back-lines {
 	background-image: url("../images/PlastaQuinesSomos.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
-
-.back-lines-who {
+.back-lines-benefi {
   background-image: url("../images/PlastaQuinesSomos.jpg");
-  background-size: 1745px 800px;
+  background-size: 1745px 2120px;
   background-repeat: no-repeat;
 }
 
-.back-lines-benefi {
-  background-image: url("../images/FondoEdit.jpg");
-  background-size: 1745px 458px;
+.back-lines-who {
+  background-image: url("../images/PlastaQuinesSomos.jpg");
+  background-size: 1745px 890px;
   background-repeat: no-repeat;
 }
 
@@ -77,9 +71,10 @@
   background-repeat: no-repeat;
 }
 
-img.carrusel {
-    max-width: 100% !important;
-    height: auto !important;      
+.back-lines-pro {
+  background-image: url("../images/PlecaAviso.jpg");
+  background-size: 100% 200%;
+  background-repeat: no-repeat;
 }
 
 .info {
@@ -104,13 +99,21 @@ img.carrusel {
 .diagramaBeneficios {
   background-image: url("../images/PlastaBeneficios2.jpg");
   width: 1290px !important;
-  height: 870px;
+  height:990px;
 }
 
 .privacidad {
   background-image: url("../images/PlecaAviso.jpg");
 }
 .navbar-inner a{
+  font-weight: bold !important;
+  font-family: arial !important;
+  font-style: normal !important;
+  font-size: 16px !important;
+}
+.navbar-inner a:hover,
+.navbar-inner a:focus{
+  color: #00CCCC !important;
   font-weight: bold !important;
   font-family: arial !important;
   font-style: normal !important;
