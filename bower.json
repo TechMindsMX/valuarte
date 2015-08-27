@@ -16,7 +16,6 @@
   ],
   "dependencies": {
     "bootstrap": "2.3.2",
-    "jquery": "1.9.1",
-    "jQuery-Validation-Engine": "~2.6.4"
+    "jquery": "1.9.1"
   }
 }
