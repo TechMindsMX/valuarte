@@ -4,12 +4,7 @@
   layout:decorator="layout">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <style>
-      #map {
-        width: 1300px;
-        height: 400px;
-      }
-    </style>
+    
     <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script>
       function initialize() {
@@ -34,11 +29,10 @@
   <body>
     <div layout:fragment="content">
       <header id="rt-top-surround" class="rt-dark">
-        <div class="row-fluid" align="center">
-          <div class="container back-lines " >
-            <p><!--img src="images/mapa.png" width="100%" height="10px" align="center"/-->
-              <div id="map"></div>
-            </p>
+        <div class="row-fluid">
+          <div class="span1"></div>
+          <div class="span10 back-lines " >
+            <div id="map" class="span12" style="height:400px"></div>
             <div class="info" align="left">
               <h1><font size="5">CONTACTO</font></h1>
               <H2><font size="4">Si tienes cualquier duda o comentario, ponte en contacto con nosotros.</font></H2>
