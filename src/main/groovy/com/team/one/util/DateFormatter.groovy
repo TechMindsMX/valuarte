@@ -1,4 +1,4 @@
-package com.team.one.bean
+package com.team.one.util
 
 import org.springframework.stereotype.Component
 import java.text.SimpleDateFormat
