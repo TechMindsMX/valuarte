@@ -7,7 +7,11 @@ import java.text.SimpleDateFormat
 class DateFormatter{
 
   String format(Long timestamp){
-    def date = new Date(1438975696592L)
+    def date = new Date(timestamp)
+    new SimpleDateFormat("yyyy-MM-dd").format(date)
+  }
+
+  String format(Date date){
     new SimpleDateFormat("yyyy-MM-dd").format(date)
   }
 

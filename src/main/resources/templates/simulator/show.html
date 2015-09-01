@@ -12,7 +12,7 @@
         <div class="row-fluid">
           Hello Simulator!
           <div>
-            <label>Fecha: DD/MM/YYYY</label>
+            <p th:text="${'Fecha: '+beans.dateFormatter.format(date)}" />
           </div>
           <div>
             <label>Nombre:</label>

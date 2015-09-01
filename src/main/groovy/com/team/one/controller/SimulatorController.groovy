@@ -14,6 +14,7 @@ class SimulatorController {
   @RequestMapping(value="/show", method=RequestMethod.GET)
   ModelAndView index(){
   	ModelAndView modelAndView = new ModelAndView("simulator/show")
+    modelAndView.addObject("date", new Date())
   	modelAndView
   }
 
