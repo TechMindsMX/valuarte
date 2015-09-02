@@ -1,49 +1,72 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="layout">
   <head>
     <title>Valuarte</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
-  <body align="center">
-    Valuarte
-    Ingresa tus datos y comienza a navegar
-    <div th:if="${error}">
-      <p th:each="er : ${error}">
-        <font color="red"> <p th:text="${er}"/></font>
-      </p>
+  <body>
+    <div layout:fragment="content">
+      <header id="rt-top-surround" class="rt-dark">
+        <div class="row-fluid">
+          <div class="span2"></div>
+          <div class="span8 registro">
+            <div th:if="${error}">
+              <p th:each="er : ${error}">
+                <p th:text="${er}" align="center" class="alert alert-error"/>
+              </p>
+            </div>
+            <div class="info">
+              <h1>REGISTRO DE USUARIO
+              <p>* Campo Obligatorio</p></h1>
+              <form id="register" action="#" th:action="@{/Users/save}" th:object="${user}" method="post"  class="form-horizontal">
+                <div class="span12">
+                  <div class="span6">
+                    <div class="control-group">
+                      <label><h2>Usuario*</h2></label>
+                      <input type="text" th:field="*{username}" class="span9 search-query"/>
+                      <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></label>
+                    </div>
+                    <div class="control-group">
+                      <label><h2>Contraseña*</h2></label>
+                      <input type="password" th:field="*{password}" class="span9 search-query" />
+                    </div>
+                    <div class="control-group">
+                      <label><h2>Nombre(s)</h2></label>
+                      <input type="text" th:field="*{firstName}" class="span9 search-query"/>
+                    </div>
+                    <div class="control-group">
+                      <label><h2>Dirección de correo electrónico</h2></label>
+                      <input type="email" th:field="*{email}" class="span9 search-query"/>
+                    </div>
+                  </div>
+                  <div class="span6">
+                    <div class="control-group">
+                      <p>&nbsp;&nbsp;</p>
+                      <p>&nbsp;&nbsp;</p>
+                      &nbsp;
+                    </div>
+                    <div class="control-group">
+                      <label><h2>Confirme su contraseña*</h2></label>
+                      <input type="password" th:field="*{passwordRepeated}" class="span9 search-query" />
+                    </div>
+                    <div class="control-group">
+                      <label><h2>Apellido</h2></label>
+                      <input type="text" th:field="*{lastName}" class="span9 search-query"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="span11" align="right">
+                  <input type="image" th:src="@{/images/Botonregistrar_Registro.png}" id="submit" />
+                  <input type="image" th:src="@{/images/Botoncancelar_Registro.png}" id="reset" />
+                  <p>&nbsp;&nbsp;</p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </header>
     </div>
-    <form action="#" th:action="@{/Users/save}" th:object="${user}" method="post" >
-      <p>
-      <label>Username<font color="red">*</font> :</label>
-        <input type="text" th:field="*{username}" />
-      </p>
-      <p>
-        Password <font color="red">*</font>:
-        <input type="password" th:field="*{password}" />
-      </p>
-      <p>
-        Repeat Password <font color="red">*</font>:
-        <input type="password" th:field="*{passwordRepeated}" />
-      </p>
-      <p>
-        First Name :
-        <input type="text" th:field="*{firstName}" />
-      </p>
-      <p>
-        Last Name :
-        <input type="text" th:field="*{lastName}" />
-      </p>
-      <p>
-        Email :
-        <input type="email" th:field="*{email}" />
-      </p>
-      <p>
-        <font color="red">* Campos Obligatorios</font>
-      </p>
-      <p>
-        <input type="reset" value="Reset" />
-        <input type="submit" value="Submit" />
-      </p>
-    </form>
   </body>
 </html>
