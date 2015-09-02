@@ -42,7 +42,7 @@
                <p><a th:href="@{'/'}"><img th:src="@{/images/LogoValuarte.png}" src="../../images/LogoValuarte.png"  alt="Valuarte" height="1300" width="900" border="0" align="middle"/></a></p></div>
                <div class="custom" >
                 <div  align="center">
-                  <a th:href="@{'/'}"><img src="images/Inicio.png" /></a>
+                  <a th:href="@{'/'}"><img src="../../images/Inicio.png" h:src="@{/images/Inicio.png}"/></a>
                   <div class="span12"></div>
                 </div>
               </div>
@@ -123,6 +123,14 @@
     $('.carousel').carousel({
       interval: 2000
     });
+    $("#submit").on('click', function(e){
+       e.preventDefault();
+        $("#register").submit();
+      });
+      $("#reset").on('click',function(e){
+        e.preventDefault();
+        $("#register")[0].reset()
+      });
   });
   var click = function(){
     $("span.arrow.next").click();
