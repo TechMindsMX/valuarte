@@ -1,23 +1,27 @@
 package com.team.one.domain
 
-import org.hibernate.validator.constraints.NotEmpty
+import org.hibernate.validator.constraints.*
 import javax.validation.constraints.NotNull
+import javax.validation.constraints.Size
 
 class UserCommand {
 
-  @NotEmpty
+  @NotEmpty(message = "El campo Usuario no puede estar vacio")
   String username
 
-  @NotEmpty
+  @NotEmpty(message = "El campo Contraseña no puede estar vacio")
+  @Size(min = 10, max = 50)
   String password
 
-  @NotEmpty
+  @NotEmpty(message = "El campo confirma contraseña no puede estar vacio")
+  @Size(min = 10, max = 50)
   String passwordRepeated
 
   String firstName
 
   String lastName
 
+  @Email
   String email
 
   @NotNull
