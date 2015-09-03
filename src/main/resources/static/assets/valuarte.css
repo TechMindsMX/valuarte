@@ -22,6 +22,9 @@ html {
   color: #ffffff;
 }
 
+.productButonFilters {
+  background-image: url("../images/Plecaapoyados_Beneficios.png");
+}
 
 .dropdown-menu {
   background-color: black !important;
@@ -94,6 +97,9 @@ html {
   font-size: 16px !important;
 }
 
+.products {
+  background-image: url("../images/Plasta_Beneficios.jpg");
+}
 
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus,
