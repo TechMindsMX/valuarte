@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.servlet.ModelAndView
 import com.team.one.service.ClientService
 import com.team.one.command.ProjectCommand
-
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -19,14 +18,14 @@ import org.slf4j.LoggerFactory
 class ProductController {
 
   @Autowired
-  ClientService ClientService
+  ClientService clientService
 
   static final Logger log = LoggerFactory.getLogger(this.getClass())
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(value="/show", method=RequestMethod.GET)
   ModelAndView showProduct(@RequestParam("productId") Integer productId) {
-    ProjectCommand product  = ClientService.getProductById(productId)
+    ProjectCommand product  = clientService.getProductById(productId)
     ModelAndView modelAndView = new ModelAndView("product/show")
     modelAndView.addObject("product", product)
   	modelAndView
@@ -34,12 +33,11 @@ class ProductController {
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(value="/list", method=RequestMethod.GET)
-  ModelAndView showProducts() {
-    def products = ClientService.getProducts()
-    ModelAndView modelAndView = new ModelAndView("product/list")
-    modelAndView.addObject("products", products)
-  	modelAndView
+  String showProducts(Map model) {
+    def products = clientService.getProducts()
+    def listSectionProducts = products.collate(3)
+    model.productGroupList = listSectionProducts
+  	"product/list"
   }
 
 }
-
