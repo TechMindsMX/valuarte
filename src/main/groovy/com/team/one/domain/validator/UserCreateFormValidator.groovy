@@ -21,21 +21,30 @@ class UserCreateFormValidator implements Validator {
   @Override
   void validate(Object target,Errors errors) {
     UserCommand form = (UserCommand) target;
-    validatePasswords(errors, form);
-    validateEmail(errors, form);
+    def errorList = []
+    errorList << validatePasswords(errors, form)
+    errorList << validateEmail(errors, form)
+    errorList
   }
 
-  //@Override
-  void validatePasswords(Errors errors, UserCommand command) {
+  def validatePasswords(Errors errors, UserCommand command) {
     if (!command.password.equals(command.passwordRepeated))
-      errors.reject("password.no:match", "passwords do not match")
+      errors.reject("password.no:match", "Las contraseñas no coinciden")
+    else {
+      validateRegex(errors,command)
+    }
   }
 
-  //@Override
-  void validateEmail(Errors errors, UserCommand command) {
+  def validateEmail(Errors errors, UserCommand command) {
     if (!userService.getUserByUsername(command.username).empty())
-      errors.reject("email.exists", "User with this email already exists")
+      errors.reject("username.exists", "el nombre de usuario ya existe")
   }
 
+  def validateRegex(Errors errors, UserCommand command) {
+    def regex = ~/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{10,}$+/
+    if (!command.password.matches(regex) ){
+      errors.reject("password.not:regex", "La contraseña debe mantener las reglas de una contraseña segura \n *(Al menos una mayuscula, Alfanumerica y un tamaño minimo de 10 caracteres)")
+    }
+  }
 
 }
