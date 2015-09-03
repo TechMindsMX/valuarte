@@ -107,10 +107,6 @@
 </div>
 <script>
   $(document).ready(function(){
-    $(".gf-menu-toggle").addClass("hidden");
-  });
-  $(document).ready(function(){
-    setInterval(click, 3000);
     $(".dropdown-toggle").mouseover(function(e){
       $(".dropdown-menu").slideDown(1000);
     });
@@ -120,20 +116,6 @@
     $(".dropdown-menu li").on('mouseleave',function(e){
       $(".dropdown-menu").slideUp(1000);
     });
-    $('.carousel').carousel({
-      interval: 2000
-    });
-    $("#submit").on('click', function(e){
-       e.preventDefault();
-        $("#register").submit();
-      });
-      $("#reset").on('click',function(e){
-        e.preventDefault();
-        $("#register")[0].reset()
-      });
   });
-  var click = function(){
-    $("span.arrow.next").click();
-  };
 </script> 
 </html>
