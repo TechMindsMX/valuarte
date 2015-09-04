@@ -1,7 +1,7 @@
 package com.team.one.command
 
 class ProjectCommand {
-  Long id
+  BigInteger id
   String name
   String showground
   String inclosure
@@ -34,4 +34,18 @@ class ProjectCommand {
   BigDecimal investedAmount
   Float rating
   Long userId
+
+
+  def getElementInDescriptionByPosition(def position) {
+    def content = description.split("-")
+    content[position]
+  }
+
+  def getNameOfProduct() {
+    def content = name.split("-")
+    content[1]
+  }
+
 }
+
+

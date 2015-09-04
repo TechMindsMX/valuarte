@@ -1,17 +1,35 @@
 <!DOCTYPE HTML>
-
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+layout:decorator="layout">
   <head>
-    <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
-  <body>
-    <p th:text="'name: '+${product.name}" />
-    <p th:text="'category: Producto'" />
-    <p th:text="${'dateCreated: '+beans.dateFormatter.format(product.timeCreated)}" />
-    <p th:text="'ROI Financiadores: 0%'" />
-    <p th:text="'ROI Inversionistas: 0%'" />
-    <p th:text="'Balance: $0.00'" />
-    <img th:attr="src=@{'http://192.168.0.122/avatar/' + ${product.avatar}},title=#{logo},alt=#{logo}" />
-  </body>
+    <body>
+      <div layout:fragment="content">
+        <header id="rt-top-surround" class="rt-dark">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="span2"></div>
+              <div class="span8 products">
+                <div class="span12">
+                  <div class="span5">
+                    <img th:attr="src=@{'http://192.168.0.122/cienhundreds/photos/' + ${product.projectPhotos.get(0).url}},title=#{logo},alt=#{logo}" width="460" height="460" />
+                  </div>
+                  <div class="span6">
+                    <br />
+                    <font color="white" size="6"><p th:text="${product.getNameOfProduct()}" /></font>
+                    <br />
+                    <font size="6" color="black"><p th:text="'$'+${product.getElementInDescriptionByPosition(1)}"/></font>
+                    <input type="image" th:src="@{/images/ BotonInvertir_Beneficios2.png}"/>
+                    <hr />
+                    <p th:utext="${product.getElementInDescriptionByPosition(2)}"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+    </body>
   </html>

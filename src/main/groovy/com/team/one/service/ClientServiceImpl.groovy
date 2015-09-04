@@ -11,6 +11,9 @@ import org.springframework.util.*
 import com.google.gson.Gson
 import com.team.one.command.ProjectCommand
 import org.springframework.http.*
+import org.codehaus.jackson.JsonGenerationException
+import org.codehaus.jackson.map.JsonMappingException
+import org.codehaus.jackson.map.ObjectMapper
 
 @Service
 class ClientServiceImpl implements ClientService {
@@ -59,7 +62,8 @@ class ClientServiceImpl implements ClientService {
   ProjectCommand getProductById(Integer productId){
     RestTemplate restTemplate = new RestTemplate()
     def json = restTemplate.getForObject(pathGetProduct + productId,String.class)
-    ProjectCommand command = new Gson().fromJson(json, ProjectCommand.class);
+    ObjectMapper mapper = new ObjectMapper()
+    ProjectCommand command = mapper.readValue(json, ProjectCommand.class)
     log.info "Project: ${command.dump()}"
     log.info "Uploaded photos: ${command.projectPhotos?.size()}"
     command
@@ -68,10 +72,10 @@ class ClientServiceImpl implements ClientService {
   def getProducts(){
     RestTemplate restTemplate = new RestTemplate()
     def json = restTemplate.getForObject(pathGetProducts,String.class)
-    List<ProjectCommand> products = new Gson().fromJson(json, List.class);
+    ObjectMapper mapper = new ObjectMapper()
+    List<ProjectCommand> products = mapper.readValue(json, List.class)
     products
   }
-
   def sendEmailContact(def jsonContact) {
     RestTemplate restTemplate = new RestTemplate()
     HttpHeaders headers = new HttpHeaders();

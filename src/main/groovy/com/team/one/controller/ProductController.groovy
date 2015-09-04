@@ -26,6 +26,8 @@ class ProductController {
   @RequestMapping(value="/show", method=RequestMethod.GET)
   ModelAndView showProduct(@RequestParam("productId") Integer productId) {
     ProjectCommand product  = clientService.getProductById(productId)
+    println product
+
     ModelAndView modelAndView = new ModelAndView("product/show")
     modelAndView.addObject("product", product)
   	modelAndView
