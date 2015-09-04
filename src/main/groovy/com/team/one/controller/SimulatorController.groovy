@@ -18,4 +18,12 @@ class SimulatorController {
   	modelAndView
   }
 
+  @PreAuthorize("hasAuthority('USER')")
+  @RequestMapping(value="/save", method=RequestMethod.POST)
+  ModelAndView save(@ModelAttribute("form") ClientCommand form){
+  	ModelAndView modelAndView = new ModelAndView()
+  	modelAndView
+  }
+
+
 }
