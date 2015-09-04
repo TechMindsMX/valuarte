@@ -10,13 +10,16 @@
       <br/><br/>
       <header id="rt-top-surround" class="rt-dark">
         <div class="row-fluid">
-          Hello Simulator!
           <div>
             <p th:text="${'Fecha: '+beans.dateFormatter.format(date)}" />
           </div>
           <div>
             <label>Nombre:</label>
             <input type="text" name="name" id="name"/>
+          </div>
+          <div>
+            <label>RFC:</label>
+            <input type="text" name="rfc" id="rfc"/>
           </div>
           <div>
             <label>Canal: AVANDARO</label>
