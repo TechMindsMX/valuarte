@@ -23,8 +23,8 @@
                 <br />
                 <br />
                 <div th:if="${error}">
-                  <div align="center">
-                    <font color="red"> <p th:text="${error}"/></font>
+                  <div align="center" class="alert alert-error">
+                    <p th:text="${error}"/>
                   </div>
                 </div>
                 <form align="left" role="form" action="/login" method="post" class="form-horizontal" id="login">
