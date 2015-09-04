@@ -10,6 +10,7 @@
       <br/><br/>
       <header id="rt-top-surround" class="rt-dark">
         <div class="row-fluid">
+          <form align="center" role="form" action="/create" method="post">
           <div>
             <p th:text="${'Fecha: '+beans.dateFormatter.format(date)}" />
           </div>
@@ -30,6 +31,8 @@
           <div>
             <label>ID: 31</label>
           </div>
+          <p align="center"><a href="/Simulator/create" align="center" type="button">Enviar</a></p>
+        </form>
         </div>
       </header>
   	</div>
