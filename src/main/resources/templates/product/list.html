@@ -40,8 +40,7 @@ layout:decorator="layout">
                     <div class="span3">
                       <img th:attr="src=@{'http://192.168.0.122/cienhundreds/photos/' + ${product.projectPhotos.get(0).url}},title=#{logo},alt=#{logo}" />
                       <p><br /></p>
-                      <font size="5" align="left"><p th:text="${product.getNameOfProduct()}" /></font>
-                      <p th:text="${product.id}"/>
+                      <font size="5" align="left"><p th:text="${product.name}" /></font>
                       <p><HR COLOR="white" WIDTH="95%" size="5" /></p>
                       <div align="center">
                         <div class="span2"></div>
