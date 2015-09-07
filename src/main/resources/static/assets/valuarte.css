@@ -78,6 +78,15 @@ html {
   background-image: url("../images/Plecablack_Registro.jpg");
 }
 
+#gal1 img {
+    border: 2px solid white;
+}
+
+/*Change the colour*/
+.active img {
+    border: 2px solid #333 !important;
+}
+
 .privacidad {
   background-image: url("../images/PlecaAviso.jpg");
 }
