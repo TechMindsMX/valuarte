@@ -12,9 +12,18 @@ layout:decorator="layout">
             <div class="span12">
               <div class="span2"></div>
               <div class="span8 products">
-                <div class="span12">
+                <div class="span12 info" >
                   <div class="span5">
-                    <img th:attr="src=@{'http://192.168.0.122/cienhundreds/photos/' + ${product.projectPhotos.get(0).url}},title=#{logo},alt=#{logo}" width="460" height="460" />
+                    <br />
+                    <img id="images" th:attr="src=@{'http://192.168.0.122/cienhundreds/photos/' + ${product.projectPhotos.get(0)['url']}}, data-zoom-image=@{'http://192.168.0.122/cienhundreds/photos/' + ${product.projectPhotos.get(0)['url']}}" width="460" height="460" />
+                    <p></p>
+                    <div id="gal1">
+                      <span th:each="images : ${product.projectPhotos}">
+                        <a href="#" th:attr="data-image=@{'http://192.168.0.122/cienhundreds/photos/' + ${images['url']}}, data-zoom-image=@{'http://192.168.0.122/cienhundreds/photos/' + ${images['url']}}">
+                          <img id="img_01" th:attr="src=@{'http://192.168.0.122/cienhundreds/photos/' + ${images['url']}}" height="68px" width="100px" />
+                        </a>
+                      </span>
+                    </div>
                   </div>
                   <div class="span6">
                     <br />
@@ -24,12 +33,26 @@ layout:decorator="layout">
                     <input type="image" th:src="@{/images/ BotonInvertir_Beneficios2.png}"/>
                     <hr />
                     <p th:utext="${product.getElementInDescriptionByPosition(2)}"></p>
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </header>
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $('#images').ezPlus({
+                gallery: 'gal1', cursor: 'pointer', galleryActiveClass: 'active',
+                imageCrossfade: true, loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'
+            });
+            $('#images').bind('click', function (e) {
+                var ez = $('#images').data('ezPlus');
+                $.fancyboxPlus(ez.getGalleryList());
+                return false;
+            });          
+          });
+        </script>
       </div>
     </body>
   </html>
