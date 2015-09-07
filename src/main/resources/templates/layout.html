@@ -40,10 +40,23 @@
         <div class="rt-block ">
           <div class="module-surround">
             <div class="module-content">
+              <div class="custom">
+                <div align="center" th:if="${session.SPRING_SECURITY_CONTEXT}">
+                 <div class="span12"></div>
+                  <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="btn btn-inverse" >Cerrar sesión</button>
+                  </form>
+                </div>
+                <div align="center" th:unless="${session.SPRING_SECURITY_CONTEXT}">
+                 <div class="span12"></div>
+                  <span><a th:href="@{'/Users/create'}" class="btn btn-info"><font>Registrate</font></a></span>
+                </div>
+              </div>
               <div class="custom"  align="center">
-               <p><a th:href="@{'/'}"><img th:src="@{/images/LogoValuarte.png}" src="../../images/LogoValuarte.png"  alt="Valuarte" height="1300" width="900" border="0" align="middle"/></a></p></div>
-               <div class="custom" >
-                <div  align="center">
+                <p><a th:href="@{'/'}"><img th:src="@{/images/LogoValuarte.png}" src="../../images/LogoValuarte.png"  alt="Valuarte" height="1300" width="900" border="0" align="middle"/></a></p>
+              </div>
+              <div class="custom" >
+                <div  align="center"  th:unless="${session.SPRING_SECURITY_CONTEXT}">
                   <a th:href="@{'/login'}"><img src="../../images/Inicio.png" h:src="@{/images/Inicio.png}"/></a>
                   <div class="span12"></div>
                 </div>
