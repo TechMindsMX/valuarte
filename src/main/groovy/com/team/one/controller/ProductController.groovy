@@ -34,7 +34,7 @@ class ProductController {
   }
 
   @PreAuthorize("hasAuthority('USER')")
-  @RequestMapping(value="/list", method=RequestMethod.GET)
+  @RequestMapping(value="/", method=RequestMethod.GET)
   String showProducts(Map model) {
     def products = clientService.getProducts()
     def listSectionProducts = products.collate(3)
