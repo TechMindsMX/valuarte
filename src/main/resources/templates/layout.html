@@ -88,7 +88,7 @@
                <li><a th:href="@{'/products'}">PRODUCTOS</a></li>
 
                <li class="dropdown">
-                 <a id="benefit" data-toggle="dropdown" class="dropdown-toggle">BENEFICIOS<b class="caret"></b></a>
+                 <a id="benefit" data-toggle="dropdown" id="benefit" class="dropdown-toggle">BENEFICIOS<b class="caret"></b></a>
                  <ul class="dropdown-menu" id="product">
                    <li><a th:href="@{'/benefits'}">CÓMO LOGRARLO</a></li>
                    <li><a th:href="@{'/product/'}">ARTÍCULOS</a></li>
@@ -136,6 +136,12 @@
     });
     $("#mision li").on('mouseleave',function(e){
       $("#mision").slideUp(1000);
+    });
+    $("#benefit").mouseover(function(e) {
+      $("#product").slideDown(1000);
+    });
+    $("#product li").on('mouseleave',function(e){
+      $("#product").slideUp(1000);
     });
   });
 </script> 
