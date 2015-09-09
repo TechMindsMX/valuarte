@@ -15,7 +15,7 @@ layout:decorator="layout">
                 <div class="span12 info" >
                   <div class="span5">
                     <br />
-                    <img id="images" th:attr="src=@{'http://192.168.0.122/cienhundreds/photos/' + ${product.projectPhotos.get(0)['url']}}, data-zoom-image=@{'http://192.168.0.122/cienhundreds/photos/' + ${product.projectPhotos.get(0)['url']}}" width="460" height="460" />
+                    <img id="images" th:attr="src=@{'http://trama.mx/cienhundreds/photos/' + ${product.projectPhotos.get(0)['url']}}, data-zoom-image=@{'http://trama.mx/cienhundreds/photos/' + ${product.projectPhotos.get(0)['url']}}" width="460" height="460" />
                     <p></p>
                     <div id="gal1">
                       <span th:each="images : ${product.projectPhotos}">
