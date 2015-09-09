@@ -19,8 +19,8 @@ layout:decorator="layout">
                     <p></p>
                     <div id="gal1">
                       <span th:each="images : ${product.projectPhotos}">
-                        <a href="#" th:attr="data-image=@{'http://192.168.0.122/cienhundreds/photos/' + ${images['url']}}, data-zoom-image=@{'http://192.168.0.122/cienhundreds/photos/' + ${images['url']}}">
-                          <img id="img_01" th:attr="src=@{'http://192.168.0.122/cienhundreds/photos/' + ${images['url']}}" height="68px" width="100px" />
+                        <a href="#" th:attr="data-image=@{'http://trama.mx/cienhundreds/photos/' + ${images['url']}}, data-zoom-image=@{'http://trama.mx/cienhundreds/photos/' + ${images['url']}}">
+                          <img id="img_01" th:attr="src=@{'http://trama.mx/cienhundreds/photos/' + ${images['url']}}" height="68px" width="100px" />
                         </a>
                       </span>
                     </div>

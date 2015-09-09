@@ -38,7 +38,7 @@ layout:decorator="layout">
                   <div class="span1"></div>
                   <p th:each="product : ${productList}">
                     <div class="span3">
-                      <img th:attr="src=@{'http://192.168.0.122/cienhundreds/photos/' + ${product.projectPhotos.get(0).url}},title=#{logo},alt=#{logo}" />
+                      <img th:attr="src=@{'http://trama.mx/cienhundreds/photos/' + ${product.projectPhotos.get(0).url}},title=#{logo},alt=#{logo}" />
                       <p><br /></p>
                       <font size="5" align="left"><p th:text="${product.name}" /></font>
                       <p><HR COLOR="white" WIDTH="95%" size="5" /></p>
