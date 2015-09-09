@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="layout">
+  <head>
+    <title>Valuarte-Admin</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/assets/third-party/pickadate/lib/themes/default.css}" href="../../assets/third-party/pickadate/lib/themes/default.css" />
+    <link rel="stylesheet" th:href="@{/assets/third-party/pickadate/lib/themes/default.date.css}" href="../../assets/third-party/pickadate/lib/themes/default.date.css" />
+    <link rel="stylesheet" th:href="@{/assets/third-party/pickadate/lib/themes/default.time.css}" href="../../assets/third-party/pickadate/lib/themes/default.time.css" />
+    <script th:src="@{/assets/third-party/pickadate/lib/picker.js}" src="../../assets/third-party/pickadate/lib/picker.js"/>
+    <script th:src="@{/assets/third-party/pickadate/lib/picker.date.js}" src="../../assets/third-party/pickadate/lib/picker.date.js"/>
+    <script th:src="@{/assets/third-party/pickadate/lib/picker.time.js}" src="../../assets/third-party/pickadate/lib/picker.time.js"/>
+
+  </head>
+  <body>
+    <div layout:fragment="content">
+      <header id="rt-top-surround" class="rt-dark">
+        <div class="row-fluid">
+          <div class="span1"></div>
+          <div class="span10 registro">
+            <h1>Solicitud de Préstamo y Formato de conocimiento del cliente</h1>
+            <form id="credit" action="#" th:action="@{/adminCredit/save}" th:object="${creditCommand}" method="post" class="form-horizontal">
+              <div class="span12 info">
+                <div class="control-group">
+                  <label>Monto Solicitado</label>
+                  <input type="text" th:field="*{montoPrestamo}" class="span4 search-query" />
+                </div>
+                <hr />
+                <div class="span4">
+
+                  <h1>1.- Identificación del cliente</h1>
+                  <div class="control-group">
+                    <label>Nombre(s)</label>
+                    <input type="text" th:field="*{nombre}" class="span7 search-query" />
+                  </div>
+                   <div class="control-group">
+                    <label>Apellido Paterno</label>
+                    <input type="text" th:field="*{apellidoPaterno}" class="span7 search-query" />
+                   </div>
+                   <div class="control-group">
+                    <label>Fecha de nacimeinto</label>
+                    <input class="datepicker span7 search-query" id="edad" th:fiel="*{fechaNacimeinto}" />
+                   </div>
+                   <div class="control-group">
+                     <label>Edad</label>
+                     <input type="text" th:field="*{edad}" class="span7 search-query" />
+                  </div>
+                  <div class="control-group">
+                    <label>Estado civil</label>
+                    <select name="estadoCivilEnum" class="form-control span7 search-query" th:field="*{estadoCivil}">
+                      <option th:each=" estado : ${T(com.team.one.domain.enums.EstadoCivil).values()}" th:value="${estado}" th:text="${estado.value}"></option>
+                    </select>
+                  </div>
+                  <div class="control-group">
+                    <label>Regimen Matrimonial</label>
+                    <select name="regimenMatrimonialEnum" class="form-control span7 search-query" th:field="*{regimen}">
+                      <option th:each="regimenM :${T(com.team.one.domain.enums.RegimenMatrimonial).values()}" th:value="${regimenM}" th:text="${regimenM.value}"></option>
+                    </select>
+                  </div>
+                  <div class="control-group">
+                    <label>Grado Maximo de Estudios</label>
+                    <select name="gradoMaximoEnum" class="form-control span7 search-query" th:field="*{grado}">
+                      <option th:each="gradoM : ${T(com.team.one.domain.enums.GradoMaximoEstudios).values()}" th:value="${gradoM}" th:text="${gradoM.value}"></option>
+                    </select>
+                    <p></p>
+                    <input type="text" class="span7 search-query" id="gradoMaximoOtro" th:field="*{grado}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Genero</label>
+                    <select name="generoM" class="form-control span7 search-query" th:field="*{genero}">
+                      <option th:each="generoM : ${T(com.team.one.domain.enums.Genero).values()}" th:value="${generoM}" th:text="${generoM.value}"></option>
+                    </select>
+                  </div>
+                  <div class="control-group">
+                    <label>Tipo de Identificación</label>
+                    <select class="form-control span7 search-query" name="TipoIdentificacionEnum" th:field="*{identificacion}">
+                      <option th:each="tipo : ${T(com.team.one.domain.enums.TipoIdentificacion).values()}" th:value="${tipo}" th:text="${tipo.value}" ></option>
+                    </select>
+                    <p></p>
+                    <input type="text" id="identificacionOtro" class="span7 search-query" th:field="*{identificacion}" />
+                  </div>
+                  <div class="control-group">
+                    <label>RFC con Homoclave</label>
+                    <input type="text" class="span7 search-query" th:field="*{rfc}" />
+                  </div>
+                  <div class="control-group">
+                    <label>F.I.E.L</label>
+                    <input type="text" class="span7 search-query" th:field="*{fiel}" />
+                  </div>
+                  <div class="control-group">
+                    <label>CURP</label>
+                    <input type="text" class="span7 search-query" th:field="*{curp}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Clave de Elector</label>
+                    <input type="text" class="span7 search-query" th:field="*{claveElector}" />
+                  </div>
+                  <p>Telefonos + Clave Lada</p>
+                  <div class="control-group">
+                    <label>Domicilio</label>
+                    <input type="tel" class="span7 search-query" th:field="*{telefono}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Celular</label>
+                    <input type="tel" class="span7 search-query" th:field="*{celular}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Oficina o Trabajo</label>
+                    <input type="tel" class="span7 search-query" th:fiel="*{telefonoOficina}" />
+                  </div>
+                  <div class="control-group" >
+                    <label>Correo Electronico</label>
+                    <input type="email" class="span7 search-query" th:field="*{email}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Tipo Vivienda</label>
+                    <select class="form-control span7 search-query" name="tipoViviendaEnum" th:field="*{vivienda}">
+                      <option th:each="viviendaM : ${T(com.team.one.domain.enums.TipoVivienda).values()}" th:value="*{viviendaM}" th:text="*{viviendaM.value}"></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </header>
+      <script type="text/javascript">
+        $("#edad").pickadate({
+          format: 'mm/dd/yyyy',
+          formatSubmit: 'mm/dd/yyyy',
+          hiddenName: true
+        });
+      </script>
+    </div>
+  </body>
+</html>
