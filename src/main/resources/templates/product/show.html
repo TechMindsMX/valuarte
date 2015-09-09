@@ -15,12 +15,12 @@ layout:decorator="layout">
                 <div class="span12 info" >
                   <div class="span5">
                     <br />
-                    <img id="images" th:attr="src=@{'http://trama.mx/cienhundreds/photos/' + ${product.projectPhotos.get(0)['url']}}, data-zoom-image=@{'http://trama.mx/cienhundreds/photos/' + ${product.projectPhotos.get(0)['url']}}" width="460" height="460" />
+                    <img id="images" th:attr="src=@{${pathUrl} + ${product.projectPhotos.get(0)['url']}}, data-zoom-image=@{${pathUrl} + ${product.projectPhotos.get(0)['url']}}" width="460" height="460" />
                     <p></p>
                     <div id="gal1">
                       <span th:each="images : ${product.projectPhotos}">
-                        <a href="#" th:attr="data-image=@{'http://trama.mx/cienhundreds/photos/' + ${images['url']}}, data-zoom-image=@{'http://trama.mx/cienhundreds/photos/' + ${images['url']}}">
-                          <img id="img_01" th:attr="src=@{'http://trama.mx/cienhundreds/photos/' + ${images['url']}}" height="68px" width="100px" />
+                        <a href="#" th:attr="data-image=@{${pathUrl} + ${images['url']}}, data-zoom-image=@{${pathUrl} + ${images['url']}}">
+                          <img id="img_01" th:attr="src=@{${pathUrl} + ${images['url']}}" height="68px" width="100px" />
                         </a>
                       </span>
                     </div>
@@ -30,7 +30,7 @@ layout:decorator="layout">
                     <font color="white" size="6"><p th:text="${product.getNameOfProduct()}" /></font>
                     <br />
                     <font size="6" color="black"><p th:text="'$'+${product.getElementInDescriptionByPosition(1)}"/></font>
-                    <input type="image" th:src="@{/images/ BotonInvertir_Beneficios2.png}"/>
+                    <input type="image" th:src="@{/images/BotonInvertir_Beneficios2.png}"/>
                     <hr />
                     <p th:utext="${product.getElementInDescriptionByPosition(2)}"></p>
 
