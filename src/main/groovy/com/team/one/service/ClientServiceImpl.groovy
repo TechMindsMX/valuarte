@@ -47,7 +47,7 @@ class ClientServiceImpl implements ClientService {
       propertiesCreateProduct.token = token
       propertiesCreateProduct.status = 0
       RestTemplate restTemplate = new RestTemplate()
-      def resp = restTemplate.postForObject(pathCreateProject, propertiesCreateProduct, JSON.class)
+      def resp = restTemplate.postForObject(pathCreateProject, propertiesCreateProduct, String.class)
       resp
     }
     "no available"
