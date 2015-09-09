@@ -17,5 +17,8 @@
   "dependencies": {
     "bootstrap": "2.3.2",
     "jquery": "1.9.1"
+  },
+  "resolutions": {
+    "jquery": "1.9.1"
   }
 }
