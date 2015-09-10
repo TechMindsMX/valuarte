@@ -27,97 +27,179 @@
                   <input type="text" th:field="*{montoPrestamo}" class="span4 search-query" />
                 </div>
                 <hr />
+                <h1>1.- Identificación del cliente</h1>
                 <div class="span4">
-
-                  <h1>1.- Identificación del cliente</h1>
                   <div class="control-group">
                     <label>Nombre(s)</label>
-                    <input type="text" th:field="*{nombre}" class="span7 search-query" />
+                    <input type="text" th:field="*{nombre}" class="span10 search-query" />
                   </div>
-                   <div class="control-group">
-                    <label>Apellido Paterno</label>
-                    <input type="text" th:field="*{apellidoPaterno}" class="span7 search-query" />
-                   </div>
-                   <div class="control-group">
-                    <label>Fecha de nacimeinto</label>
-                    <input class="datepicker span7 search-query" id="edad" th:fiel="*{fechaNacimeinto}" />
-                   </div>
-                   <div class="control-group">
-                     <label>Edad</label>
-                     <input type="text" th:field="*{edad}" class="span7 search-query" />
+                  <div class="control-group">
+                   <label>Apellido Paterno</label>
+                   <input type="text" th:field="*{apellidoPaterno}" class="span10 search-query" />
+                  </div>
+                  <div class="control-group">
+                   <label>Fecha de nacimeinto</label>
+                   <input class="datepicker span10 search-query" id="edad" th:fiel="*{fechaNacimeinto}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Edad</label>
+                    <input type="text" th:field="*{edad}" class="span10 search-query" />
                   </div>
                   <div class="control-group">
                     <label>Estado civil</label>
-                    <select name="estadoCivilEnum" class="form-control span7 search-query" th:field="*{estadoCivil}">
+                    <select name="estadoCivilEnum" class="form-control span10 search-query" th:field="*{estadoCivil}">
                       <option th:each=" estado : ${T(com.team.one.domain.enums.EstadoCivil).values()}" th:value="${estado}" th:text="${estado.value}"></option>
                     </select>
                   </div>
                   <div class="control-group">
                     <label>Regimen Matrimonial</label>
-                    <select name="regimenMatrimonialEnum" class="form-control span7 search-query" th:field="*{regimen}">
+                    <select name="regimenMatrimonialEnum" class="form-control span10 search-query" th:field="*{regimen}">
                       <option th:each="regimenM :${T(com.team.one.domain.enums.RegimenMatrimonial).values()}" th:value="${regimenM}" th:text="${regimenM.value}"></option>
                     </select>
                   </div>
                   <div class="control-group">
                     <label>Grado Maximo de Estudios</label>
-                    <select name="gradoMaximoEnum" class="form-control span7 search-query" th:field="*{grado}">
+                    <select name="gradoMaximoEnum" class="form-control span10 search-query" th:field="*{grado}">
                       <option th:each="gradoM : ${T(com.team.one.domain.enums.GradoMaximoEstudios).values()}" th:value="${gradoM}" th:text="${gradoM.value}"></option>
                     </select>
                     <p></p>
-                    <input type="text" class="span7 search-query" id="gradoMaximoOtro" th:field="*{grado}" />
+                    <input type="text" class="span10 search-query" id="gradoMaximoOtro" th:field="*{gradoOtro}" disabled="disabled" />
                   </div>
                   <div class="control-group">
                     <label>Genero</label>
-                    <select name="generoM" class="form-control span7 search-query" th:field="*{genero}">
+                    <select name="generoM" class="form-control span10 search-query" th:field="*{genero}">
                       <option th:each="generoM : ${T(com.team.one.domain.enums.Genero).values()}" th:value="${generoM}" th:text="${generoM.value}"></option>
                     </select>
                   </div>
                   <div class="control-group">
                     <label>Tipo de Identificación</label>
-                    <select class="form-control span7 search-query" name="TipoIdentificacionEnum" th:field="*{identificacion}">
+                    <select class="form-control span10 search-query" name="TipoIdentificacionEnum" th:field="*{identificacion}">
                       <option th:each="tipo : ${T(com.team.one.domain.enums.TipoIdentificacion).values()}" th:value="${tipo}" th:text="${tipo.value}" ></option>
                     </select>
                     <p></p>
-                    <input type="text" id="identificacionOtro" class="span7 search-query" th:field="*{identificacion}" />
+                    <input type="text" id="identificacionOtro" class="span10 search-query" th:field="*{identificacionOtro}"  disabled="disabled"/>
                   </div>
                   <div class="control-group">
                     <label>RFC con Homoclave</label>
-                    <input type="text" class="span7 search-query" th:field="*{rfc}" />
+                    <input type="text" class="span10 search-query" th:field="*{rfc}" />
                   </div>
                   <div class="control-group">
                     <label>F.I.E.L</label>
-                    <input type="text" class="span7 search-query" th:field="*{fiel}" />
+                    <input type="text" class="span10 search-query" th:field="*{fiel}" />
                   </div>
                   <div class="control-group">
                     <label>CURP</label>
-                    <input type="text" class="span7 search-query" th:field="*{curp}" />
+                    <input type="text" class="span10 search-query" th:field="*{curp}" />
                   </div>
                   <div class="control-group">
                     <label>Clave de Elector</label>
-                    <input type="text" class="span7 search-query" th:field="*{claveElector}" />
+                    <input type="text" class="span10 search-query" th:field="*{claveElector}" />
                   </div>
+                </div>
+                <div class="span4">
                   <p>Telefonos + Clave Lada</p>
                   <div class="control-group">
                     <label>Domicilio</label>
-                    <input type="tel" class="span7 search-query" th:field="*{telefono}" />
+                    <input type="tel" class="span10 search-query" th:field="*{telefono}" />
                   </div>
                   <div class="control-group">
                     <label>Celular</label>
-                    <input type="tel" class="span7 search-query" th:field="*{celular}" />
+                    <input type="tel" class="span10 search-query" th:field="*{celular}" />
                   </div>
                   <div class="control-group">
                     <label>Oficina o Trabajo</label>
-                    <input type="tel" class="span7 search-query" th:fiel="*{telefonoOficina}" />
+                    <input type="tel" class="span10 search-query" th:fiel="*{telefonoOficina}" />
                   </div>
                   <div class="control-group" >
                     <label>Correo Electronico</label>
-                    <input type="email" class="span7 search-query" th:field="*{email}" />
+                    <input type="email" class="span10 search-query" th:field="*{email}" />
                   </div>
                   <div class="control-group">
                     <label>Tipo Vivienda</label>
-                    <select class="form-control span7 search-query" name="tipoViviendaEnum" th:field="*{vivienda}">
-                      <option th:each="viviendaM : ${T(com.team.one.domain.enums.TipoVivienda).values()}" th:value="*{viviendaM}" th:text="*{viviendaM.value}"></option>
+                    <select class="form-control span10 search-query" name="tipoViviendaEnum" th:field="*{vivienda}">
+                      <option th:each="viviendaM : ${T(com.team.one.domain.enums.TipoVivienda).values()}" th:value="${viviendaM}" th:text="${viviendaM.value}"></option>
                     </select>
+                  </div>
+                  <div class="control-group">
+                    <label>Tiempo de Residencia</label>
+                    <input class="span10 search-query" th:field="*{tiempoResidencia}" type="text" />
+                  </div>
+                  <div class="control-group">
+                    <label>Renta</label>
+                    <input class="span10 search-query" th:field="*{rentaCosto}" type="text" />
+                  </div>
+                  <div class="control-group">
+                    <label>Hipoteca</label>
+                    <input class="span10 search-query" th:field="*{hipotecaCosto}" type="text" />
+                  </div>
+                  <div class="control-group">
+                    <label>Dependientes economicos</label>
+                    <input class="span10 search-query" th:field="*{dependientes}" type="text" />
+                  </div>
+                  <div class="control-group">
+                    <label>Codigo Postal</label>
+                    <input class="span10 search-query" th:field="*{codigoPostal}" type="text" />
+                  </div>
+                </div>
+                <div class="span3">
+                  <p>Domicilio Actual</p>
+                  <div class="control-group">
+                    <label>Calle y Numero(exterior e interior)</label>
+                    <input type="text" class="span10 search-query" th:field="*{calleYNumero}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Colonia o Urbanización</label>
+                    <input type="text" class="span10 search-query" th:field="*{colonia}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Delegación,Municipio</label>
+                    <input type="text" class="span10 search-query" th:field="*{delegacionMunicipio}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Ciudad y Estado</label>
+                    <input type="text" class="span10 search-query" th:field="*{ciudadOEstado}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Pais</label>
+                    <input type="text" class="span10 search-query" th:field="*{pais}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Referencia y/o Ubicación</label>
+                    <input type="text" class="span10 search-query" th:field="*{referenciaDomicilio}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Profesión / Ocupación</label>
+                    <input type="text" class="span10 search-query" th:field="*{profecion}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Nombre de la empresa/negocio</label>
+                    <input type="text" class="span10 search-query" th:field="*{empresa}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Giro o Actividad</label>
+                    <input type="text" class="span10 search-query" th:field="*{giroActividad}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Tipo contrato</label>
+                    <select class="form-control span10 search-query" name="tipoContratoEnum" th:field="*{contrato}">
+                      <option th:each="contratoM : ${T(com.team.one.domain.enums.TipoContrato).values()}" th:value="${contratoM}" th:text="${contratoM.value}"></option>
+                    </select>
+                  </div>
+                  <div class="control-group">
+                    <label>Fecha de Ingreso</label>
+                    <input class="datepicker span10 search-query" id="ingreso" th:fiel="*{fechaIngreso}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Sueldo Mensual</label>
+                    <input type="text" class="span10 search-query" th:field="*{sueldoMensual}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Domicilio de la Empresa(calle, número, colonia, código postal)</label>
+                    <input type="text" class="span10 search-query" th:field="*{domicilioEmpresa}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Telélefono trabajo</label>
+                    <input type="text" class="span10 search-query" th:field="*{telefonoEmpresa}" />
                   </div>
                 </div>
               </div>
@@ -130,6 +212,33 @@
           format: 'mm/dd/yyyy',
           formatSubmit: 'mm/dd/yyyy',
           hiddenName: true
+        });
+        $("#ingreso").pickadate({
+          format: 'mm/dd/yyyy',
+          formatSubmit: 'mm/dd/yyyy',
+          hiddenName: true
+        });
+        $('#grado').change(function() {
+          var option = $(this).find('option:selected');
+          if (option.text() == "Otro") {
+            $("#gradoMaximoOtro").removeAttr("disabled");
+          } else {
+            if($("#gradoMaximoOtro").val() != "") {
+              $("#gradoMaximoOtro").val("");
+            }
+             $("#gradoMaximoOtro").attr("disabled","disabled");
+          }
+        });
+        $('#identificacion').change(function() {
+          var option = $(this).find('option:selected');
+          if (option.text() == "Otro") {
+            $("#identificacionOtro").removeAttr("disabled");
+          } else {
+            if($("#identificacionOtro").val() != "") {
+              $("#identificacionOtro").val("");
+            }
+             $("#identificacionOtro").attr("disabled","disabled");
+          }
         });
       </script>
     </div>
