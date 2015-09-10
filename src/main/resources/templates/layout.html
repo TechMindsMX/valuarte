@@ -10,6 +10,7 @@
   <link rel="stylesheet" th:href="@{/assets/third-party/bootstrap/docs/assets/css/bootstrap.css}" href="../../assets/third-party/bootstrap/docs/assets/css/bootstrap.css"/>
 
   <link rel="stylesheet" href="../../assets/third-party/bootstrap/docs/assets/css/bootstrap-responsive.css" th:href="@{/assets/third-party/bootstrap/docs/assets/css/bootstrap-responsive.css}" />
+  
 
   <link rel="stylesheet" th:href="@{/assets/fonts/Muli/fonts.css}" href="../../assets/fonts/Muli/fonts.css" />
   <link rel="stylesheet" th:href="@{/assets/fonts/Muli-Bold/fonts.css}" href="../../assets/fonts/Muli-Bold/fonts.css" />
@@ -97,6 +98,12 @@
                <li><a th:href="@{'/contact'}">CONTACTO</a></li>
                <li><a th:href="@{'/education'}">EDUCACION FINANCIERA</a></li>
                <li><a th:href="@{'/privacy'}">AVISO DE PRIVACIDAD</a></li>
+               <li sec:authorize="hasRole('ADMIN')">
+                 <a th:href="@{'/adminCredit/create'}">Solicitud de reestructura</a>
+               </li>
+               <li sec:authorize="hasRole('ADMIN')">
+                 <a th:href="@{'/upload/create'}">Subir productos</a>
+               </li>
              </ul>
           </div>
         </div>
@@ -140,8 +147,8 @@
     $("#benefit").mouseover(function(e) {
       $("#product").slideDown(1000);
     });
-    $("#product li").on('mouseleave',function(e){
-      $("#product").slideUp(1000);
+    $("#product").on('mouseleave',function(e){
+      $("#product").slideUp(2000);
     });
   });
 </script>
