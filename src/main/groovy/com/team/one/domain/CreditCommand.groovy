@@ -13,8 +13,10 @@ class CreditCommand {
   EstadoCivil estadoCivil
   RegimenMatrimonial regimen
   GradoMaximoEstudios grado
+  String gradoOtro
   Genero genero
   TipoIdentificacion identificacion
+  String identificacionOtro
   String rfc
   String fiel
   String curp
@@ -26,7 +28,7 @@ class CreditCommand {
   String nacionalidad
   TipoVivienda vivienda
   String tiempoResidencia
-  String RentaCosto
+  String rentaCosto
   String hipotecaCosto
   Integer dependientes
   String codigoPostal
@@ -41,5 +43,9 @@ class CreditCommand {
   String giroActividad
   TipoContrato contrato
   Date fechaIngreso
+  String sueldoMensual
+  String domicilioEmpresa
+  String ciudadEstadoEmpresa
+  String telefonoEmpresa
 
 }
