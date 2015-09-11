@@ -6,7 +6,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>Valuarte</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- 
+  <link href="../../images/favicon.ico"  th:href="@{/images/favicon.ico}" rel="shortcut icon" type="image/vnd.microsoft.icon" />
   <link rel="stylesheet" th:href="@{/assets/third-party/bootstrap/docs/assets/css/bootstrap.css}" href="../../assets/third-party/bootstrap/docs/assets/css/bootstrap.css"/>
   
   <link rel="stylesheet" href="../../assets/third-party/bootstrap/docs/assets/css/bootstrap-responsive.css" th:href="@{/assets/third-party/bootstrap/docs/assets/css/bootstrap-responsive.css}" />
@@ -29,7 +29,9 @@
   <script src="../../assets/third-party/jquery/jquery.js" th:src="@{/assets/third-party/jquery/jquery.js}"/>
   <script th:src="@{/assets/third-party/bootstrap/docs/assets/js/bootstrap.js}" src="../../assets/third-party/bootstrap/docs/assets/js/bootstrap.js"/>
   <script th:src="@{/assets/third-party/bootstrap/docs/assets/js/bootstrap-collapse.js}" src="../../assets/third-party/bootstrap/docs/assets/js/bootstrap-collapse.js"/>
-  
+  <script th:src="@{/assets/third-party/elevatezoom-plus/src/jquery.ez-plus.js}" src="../../assets/third-party/elevatezoom-plus/src/jquery.ez-plus.js"/>
+
+
 </head>
 <body class="body">
   <div id="rt-drawer">
@@ -38,11 +40,24 @@
         <div class="rt-block ">
           <div class="module-surround">
             <div class="module-content">
+              <div class="custom">
+                <div align="center" th:if="${session.SPRING_SECURITY_CONTEXT}">
+                 <div class="span12"></div>
+                  <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="btn btn-inverse" >Cerrar sesión</button>
+                  </form>
+                </div>
+                <div align="center" th:unless="${session.SPRING_SECURITY_CONTEXT}">
+                 <div class="span12"></div>
+                  <span><a th:href="@{'/Users/create'}" class="btn btn-info"><font>Registrate</font></a></span>
+                </div>
+              </div>
               <div class="custom"  align="center">
-               <p><a th:href="@{'/'}"><img th:src="@{/images/LogoValuarte.png}" src="../../images/LogoValuarte.png"  alt="Valuarte" height="1300" width="900" border="0" align="middle"/></a></p></div>
-               <div class="custom" >
-                <div  align="center">
-                  <a th:href="@{'/'}"><img src="../../images/Inicio.png" h:src="@{/images/Inicio.png}"/></a>
+                <p><a th:href="@{'/'}"><img th:src="@{/images/LogoValuarte.png}" src="../../images/LogoValuarte.png"  alt="Valuarte" height="1300" width="900" border="0" align="middle"/></a></p>
+              </div>
+              <div class="custom" >
+                <div  align="center"  th:unless="${session.SPRING_SECURITY_CONTEXT}">
+                  <a th:href="@{'/login'}"><img src="../../images/Inicio.png" h:src="@{/images/Inicio.png}"/></a>
                   <div class="span12"></div>
                 </div>
               </div>
@@ -65,13 +80,20 @@
           <div class="nav-collapse collapse">
             <ul class="nav" >
                <li class="dropdown">
-                 <a th:href="@{'/who'}" data-toggle="dropdown" class="dropdown-toggle">QUIÉNES SOMOS<b class="caret"></b></a>
-                 <ul class="dropdown-menu">
+                 <a th:href="@{'/who'}" id="who" data-toggle="dropdown" class="dropdown-toggle">QUIÉNES SOMOS<b class="caret"></b></a>
+                 <ul class="dropdown-menu" id="mision">
                    <li><a th:href="@{'/mision'}">MISIÓN/VISIÓN</a></li>
                  </ul>
                </li>
                <li><a th:href="@{'/products'}">PRODUCTOS</a></li>
-               <li><a th:href="@{'/benefits'}">BENEFICIOS</a></li>
+
+               <li class="dropdown">
+                 <a id="benefit" data-toggle="dropdown" class="dropdown-toggle">BENEFICIOS<b class="caret"></b></a>
+                 <ul class="dropdown-menu" id="product">
+                   <li><a th:href="@{'/benefits'}">CÓMO LOGRARLO</a></li>
+                   <li><a th:href="@{'/product/'}">ARTÍCULOS</a></li>
+                 </ul>
+               </li>
                <li><a th:href="@{'/contact'}">CONTACTO</a></li>
                <li><a th:href="@{'/education'}">EDUCACION FINANCIERA</a></li>
                <li><a th:href="@{'/privacy'}">AVISO DE PRIVACIDAD</a></li>
@@ -93,13 +115,12 @@
       <div class="span1"></div>
       <div class="span11">
         <div class="span6" align="left">
-         <br />
-         CONTACTO<br />
-         Teléfono: 0155 1664 6771      Mail: servicio@valuarte.mx  
-         <p>&nbsp;&nbsp;</p>
-         AVISO DE PRIVACIDAD 2015<br />
-         Servicios Financieros con Valores S.A. de C.V. (VALUARTE)<br />
-         Sistemas de Inversiones al Consumo S.A. de C.V.
+         <h1>CONTACTO</h1>
+         <font size="4">Teléfono: 0155 1664 6771      Mail: servicio@valuarte.mx </font> 
+
+         <h1>AVISO DE PRIVACIDAD 2015</h1>
+         <font size="4">Servicios Financieros con Valores S.A. de C.V. (VALUARTE)<br />
+         Sistemas de Inversiones al Consumo S.A. de C.V.</font>
          <p><br /></p>
        </div>
      </div>
@@ -107,33 +128,21 @@
 </div>
 <script>
   $(document).ready(function(){
-    $(".gf-menu-toggle").addClass("hidden");
-  });
-  $(document).ready(function(){
-    setInterval(click, 3000);
-    $(".dropdown-toggle").mouseover(function(e){
-      $(".dropdown-menu").slideDown(1000);
+    $("#who").mouseover(function(e){
+      $("#mision").slideDown(1000);
     });
-    $(".dropdown-toggle").on('click',function(e){
+    $("#who").on('click',function(e){
       window.location.href = $(this).attr("href");
     });
-    $(".dropdown-menu li").on('mouseleave',function(e){
-      $(".dropdown-menu").slideUp(1000);
+    $("#mision li").on('mouseleave',function(e){
+      $("#mision").slideUp(1000);
     });
-    $('.carousel').carousel({
-      interval: 2000
+    $("#benefit").mouseover(function(e) {
+      $("#product").slideDown(1000);
     });
-    $("#submit").on('click', function(e){
-       e.preventDefault();
-        $("#register").submit();
-      });
-      $("#reset").on('click',function(e){
-        e.preventDefault();
-        $("#register")[0].reset()
-      });
+    $("#product li").on('mouseleave',function(e){
+      $("#product").slideUp(1000);
+    });
   });
-  var click = function(){
-    $("span.arrow.next").click();
-  };
 </script> 
 </html>

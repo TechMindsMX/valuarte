@@ -67,6 +67,18 @@
           </div>
         </div>
       </header>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $("#submit").on('click', function(e){
+           e.preventDefault();
+            $("#register").submit();
+          });
+          $("#reset").on('click',function(e){
+            e.preventDefault();
+            $("#register")[0].reset()
+          });
+        });
+      </script>
     </div>
   </body>
 </html>
