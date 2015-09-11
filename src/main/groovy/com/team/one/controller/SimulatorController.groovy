@@ -29,10 +29,10 @@ class SimulatorController {
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(value="/save", method=RequestMethod.POST)
-  ModelAndView save(@ModelAttribute("form") ClientCommand form){
+  ModelAndView save(@ModelAttribute("client") ClientCommand client){
     log.info "Saving new simulator client"
-  	ModelAndView modelAndView = new ModelAndView()
-    log.info "client: ${form.dump()}"
+  	ModelAndView modelAndView = new ModelAndView("simulator/show")
+    modelAndView.addObject("client", client)
   	modelAndView
   }
 

@@ -3,7 +3,7 @@ package com.team.one.domain
 class ClientCommand {
 
   String rfc
-  String name
+  String firstName
   String lastName
   Date now
 
