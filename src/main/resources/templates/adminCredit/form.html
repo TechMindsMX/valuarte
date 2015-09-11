@@ -203,17 +203,364 @@
                   </div>
                 </div>
               </div>
+              <div class="span11 info">
+                <hr />
+                <h1>2.- Datos del aval(De ser necesarios)</h1>
+                <div class="span4">
+                  <div class="control-group">
+                    <label>Nombre(s)</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{nombreAval}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Apellido paterno</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{apellidoPaternoAval}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Apellido materno</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{apellidoMaternoAval}" />
+                  </div>
+                  <div class="control-group">
+                   <label>Fecha de nacimeinto</label>
+                   <input class="datepicker span10 search-query"  th:fiel="*{fechaNacimeintoAval}" />
+                  </div>
+                </div>
+                <div class="span4">
+                  <div class="control-group">
+                    <label>Tipo de Identificación</label>
+                    <select class="form-control span10 search-query" name="TipoIdentificacionEnum" th:field="*{identificacionAval}">
+                      <option th:each="tipo : ${T(com.team.one.domain.enums.TipoIdentificacion).values()}" th:value="${tipo}" th:text="${tipo.value}" ></option>
+                    </select>
+                    <p></p>
+                    <input type="text" id="identificacionOtro" class="span10 search-query" th:field="*{identificacionOtroAval}"  disabled="disabled"/>
+                  </div>
+                  <div class="control-group">
+                    <label>Nombre de la empresa / Negocio</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{nombreEmpresaAval}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Giro o Actividad</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{giroActividadAval}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Telefono Fijo</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{telefonoTrabajoAval}" />
+                  </div>
+                </div>
+                <div class="span3">
+                  <div class="control-group">
+                    <label>Tipo contrato</label>
+                    <select class="form-control span10 search-query" name="tipoContratoEnum" th:field="*{contratoAval}">
+                      <option th:each="contratoM : ${T(com.team.one.domain.enums.TipoContrato).values()}" th:value="${contratoM}" th:text="${contratoM.value}"></option>
+                    </select>
+                  </div>
+                  <div class="control-group">
+                    <label>Sueldo Mensual</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{sueldoMensualAval}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Domicilio de la Empresa(calle, número, colonia,código postal)</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{domicilioEmpresaAval}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Cuidad y Estado</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{ciudadEstadoAval}" />
+                  </div>
+                </div>
+              </div>
+              <div class="span11">
+                <hr />
+                <h1>3.- Referencias</h1>
+                <div class="span5">
+                  <h2>Referencia Familiar</h2>
+                  <div class="control-group">
+                    <label>Nombre(s) y Apellidos paterno, materno</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{nombreCompletoRefFamiliar}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Parentesco</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{parentescoFamiliar}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Telefono Fijo</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{telefonoFamiliar}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Domicilio: calle,núm,colonia,C.P</label>
+                    <textarea class="span10 search-query" type="text" rows="6" th:fiel="*{domicilioFamiliar}" />
+                  </div>
+                </div>
+                <div class="span5">
+                  <h2>Referencia Laboral</h2>
+                  <div class="control-group">
+                    <label>Nombre(s) y Apellidos paterno, materno</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{nombreCompletoRefLaboral}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Parentesco</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{parentescoLaboral}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Telefono Fijo</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{telefonoLaboral}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Domicilio: calle,núm,colonia,C.P</label>
+                    <textarea class="span10 search-query" type="text" rows="6" th:fiel="*{domicilioLaboral}" />
+                  </div>
+                </div>
+                <div class="span5">
+                  <h2>Referencia Personal</h2>
+                  <div class="control-group">
+                    <label>Nombre(s) y Apellidos paterno, materno</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{nombreCompletoRefPersonal1}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Parentesco</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{parentescoPersonal1}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Telefono Fijo</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{telefonoPersonal1}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Domicilio: calle,núm,colonia,C.P</label>
+                    <textarea class="span10 search-query" type="text" rows="6" th:fiel="*{domicilioPersonal1}" />
+                  </div>
+                </div>
+                <div class="span5">
+                  <h2>Referencia Personal</h2>
+                  <div class="control-group">
+                    <label>Nombre(s) y Apellidos paterno, materno</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{nombreCompletoRefPersonal2}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Parentesco</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{parentescoPersonal2}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Telefono Fijo</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{telefonoPersonal2}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Domicilio: calle,núm,colonia,C.P</label>
+                    <textarea class="span10 search-query" type="text" rows="6" th:fiel="*{domicilioPersonal2}" />
+                  </div>
+                </div>
+              </div>
+              <div class="span11 info">
+                <hr />
+                <h1>4.- Información Financiera a Reestructurar</h1>
+                <div class="span5">
+                  <div class="control-group">
+                    <label>¿Cuenta usted con otros créditos actualmente?</label>
+                    <input type="radio" name="creditoActual" value="true" />Si<br/>
+                    <input type="radio" name="creditoActual" value="false" />No<br/>
+                    <input type="hidden" th:value="*{creditoActual}"/>
+                  </div>
+                </div>
+                <div class="span5">
+                  <div class="control-group">
+                    <label>¿Actualmente garantiza o es aval de algua deuda de terceros?</label>
+                    <input type="radio" name="avalCreditoTercero" value="true" />Si<br/>
+                    <input type="radio" name="avalCreditoTercero" value="false" />No<br/>
+                    <input type="hidden" th:value="*{avalCreditoTercero}"/>
+                  </div>
+                </div>
+                <div class="span12">
+                  <div class="span3">
+                    <div class="control-group">
+                      <label>Tipo de crédito o cuenta</label>
+                      <input class="span10 search-query" type="text" rows="6" th:fiel="*{tipoCreditoDeuda1}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Institucion</label>
+                      <input class="span10 search-query" type="text" rows="6" th:fiel="*{institucionDeuda1}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Numero de credito o cuenta</label>
+                      <input class="span10 search-query" type="text" rows="6" th:fiel="*{numeroCreditoDeuda1}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Fecha de apertura</label>
+                      <input class="datepicker span10 search-query"  th:fiel="*{fechaAperturaDeuda1}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Fecha de término</label>
+                      <input class="datepicker span10 search-query"  th:fiel="*{fechaTerminoDeuda1}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Monto otorgado</label>
+                      <input class="span10 search-query" type="text" rows="6" th:fiel="*{montoOtorgadoDeuda1}" />
+                    </div>
+                  </div>
+                  <div class="span3">
+                    <div class="control-group">
+                      <label>Tipo de crédito o cuenta</label>
+                      <input class="span10 search-query" type="text" rows="6" th:fiel="*{tipoCreditoDeuda2}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Institucion</label>
+                      <input class="span10 search-query" type="text" rows="6" th:fiel="*{institucionDeuda2}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Numero de credito o cuenta</label>
+                      <input class="span10 search-query" type="text" rows="6" th:fiel="*{numeroCreditoDeuda2}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Fecha de apertura</label>
+                      <input class="datepicker span10 search-query"  th:fiel="*{fechaAperturaDeuda2}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Fecha de término</label>
+                      <input class="datepicker span10 search-query"  th:fiel="*{fechaTerminoDeuda2}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Monto otorgado</label>
+                      <input class="span10 search-query" type="text" rows="6" th:fiel="*{montoOtorgadoDeuda2}" />
+                    </div>
+                  </div>
+                  <div class="span3">
+                    <div class="control-group">
+                      <label>Tipo de crédito o cuenta</label>
+                      <input class="span10 search-query" type="text" rows="6" th:fiel="*{tipoCreditoDeuda3}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Institucion</label>
+                      <input class="span10 search-query" type="text" rows="6" th:fiel="*{institucionDeuda3}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Numero de credito o cuenta</label>
+                      <input class="span10 search-query" type="text" rows="6" th:fiel="*{numeroCreditoDeuda3}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Fecha de apertura</label>
+                      <input class="datepicker span10 search-query"  th:fiel="*{fechaAperturaDeuda3}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Fecha de término</label>
+                      <input class="datepicker span10 search-query"  th:fiel="*{fechaTerminoDeuda3}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Monto otorgado</label>
+                      <input class="span10 search-query" type="text" rows="6" th:fiel="*{montoOtorgadoDeuda3}" />
+                    </div>
+                  </div>
+                  <div class="span3">
+                    <div class="control-group">
+                      <label>Tipo de crédito o cuenta</label>
+                      <input class="span10 search-query" type="text" th:fiel="*{tipoCreditoDeuda4}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Institucion</label>
+                      <input class="span10 search-query" type="text" th:fiel="*{institucionDeuda4}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Numero de credito o cuenta</label>
+                      <input class="span10 search-query" type="text" th:fiel="*{numeroCreditoDeuda4}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Fecha de apertura</label>
+                      <input class="datepicker span10 search-query"  th:fiel="*{fechaAperturaDeuda4}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Fecha de término</label>
+                      <input class="datepicker span10 search-query" th:fiel="*{fechaTerminoDeuda4}" />
+                    </div>
+                    <div class="control-group">
+                      <label>Monto otorgado</label>
+                      <input class="span10 search-query" type="text" th:fiel="*{montoOtorgadoDeuda4}" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="span11 info">
+                <hr />
+                <h1>5.- Seguros (Designacion de Beneficiarios)</h1>
+                <div class="span4">
+                  <h2>1)</h2>
+                  <div class="control-group">
+                    <label>Nombre Completo</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{nombreBeneficiario1}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Domicilio Particular</label>
+                    <textarea class="span10 search-query" type="text" rows="6" th:fiel="*{domicilioBeneficiario1}" />
+                  </div>
+                </div>
+                <div class="span4">
+                  <h2>2)</h2>
+                  <div class="control-group">
+                    <label>Nombre Completo</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{nombreBeneficiario2}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Domicilio Particular</label>
+                    <textarea class="span10 search-query" type="text" rows="6" th:fiel="*{domicilioBeneficiario2}" />
+                  </div>
+                </div>
+                <div class="span2">
+                  <div class="control-group">
+                    <label>Tipo de Seguro</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{tipoSeguro}" />
+                    <p>*Desempleo, Vida</p>
+                  </div>
+                </div>
+              </div>
+              <div class="span11 info">
+                <hr />
+                <h1>7.- Perfil Transaccional</h1>
+                <div class="span5">
+                  <div class="control-group">
+                    <label>Fuente de Ingresos</label>
+                    <select name="fuenteIngresosEnum" class="form-control span10 search-query" th:field="*{fuenteIngresos}">
+                      <option th:each="fuenteM :${T(com.team.one.domain.enums.FuenteIngresos).values()}" th:value="${fuenteM}" th:text="${fuenteM.value}"></option>
+                    </select>
+                    <input type="text" id="fuenteIngresosOtros" class="span10 search-query" th:field="*{fuenteIngresosOtros}"  disabled="disabled"/>
+                  </div>
+                  <div class="control-group">
+                    <label>Fuente de Ingresos</label>
+                    <select name="rangoMensualEnum" class="form-control span10 search-query" th:field="*{rangoMensual}">
+                      <option th:each="rangoM :${T(com.team.one.domain.enums.RangoMensual).values()}" th:value="${rangoM}" th:text="${rangoM.value}"></option>
+                    </select>
+                  </div>
+                </div>
+                <div class="span5">
+                  <div class="control-group">
+                    <label>Profesión / Ocupasion</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{profesionOcupacion}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Actividad o Giro del Negocio</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{actividadGiroNegocio}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Numero de pagos semanales, quincenales o mensuales</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{numeroPagosFrecuencia}" />
+                  </div>
+                  <div class="control-group">
+                    <label>Monto semana, quincenal o mensual de los pagos</label>
+                    <input class="span10 search-query" type="text" th:fiel="*{montoPagos}" />
+                  </div>
+                  <div class="control-group">
+                    <label>En caso de pagos adicionales, señalar el origen de los recursos</label>
+                    <select name="origenRecursosEnum" class="form-control span10 search-query" th:field="*{origenRecursos}">
+                      <option th:each="orignM :${T(com.team.one.domain.enums.OrigenRecursos).values()}" th:value="${orignM}" th:text="${orignM.value}"></option>
+                    </select>
+                  </div>
+                  <div class="control-group">
+                    <label>Y el instrumento de pago</label>
+                    <select name="instrumentoPagoEnum" class="form-control span10 search-query" th:field="*{instrumentoPago}">
+                      <option th:each="instrumentoM :${T(com.team.one.domain.enums.InstrumentoPago).values()}" th:value="${instrumentoM}" th:text="${instrumentoM.value}"></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
             </form>
           </div>
         </div>
       </header>
       <script type="text/javascript">
-        $("#edad").pickadate({
-          format: 'mm/dd/yyyy',
-          formatSubmit: 'mm/dd/yyyy',
-          hiddenName: true
-        });
-        $("#ingreso").pickadate({
+        $(".datepicker").pickadate({
           format: 'mm/dd/yyyy',
           formatSubmit: 'mm/dd/yyyy',
           hiddenName: true
