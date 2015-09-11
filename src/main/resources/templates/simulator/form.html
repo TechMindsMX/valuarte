@@ -10,9 +10,9 @@
       <br/><br/>
       <header id="rt-top-surround" class="rt-dark">
         <div class="row-fluid">
-          <form id="client" action="#" th:action="@{simulator/save}" th:object=${client} method="post">
+          <form id="client" action="#" th:action="@{Simulator/save}" th:object="${client}" method="post">
           <div>
-            <p th:text="${'Fecha: '+beans.dateFormatter.format(date)}" />
+            <p th:text="${'Fecha: '+beans.dateFormatter.format(client.now)}" />
           </div>
           <div>
             <label>Nombre:</label>
