@@ -14,13 +14,13 @@
             <div class="span10 registro">
             <h1>Simulación de crédito</h1>
             <hr />
-            <form id="client" action="#" th:action="@{save}" th:object="${client}" method="post">
+            <form id="simulator" action="#" th:action="@{save}" th:object="${simulator}" method="post">
             <div class="span12 info">
               <div>
-                <p th:text="${'Fecha: '+beans.dateFormatter.format(client.now)}" />
+                <p th:text="${'Fecha: '+beans.dateFormatter.format(simulator.now)}" />
               </div>
               <div>
-                <label>rfc:</label>
+                <label>RFC:</label>
                 <input type="text" th:field="*{rfc}"/>
               </div>
               <div>
@@ -31,6 +31,21 @@
                 <label>Apellidos:</label>
                 <input type="text" th:field="*{lastName}"/>
               </div>
+              <hr />
+              <h2>Condiciones de crédito</h2>
+              <div>
+                <label>Tasa de Interés Anualizada:</label>
+                <input type="text" th:field="*{tia}"/> %
+              </div>
+              <div>
+                <label>IVA:</label>
+                <input type="text" th:field="*{iva}"/> %
+              </div>
+              <div>
+                <label>Frecuencia de Pago:</label>
+                <input type="text" th:field="*{paymentPeriod}"/>
+              </div>
+
               <button type="submit">Enviar</button>
             </div>
             </form>
