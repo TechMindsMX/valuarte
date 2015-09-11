@@ -8,27 +8,33 @@
   </head>
   <body>
     <div layout:fragment="content">
-      <br/><br/>
       <header id="rt-top-surround" class="rt-dark">
         <div class="row-fluid">
-          <form id="client" action="#" th:action="@{save}" th:object="${client}" method="post">
-          <div>
-            <p th:text="${'Fecha: '+beans.dateFormatter.format(client.now)}" />
+          <div class="span1"></div>
+            <div class="span10 registro">
+            <h1>Simulación de crédito</h1>
+            <hr />
+            <form id="client" action="#" th:action="@{save}" th:object="${client}" method="post">
+            <div class="span12 info">
+              <div>
+                <p th:text="${'Fecha: '+beans.dateFormatter.format(client.now)}" />
+              </div>
+              <div>
+                <label>rfc:</label>
+                <input type="text" th:field="*{rfc}"/>
+              </div>
+              <div>
+                <label>Nombre:</label>
+                <input type="text" th:field="*{firstName}"/>
+              </div>
+              <div>
+                <label>Apellidos:</label>
+                <input type="text" th:field="*{lastName}"/>
+              </div>
+              <button type="submit">Enviar</button>
+            </div>
+            </form>
           </div>
-          <div>
-            <label>rfc:</label>
-            <input type="text" th:field="*{rfc}"/>
-          </div>
-          <div>
-            <label>Nombre:</label>
-            <input type="text" th:field="*{firstName}"/>
-          </div>
-          <div>
-            <label>Apellidos:</label>
-            <input type="text" th:field="*{lastName}"/>
-          </div>
-          <button type="submit">Enviar</button>
-        </form>
         </div>
       </header>
   	</div>
