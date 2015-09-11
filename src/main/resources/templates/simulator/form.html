@@ -3,6 +3,7 @@
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
   layout:decorator="layout">
   <head>
+    <title>Valuarte</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
   <body>
@@ -15,21 +16,16 @@
             <p th:text="${'Fecha: '+beans.dateFormatter.format(client.now)}" />
           </div>
           <div>
+            <label>rfc:</label>
+            <input type="text" th:field="*{rfc}"/>
+          </div>
+          <div>
             <label>Nombre:</label>
-            <input type="text" name="name" id="name"/>
+            <input type="text" th:field="*{name}"/>
           </div>
           <div>
-            <label>RFC:</label>
-            <input type="text" name="rfc" id="rfc"/>
-          </div>
-          <div>
-            <label>Canal: AVANDARO</label>
-          </div>
-          <div>
-            <label>Sucursal: DF</label>
-          </div>
-          <div>
-            <label>ID: 31</label>
+            <label>Apellidos:</label>
+            <input type="text" th:field="*{lastName}"/>
           </div>
           <button type="submit">Enviar</button>
         </form>
