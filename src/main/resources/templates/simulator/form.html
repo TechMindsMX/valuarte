@@ -43,9 +43,14 @@
               </div>
               <div>
                 <label>Frecuencia de Pago:</label>
-                <input type="text" th:field="*{paymentPeriod}"/>
+                <select class="form-control span10 search-query" name="paymentPeriod" th:field="*{paymentPeriod}">
+                  <option th:each="viviendaM : ${T(com.team.one.domain.PaymentPeriod).values()}" th:value="${viviendaM}" th:text="${viviendaM.value}"></option>
+                </select>
               </div>
-
+              <div>
+                <label>Número de Pagos:</label>
+                <input type="text" th:field="*{numberOfPayments}"/> %
+              </div>
               <button type="submit">Enviar</button>
             </div>
             </form>

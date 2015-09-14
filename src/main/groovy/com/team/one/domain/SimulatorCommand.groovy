@@ -7,8 +7,9 @@ class SimulatorCommand {
   String lastName
   Date now
 
-  String tia
-  String iva
+  BigDecimal tia
+  BigDecimal iva
   String paymentPeriod
+  Integer numberOfPayments
 
 }
