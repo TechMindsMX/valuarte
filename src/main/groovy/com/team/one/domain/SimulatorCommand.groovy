@@ -12,4 +12,6 @@ class SimulatorCommand {
   String paymentPeriod
   Integer numberOfPayments
 
+  BigDecimal tim
+
 }
