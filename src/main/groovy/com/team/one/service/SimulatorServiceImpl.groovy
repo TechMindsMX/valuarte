@@ -14,11 +14,11 @@ class SimulatorServiceImpl implements SimulatorService{
 
   def calculate(SimulatorCommand command){
     if(command.paymentPeriod == PaymentPeriod.WEEKLY){
-      command.paydays = Paydays.WEEKLY
+      command.paydays = Paydays.WEEKLY.getValue()
     } else if(command.paymentPeriod == PaymentPeriod.FORTNIGHT){
-      command.paydays = Paydays.FORTNIGHT
+      command.paydays = Paydays.FORTNIGHT.getValue()
     } else if(command.paymentPeriod == PaymentPeriod.MONTHLY){
-      command.paydays = Paydays.MONTHLY
+      command.paydays = Paydays.MONTHLY.getValue()
     } else {
       throw new SimulatorException()
     }

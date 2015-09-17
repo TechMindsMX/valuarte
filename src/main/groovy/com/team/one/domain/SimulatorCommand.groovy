@@ -12,7 +12,7 @@ class SimulatorCommand {
   BigDecimal tim
   BigDecimal openingCommission
   PaymentPeriod paymentPeriod
-  Paydays paydays
+  String paydays
   Integer numberOfPayments
 
 }

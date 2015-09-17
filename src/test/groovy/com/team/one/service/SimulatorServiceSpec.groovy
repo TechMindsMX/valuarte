@@ -34,12 +34,12 @@ class SimulatorServiceSpec extends Specification {
     when:"We assign values to command"
       command.paymentPeriod = paymentPeriod
     then:"We calculate values"
-      result == service.calculate(command).paymentPeriod
+      result == service.calculate(command).paydays
     where:"We have next cases"
       paymentPeriod           || result
-      PaymentPeriod.WEEKLY    || PaymentPeriod.WEEKLY
-      PaymentPeriod.FORTNIGHT || PaymentPeriod.FORTNIGHT
-      PaymentPeriod.MONTHLY   || PaymentPeriod.MONTHLY
+      PaymentPeriod.WEEKLY    || '7,15,21,30'
+      PaymentPeriod.FORTNIGHT || '15,30'
+      PaymentPeriod.MONTHLY   || '30'
   }
 
   void "should send an exception if no paymentPeriod"() {
