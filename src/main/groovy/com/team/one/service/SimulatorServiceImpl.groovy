@@ -4,7 +4,7 @@ import com.team.one.domain.SimulatorCommand
 import org.springframework.stereotype.Service
 import com.team.one.domain.PaymentPeriod
 import com.team.one.domain.Paydays
-
+import com.team.one.exception.SimulatorException
 
 @Service
 class SimulatorServiceImpl implements SimulatorService{
@@ -22,6 +22,8 @@ class SimulatorServiceImpl implements SimulatorService{
       command.paydays = Paydays.MONTHLY
     } else if(command.paymentPeriod == PaymentPeriod.FORTNIGHT){
       command.paydays = Paydays.FORTNIGHT
+    } else {
+      throw new SimulatorException()
     }
     command
   }
