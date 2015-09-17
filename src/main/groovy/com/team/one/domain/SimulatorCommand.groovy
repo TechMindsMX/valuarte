@@ -14,5 +14,6 @@ class SimulatorCommand {
   PaymentPeriod paymentPeriod
   String paydays
   Integer numberOfPayments
+  Date startDate
 
 }
