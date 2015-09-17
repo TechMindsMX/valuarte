@@ -59,20 +59,19 @@
                 <label>Fecha de Inicio:</label>
                 <input class="datepicker span10 search-query" th:field="*{startDate}" />
               </div>
-
               <button type="submit">Enviar</button>
             </div>
             </form>
           </div>
         </div>
       </header>
-      <script>
-      $(".datepicker").pickadate({
-      format: 'mm/dd/yyyy',
-      formatSubmit: 'mm/dd/yyyy',
-      hiddenName: true
+      <script type="text/javascript">
+        $(".datepicker").pickadate({
+        format: 'mm/dd/yyyy',
+        formatSubmit: 'mm/dd/yyyy',
+        hiddenName: true
       });
-    </script>
+      </script>
   	</div>
   </body>
 </html>
