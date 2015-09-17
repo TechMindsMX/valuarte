@@ -18,10 +18,12 @@ class SimulatorServiceSpec extends Specification {
     then:"We calculate values"
       result == service.calculate(command).tim
     where:"We have next cases"
-      tia || result
-      40  || 3.33
-      30  || 2.50
-      50  || 4.17
+      tia   || result
+      40    || 3.33
+      30    || 2.50
+      50    || 4.17
+      0.00  || 0.00
+      null  || 0.00
   }
 
   void "should calculate paydays from paymentPeriod"() {
@@ -32,8 +34,10 @@ class SimulatorServiceSpec extends Specification {
     then:"We calculate values"
       result == service.calculate(command).paymentPeriod
     where:"We have next cases"
-      paymentPeriod         || result
-      PaymentPeriod.WEEKLY  || PaymentPeriod.WEEKLY
+      paymentPeriod           || result
+      PaymentPeriod.WEEKLY    || PaymentPeriod.WEEKLY
+      PaymentPeriod.FORTNIGHT || PaymentPeriod.FORTNIGHT
+      PaymentPeriod.MONTHLY   || PaymentPeriod.MONTHLY
   }
 
 

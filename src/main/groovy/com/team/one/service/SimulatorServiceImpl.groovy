@@ -15,9 +15,13 @@ class SimulatorServiceImpl implements SimulatorService{
   def calculate(SimulatorCommand command){
     def tia = command.tia
     //command.tim = (tia/12.toDouble()).round(2)
-    command.tim = tia.divide(MONTHS_IN_A_YEAR, DECIMALS, BigDecimal.ROUND_HALF_UP)
+    command.tim = tia? tia.divide(MONTHS_IN_A_YEAR, DECIMALS, BigDecimal.ROUND_HALF_UP) : 0.00
     if(command.paymentPeriod == PaymentPeriod.WEEKLY){
       command.paydays = Paydays.WEEKLY
+    } else if(command.paymentPeriod == PaymentPeriod.MONTHLY){
+      command.paydays = Paydays.MONTHLY
+    } else if(command.paymentPeriod == PaymentPeriod.FORTNIGHT){
+      command.paydays = Paydays.FORTNIGHT
     }
     command
   }
