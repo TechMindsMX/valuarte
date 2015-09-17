@@ -10,6 +10,9 @@
       <br/><br/>
       <header id="rt-top-surround" class="rt-dark">
         <div class="row-fluid">
+          <div class="alert alert-success" th:if="${success}" align="center">
+            <p th:text="${success}" />
+          </div>
           <div class="carousel slide span12" id="myCarousel">
             <div class="carousel-inner" align="center">
                 <div class="item active">
