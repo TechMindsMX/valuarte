@@ -57,7 +57,7 @@
               </div>
               <div>
                 <label>Fecha de Inicio:</label>
-                <input type="text" th:field="*{startDate}"/> %
+                <input class="datepicker span10 search-query" th:field="*{startDate}" />
               </div>
 
               <button type="submit">Enviar</button>
@@ -66,6 +66,13 @@
           </div>
         </div>
       </header>
+      <script>
+      $(".datepicker").pickadate({
+      format: 'mm/dd/yyyy',
+      formatSubmit: 'mm/dd/yyyy',
+      hiddenName: true
+      });
+    </script>
   	</div>
   </body>
 </html>
