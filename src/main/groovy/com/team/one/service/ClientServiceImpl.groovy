@@ -28,6 +28,8 @@ class ClientServiceImpl implements ClientService {
   String pathGetProducts
   @Value('${timOne.path.form.contact}')
   String pathFormContact
+  @Value('${timOne.path.form.forgotPassword}')
+  String pathFormForgot
 
   @Autowired
   PhotoNameGeneratorService photoNameGeneratorService
@@ -82,6 +84,16 @@ class ClientServiceImpl implements ClientService {
     headers.setContentType(MediaType.APPLICATION_JSON);
     HttpEntity<String> entity = new HttpEntity<String>(jsonContact,headers);
     def status = restTemplate.postForObject(pathFormContact, entity,String.class);
+    log.info status
+  }
+
+  def sendEmailForgotPassword(def forgotPassword) {
+    println pathFormForgot
+    RestTemplate restTemplate = new RestTemplate()
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    HttpEntity<String> entity = new HttpEntity<String>(forgotPassword,headers);
+    def status = restTemplate.postForObject(pathFormForgot, entity,String.class);
     log.info status
   }
 
