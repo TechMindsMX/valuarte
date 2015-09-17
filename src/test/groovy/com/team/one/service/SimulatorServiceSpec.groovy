@@ -24,4 +24,17 @@ class SimulatorServiceSpec extends Specification {
       50  || 4.17
   }
 
+  void "should calculate paydays from paymentPeriod"() {
+    given:"A simulator command"
+      def command = new SimulatorCommand()
+    when:"We assign values to command"
+      command.paymentPeriod = paymentPeriod
+    then:"We calculate values"
+      result == service.calculate(command).paymentPeriod
+    where:"We have next cases"
+      paymentPeriod         || result
+      PaymentPeriod.WEEKLY  || PaymentPeriod.WEEKLY
+  }
+
+
 }
