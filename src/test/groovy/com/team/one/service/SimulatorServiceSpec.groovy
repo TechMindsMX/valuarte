@@ -13,13 +13,15 @@ class SimulatorServiceSpec extends Specification {
   void "should calculate tim from tia"() {
     given:"A simulator command"
       def command = new SimulatorCommand()
-      command.tia = 40
-      command.paymentPeriod = PaymentPeriod.WEEKLY
-    when:"We calculate tim"
-      def result = service.calculate(command)
-    then:
-      result.tim == 3.33
-      result.paydays == Paydays.WEEKLY
+    when:"We assign values to command"
+      command.tia = tia
+    then:"We calculate values"
+      result == service.calculate(command).tim
+    where:"We have next cases"
+      tia || result
+      40  || 3.33
+      30  || 2.50
+      50  || 4.17
   }
 
 }
