@@ -27,6 +27,11 @@ class UserServiceImpl implements UserService {
     }
 
     @Override
+    User getUserByEmail(String email) {
+      userRepository.findByEmail(email)
+    }
+
+    @Override
     User create(UserCommand command) {
       User user = new User()
       user.username = command.username
