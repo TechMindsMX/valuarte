@@ -13,18 +13,19 @@ class SimulatorServiceImpl implements SimulatorService{
   static Integer DECIMALS = 2
 
   def calculate(SimulatorCommand command){
-    def tia = command.tia
-    //command.tim = (tia/12.toDouble()).round(2)
-    command.tim = tia? tia.divide(MONTHS_IN_A_YEAR, DECIMALS, BigDecimal.ROUND_HALF_UP) : 0.00
     if(command.paymentPeriod == PaymentPeriod.WEEKLY){
-      command.paydays = Paydays.WEEKLY
+      command = new SimulatorWeeklyCommand()
     } else if(command.paymentPeriod == PaymentPeriod.MONTHLY){
-      command.paydays = Paydays.MONTHLY
+      command = new SimulatorMonthlyCommand()
     } else if(command.paymentPeriod == PaymentPeriod.FORTNIGHT){
-      command.paydays = Paydays.FORTNIGHT
+      command = new SimulatorFortnightCommand()
     } else {
       throw new SimulatorException()
     }
+
+    def tia = command.tia
+    //command.tim = (tia/12.toDouble()).round(2)
+    command.tim = tia? tia.divide(MONTHS_IN_A_YEAR, DECIMALS, BigDecimal.ROUND_HALF_UP) : 0.00
     command
   }
 }
