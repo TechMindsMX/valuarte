@@ -9,10 +9,10 @@ class SimulatorCommand {
 
   BigDecimal tia
   BigDecimal iva
-  BigDecimal openingCommission
-  String paymentPeriod
-  Integer numberOfPayments
-
   BigDecimal tim
+  BigDecimal openingCommission
+  PaymentPeriod paymentPeriod
+  Paydays paydays
+  Integer numberOfPayments
 
 }
