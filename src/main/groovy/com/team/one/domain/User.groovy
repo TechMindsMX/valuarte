@@ -21,5 +21,9 @@ class User {
   @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   Role role
+  @Column(nullable = false)
+  Boolean enabled = false
+  @Column(nullable = false)
+  Date dateCreate = new Date()
 
 }
