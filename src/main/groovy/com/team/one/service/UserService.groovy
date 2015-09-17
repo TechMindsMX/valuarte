@@ -12,6 +12,8 @@ public interface UserService {
 
     Optional<User> getAllUsers()
 
+    User getUserByEmail(String email)
+
     User create(UserCommand command)
 
 }
