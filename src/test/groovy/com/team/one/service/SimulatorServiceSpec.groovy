@@ -14,7 +14,6 @@ class SimulatorServiceSpec extends Specification {
       command.tia = 40
     when:"We calculate tim"
       def result = service.calculate(command)
-      println result.dump()
     then:
       result.tim == 3.33
   }
