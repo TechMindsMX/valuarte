@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 class SimulatorServiceImpl implements SimulatorService{
 
   def calculate(SimulatorCommand command){
-    command.tim = new BigDecimal(0.00)
+    command.tim = command.tia.divide(new BigDecimal(12), 2, BigDecimal.ROUND_HALF_UP)
     command
   }
 }
