@@ -10,6 +10,7 @@ import com.team.one.exception.SimulatorException
 class PMTServiceImpl implements PMTService{
 
   def calculate(SimulatorCommand command){
+    command.payment = new BigDecimal(0.00)
     command
   }
 }

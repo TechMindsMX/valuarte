@@ -16,4 +16,6 @@ class SimulatorCommand {
   Integer numberOfPayments
   Date startDate
 
+  BigDecimal payment
+
 }
