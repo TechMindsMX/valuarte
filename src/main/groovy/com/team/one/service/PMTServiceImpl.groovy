@@ -11,7 +11,7 @@ class PMTServiceImpl implements PMTService{
 
   def calculate(SimulatorCommand command){
     if(command.paymentPeriod == PaymentPeriod.MONTHLY){
-      command.payment = tim * (1 + command.iva)
+      command.payment = command.tim * (1 + command.iva)
     }
     command
   }
