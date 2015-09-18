@@ -30,7 +30,7 @@ class SimulatorServiceImpl implements SimulatorService{
     def tia = command.tia
     //command.tim = (tia/12.toDouble()).round(2)
     command.tim = tia? tia.divide(MONTHS_IN_A_YEAR, DECIMALS, BigDecimal.ROUND_HALF_UP) : 0.00
-    command.payment = pmtService.calculate(command)
+    pmtService.calculate(command)
     command
   }
 }

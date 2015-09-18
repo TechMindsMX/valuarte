@@ -10,7 +10,9 @@ import com.team.one.exception.SimulatorException
 class PMTServiceImpl implements PMTService{
 
   def calculate(SimulatorCommand command){
-    command.payment = new BigDecimal(0.00)
+    if(command.paymentPeriod == PaymentPeriod.MONTHLY){
+      command.payment = tim * (1 + command.iva)
+    }
     command
   }
 }
