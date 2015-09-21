@@ -11,9 +11,13 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
   def calculate(SimulatorCommand command){
     if(!command.numberOfPayments || command.numberOfPayments == 0)
       throw new SimulatorException()
+
+    def capitalBeforePayment = command.principle
     (1..command.numberOfPayments).each {
-      def data = new SimulatorPayment()
-      data.capitalBeforePayment = command.principle
+      def data = new SimulatorPayment(capital:228.92)
+      data.capitalBeforePayment = capitalBeforePayment
+      data.capitalAfterPayment = capitalBeforePayment - data.capital
+      capitalBeforePayment -= data.capital
       command.rows.add(data)
     }
     command
