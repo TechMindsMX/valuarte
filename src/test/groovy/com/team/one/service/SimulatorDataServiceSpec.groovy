@@ -34,5 +34,17 @@ class SimulatorDataServiceSpec extends Specification {
       thrown SimulatorException
   }
 
+  void "should initialize capital before payment"() {
+    given:"A simulator command and principle"
+      def command = new SimulatorCommand()
+      command.numberOfPayments = 1
+      command.principle = 35164.88
+    when:"We calculate data"
+      def result = service.calculate(command)
+    then:"We expect same principle with capital before payment"
+      result.rows.get(0).capitalBeforePayment == command.principle
+  }
+
+
 
 }
