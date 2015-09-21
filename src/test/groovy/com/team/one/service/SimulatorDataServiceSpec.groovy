@@ -7,23 +7,20 @@ import com.team.one.domain.PaymentPeriod
 import com.team.one.domain.Paydays
 import com.team.one.exception.SimulatorException
 
-class PMTServiceSpec extends Specification {
+class SimulatorDataServiceSpec extends Specification {
 
-  PMTServiceImpl service = new PMTServiceImpl()
+  SimulatorDataServiceImpl service = new SimulatorDataServiceImpl()
 
   void "should calculate payment in a monthly payment period"() {
     given:"A simulator command"
       def command = new SimulatorCommand()
     when:"Input values"
-      command.paymentPeriod = PaymentPeriod.MONTHLY
-      command.iva = iva
-      command.tim = tim
-      command.loan = loan
+      command.numberOfPayments = 7
     then:"We calculate values"
-      result == service.calculate(command).payment
+      result == service.calculate(command).rows.size()
     where:"We have next cases"
-      loan  | tim     |  iva  || result
-      31733 | 3.33    |  16   || 88.059075
+    numberOfPayments || result
+    7                || 7
   }
 
 }

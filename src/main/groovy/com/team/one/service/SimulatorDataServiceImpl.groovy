@@ -10,7 +10,9 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
 
   def calculate(SimulatorCommand command){
     def data = new SimulatorPayment()
-    command.rows.add(data)
+    (1..command.numberOfPayments).each {
+      command.rows.add(data)
+    }
     command
   }
 
