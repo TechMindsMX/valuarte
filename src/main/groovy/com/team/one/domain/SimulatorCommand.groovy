@@ -21,5 +21,6 @@ class SimulatorCommand {
   Integer numberOfPayments
   Date startDate
 
+  def rows = []
 
 }
