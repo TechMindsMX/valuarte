@@ -1,74 +1,65 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
 xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-layout:decorator="layout">
+layout:decorator="main">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
   <div layout:fragment="content">
-   <header id="rt-top-surround" class="rt-dark">
-    <div class="row-fluid">
-      <div class="span12">
-        <div class="span1"></div>
-        <div class="span10 products">
-          <br />
-          <h1 class="info">PRODUCTOS</h1>
-          <div class="span12">
-              <div class="span3"><button style="border-radius: 25px; background-color: #606060; color:white; border-style:none;" class="btn-large">MÁS APOYADOS</button></div>
-              <div class="span3"><button style="border-radius: 25px; background-color: #606060; color:white; border-style:none;" class="btn-large">PROXIMOS A CERRAR</button></div>
-              <div class="span2"><button style="border-radius: 25px; background-color: #606060; color:white; border-style:none;" class="btn-large">VER TODOS</button></div>
-              <div class="span2">
-                <form class="form-horizontal">
-                  <div class="control-group">
-                    <label class="control-label" for="busqueda"><img src="../../images/Lupa_Beneficios.png" h:src="@{/images/Lupa_Beneficios.png}" width="13%" />&nbsp;<font size="5">BÚSQUEDA</font></label>
-                    <div class="controls">
-                      <input type="text" class="input-large search-query" />
-                    </div>
+    <br />
+    <div class="row">
+      <div align="center"><h1>*Productos*</h1></div>
+      <div class="span12 products">
+        <div class="carousel slide span12" id="productCarrousel">
+          <div class="carousel-inner span12" >
+            <div th:each="productList, plStat : ${productGroupList}" class="item" th:classappend="|${plStat.first ? 'active' : ''} ${plStat.odd ? 'odd' : 'even'}|" align="center">
+              <div class="span12" >
+                <p th:each="product : ${productList}">
+                  <div class="span4">
+                    <img style=" width: 186px !important;height: 244px !important;" th:attr="src=@{${pathUrl} + ${product.projectPhotos.get(0).url}},title=#{logo},alt=#{logo}" />
+                    <br />
+                    <a th:href="|@{/product/show(productId=${product.id})}|"><input type="image" th:src="@{/images/BotonInvertir_Beneficios2.png}"/></a>
                   </div>
-                </form>
-              </div>
-            <p><br /><br /></p>
-            <p><HR COLOR="white" WIDTH="95%" size="5" /></p>
-          </div>
-          <div class="carousel slide span11" id="productCarrousel">
-            <div class="carousel-inner span11" >
-              <div th:each="productList, plStat : ${productGroupList}" class="item" th:classappend="|${plStat.first ? 'active' : ''} ${plStat.odd ? 'odd' : 'even'}|" align="center">
-                <div class="span12" >
-                  <div class="span1"></div>
-                  <p th:each="product : ${productList}">
-                    <div class="span3">
-                      <img th:attr="src=@{${pathUrl} + ${product.projectPhotos.get(0).url}},title=#{logo},alt=#{logo}" />
-                      <p><br /></p>
-                      <font size="5" align="left"><p th:text="${product.name}" /></font>
-                      <p><HR COLOR="white" WIDTH="95%" size="5" /></p>
-                      <div align="center">
-                        <div class="span2"></div>
-                        <div class="span3"><font size="9">NA</font><p>Financieros</p></div>
-                        <div class="span2"><font size="9"> | </font></div>
-                        <div class="span2"><font size="9">NA</font><p>Inversionistas</p></div>
-                      </div>
-                      <a th:href="|@{/product/show(productId=${product.id})}|"><input type="image" th:src="@{/images/BotonInvertir_Beneficios2.png}"/></a>
-                    </div>
-                    <div class="span1"></div>
-                  </p>
-                </div>
+                  <div class="span2"></div>
+                </p>
               </div>
             </div>
-            <a data-slide="prev" href="#productCarrousel" class="left carousel-control">‹</a>
-            <a data-slide="next" href="#productCarrousel" class="right carousel-control">›</a>
-         </div>
-       </div>
-     </div>
-   </div>
- </header>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('#productCarrousel').carousel({
+          </div>
+          <a data-slide="prev" href="#productCarrousel" class="left carousel-control">‹</a>
+          <a data-slide="next" href="#productCarrousel" class="right carousel-control">›</a>
+        </div>
+      </div>
+    </div>
+    <p><hr /></p>
+    <br />
+    <div class="row">
+      <div align="center"><h1>*Proveedores*</h1></div>
+      <div class="span12">
+        <div class="span6">
+          <img th:src="@{/images/juguetron.png}" style=" width: 900px !important;height: 204px !important;border-style: outset; border-width: 1px;" align="middle"/>
+        </div>
+        <div class="span4">
+          <img th:src="@{/images/Mabe_logo.png}" style=" width: 900px !important;height: 204px !important; border-style: outset; border-width: 1px;" align="middle"/>
+        </div>
+      </div>
+      <div class="span12">
+        <p><br /></p> 
+        <div class="span4">
+          <img th:src="@{/images/AEROMEXICO-LOGO1.jpg}" style=" width: 900px !important;height: 204px !important;border-style: outset; border-width: 1px;" align="middle"/>
+        </div>
+        <div class="span6">
+          <img th:src="@{/images/benotoo.jpg}" style=" width: 900px !important;height: 204px !important;border-style: outset; border-width: 1px;" align="middle"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#productCarrousel').carousel({
         interval: 2000
       });
-  });
-</script>
-</div>
+    });
+  </script>
 </body>
 </html>
