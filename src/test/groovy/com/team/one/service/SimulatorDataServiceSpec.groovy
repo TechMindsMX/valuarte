@@ -11,16 +11,28 @@ class SimulatorDataServiceSpec extends Specification {
 
   SimulatorDataServiceImpl service = new SimulatorDataServiceImpl()
 
-  void "should calculate payment in a monthly payment period"() {
+  void "should calculate table size depending on number of payments"() {
     given:"A simulator command"
       def command = new SimulatorCommand()
     when:"Input values"
-      command.numberOfPayments = 7
+      command.numberOfPayments = numberOfPayments
     then:"We calculate values"
       result == service.calculate(command).rows.size()
     where:"We have next cases"
     numberOfPayments || result
     7                || 7
+    1                || 1
   }
+
+  void "should detect an invalid number at calculate table size depending on number of payments"() {
+    given:"A simulator command"
+      def command = new SimulatorCommand()
+      command.numberOfPayments = 0
+    when:"Input values"
+      service.calculate(command)
+    then:"We calculate values"
+      thrown SimulatorException
+  }
+
 
 }
