@@ -69,16 +69,14 @@ class SimulatorDataServiceSpec extends Specification {
       def command = new SimulatorCommand()
       command.numberOfPayments = 3
       command.principle = 35164.88
-      command.startDate = new Date("9/22/2015")
+      command.paymentPeriod = PaymentPeriod.FORTNIGHT
+      command.startDate = new Date("9/5/2015")
     when:"We calculate data"
       def result = service.calculate(command)
     then:"We expect same principle with capital before payment"
-      result.rows.get(0).capitalBeforePayment == command.principle
-      result.rows.get(0).capitalAfterPayment ==  34935.96
-      result.rows.get(1).capitalBeforePayment ==  34935.96
-      result.rows.get(1).capitalAfterPayment ==   34707.04
-      result.rows.get(2).capitalBeforePayment ==  34707.04
-      result.rows.get(2).capitalAfterPayment ==   34478.12
+      result.rows.get(0).paymentDay == new Date("9/30/2015")
+      result.rows.get(1).paymentDay == new Date("10/15/2015")
+      result.rows.get(2).paymentDay == new Date("10/30/2015")
   }
 
 }
