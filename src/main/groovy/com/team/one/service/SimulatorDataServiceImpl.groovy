@@ -15,6 +15,7 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
     def capitalBeforePayment = command.principle
     (1..command.numberOfPayments).each {
       def data = new SimulatorPayment(capital:228.92)
+      data.number = it
       data.capitalBeforePayment = capitalBeforePayment
       data.capitalAfterPayment = capitalBeforePayment - data.capital
       capitalBeforePayment -= data.capital

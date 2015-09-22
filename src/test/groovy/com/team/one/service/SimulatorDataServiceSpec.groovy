@@ -2,7 +2,7 @@ package com.team.one.service
 
 import spock.lang.Specification
 import com.team.one.domain.SimulatorCommand
-import com.team.one.service.PMTServiceImpl
+import com.team.one.service.SimulatorDataServiceImpl
 import com.team.one.domain.PaymentPeriod
 import com.team.one.domain.Paydays
 import com.team.one.exception.SimulatorException
@@ -50,6 +50,16 @@ class SimulatorDataServiceSpec extends Specification {
       result.rows.get(2).capitalAfterPayment ==   34478.12
   }
 
-
+  void "should set number depending on numberOfPayments"() {
+    given:"A simulator command and principle"
+      def command = new SimulatorCommand()
+      command.numberOfPayments = 3
+    when:"We calculate data"
+      def result = service.calculate(command)
+    then:"We expect same principle with capital before payment"
+      result.rows.get(0).number == 1
+      result.rows.get(1).number == 2
+      result.rows.get(2).number == 3
+  }
 
 }
