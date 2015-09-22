@@ -14,6 +14,7 @@ class SimulatorDataServiceSpec extends Specification {
   void "should calculate table size depending on number of payments"() {
     given:"A simulator command"
       def command = new SimulatorCommand()
+      command.principle = 35165.88
     when:"Input values"
       command.numberOfPayments = numberOfPayments
     then:"We calculate values"
@@ -54,6 +55,7 @@ class SimulatorDataServiceSpec extends Specification {
     given:"A simulator command and principle"
       def command = new SimulatorCommand()
       command.numberOfPayments = 3
+      command.principle = 35164.88
     when:"We calculate data"
       def result = service.calculate(command)
     then:"We expect same principle with capital before payment"
