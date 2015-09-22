@@ -3,6 +3,7 @@ package com.team.one.service
 import spock.lang.Specification
 import com.team.one.domain.SimulatorCommand
 import com.team.one.service.SimulatorServiceImpl
+import com.team.one.service.PMTService
 import com.team.one.domain.PaymentPeriod
 import com.team.one.domain.Paydays
 import com.team.one.exception.SimulatorException
@@ -10,6 +11,12 @@ import com.team.one.exception.SimulatorException
 class SimulatorServiceSpec extends Specification {
 
   SimulatorServiceImpl service = new SimulatorServiceImpl()
+
+  def pmtService = Mock(PMTService)
+
+  def setup(){
+    service.pmtService = pmtService
+  }
 
   void "should calculate tim from tia"() {
     given:"A simulator command"

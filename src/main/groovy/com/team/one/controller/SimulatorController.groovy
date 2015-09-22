@@ -13,6 +13,8 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import com.team.one.service.SimulatorService
+import com.team.one.service.InsuranceService
+import com.team.one.service.SimulatorDataService
 
 @Controller
 @RequestMapping("/simulator")
@@ -20,6 +22,10 @@ class SimulatorController {
 
   @Autowired
   SimulatorService simulatorService
+  @Autowired
+  InsuranceService insuranceService
+  @Autowired
+  SimulatorDataService simulatorDataService
 
   Logger log = LoggerFactory.getLogger(getClass());
 
@@ -38,7 +44,9 @@ class SimulatorController {
   ModelAndView save(@ModelAttribute("simulator") SimulatorCommand simulator){
     log.info "Saving new simulator simulator"
   	ModelAndView modelAndView = new ModelAndView("simulator/show")
+    insuranceService.calculate(simulator)
     simulatorService.calculate(simulator)
+    simulatorDataService.calculate(simulator)
     modelAndView.addObject("simulator", simulator)
   	modelAndView
   }

@@ -11,9 +11,16 @@ class SimulatorCommand {
   BigDecimal iva
   BigDecimal tim
   BigDecimal openingCommission
+  BigDecimal payment = 909.78
+  BigDecimal loan
+  BigDecimal principle = 35164.88
+  BigDecimal lifeInsurance
+
   PaymentPeriod paymentPeriod
   String paydays
   Integer numberOfPayments
   Date startDate
+
+  def rows = []
 
 }
