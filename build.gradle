@@ -69,6 +69,14 @@ watch {
   }
 }
 
+bootRun {
+    systemProperties = System.properties
+} // This is because: gradle bootRun -Dspring.config.location=$HOME/.valuarte/application.yml
+
+test {
+    systemProperties = System.properties
+} // This is because: gradle -Dtest.single=ApplicationContextBaseTest -Dspring.config.location=$HOME/.valuarte/application.yml test
+
 /*liquibase {
   activities {
     main {
