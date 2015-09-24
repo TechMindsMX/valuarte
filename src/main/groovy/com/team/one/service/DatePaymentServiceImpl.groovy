@@ -9,7 +9,7 @@ import com.team.one.exception.SimulatorException
 @Service
 class DatePaymentServiceImpl implements DatePaymentService{
 
-  def generateDatePayment(SimulatorCommand command){
-    def list[]
+  def generatePaymentDates(SimulatorCommand command){
+    []
   }
 }
