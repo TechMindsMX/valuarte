@@ -15,12 +15,17 @@ class DatePaymentServiceImpl implements DatePaymentService{
     (1..command.numberOfPayments).each {
       use(TimeCategory){
         dates.add(date)
-        if(command.paymentPeriod == PaymentPeriod.MONTHLY)
-          date = date + 1.months
-        else if(command.paymentPeriod == PaymentPeriod.FORTNIGHT)
+        switch(command.paymentPeriod){
+          case PaymentPeriod.MONTHLY:
+            date = date + 1.months
+            break
+          case PaymentPeriod.FORTNIGHT:
           date = date + 15.days
-        else if(command.paymentPeriod == PaymentPeriod.WEEKLY)
+            break
+          case PaymentPeriod.WEEKLY:
           date = date + 1.weeks
+            break
+        }
       }
     }
     dates
