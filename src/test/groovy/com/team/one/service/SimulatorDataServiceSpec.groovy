@@ -74,9 +74,10 @@ class SimulatorDataServiceSpec extends Specification {
     when:"We calculate data"
       def result = service.calculate(command)
     then:"We expect same principle with capital before payment"
-      result.rows.get(0).paymentDate == new Date("9/30/2015")
-      result.rows.get(1).paymentDate == new Date("10/15/2015")
-      result.rows.get(2).paymentDate == new Date("10/30/2015")
+      result.rows.get(0).paymentDate == new Date("9/15/2015")
+      result.rows.get(1).paymentDate == new Date("9/30/2015")
+      result.rows.get(2).paymentDate == new Date("10/15/2015")
+      result.rows.get(3).paymentDate == new Date("10/30/2015")
   }
 
 }
