@@ -3,6 +3,7 @@ package com.team.one.service
 import spock.lang.Specification
 import com.team.one.domain.SimulatorCommand
 import com.team.one.service.SimulatorDataServiceImpl
+import com.team.one.service.DatePaymentService
 import com.team.one.domain.PaymentPeriod
 import com.team.one.domain.Paydays
 import com.team.one.exception.SimulatorException
@@ -11,17 +12,26 @@ class SimulatorDataServiceSpec extends Specification {
 
   SimulatorDataServiceImpl service = new SimulatorDataServiceImpl()
 
+  def datePaymentService = Mock(DatePaymentService)
+
+  def setup(){
+    service.datePaymentService = datePaymentService
+  }
+
   void "should calculate table size depending on number of payments"() {
     given:"A simulator command"
       def command = new SimulatorCommand()
       command.principle = 35165.88
+    and:"A payment mock"
+      def paymentDates = [new Date(), new Date(), new Date()]
+      datePaymentService.generatePaymentDates(command) >> paymentDates
     when:"Input values"
       command.numberOfPayments = numberOfPayments
     then:"We calculate values"
       result == service.calculate(command).rows.size()
     where:"We have next cases"
     numberOfPayments || result
-    7                || 7
+    3                || 3
     1                || 1
   }
 
@@ -40,9 +50,12 @@ class SimulatorDataServiceSpec extends Specification {
       def command = new SimulatorCommand()
       command.numberOfPayments = 3
       command.principle = 35164.88
+    and:"A payment mock"
+      def paymentDates = [new Date(), new Date(), new Date()]
     when:"We calculate data"
       def result = service.calculate(command)
     then:"We expect same principle with capital before payment"
+      datePaymentService.generatePaymentDates(command) >> paymentDates
       result.rows.get(0).capitalBeforePayment == command.principle
       result.rows.get(0).capitalAfterPayment ==  34935.96
       result.rows.get(1).capitalBeforePayment ==  34935.96
@@ -56,12 +69,30 @@ class SimulatorDataServiceSpec extends Specification {
       def command = new SimulatorCommand()
       command.numberOfPayments = 3
       command.principle = 35164.88
+    and:"A payment mock"
+      def paymentDates = [new Date(), new Date(), new Date()]
     when:"We calculate data"
       def result = service.calculate(command)
     then:"We expect same principle with capital before payment"
+      datePaymentService.generatePaymentDates(command) >> paymentDates
       result.rows.get(0).number == 1
       result.rows.get(1).number == 2
       result.rows.get(2).number == 3
+  }
+
+  void "should set number dates depending on numberOfPayments"() {
+    given:"A simulator command and principle"
+      def command = new SimulatorCommand()
+      command.numberOfPayments = 2
+      command.principle = 35164.88
+    and:"A payment mock"
+      def paymentDates = [new Date(), new Date()]
+    when:"We calculate data"
+      def result = service.calculate(command)
+    then:"We expect same principle with capital before payment"
+      datePaymentService.generatePaymentDates(command) >> paymentDates
+      result.rows.get(0).paymentDate instanceof Date
+      result.rows.get(1).paymentDate instanceof Date
   }
 
 }
