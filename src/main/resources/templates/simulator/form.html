@@ -8,74 +8,61 @@
   </head>
   <body>
     <div layout:fragment="content">
-      <header id="rt-top-surround" class="rt-dark">
-        <div class="row-fluid">
-          <div class="span1"></div>
-            <div class="span10 registro">
-            <h1>Simulación de crédito</h1>
-            <hr />
-            <form id="simulator" action="#" th:action="@{save}" th:object="${simulator}" method="post">
-            <div class="span12 info">
-              <div>
-                <p th:text="${'Fecha: '+beans.dateFormatter.format(simulator.now)}" />
-              </div>
-              <div>
-                <label>RFC:</label>
-                <input type="text" th:field="*{rfc}"/>
-              </div>
-              <div>
-                <label>Nombre:</label>
-                <input type="text" th:field="*{firstName}"/>
-              </div>
-              <div>
-                <label>Apellidos:</label>
-                <input type="text" th:field="*{lastName}"/>
-              </div>
-              <hr />
-              <h2>Condiciones de crédito</h2>
-              <div>
-                <label>Total del Crédito:</label>
-                <input type="text" th:field="*{loan}"/> %
-              </div>
-              <div>
-                <label>Tasa de Interés Anualizada:</label>
-                <input type="text" th:field="*{tia}"/> %
-              </div>
-              <div>
-                <label>Comisión por Apertura:</label>
-                <input type="text" th:field="*{openingCommission}"/> %
-              </div>
-              <div>
-                <label>IVA:</label>
-                <input type="text" th:field="*{iva}"/> %
-              </div>
-              <div>
-                <label>Frecuencia de Pago:</label>
-                <select class="form-control span10 search-query" name="paymentPeriod" th:field="*{paymentPeriod}">
-                  <option th:each="viviendaM : ${T(com.team.one.domain.PaymentPeriod).values()}" th:value="${viviendaM}" th:text="${viviendaM.value}"></option>
-                </select>
-              </div>
-              <div>
-                <label>Número de Pagos:</label>
-                <input type="text" th:field="*{numberOfPayments}"/> %
-              </div>
-              <div>
-                <label>Fecha de Inicio:</label>
-                <input class="datepicker span10 search-query" th:field="*{startDate}" />
-              </div>
-              <button type="submit">Enviar</button>
-            </div>
-            </form>
-          </div>
+      <div class="section registro">
+        <h3>Simulación de crédito</h3>
+        <div>
+          <p th:text="${'Fecha: '+beans.dateFormatter.format(simulator.now)}" />
         </div>
-      </header>
-      <script type="text/javascript">
-        $(".datepicker").pickadate({
-        format: 'mm/dd/yyyy',
-        formatSubmit: 'mm/dd/yyyy',
-        hiddenName: true
-      });
-      </script>
-  	</div>
+        <form id="simulator" action="#" th:action="@{save}" th:object="${simulator}" method="post" class="col s12">
+          <div class="row">
+            <div class="input-field col s4">
+              <label>RFC:</label>
+              <input type="text" th:field="*{rfc}"/>
+            </div>
+            <div class="input-field col s4">
+              <label>Nombre:</label>
+              <input type="text" th:field="*{firstName}"/>
+            </div>
+            <div class="input-field col s4">
+              <label>Apellidos:</label>
+              <input type="text" th:field="*{lastName}"/>
+            </div>
+            <hr />
+            <h2>Condiciones de crédito</h2>
+            <div>
+              <label>Total del Crédito:</label>
+              <input type="text" th:field="*{loan}"/> %
+            </div>
+            <div>
+              <label>Tasa de Interés Anualizada:</label>
+              <input type="text" th:field="*{tia}"/> %
+            </div>
+            <div>
+              <label>Comisión por Apertura:</label>
+              <input type="text" th:field="*{openingCommission}"/> %
+            </div>
+            <div>
+              <label>IVA:</label>
+              <input type="text" th:field="*{iva}"/> %
+            </div>
+            <div>
+              <label>Frecuencia de Pago:</label>
+              <select class="form-control span10 search-query" name="paymentPeriod" th:field="*{paymentPeriod}">
+                <option th:each="viviendaM : ${T(com.team.one.domain.PaymentPeriod).values()}" th:value="${viviendaM}" th:text="${viviendaM.value}"></option>
+              </select>
+            </div>
+            <div>
+              <label>Número de Pagos:</label>
+              <input type="text" th:field="*{numberOfPayments}"/> %
+            </div>
+            <div>
+              <label>Fecha de Inicio:</label>
+              <input class="datepicker span10 search-query" th:field="*{startDate}" />
+            </div>
+            <button type="submit">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
