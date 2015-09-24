@@ -11,10 +11,10 @@ class SimulatorCommand {
   BigDecimal iva
   BigDecimal tim
   BigDecimal openingCommission
-  BigDecimal payment = 909.78
+  BigDecimal payment
   BigDecimal loan
-  BigDecimal principle = 35164.88
-  BigDecimal lifeInsurance
+  BigDecimal principle
+  BigDecimal lifeInsurance = 0
 
   PaymentPeriod paymentPeriod
   String paydays
