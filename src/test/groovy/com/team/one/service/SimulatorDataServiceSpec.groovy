@@ -2,7 +2,7 @@ package com.team.one.service
 
 import spock.lang.Specification
 import com.team.one.domain.SimulatorCommand
-import com.team.one.service.PMTServiceImpl
+import com.team.one.service.SimulatorDataServiceImpl
 import com.team.one.domain.PaymentPeriod
 import com.team.one.domain.Paydays
 import com.team.one.exception.SimulatorException
@@ -14,6 +14,7 @@ class SimulatorDataServiceSpec extends Specification {
   void "should calculate table size depending on number of payments"() {
     given:"A simulator command"
       def command = new SimulatorCommand()
+      command.principle = 35165.88
     when:"Input values"
       command.numberOfPayments = numberOfPayments
     then:"We calculate values"
@@ -50,6 +51,32 @@ class SimulatorDataServiceSpec extends Specification {
       result.rows.get(2).capitalAfterPayment ==   34478.12
   }
 
+  void "should set number depending on numberOfPayments"() {
+    given:"A simulator command and principle"
+      def command = new SimulatorCommand()
+      command.numberOfPayments = 3
+      command.principle = 35164.88
+    when:"We calculate data"
+      def result = service.calculate(command)
+    then:"We expect same principle with capital before payment"
+      result.rows.get(0).number == 1
+      result.rows.get(1).number == 2
+      result.rows.get(2).number == 3
+  }
 
+  void "should set payment date"() {
+    given:"A simulator command and principle"
+      def command = new SimulatorCommand()
+      command.numberOfPayments = 4
+      command.principle = 35164.88
+      command.paymentPeriod = PaymentPeriod.FORTNIGHT
+      command.startDate = new Date("9/15/2015")
+    when:"We calculate data"
+      def result = service.calculate(command)
+    then:"We expect same principle with capital before payment"
+      result.rows.get(0).paymentDate == new Date("9/30/2015")
+      result.rows.get(1).paymentDate == new Date("10/15/2015")
+      result.rows.get(2).paymentDate == new Date("10/30/2015")
+  }
 
 }
