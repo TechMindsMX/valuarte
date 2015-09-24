@@ -67,16 +67,16 @@ class SimulatorDataServiceSpec extends Specification {
   void "should set payment date"() {
     given:"A simulator command and principle"
       def command = new SimulatorCommand()
-      command.numberOfPayments = 3
+      command.numberOfPayments = 4
       command.principle = 35164.88
       command.paymentPeriod = PaymentPeriod.FORTNIGHT
-      command.startDate = new Date("9/5/2015")
+      command.startDate = new Date("9/15/2015")
     when:"We calculate data"
       def result = service.calculate(command)
     then:"We expect same principle with capital before payment"
-      result.rows.get(0).paymentDay == new Date("9/30/2015")
-      result.rows.get(1).paymentDay == new Date("10/15/2015")
-      result.rows.get(2).paymentDay == new Date("10/30/2015")
+      result.rows.get(0).paymentDate == new Date("9/30/2015")
+      result.rows.get(1).paymentDate == new Date("10/15/2015")
+      result.rows.get(2).paymentDate == new Date("10/30/2015")
   }
 
 }

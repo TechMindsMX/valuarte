@@ -13,9 +13,9 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
       throw new SimulatorException()
 
     def capitalBeforePayment = command.principle
-    (1..command.numberOfPayments).each {
+    (1..command.numberOfPayments).each { n ->
       def data = new SimulatorPayment(capital:228.92)
-      data.number = it
+      data.number = n
       data.capitalBeforePayment = capitalBeforePayment
       data.capitalAfterPayment = capitalBeforePayment - data.capital
       capitalBeforePayment -= data.capital

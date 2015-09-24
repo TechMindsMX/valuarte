@@ -14,7 +14,7 @@ class SimulatorCommand {
   BigDecimal payment
   BigDecimal loan
   BigDecimal principle
-  BigDecimal lifeInsurance
+  BigDecimal lifeInsurance = 0
 
   PaymentPeriod paymentPeriod
   String paydays
