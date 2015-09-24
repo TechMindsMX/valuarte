@@ -10,12 +10,17 @@ class DatePaymentServiceImpl implements DatePaymentService{
 
   def generatePaymentDates(SimulatorCommand command){
     def dates = []
-    def startDate = command.startDate
-    dates.add(startDate)
+    def date = command.startDate
 
     (1..command.numberOfPayments).each {
       use(TimeCategory){
-        dates.add(startDate + 15.days)
+        dates.add(date)
+        if(command.paymentPeriod == PaymentPeriod.MONTHLY)
+          date = date + 1.months
+        else if(command.paymentPeriod == PaymentPeriod.FORTNIGHT)
+          date = date + 15.days
+        else if(command.paymentPeriod == PaymentPeriod.WEEKLY)
+          date = date + 1.weeks
       }
     }
     dates
