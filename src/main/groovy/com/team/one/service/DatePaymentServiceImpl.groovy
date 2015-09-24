@@ -4,6 +4,7 @@ import com.team.one.domain.SimulatorCommand
 import org.springframework.stereotype.Service
 import com.team.one.domain.PaymentPeriod
 import groovy.time.TimeCategory
+import com.team.one.exception.SimulatorException
 
 @Service
 class DatePaymentServiceImpl implements DatePaymentService{
@@ -25,6 +26,8 @@ class DatePaymentServiceImpl implements DatePaymentService{
           case PaymentPeriod.WEEKLY:
           date = date + 1.weeks
             break
+          default:
+            throw new SimulatorException()
         }
       }
     }

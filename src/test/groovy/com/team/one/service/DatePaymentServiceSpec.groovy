@@ -19,7 +19,6 @@ class DatePaymentServiceSpec extends Specification {
       command.startDate = new Date("9/15/2015")
     when:"We calculate data"
       def result = service.generatePaymentDates(command)
-      println result
     then:"We expect same principle with capital before payment"
       result.get(0) == new Date("9/15/2015")
       result.size() == 1
@@ -84,5 +83,15 @@ class DatePaymentServiceSpec extends Specification {
       result.get(3) == new Date("9/28/2015")
   }
 
+  void "should throw an exception when no payment method"() {
+    given:"A simulator command and principle"
+      def command = new SimulatorCommand()
+      command.numberOfPayments = 4
+      command.startDate = new Date("9/7/2015")
+    when:"We calculate data"
+      def result = service.generatePaymentDates(command)
+    then:"Thrown exception"
+      thrown SimulatorException
+  }
 
 }
