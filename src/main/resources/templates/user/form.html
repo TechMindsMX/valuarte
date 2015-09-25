@@ -8,65 +8,79 @@
   </head>
   <body>
     <div layout:fragment="content">
-      <header id="rt-top-surround" class="rt-dark">
+      <div class="container">
         <div class="row-fluid">
-          <div class="span2"></div>
-          <div class="span8 registro">
+          <div class="span12 registro">
             <div th:if="${error}">
               <p th:each="er : ${error}">
                 <p th:text="${er}" align="center" class="alert alert-error"/>
               </p>
             </div>
             <div class="info">
-              <h1>REGISTRO DE USUARIO
-              <p>* Campo Obligatorio</p></h1>
+              <h1><font color="white">REGISTRO DE USUARIO
+              <p>* Campo Obligatorio</p></font></h1>
               <form id="register" action="#" th:action="@{/Users/save}" th:object="${user}" method="post"  class="form-horizontal">
                 <div class="span12">
-                  <div class="span6">
-                    <div class="control-group">
-                      <label><h2>Usuario*</h2></label>
-                      <input type="text" th:field="*{username}" class="span9 search-query"/>
-                      <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></label>
+                  <div class="span12">
+                    <div class=""></div>
+                    <div class="span6">
+                      <div class="control-group">
+                        <label><h2>Usuario*</h2></label>
+                        <input type="text" th:field="*{username}" class="span9 search-query"/>
+                        <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></label>
+                      </div>
                     </div>
-                    <div class="control-group">
-                      <label><h2>Contraseña*</h2></label>
-                      <input type="password" th:field="*{password}" class="span9 search-query" />
+                    <div class="span5"></div>
+                  </div>
+                  <div class="span12">
+                    <div class="span6">
+                      <div class="control-group">
+                        <label><h2>Contraseña*</h2></label>
+                        <input type="password" th:field="*{password}" class="span9 search-query" />
+                      </div>
                     </div>
-                    <div class="control-group">
-                      <label><h2>Nombre(s)</h2></label>
-                      <input type="text" th:field="*{firstName}" class="span9 search-query"/>
-                    </div>
-                    <div class="control-group">
-                      <label><h2>Dirección de correo electrónico</h2></label>
-                      <input type="email" th:field="*{email}" class="span9 search-query"/>
+                    <div class="span6">
+                      <div class="control-group">
+                        <label><h2>Confirme su contraseña*</h2></label>
+                        <input type="password" th:field="*{passwordRepeated}" class="span9 search-query" />
+                      </div>
                     </div>
                   </div>
-                  <div class="span6">
-                    <div class="control-group">
-                      <p>&nbsp;&nbsp;</p>
-                      <p>&nbsp;&nbsp;</p>
-                      &nbsp;
+                  <div class="span12">
+                    <div class="span6">
+                      <div class="control-group">
+                        <label><h2>Nombre(s)</h2></label>
+                        <input type="text" th:field="*{firstName}" class="span9 search-query"/>
+                      </div>
                     </div>
-                    <div class="control-group">
-                      <label><h2>Confirme su contraseña*</h2></label>
-                      <input type="password" th:field="*{passwordRepeated}" class="span9 search-query" />
-                    </div>
-                    <div class="control-group">
-                      <label><h2>Apellido</h2></label>
-                      <input type="text" th:field="*{lastName}" class="span9 search-query"/>
+                    <div class="span6">
+                      <div class="control-group">
+                        <label><h2>Apellido</h2></label>
+                        <input type="text" th:field="*{lastName}" class="span9 search-query"/>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="span11" align="right">
-                  <input type="image" th:src="@{/images/Botonregistrar_Registro.png}" id="submit" />
-                  <input type="image" th:src="@{/images/Botoncancelar_Registro.png}" id="reset" />
-                  <p>&nbsp;&nbsp;</p>
+                  <div class="span12">
+                    <div class="span6">
+                      <div class="control-group">
+                        <label><h2>Dirección de correo electrónico</h2></label>
+                        <input type="email" th:field="*{email}" class="span9 search-query"/>
+                      </div>
+                    </div>
+                    <div class="span6"></div>
+                  </div>
+                  <div class="span11" align="right">
+                    <input type="image" th:src="@{/images/Botonregistrar_Registro.png}" id="submit" />
+                    <input type="image" th:src="@{/images/Botoncancelar_Registro.png}" id="reset" />
+                    <p>&nbsp;&nbsp;</p>
+                  </div>
                 </div>
               </form>
             </div>
           </div>
         </div>
-      </header>
+      </div>
+      <p>&nbsp;&nbsp;</p>
       <script type="text/javascript">
         $(document).ready(function(){
           $("#submit").on('click', function(e){
