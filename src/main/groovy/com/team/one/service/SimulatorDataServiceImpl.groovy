@@ -11,6 +11,8 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
 
   @Autowired
   DatePaymentService datePaymentService
+  @Autowired
+  InterestService interestService
 
   def calculate(SimulatorCommand command){
     if(!command.numberOfPayments || command.numberOfPayments == 0)
@@ -26,6 +28,7 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
       data.capitalAfterPayment = capitalBeforePayment - data.capital
       capitalBeforePayment -= data.capital
       data.paymentDate = paymentDates.get(n-1)
+      interestService.calculate(data.capital)
       command.rows.add(data)
     }
     command
