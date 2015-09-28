@@ -1,6 +1,8 @@
 package com.team.one.service
 
 import spock.lang.Specification
+import spock.lang.Unroll
+
 import com.team.one.domain.SimulatorCommand
 import com.team.one.service.SimulatorServiceImpl
 import com.team.one.service.PMTService
@@ -18,7 +20,8 @@ class SimulatorServiceSpec extends Specification {
     service.pmtService = pmtService
   }
 
-  void "should calculate paydays from paymentPeriod"() {
+  @Unroll
+  void """When we have an payment period: #paymentPeriod we expect paydays: #result"""() {
     given:"A simulator command"
       def command = new SimulatorCommand()
     when:"We assign values to command"
