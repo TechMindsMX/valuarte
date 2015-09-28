@@ -14,4 +14,8 @@ interface ClientService {
 
   def sendEmailContact(def jsonContact)
 
+  def findSubCategoryByName(String name)
+
+  def createSubCategoryByName(String name)
+
 }
