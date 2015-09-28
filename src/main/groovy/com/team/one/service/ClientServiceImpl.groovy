@@ -30,6 +30,10 @@ class ClientServiceImpl implements ClientService {
   String pathFormContact
   @Value('${timOne.path.form.forgotPassword}')
   String pathFormForgot
+  @Value('${timOne.path.subcategory.find}')
+  String pathFindSubcategory
+  @Value('${timOne.path.subcategory.create}')
+  String pathCreateSubCategory
 
   @Autowired
   PhotoNameGeneratorService photoNameGeneratorService
