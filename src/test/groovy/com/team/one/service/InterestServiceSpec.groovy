@@ -5,6 +5,7 @@ import spock.lang.Unroll
 
 import com.team.one.domain.PaymentPeriod
 import com.team.one.domain.SimulatorCommand
+import com.team.one.exception.SimulatorException
 
 class InterestServiceSpec extends Specification {
 
@@ -39,6 +40,18 @@ class InterestServiceSpec extends Specification {
       30896.74              | 36     | PaymentPeriod.FORTNIGHT  || 463.45
       34833.11              | 36     | PaymentPeriod.WEEKLY     || 261.25
       28044.50              | 36     | PaymentPeriod.WEEKLY     || 210.33
+  }
+
+  void "should throw an exception when no payment period"() {
+    given:"A simulator command and principle"
+      def command = new SimulatorCommand()
+      command.tia = 40
+    and: "Capital before payment"
+      def capitalBeforePayment = 35676.36
+    when:"We calculate data"
+      def result = service.calculate(capitalBeforePayment, command)
+    then:"Thrown exception"
+      thrown SimulatorException
   }
 
 }
