@@ -33,6 +33,12 @@ class InterestServiceSpec extends Specification {
       30919.94              | 40     | PaymentPeriod.FORTNIGHT  || 515.33
       34864.33              | 40     | PaymentPeriod.WEEKLY     || 290.54
       29057.15              | 40     | PaymentPeriod.WEEKLY     || 242.14
+      35585.00              | 36     | PaymentPeriod.MONTHLY    || 1067.55
+      33549.53              | 36     | PaymentPeriod.MONTHLY    || 1006.49
+      35106.73              | 36     | PaymentPeriod.FORTNIGHT  || 526.60
+      30896.74              | 36     | PaymentPeriod.FORTNIGHT  || 463.45
+      34833.11              | 36     | PaymentPeriod.WEEKLY     || 261.25
+      28044.50              | 36     | PaymentPeriod.WEEKLY     || 210.33
   }
 
 }
