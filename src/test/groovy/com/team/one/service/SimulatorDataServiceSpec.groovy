@@ -1,6 +1,8 @@
 package com.team.one.service
 
 import spock.lang.Specification
+import spock.lang.Unroll
+
 import com.team.one.domain.SimulatorCommand
 import com.team.one.service.SimulatorDataServiceImpl
 import com.team.one.service.DatePaymentService
@@ -23,7 +25,8 @@ class SimulatorDataServiceSpec extends Specification {
     interestService.calculate(_, _) >> 100.00
   }
 
-  void "should calculate table size depending on number of payments"() {
+  @Unroll
+  void """When we have number of payments: #numberOfPayments and we expect #result rows in the table"""() {
     given:"A simulator command"
       def command = new SimulatorCommand()
       command.principle = 35165.88
