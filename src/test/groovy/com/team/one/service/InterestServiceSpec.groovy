@@ -21,6 +21,9 @@ class InterestServiceSpec extends Specification {
       null     | 3.33     | PaymentPeriod.MONTHLY    || 0
       null     | 3.33     | PaymentPeriod.WEEKLY     || 0
       null     | 3.33     | PaymentPeriod.FORTNIGHT  || 0
+      228.92   | null     | PaymentPeriod.MONTHLY    || 0
+      228.92   | null     | PaymentPeriod.WEEKLY     || 0
+      228.92   | null     | PaymentPeriod.FORTNIGHT  || 0
   }
 
 }
