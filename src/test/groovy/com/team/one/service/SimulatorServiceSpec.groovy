@@ -18,23 +18,6 @@ class SimulatorServiceSpec extends Specification {
     service.pmtService = pmtService
   }
 
-  void "should calculate tim from tia"() {
-    given:"A simulator command"
-      def command = new SimulatorCommand()
-      command.paymentPeriod = PaymentPeriod.WEEKLY
-    when:"We assign values to command"
-      command.tia = tia
-    then:"We calculate values"
-      result == service.calculate(command).tim
-    where:"We have next cases"
-      tia   || result
-      40    || 3.33
-      30    || 2.50
-      50    || 4.17
-      0.00  || 0.00
-      null  || 0.00
-  }
-
   void "should calculate paydays from paymentPeriod"() {
     given:"A simulator command"
       def command = new SimulatorCommand()
