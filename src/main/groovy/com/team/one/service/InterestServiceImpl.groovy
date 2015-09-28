@@ -9,7 +9,7 @@ import com.team.one.exception.SimulatorException
 @Service
 class InterestServiceImpl implements InterestService {
 
-  def calculate(BigDecimal capital){
-    command
+  def calculate(BigDecimal capital, PaymentPeriod paymentPeriod){
+    0
   }
 }

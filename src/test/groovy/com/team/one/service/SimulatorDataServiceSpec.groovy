@@ -20,7 +20,7 @@ class SimulatorDataServiceSpec extends Specification {
     service.interestService = interestService
 
     datePaymentService.generatePaymentDates(_) >> [new Date(), new Date(), new Date()]
-    interestService.calculate(_) >> 100.00
+    interestService.calculate(_, _) >> 100.00
   }
 
   void "should calculate table size depending on number of payments"() {
