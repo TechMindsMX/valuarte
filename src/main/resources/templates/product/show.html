@@ -13,12 +13,28 @@ layout:decorator="layout">
   </head>
     <body>
       <div layout:fragment="content">
-        <div class="row-fluid">
-          <div class="span12">
-            <div class="span7" >
+        <div class="container">
+          <div class="row-fluid" style="background-color:white;">
+            <div class="span10" >
               <br />
-              <img id="images" th:attr="src=@{${pathUrl} + ${product.projectPhotos.get(0)['url']}}, data-zoom-image=@{${pathUrl} + ${product.projectPhotos.get(0)['url']}}" width="460" height="460"/>
-              <p></p>
+              <div class="span12">
+                <div class="span5" >
+                  <img id="images" th:attr="src=@{${pathUrl} + ${product.projectPhotos.get(0)['url']}}, data-zoom-image=@{${pathUrl} + ${product.projectPhotos.get(0)['url']}}" width="400" height="460"/>
+                  <div class="span12" align="center">
+                    <p><font size="6" color="black"><p th:text="'$'+${product.getElementInDescriptionByPosition(1)}"/></font></p>
+                  </div>
+                </div>
+                <div class="span7">
+                  <div class="alert alert-info">
+                    <h1><p th:text="${product.getNameOfProduct()}" /></h1>
+                  </div>
+                  Descripción
+                  <p th:utext="${product.getElementInDescriptionByPosition(2)}"></p>
+                </div>
+              </div>
+            </div>
+            <div class="span2">
+              <br />
               <div id="gal1">
                 <span th:each="images : ${product.projectPhotos}">
                   <a href="#" th:attr="data-image=@{${pathUrl} + ${images['url']}}, data-zoom-image=@{${pathUrl} + ${images['url']}}">
@@ -27,25 +43,34 @@ layout:decorator="layout">
                 </span>
               </div>
             </div>
-            <div class="span5">
-              <br />
-              <h1><p th:text="${product.getNameOfProduct()}" /></h1>
-              <br />
-              <div class="span12">
-                <br />
-                <font size="6" color="black"><p th:text="'$'+${product.getElementInDescriptionByPosition(1)}"/></font>
-                <div class="progress progress-info progress-striped">
-                  <div class="bar" style="width: 20%"></div>
-                  <p>*porcentaje de invercion</p>
+            <div class="span11">
+              <p><hr style="background-color: #055285;height: 3px;" /></p>
+              <div class="span11">
+                <div class="span5" style="border-style: solid;border-color: #ffffff;border-right-color: #055285;">
+                  <br />
+                  <div class="progress progress-info progress-striped">
+                    <div class="bar" style="width: 20%"></div>
+                    <p>*porcentaje de inversión 20%</p>
+                  </div>
                 </div>
-
-                <br />
+                <div class="span2" align="center" style="border-style: solid;border-color: #ffffff;border-right-color: #055285;">
+                  <p align="">ROI Financiadores:</p>
+                  <font color="#055285" size="5"> 0%</font>
+                </div>
+                <div class="span2" style="border-style: solid;border-color: #ffffff;border-right-color: #055285;" align="center">
+                  <p align="">ROI Inversionistas:</p>
+                  <font color="#055285" size="5"> 0%</font>
+                </div>
+                <div class="span3" align="center">
+                  <br />
+                  <a href="" class="btn btn-login btn-large ">Invertir</a>
+                </div>
               </div>
-              <input type="image" th:src="@{/images/BotonInvertir_Beneficios2.png}"/>
-              <hr />
-              <p th:utext="${product.getElementInDescriptionByPosition(2)}"></p>
+              <br /><br /> 
+              <br /><br /> 
             </div>
           </div>
+          <br /><br />
         </div>
         <script type="text/javascript">
           $(document).ready(function(){
