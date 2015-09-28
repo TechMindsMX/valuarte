@@ -10,7 +10,11 @@ import com.team.one.exception.SimulatorException
 class InsuranceServiceImpl implements InsuranceService {
 
   def calculate(SimulatorCommand command){
+    if(!command.loan)
+      throw new SimulatorException()
+
     command.principle = command.loan + command.lifeInsurance
     command
   }
+
 }
