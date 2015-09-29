@@ -13,20 +13,17 @@
 
   <body>
     <nav>
-      <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Logo</a>
+      <div class="nav-wrapper blue darken-4">
+        <a href="#" class="brand-logo">Valuarte</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="sass.html">Sass</a></li>
-          <li><a href="badges.html">Components</a></li>
-          <li><a href="collapsible.html">JavaScript</a></li>
         </ul>
       </div>
     </nav>
-    <div layout:fragment="content" class="container">
-    </div>
     <div th:fragment="materialize">
       <script src="../../assets/third-party/jquery/jquery.js" th:src="@{/assets/third-party/jquery/dist/jquery.js}"/>
       <script src="../../assets/third-party/materialize/dist/js/materialize.js" th:src="@{/assets/third-party/materialize/dist/js/materialize.js}"/>
+    </div>
+    <div layout:fragment="content" class="container">
     </div>
   </body>
 </html>
