@@ -12,8 +12,9 @@ class PMTServiceImpl implements PMTService{
 
   def calculate(SimulatorCommand command){
     if(command.paymentPeriod == PaymentPeriod.MONTHLY){
-      def payment = command.tia/24/100*command.loan
-      command.payment = payment.setScale(ApplicationConstants.DECIMALS, ApplicationConstants.ROUNDING_MODE)
+      def effectiveInterest = command.tia / 100 / 12
+      def effectiveInterestPlusIVA = effectiveInterest * (1 + (command.iva / 100))
+      command.payment = effectiveInterestPlusIVA.setScale(ApplicationConstants.DECIMALS, ApplicationConstants.ROUNDING_MODE)
     }
     command
   }

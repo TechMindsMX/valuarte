@@ -19,11 +19,12 @@ class PMTServiceSpec extends Specification {
       command.iva = iva
       command.tia = tia
       command.loan = loan
+      command.numberOfPayments = numberOfPayments
     then:"We calculate values"
       result == service.calculate(command).payment
     where:"We have next cases"
-      loan  | tia     |  iva  || result
-      31733 | 40      |  16   || 528.88
+      loan     | tia     |  iva  | numberOfPayments || result
+      32267.95 | 40      |  16   | 12               || 0.04
   }
 
 }
