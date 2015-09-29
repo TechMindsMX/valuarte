@@ -10,6 +10,10 @@ import com.team.one.exception.SimulatorException
 class PMTServiceImpl implements PMTService{
 
   def calculate(SimulatorCommand command){
+    if(!command.paymentPeriod){
+      throw new SimulatorException()
+    }
+
     BigDecimal effectiveInterest = command.tia / 100 / 12 / command.paymentPeriod.factor
     BigDecimal effectiveInterestPlusIVA = effectiveInterest * (1 + (command.iva / 100))
     BigDecimal effectiveInterestPlusIVAPower = (1 + effectiveInterestPlusIVA) ** (-1 * command.numberOfPayments)

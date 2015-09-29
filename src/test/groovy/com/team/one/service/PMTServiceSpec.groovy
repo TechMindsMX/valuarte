@@ -40,4 +40,18 @@ class PMTServiceSpec extends Specification {
       15000.00      | 36      |  16   | 24               | PaymentPeriod.WEEKLY     || 695.22
   }
 
+  void "should throw an exception when no payment period"() {
+    given:"A simulator command and principle"
+      def command = new SimulatorCommand()
+    and:"Input values"
+      command.iva = 16
+      command.tia = 40
+      command.principle = 15000
+      command.numberOfPayments = 12
+    when:"We calculate data"
+      service.calculate(command).payment
+    then:"Thrown exception"
+      thrown SimulatorException
+  }
+
 }
