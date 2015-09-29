@@ -24,7 +24,7 @@ class PMTServiceSpec extends Specification {
       result == service.calculate(command).payment
     where:"We have next cases"
       loan     | tia     |  iva  | numberOfPayments || result
-      32267.95 | 40      |  16   | 12               || 0.04
+      32267.95 | 40      |  16   | 12               || 3411.67
   }
 
 }
