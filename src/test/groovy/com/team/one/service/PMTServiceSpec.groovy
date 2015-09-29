@@ -17,13 +17,13 @@ class PMTServiceSpec extends Specification {
     when:"Input values"
       command.paymentPeriod = PaymentPeriod.MONTHLY
       command.iva = iva
-      command.tim = tim
+      command.tia = tia
       command.loan = loan
     then:"We calculate values"
       result == service.calculate(command).payment
     where:"We have next cases"
-      loan  | tim     |  iva  || result
-      31733 | 3.33    |  16   || 88.059075
+      loan  | tia     |  iva  || result
+      31733 | 40      |  16   || 528.88
   }
 
 }
