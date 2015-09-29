@@ -27,31 +27,34 @@
               <label>Apellidos:</label>
               <input type="text" th:field="*{lastName}"/>
             </div>
-            <hr />
+          </div>
+          <div class="row">
             <h2>Condiciones de crédito</h2>
-            <div>
+            <div class="input-field col s4">
               <label>Total del Crédito:</label>
               <input type="text" th:field="*{loan}"/> %
             </div>
-            <div>
+            <div class="input-field col s4">
               <label>Tasa de Interés Anualizada:</label>
               <input type="text" th:field="*{tia}"/> %
             </div>
-            <div>
+            <div class="input-field col s4">
               <label>Comisión por Apertura:</label>
               <input type="text" th:field="*{openingCommission}"/> %
             </div>
-            <div>
+          </div>
+          <div class="row">
+            <div class="input-field col s4">
               <label>IVA:</label>
               <input type="text" th:field="*{iva}"/> %
             </div>
-            <div>
+            <div class="input-field col s4">
               <label>Frecuencia de Pago:</label>
               <select class="form-control span10 search-query" name="paymentPeriod" th:field="*{paymentPeriod}">
                 <option th:each="viviendaM : ${T(com.team.one.domain.PaymentPeriod).values()}" th:value="${viviendaM}" th:text="${viviendaM.value}"></option>
               </select>
             </div>
-            <div>
+            <div class="input-field col s4">
               <label>Número de Pagos:</label>
               <input type="text" th:field="*{numberOfPayments}"/> %
             </div>
