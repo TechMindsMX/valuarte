@@ -34,6 +34,10 @@ class PMTServiceSpec extends Specification {
       15000.00      | 40      |  16   | 12               | PaymentPeriod.FORTNIGHT  || 1412.59
       15000.00      | 40      |  16   | 24               | PaymentPeriod.FORTNIGHT  || 787.09
       15000.00      | 36      |  16   | 24               | PaymentPeriod.FORTNIGHT  || 769.90
+      32242.04      | 40      |  16   | 12               | PaymentPeriod.WEEKLY     || 2858.64
+      15000.00      | 40      |  16   | 12               | PaymentPeriod.WEEKLY     || 1329.93
+      15000.00      | 40      |  16   | 24               | PaymentPeriod.WEEKLY     || 703.30
+      15000.00      | 36      |  16   | 24               | PaymentPeriod.WEEKLY     || 695.22
   }
 
 }
