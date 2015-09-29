@@ -1,9 +1,9 @@
 package com.team.one.domain
 
 enum PaymentPeriod {
-  WEEKLY("Semanal",4),
-  FORTNIGHT("Quincenal",2),
-  MONTHLY("Mensual",1)
+  WEEKLY("7,15,21,30",4),
+  FORTNIGHT("15,30",2),
+  MONTHLY("30",1)
 
   private final String value
   private final Integer factor

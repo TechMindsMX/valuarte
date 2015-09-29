@@ -14,15 +14,11 @@ class SimulatorServiceImpl implements SimulatorService{
   PMTService pmtService
 
   def calculate(SimulatorCommand command){
-    if(command.paymentPeriod == PaymentPeriod.WEEKLY){
-      command.paydays = Paydays.WEEKLY.getValue()
-    } else if(command.paymentPeriod == PaymentPeriod.FORTNIGHT){
-      command.paydays = Paydays.FORTNIGHT.getValue()
-    } else if(command.paymentPeriod == PaymentPeriod.MONTHLY){
-      command.paydays = Paydays.MONTHLY.getValue()
-    } else {
+    if(!command.paymentPeriod){
       throw new SimulatorException()
     }
+
+    command.paydays = command.paymentPeriod.value
 
     def tia = command.tia
     pmtService.calculate(command)
