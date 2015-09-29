@@ -6,7 +6,6 @@ import spock.lang.Unroll
 import com.team.one.domain.SimulatorCommand
 import com.team.one.service.PMTServiceImpl
 import com.team.one.domain.PaymentPeriod
-import com.team.one.domain.Paydays
 import com.team.one.exception.SimulatorException
 
 class InsuranceServiceSpec extends Specification {

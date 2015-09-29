@@ -7,7 +7,6 @@ import com.team.one.domain.SimulatorCommand
 import com.team.one.service.SimulatorServiceImpl
 import com.team.one.service.PMTService
 import com.team.one.domain.PaymentPeriod
-import com.team.one.domain.Paydays
 import com.team.one.exception.SimulatorException
 
 class SimulatorServiceSpec extends Specification {
