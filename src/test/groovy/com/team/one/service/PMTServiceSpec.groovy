@@ -27,7 +27,10 @@ class PMTServiceSpec extends Specification {
       result == service.calculate(command).payment
     where:"We have next cases"
       principle     | tia     |  iva  | numberOfPayments || result
-      32267.95 | 40      |  16   | 12               || 3411.67
+      32267.95      | 40      |  16   | 12               || 3411.67
+      15000.00      | 40      |  16   | 12               || 1585.94
+      15000.00      | 40      |  16   | 24               || 970.42
+      15000.00      | 36      |  16   | 24               || 932.13
   }
 
 }
