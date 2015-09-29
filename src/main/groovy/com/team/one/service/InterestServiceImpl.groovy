@@ -14,21 +14,13 @@ class InterestServiceImpl implements InterestService {
     if(!capitalBeforePayment || !command?.tia)
       return 0
 
-   BigDecimal result = 0
-   switch(command.paymentPeriod){
-     case PaymentPeriod.MONTHLY:
-       result = capitalBeforePayment * command.tia / 12 / 100
-       break
-     case PaymentPeriod.FORTNIGHT:
-       result = capitalBeforePayment * command.tia / 12 / 100 / 2
-       break
-     case PaymentPeriod.WEEKLY:
-       result = capitalBeforePayment * command.tia / 12 / 100 / 4
-       break
-     default:
-       throw new SimulatorException()
-   }
-   result.setScale(ApplicationConstants.DECIMALS, ApplicationConstants.ROUNDING_MODE)
+    if(!command.paymentPeriod) {
+      throw new SimulatorException()
+    }
+
+    BigDecimal result = 0
+    result = capitalBeforePayment * command.tia / 12 / 100 / command.paymentPeriod.factor
+    result.setScale(ApplicationConstants.DECIMALS, ApplicationConstants.ROUNDING_MODE)
   }
 
 }
