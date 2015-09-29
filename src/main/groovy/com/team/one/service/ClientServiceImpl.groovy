@@ -92,7 +92,6 @@ class ClientServiceImpl implements ClientService {
   }
 
   def sendEmailForgotPassword(def forgotPassword) {
-    println pathFormForgot
     RestTemplate restTemplate = new RestTemplate()
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
@@ -100,6 +99,21 @@ class ClientServiceImpl implements ClientService {
     def status = restTemplate.postForObject(pathFormForgot, entity,String.class);
     log.info status
   }
+
+  def findSubCategoryByName(String name) {
+    RestTemplate restTemplate = new RestTemplate()
+    def resultCat = RestTemplate.getForObject(pathFindSubcategory + name,String.class)
+    resultCat
+  }
+
+  def createSubCategoryByName(String name) {
+    RestTemplate restTemplate = new RestTemplate()
+    MultiValueMap<String,String> propertiesSubCategory = new LinkedMultiValueMap<String, String>()
+    propertiesSubCategory.name = name
+    def resultSubCat = restTemplate.postForObject(pathCreateProject,propertiesSubCategory,String.class)
+    resultSubCat
+  }
+
 
 }
 
