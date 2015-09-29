@@ -13,9 +13,6 @@ class SimulatorServiceImpl implements SimulatorService{
   @Autowired
   PMTService pmtService
 
-  static Integer MONTHS_IN_A_YEAR = 12
-  static Integer DECIMALS = 2
-
   def calculate(SimulatorCommand command){
     if(command.paymentPeriod == PaymentPeriod.WEEKLY){
       command.paydays = Paydays.WEEKLY.getValue()
@@ -28,7 +25,6 @@ class SimulatorServiceImpl implements SimulatorService{
     }
 
     def tia = command.tia
-    command.tim = tia? tia.divide(MONTHS_IN_A_YEAR, DECIMALS, BigDecimal.ROUND_HALF_UP) : 0.00
     pmtService.calculate(command)
     command
   }

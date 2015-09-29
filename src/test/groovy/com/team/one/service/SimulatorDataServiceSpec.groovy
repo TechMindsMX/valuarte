@@ -1,8 +1,11 @@
 package com.team.one.service
 
 import spock.lang.Specification
+import spock.lang.Unroll
+
 import com.team.one.domain.SimulatorCommand
 import com.team.one.service.SimulatorDataServiceImpl
+import com.team.one.service.DatePaymentService
 import com.team.one.domain.PaymentPeriod
 import com.team.one.domain.Paydays
 import com.team.one.exception.SimulatorException
@@ -11,7 +14,19 @@ class SimulatorDataServiceSpec extends Specification {
 
   SimulatorDataServiceImpl service = new SimulatorDataServiceImpl()
 
-  void "should calculate table size depending on number of payments"() {
+  def datePaymentService = Mock(DatePaymentService)
+  def interestService = Mock(InterestService)
+
+  def setup(){
+    service.datePaymentService = datePaymentService
+    service.interestService = interestService
+
+    datePaymentService.generatePaymentDates(_) >> [new Date(), new Date(), new Date()]
+    interestService.calculate(_, _) >> 100.00
+  }
+
+  @Unroll
+  void """When we have number of payments: #numberOfPayments and we expect #result rows in the table"""() {
     given:"A simulator command"
       def command = new SimulatorCommand()
       command.principle = 35165.88
@@ -21,7 +36,7 @@ class SimulatorDataServiceSpec extends Specification {
       result == service.calculate(command).rows.size()
     where:"We have next cases"
     numberOfPayments || result
-    7                || 7
+    3                || 3
     1                || 1
   }
 
@@ -64,19 +79,16 @@ class SimulatorDataServiceSpec extends Specification {
       result.rows.get(2).number == 3
   }
 
-  void "should set payment date"() {
+  void "should set number dates depending on numberOfPayments"() {
     given:"A simulator command and principle"
       def command = new SimulatorCommand()
-      command.numberOfPayments = 4
+      command.numberOfPayments = 2
       command.principle = 35164.88
-      command.paymentPeriod = PaymentPeriod.FORTNIGHT
-      command.startDate = new Date("9/15/2015")
     when:"We calculate data"
       def result = service.calculate(command)
     then:"We expect same principle with capital before payment"
-      result.rows.get(0).paymentDate == new Date("9/30/2015")
-      result.rows.get(1).paymentDate == new Date("10/15/2015")
-      result.rows.get(2).paymentDate == new Date("10/30/2015")
+      result.rows.get(0).paymentDate instanceof Date
+      result.rows.get(1).paymentDate instanceof Date
   }
 
 }

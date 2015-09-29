@@ -9,7 +9,6 @@ class SimulatorCommand {
 
   BigDecimal tia
   BigDecimal iva
-  BigDecimal tim
   BigDecimal openingCommission
   BigDecimal payment
   BigDecimal loan

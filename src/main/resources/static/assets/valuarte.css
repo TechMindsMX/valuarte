@@ -122,3 +122,8 @@ html {
   background-repeat: repeat-x !important;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
 }
+
+.btn-login {
+   background: #055285 !important;
+   color: #ffffff;
+}
