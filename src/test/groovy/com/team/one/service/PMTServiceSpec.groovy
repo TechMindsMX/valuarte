@@ -13,11 +13,11 @@ class PMTServiceSpec extends Specification {
   PMTServiceImpl service = new PMTServiceImpl()
 
   @Unroll
-  void """When we have iva: #iva, tia: #tia, principle: #principle and number of payments as: #numberOfPayments and we want calculate payment in a monthly period we expect: #result"""() {
+  void """When we have iva: #iva, tia: #tia, principle: #principle and number of payments as: #numberOfPayments, payment period: #paymentPeriod and we want calculate payment in a monthly period we expect: #result"""() {
     given:"A simulator command"
       def command = new SimulatorCommand()
     when:"Input values"
-      command.paymentPeriod = PaymentPeriod.MONTHLY
+      command.paymentPeriod = paymentPeriod
       command.iva = iva
       command.tia = tia
       command.loan = principle
@@ -25,11 +25,15 @@ class PMTServiceSpec extends Specification {
     then:"We calculate values"
       result == service.calculate(command).payment
     where:"We have next cases"
-      principle     | tia     |  iva  | numberOfPayments || result
-      32267.95      | 40      |  16   | 12               || 3411.67
-      15000.00      | 40      |  16   | 12               || 1585.94
-      15000.00      | 40      |  16   | 24               || 970.42
-      15000.00      | 36      |  16   | 24               || 932.13
+      principle     | tia     |  iva  | numberOfPayments | paymentPeriod            || result
+      32267.95      | 40      |  16   | 12               | PaymentPeriod.MONTHLY    || 3411.67
+      15000.00      | 40      |  16   | 12               | PaymentPeriod.MONTHLY    || 1585.94
+      15000.00      | 40      |  16   | 24               | PaymentPeriod.MONTHLY    || 970.42
+      15000.00      | 36      |  16   | 24               | PaymentPeriod.MONTHLY    || 932.13
+      32250.79      | 40      |  16   | 12               | PaymentPeriod.FORTNIGHT  || 3037.15
+      15000.00      | 40      |  16   | 12               | PaymentPeriod.FORTNIGHT  || 1412.59
+      15000.00      | 40      |  16   | 24               | PaymentPeriod.FORTNIGHT  || 787.09
+      15000.00      | 36      |  16   | 24               | PaymentPeriod.FORTNIGHT  || 769.90
   }
 
 }

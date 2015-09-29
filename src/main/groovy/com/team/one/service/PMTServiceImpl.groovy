@@ -10,14 +10,12 @@ import com.team.one.exception.SimulatorException
 class PMTServiceImpl implements PMTService{
 
   def calculate(SimulatorCommand command){
-    if(command.paymentPeriod == PaymentPeriod.MONTHLY){
-      BigDecimal effectiveInterest = command.tia / 100 / 12
-      BigDecimal effectiveInterestPlusIVA = effectiveInterest * (1 + (command.iva / 100))
-      BigDecimal effectiveInterestPlusIVAPower = (1 + effectiveInterestPlusIVA) ** (-1 * command.numberOfPayments)
-      BigDecimal effectiveInterestFactor = effectiveInterestPlusIVA / (1 - effectiveInterestPlusIVAPower)
-      BigDecimal result = effectiveInterestFactor * command.loan
-      command.payment = result.setScale(ApplicationConstants.DECIMALS, ApplicationConstants.ROUNDING_MODE)
-    }
+    BigDecimal effectiveInterest = command.tia / 100 / 12 / command.paymentPeriod.factor
+    BigDecimal effectiveInterestPlusIVA = effectiveInterest * (1 + (command.iva / 100))
+    BigDecimal effectiveInterestPlusIVAPower = (1 + effectiveInterestPlusIVA) ** (-1 * command.numberOfPayments)
+    BigDecimal effectiveInterestFactor = effectiveInterestPlusIVA / (1 - effectiveInterestPlusIVAPower)
+    BigDecimal result = effectiveInterestFactor  * command.loan
+    command.payment = result.setScale(ApplicationConstants.DECIMALS, ApplicationConstants.ROUNDING_MODE)
     command
   }
 
