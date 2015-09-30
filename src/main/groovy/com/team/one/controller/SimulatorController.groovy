@@ -51,10 +51,11 @@ class SimulatorController {
     def simulator = dataBinderService.bindSimulator(command)
     insuranceService.calculate(simulator)
     simulatorService.calculate(simulator)
-    simulatorDataService.calculate(simulator)
+    def rows = simulatorDataService.calculate(simulator)
     modelAndView.addObject("simulator", simulator)
     modelAndView.addObject("client", client)
-  	modelAndView
+    modelAndView.addObject("rows", rows)
+    modelAndView
   }
 
 }

@@ -32,7 +32,7 @@ class SimulatorDataServiceSpec extends Specification {
     when:"Input values"
       simulator.numberOfPayments = numberOfPayments
     then:"We calculate values"
-      result == service.calculate(simulator).rows.size()
+      result == service.calculate(simulator).size()
     where:"We have next cases"
     numberOfPayments || result
     3                || 3
@@ -57,12 +57,12 @@ class SimulatorDataServiceSpec extends Specification {
     when:"We calculate data"
       def result = service.calculate(simulator)
     then:"We expect same principle with capital before payment"
-      result.rows.get(0).capitalBeforePayment == simulator.principle
-      result.rows.get(0).capitalAfterPayment ==  34935.96
-      result.rows.get(1).capitalBeforePayment ==  34935.96
-      result.rows.get(1).capitalAfterPayment ==   34707.04
-      result.rows.get(2).capitalBeforePayment ==  34707.04
-      result.rows.get(2).capitalAfterPayment ==   34478.12
+      result.get(0).capitalBeforePayment == simulator.principle
+      result.get(0).capitalAfterPayment ==  34935.96
+      result.get(1).capitalBeforePayment ==  34935.96
+      result.get(1).capitalAfterPayment ==   34707.04
+      result.get(2).capitalBeforePayment ==  34707.04
+      result.get(2).capitalAfterPayment ==   34478.12
   }
 
   void "should set number depending on numberOfPayments"() {
@@ -73,9 +73,9 @@ class SimulatorDataServiceSpec extends Specification {
     when:"We calculate data"
       def result = service.calculate(simulator)
     then:"We expect same principle with capital before payment"
-      result.rows.get(0).number == 1
-      result.rows.get(1).number == 2
-      result.rows.get(2).number == 3
+      result.get(0).number == 1
+      result.get(1).number == 2
+      result.get(2).number == 3
   }
 
   void "should set number dates depending on numberOfPayments"() {
@@ -86,8 +86,8 @@ class SimulatorDataServiceSpec extends Specification {
     when:"We calculate data"
       def result = service.calculate(simulator)
     then:"We expect same principle with capital before payment"
-      result.rows.get(0).paymentDate instanceof Date
-      result.rows.get(1).paymentDate instanceof Date
+      result.get(0).paymentDate instanceof Date
+      result.get(1).paymentDate instanceof Date
   }
 
 }

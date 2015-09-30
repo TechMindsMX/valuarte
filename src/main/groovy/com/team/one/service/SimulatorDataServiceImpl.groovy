@@ -15,6 +15,7 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
   InterestService interestService
 
   def calculate(Simulator simulator){
+    def rows = []
     if(!simulator.numberOfPayments || simulator.numberOfPayments == 0)
       throw new SimulatorException()
 
@@ -29,9 +30,9 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
       capitalBeforePayment -= data.capital
       data.paymentDate = paymentDates.get(n-1)
       interestService.calculate(data.capital, simulator)
-      simulator.rows.add(data)
+      rows.add(data)
     }
-    simulator
+    rows
   }
 
 }
