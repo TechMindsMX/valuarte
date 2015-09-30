@@ -14,7 +14,7 @@
     <p th:text="'IVA: ' + ${simulator.iva}" />
     <p th:text="'Frecuencia de Pago: ' + ${simulator.paymentPeriod}" />
     <p th:text="'Número de Pagos: ' + ${simulator.numberOfPayments}" />
-    <p th:text="'Días de Pago: ' + ${simulator.paydays}" />
+    <p th:text="'Días de Pago: ' + ${simulator.paymentPeriod.value}" />
     <p th:text="'Fecha de Inicio: ' + ${simulator.startDate}" />
     <p th:text="'Seguro de Vida y Desempleo: ' + ${simulator.lifeInsurance}" />
     <p th:text="'Pago: ' + ${simulator.payment}" />
