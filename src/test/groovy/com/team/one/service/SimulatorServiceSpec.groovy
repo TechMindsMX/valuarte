@@ -3,7 +3,7 @@ package com.team.one.service
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import com.team.one.domain.SimulatorCommand
+import com.team.one.domain.Simulator
 import com.team.one.service.SimulatorServiceImpl
 import com.team.one.service.PMTService
 import com.team.one.domain.PaymentPeriod
@@ -19,26 +19,21 @@ class SimulatorServiceSpec extends Specification {
     service.pmtService = pmtService
   }
 
-  @Unroll
-  void """When we have an payment period: #paymentPeriod we expect paydays: #result"""() {
-    given:"A simulator command"
-      def command = new SimulatorCommand()
-    when:"We assign values to command"
-      command.paymentPeriod = paymentPeriod
+  void "should call pmt calculation service"() {
+    given:"A simulator simulator"
+      def simulator = new Simulator()
+      simulator.paymentPeriod = PaymentPeriod.WEEKLY
+    when:"We assign values to simulator"
+      service.calculate(simulator)
     then:"We calculate values"
-      result == service.calculate(command).paydays
-    where:"We have next cases"
-      paymentPeriod           || result
-      PaymentPeriod.WEEKLY    || '7,15,21,30'
-      PaymentPeriod.FORTNIGHT || '15,30'
-      PaymentPeriod.MONTHLY   || '30'
+      1 * pmtService.calculate(simulator)
   }
 
   void "should send an exception if no paymentPeriod"() {
-    given:"A simulator command"
-      def command = new SimulatorCommand()
+    given:"A simulator simulator"
+      def simulator = new Simulator()
     when:"We calculate values"
-      service.calculate(command)
+      service.calculate(simulator)
     then:"We expect an exception"
       thrown SimulatorException
   }
