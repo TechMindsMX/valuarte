@@ -2,7 +2,7 @@ package com.team.one.service
 
 import com.team.one.domain.SimulatorCommand
 import org.springframework.stereotype.Service
-import com.team.one.domain.SimulatorPayment
+import com.team.one.domain.SimulatorRow
 import org.springframework.beans.factory.annotation.Autowired
 import com.team.one.exception.SimulatorException
 
@@ -22,7 +22,7 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
     def paymentDates = datePaymentService.generatePaymentDates(command)
 
     (1..command.numberOfPayments).each { n ->
-      def data = new SimulatorPayment(capital:228.92)
+      def data = new SimulatorRow(capital:228.92)
       data.number = n
       data.capitalBeforePayment = capitalBeforePayment
       data.capitalAfterPayment = capitalBeforePayment - data.capital
