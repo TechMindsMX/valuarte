@@ -3,7 +3,7 @@ package com.team.one.service
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import com.team.one.domain.SimulatorCommand
+import com.team.one.domain.Simulator
 import com.team.one.service.PMTServiceImpl
 import com.team.one.domain.PaymentPeriod
 import com.team.one.exception.SimulatorException
@@ -14,16 +14,16 @@ class PMTServiceSpec extends Specification {
 
   @Unroll
   void """When we have iva: #iva, tia: #tia, principle: #principle and number of payments as: #numberOfPayments, payment period: #paymentPeriod and we want calculate payment in a monthly period we expect: #result"""() {
-    given:"A simulator command"
-      def command = new SimulatorCommand()
+    given:"A simulator"
+      def simulator = new Simulator()
     when:"Input values"
-      command.paymentPeriod = paymentPeriod
-      command.iva = iva
-      command.tia = tia
-      command.loan = principle
-      command.numberOfPayments = numberOfPayments
+      simulator.paymentPeriod = paymentPeriod
+      simulator.iva = iva
+      simulator.tia = tia
+      simulator.loan = principle
+      simulator.numberOfPayments = numberOfPayments
     then:"We calculate values"
-      result == service.calculate(command).payment
+      result == service.calculate(simulator).payment
     where:"We have next cases"
       principle     | tia     |  iva  | numberOfPayments | paymentPeriod            || result
       32267.95      | 40      |  16   | 12               | PaymentPeriod.MONTHLY    || 3411.67
@@ -41,15 +41,15 @@ class PMTServiceSpec extends Specification {
   }
 
   void "should throw an exception when no payment period"() {
-    given:"A simulator command and principle"
-      def command = new SimulatorCommand()
+    given:"A simulator simulator and principle"
+      def simulator = new Simulator()
     and:"Input values"
-      command.iva = 16
-      command.tia = 40
-      command.principle = 15000
-      command.numberOfPayments = 12
+      simulator.iva = 16
+      simulator.tia = 40
+      simulator.principle = 15000
+      simulator.numberOfPayments = 12
     when:"We calculate data"
-      service.calculate(command).payment
+      service.calculate(simulator)
     then:"Thrown exception"
       thrown SimulatorException
   }
