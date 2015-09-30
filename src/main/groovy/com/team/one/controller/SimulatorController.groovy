@@ -41,13 +41,13 @@ class SimulatorController {
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(value="/save", method=RequestMethod.POST)
-  ModelAndView save(@ModelAttribute("simulator") SimulatorCommand simulator){
+  ModelAndView save(@ModelAttribute("simulator") SimulatorCommand command){
     log.info "Saving new simulator simulator"
   	ModelAndView modelAndView = new ModelAndView("simulator/show")
-    insuranceService.calculate(simulator)
-    simulatorService.calculate(simulator)
-    simulatorDataService.calculate(simulator)
-    modelAndView.addObject("simulator", simulator)
+    insuranceService.calculate(command)
+    simulatorService.calculate(command)
+    simulatorDataService.calculate(command)
+    modelAndView.addObject("simulator", command)
   	modelAndView
   }
 
