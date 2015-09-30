@@ -14,4 +14,6 @@ class Simulator {
   Integer numberOfPayments
   Date startDate
 
+  def rows = []
+
 }
