@@ -6,6 +6,7 @@ class Simulator {
   BigDecimal iva
   BigDecimal openingCommission
   BigDecimal loan
+  BigDecimal payment
   BigDecimal principle
   BigDecimal lifeInsurance = 0
 
