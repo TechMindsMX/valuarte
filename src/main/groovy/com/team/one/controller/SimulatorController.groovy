@@ -52,7 +52,8 @@ class SimulatorController {
     insuranceService.calculate(simulator)
     simulatorService.calculate(simulator)
     simulatorDataService.calculate(simulator)
-    modelAndView.addObject("simulator", command)
+    modelAndView.addObject("simulator", simulator)
+    modelAndView.addObject("client", client)
   	modelAndView
   }
 
