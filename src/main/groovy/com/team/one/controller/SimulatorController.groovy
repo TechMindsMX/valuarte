@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory
 import com.team.one.service.SimulatorService
 import com.team.one.service.InsuranceService
 import com.team.one.service.SimulatorDataService
+import com.team.one.service.DataBinderService
 
 @Controller
 @RequestMapping("/simulator")
@@ -26,6 +27,8 @@ class SimulatorController {
   InsuranceService insuranceService
   @Autowired
   SimulatorDataService simulatorDataService
+  @Autowired
+  DataBinderService dataBinderService
 
   Logger log = LoggerFactory.getLogger(getClass());
 
@@ -44,7 +47,9 @@ class SimulatorController {
   ModelAndView save(@ModelAttribute("simulator") SimulatorCommand command){
     log.info "Saving new simulator simulator"
   	ModelAndView modelAndView = new ModelAndView("simulator/show")
-    insuranceService.calculate(command)
+    def client = dataBinderService.bindClient(command)
+    def simulator = dataBinderService.bindSimulator(command)
+    insuranceService.calculate(simulator)
     simulatorService.calculate(command)
     simulatorDataService.calculate(command)
     modelAndView.addObject("simulator", command)
