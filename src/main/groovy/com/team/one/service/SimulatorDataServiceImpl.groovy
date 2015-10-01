@@ -16,7 +16,7 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
 
   def calculate(Simulator simulator){
     def rows = []
-    if(!simulator.numberOfPayments || simulator.numberOfPayments == 0)
+    if(!simulator.numberOfPayments || simulator.numberOfPayments < 0)
       throw new SimulatorException()
 
     def capitalBeforePayment = simulator.principle

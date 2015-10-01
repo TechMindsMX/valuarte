@@ -41,25 +41,20 @@ class SimulatorDataServiceSpec extends Specification {
     1                || 1
   }
 
-  void "should detect an invalid number at calculate table size depending on number of payments"() {
+  @Unroll
+  void """given number of payments as: #numberOfPayments we expect thown exception"""() {
     given:"A simulator"
       def simulator = new Simulator()
-      simulator.numberOfPayments = 0
+      simulator.numberOfPayments = numberOfPayments
+      simulator.principle = 35164.88
+      simulator.iva = 16
     when:"Input values"
       service.calculate(simulator)
     then:"We calculate values"
       thrown SimulatorException
+    where:"We have next cases"
+      numberOfPayments << [null, 0, -1]
   }
-
-  void "should throw an exception when no number of payments"() {
-    given:"A simulator"
-      def simulator = new Simulator()
-    when:"Input values"
-      service.calculate(simulator)
-    then:"We calculate values"
-      thrown SimulatorException
-  }
-
 
   void "should set capital before and after payment"() {
     given:"A simulator and principle"
