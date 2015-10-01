@@ -10,7 +10,7 @@
     <div layout:fragment="content">
       <div class="section registro">
         <h2>Simulación de crédito</h2>
-        <form id="simulator" action="#" th:action="@{save}" th:object="${simulatorCommand}" method="post" class="col s12">
+        <form id="simulator" action="#" th:object="${simulatorCommand}" method="post" class="col s12">
           <div class="row">
             <div class="input-field col s4">
               <label>RFC:</label>
@@ -65,7 +65,7 @@
         </form>
       </div>
 
-      <div class="section registro" th:if="${rows} != null">
+      <div class="section registro" th:if="${detailOfPaymentsFromSimulator} != null">
         <h5>Resultados de la simulación</h5>
         <table class="striped">
           <thead>
@@ -77,10 +77,10 @@
           </thead>
 
           <tbody>
-            <tr th:each="row : ${rows}">
-              <td th:text="${row.number}">Number</td>
-              <td th:text="${row.capital}">Capital</td>
-              <td th:text="${row.capitalBeforePayment}">CapitalBeforePayment</td>
+            <tr th:each="detailOfPayment : ${detailOfPaymentsFromSimulator}">
+              <td th:text="${detailOfPayment.number}">Number</td>
+              <td th:text="${detailOfPayment.capital}">Capital</td>
+              <td th:text="${detailOfPayment.capitalBeforePayment}">CapitalBeforePayment</td>
             </tr>
           </tbody>
         </table>
