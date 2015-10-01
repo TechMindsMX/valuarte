@@ -30,6 +30,7 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
       capitalBeforePayment -= data.capital
       data.paymentDate = paymentDates.get(n-1)
       data.interest = interestService.calculate(data.capital, simulator)
+      data.iva = data.interest * simulator.iva / 100
       rows.add(data)
     }
     rows
