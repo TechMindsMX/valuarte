@@ -67,6 +67,23 @@
 
       <div class="section registro" th:if="${rows} != null">
         <h5>Resultados de la simulación</h5>
+        <table class="striped">
+          <thead>
+            <tr>
+              <th data-field="id">#</th>
+              <th data-field="name">Capital</th>
+              <th data-field="price">Item Price</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr th:each="row : ${rows}">
+              <td th:text="${row.number}">Number</td>
+              <td th:text="${row.capital}">Capital</td>
+              <td th:text="${row.capitalBeforePayment}">CapitalBeforePayment</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <script src="../../js/simulator/app.js" th:src="@{/js/simulator/app.js}"/>
