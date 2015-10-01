@@ -46,9 +46,9 @@
               <input type="text" th:field="*{iva}"/>
             </div>
             <div class="input-field col s3">
-              <select class="browser-default" name="paymentPeriod" th:field="*{paymentPeriod}">
-                <option th:each="viviendaM : ${T(com.team.one.domain.PaymentPeriod).values()}" th:value="${viviendaM}" th:text="${viviendaM.value}"></option>
-              </select>
+                <select class="form-control span10 search-query" name="paymentPeriod" th:field="*{paymentPeriod}">
+                  <option th:each="period : ${T(com.team.one.domain.PaymentPeriod).values()}" th:value="${period}" th:text="${period.label}"></option>
+                </select>
             </div>
             <div class="input-field col s3">
               <label>Número de Pagos:</label>
