@@ -36,25 +36,32 @@ class SimulatorController {
   @RequestMapping(value="/create", method=RequestMethod.GET)
   String create(Model model){
     log.info "Creating new simulator form"
-    def simulator = new SimulatorCommand()
-    simulator.now = new Date()
-    model.addAttribute("simulator", simulator)
+    def simulatorCommand = new SimulatorCommand()
+    simulatorCommand.now = new Date()
+    model.addAttribute("simulatorCommand", simulatorCommand)
     "simulator/form"
   }
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(value="/save", method=RequestMethod.POST)
-  ModelAndView save(@ModelAttribute("simulator") SimulatorCommand command){
+  ModelAndView save(@ModelAttribute("simulator") SimulatorCommand simulatorCommand){
     log.info "Saving new simulator simulator"
-  	ModelAndView modelAndView = new ModelAndView("simulator/show")
-    def client = dataBinderService.bindClient(command)
-    def simulator = dataBinderService.bindSimulator(command)
+  	ModelAndView modelAndView = new ModelAndView("simulator/form")
+    def client = dataBinderService.bindClient(simulatorCommand)
+    def simulator = dataBinderService.bindSimulator(simulatorCommand)
     insuranceService.calculate(simulator)
     simulatorService.calculate(simulator)
     def rows = simulatorDataService.calculate(simulator)
+    modelAndView.addObject("simulatorCommand", simulatorCommand)
     modelAndView.addObject("simulator", simulator)
     modelAndView.addObject("client", client)
     modelAndView.addObject("rows", rows)
+    log.info """
+    ${simulator.dump()}
+    ${client.dump()}
+    ${rows}
+    """
+    log.debug "*"*80
     modelAndView
   }
 
