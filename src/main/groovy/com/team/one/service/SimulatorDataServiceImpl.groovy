@@ -29,7 +29,7 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
       data.capitalAfterPayment = capitalBeforePayment - data.capital
       capitalBeforePayment -= data.capital
       data.paymentDate = paymentDates.get(n-1)
-      interestService.calculate(data.capital, simulator)
+      data.interest = interestService.calculate(data.capital, simulator)
       rows.add(data)
     }
     rows

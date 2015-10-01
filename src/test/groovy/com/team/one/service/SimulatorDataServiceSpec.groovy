@@ -26,7 +26,7 @@ class SimulatorDataServiceSpec extends Specification {
 
   @Unroll
   void """When we have number of payments: #numberOfPayments and we expect #result rows in the table"""() {
-    given:"A simulator simulator"
+    given:"A simulator"
       def simulator = new Simulator()
       simulator.principle = 35165.88
     when:"Input values"
@@ -40,7 +40,7 @@ class SimulatorDataServiceSpec extends Specification {
   }
 
   void "should detect an invalid number at calculate table size depending on number of payments"() {
-    given:"A simulator simulator"
+    given:"A simulator"
       def simulator = new Simulator()
       simulator.numberOfPayments = 0
     when:"Input values"
@@ -50,7 +50,7 @@ class SimulatorDataServiceSpec extends Specification {
   }
 
   void "should set capital before and after payment"() {
-    given:"A simulator simulator and principle"
+    given:"A simulator and principle"
       def simulator = new Simulator()
       simulator.numberOfPayments = 3
       simulator.principle = 35164.88
@@ -66,7 +66,7 @@ class SimulatorDataServiceSpec extends Specification {
   }
 
   void "should set number depending on numberOfPayments"() {
-    given:"A simulator simulator and principle"
+    given:"A simulator and principle"
       def simulator = new Simulator()
       simulator.numberOfPayments = 3
       simulator.principle = 35164.88
@@ -79,7 +79,7 @@ class SimulatorDataServiceSpec extends Specification {
   }
 
   void "should set number dates depending on numberOfPayments"() {
-    given:"A simulator simulator and principle"
+    given:"A simulator and principle"
       def simulator = new Simulator()
       simulator.numberOfPayments = 2
       simulator.principle = 35164.88
@@ -88,6 +88,17 @@ class SimulatorDataServiceSpec extends Specification {
     then:"We expect same principle with capital before payment"
       result.get(0).paymentDate instanceof Date
       result.get(1).paymentDate instanceof Date
+  }
+
+  void "should get interest"() {
+    given:"A simulator"
+      def simulator = new Simulator()
+      simulator.numberOfPayments = 1
+      simulator.principle = 35164.88
+    when:"We compute data"
+      def result = service.calculate(simulator)
+    then:"We expect interest"
+      100.00 == result.get(0).interest
   }
 
 }

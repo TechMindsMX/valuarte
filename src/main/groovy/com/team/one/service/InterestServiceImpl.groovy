@@ -9,7 +9,7 @@ import com.team.one.exception.SimulatorException
 @Service
 class InterestServiceImpl implements InterestService {
 
-  def calculate(BigDecimal capitalBeforePayment, Simulator simulator){
+  BigDecimal calculate(BigDecimal capitalBeforePayment, Simulator simulator){
     if(!capitalBeforePayment || !simulator?.tia)
       return 0
 
