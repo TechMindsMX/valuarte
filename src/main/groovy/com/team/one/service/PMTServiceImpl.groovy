@@ -1,21 +1,26 @@
 package com.team.one.service
 
-import com.team.one.domain.SimulatorCommand
+import com.team.one.domain.Simulator
 import org.springframework.stereotype.Service
 import com.team.one.domain.PaymentPeriod
-import com.team.one.domain.Paydays
 import com.team.one.state.ApplicationConstants
 import com.team.one.exception.SimulatorException
 
 @Service
-class PMTServiceImpl implements PMTService{
+class PMTServiceImpl implements PMTService {
 
-  def calculate(SimulatorCommand command){
-    if(command.paymentPeriod == PaymentPeriod.MONTHLY){
-      def payment = command.tia/24/100*command.loan
-      command.payment = payment.setScale(ApplicationConstants.DECIMALS, ApplicationConstants.ROUNDING_MODE)
+  def calculate(Simulator simulator){
+    if(!simulator.paymentPeriod){
+      throw new SimulatorException()
     }
-    command
+
+    BigDecimal effectiveInterest = simulator.tia / 100 / 12 / simulator.paymentPeriod.factor
+    BigDecimal effectiveInterestPlusIVA = effectiveInterest * (1 + (simulator.iva / 100))
+    BigDecimal effectiveInterestPlusIVAPower = (1 + effectiveInterestPlusIVA) ** (-1 * simulator.numberOfPayments)
+    BigDecimal effectiveInterestFactor = effectiveInterestPlusIVA / (1 - effectiveInterestPlusIVAPower)
+    BigDecimal result = effectiveInterestFactor  * simulator.loan
+    simulator.payment = result.setScale(ApplicationConstants.DECIMALS, ApplicationConstants.ROUNDING_MODE)
+    simulator
   }
 
 }

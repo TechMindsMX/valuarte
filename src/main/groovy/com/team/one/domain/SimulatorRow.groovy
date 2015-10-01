@@ -1,6 +1,6 @@
 package com.team.one.domain
 
-class SimulatorPayment {
+class SimulatorRow {
 
   Integer number
   BigDecimal capital

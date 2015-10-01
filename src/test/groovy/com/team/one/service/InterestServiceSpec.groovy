@@ -4,7 +4,7 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 import com.team.one.domain.PaymentPeriod
-import com.team.one.domain.SimulatorCommand
+import com.team.one.domain.Simulator
 import com.team.one.exception.SimulatorException
 
 class InterestServiceSpec extends Specification {
@@ -13,13 +13,13 @@ class InterestServiceSpec extends Specification {
 
   @Unroll
   void """When we have a tia: #tia, payment period: #paymentPeriod, and  capital before payment: #capitalBeforePayment calculating result we we expect: #result"""() {
-    given:"A simulator command"
-      def command = new SimulatorCommand()
+    given:"A simulator simulator"
+      def simulator = new Simulator()
     when:"We assign payment period and tia"
-      command.tia = tia
-      command.paymentPeriod = paymentPeriod
+      simulator.tia = tia
+      simulator.paymentPeriod = paymentPeriod
     then:"We calculate values based on payment period"
-      result == service.calculate(capitalBeforePayment, command)
+      result == service.calculate(capitalBeforePayment, simulator)
     where:"We have next cases"
       capitalBeforePayment  | tia    | paymentPeriod            || result
       null                  | 40     | PaymentPeriod.MONTHLY    || 0
@@ -43,13 +43,13 @@ class InterestServiceSpec extends Specification {
   }
 
   void "should throw an exception when no payment period"() {
-    given:"A simulator command and principle"
-      def command = new SimulatorCommand()
-      command.tia = 40
+    given:"A simulator simulator and principle"
+      def simulator = new Simulator()
+      simulator.tia = 40
     and: "Capital before payment"
       def capitalBeforePayment = 35676.36
     when:"We calculate data"
-      def result = service.calculate(capitalBeforePayment, command)
+      def result = service.calculate(capitalBeforePayment, simulator)
     then:"Thrown exception"
       thrown SimulatorException
   }
