@@ -52,7 +52,7 @@
               <div>
                 <label>Frecuencia de Pago:</label>
                 <select class="form-control span10 search-query" name="paymentPeriod" th:field="*{paymentPeriod}">
-                  <option th:each="viviendaM : ${T(com.team.one.domain.PaymentPeriod).values()}" th:value="${viviendaM}" th:text="${viviendaM.value}"></option>
+                  <option th:each="period : ${T(com.team.one.domain.PaymentPeriod).values()}" th:value="${period}" th:text="${period.label}"></option>
                 </select>
               </div>
               <div>
