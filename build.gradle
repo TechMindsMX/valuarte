@@ -78,7 +78,6 @@ test {
 
 task watching {
   new Thread({
-    println "Arranca watcher"
     tasks.watch.execute()
   } as Runnable).start()
 }

@@ -10,7 +10,7 @@
     <div layout:fragment="content">
       <div class="section registro">
         <h2>Simulación de crédito</h2>
-        <form id="simulator" action="#" th:action="@{save}" th:object="${simulator}" method="post" class="col s12">
+        <form id="simulator" action="#" th:action="@{save}" th:object="${simulatorCommand}" method="post" class="col s12">
           <div class="row">
             <div class="input-field col s4">
               <label>RFC:</label>
@@ -46,9 +46,9 @@
               <input type="text" th:field="*{iva}"/>
             </div>
             <div class="input-field col s3">
-                <select class="form-control span10 search-query" name="paymentPeriod" th:field="*{paymentPeriod}">
-                  <option th:each="period : ${T(com.team.one.domain.PaymentPeriod).values()}" th:value="${period}" th:text="${period.label}"></option>
-                </select>
+              <select class="browser-default" name="paymentPeriod" th:field="*{paymentPeriod}">
+                <option th:each="period : ${T(com.team.one.domain.PaymentPeriod).values()}" th:value="${period}" th:text="${period.label}"></option>
+              </select>
             </div>
             <div class="input-field col s3">
               <label>Número de Pagos:</label>
@@ -60,10 +60,15 @@
             </div>
           </div>
           <button type="submit" class="btn waves-effect waves-light blue darken-4">
-            Enviar <i class="material-icons right">send</i>
+            Mostrar la simulación <i class="material-icons right">send</i>
           </button>
         </form>
       </div>
+
+      <div class="section registro" th:if="${rows} != null">
+        <h5>Resultados de la simulación</h5>
+      </div>
+
       <script src="../../js/simulator/app.js" th:src="@{/js/simulator/app.js}"/>
     </div>
   </body>
