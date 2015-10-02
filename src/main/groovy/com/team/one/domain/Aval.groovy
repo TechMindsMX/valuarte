@@ -1,6 +1,7 @@
 package com.team.one.domain
 
 import javax.persistence.*
+import com.team.one.domain.enums.*
 
 @Entity
 class Aval { 
