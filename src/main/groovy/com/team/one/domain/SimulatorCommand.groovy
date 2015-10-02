@@ -3,8 +3,9 @@ package com.team.one.domain
 class SimulatorCommand {
 
   String rfc
-  String firstName
-  String lastName
+  String nombre
+  String apellidoPaterno
+  String apellidoMaterno
   Date now
 
   BigDecimal tia

@@ -42,14 +42,16 @@ class DataBinderServiceSpec extends Specification {
     given: "A simulator command"
       def command = new SimulatorCommand()
       command.rfc = "rfc"
-      command.firstName = "firstName"
-      command.lastName = "lastName"
+      command.nombre = "name"
+      command.apellidoPaterno = "lastName"
+      command.apellidoMaterno = "motherLastName"
     when:"We bind command"
       def client = service.bindClient(command)
     then:"We expect client data"
       client.rfc == "rfc"
-      client.firstName == "firstName"
-      client.lastName == "lastName"
+      client.nombre == "name"
+      client.apellidoPaterno == "lastName"
+      client.apellidoMaterno == "motherLastName"
   }
 
 }
