@@ -1,11 +1,12 @@
 package com.team.one.domain
 
 import javax.persistence.*
+import com.team.one.domain.enums.*
 
 @Entity
 class PerfilTransaccional { 
 
-	Id
+	@Id
   	@GeneratedValue(strategy=GenerationType.AUTO)
   	Long id
 
