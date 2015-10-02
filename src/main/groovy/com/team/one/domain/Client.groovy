@@ -1,5 +1,8 @@
 package com.team.one.domain
 
+import com.team.one.domain.enums.*
+import javax.persistence.*
+
 class Client {
 
   @Id
