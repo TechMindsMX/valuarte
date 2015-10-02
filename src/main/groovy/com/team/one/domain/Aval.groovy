@@ -10,7 +10,7 @@ class Aval {
   Long id
 
   @Column(nullable = false)
-  ºString nombreAval
+  String nombreAval
   
   @Column(nullable = false)
   String apellidoPaternoAval
