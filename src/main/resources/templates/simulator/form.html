@@ -71,16 +71,28 @@
           <thead>
             <tr>
               <th data-field="id">#</th>
-              <th data-field="name">Capital</th>
-              <th data-field="price">Item Price</th>
+              <th data-field="capitalBeforePayment">Balance Antes de Pago</th>
+              <th data-field="capital">Capital</th>
+              <th data-field="interest">Interés</th>
+              <th data-field="payment">Pago</th>
+              <th data-field="iva">IVA</th>
+              <th data-field="iva">Balance Después de Pago</th>
+              <th data-field="iva">Fecha de Pago</th>
+              <th data-field="insurance">Seguros</th>
             </tr>
           </thead>
 
           <tbody>
             <tr th:each="detailOfPayment : ${detailOfPaymentsFromSimulator}">
               <td th:text="${detailOfPayment.number}">Number</td>
-              <td th:text="${detailOfPayment.capital}">Capital</td>
               <td th:text="${detailOfPayment.capitalBeforePayment}">CapitalBeforePayment</td>
+              <td th:text="${detailOfPayment.capital}">Capital</td>
+              <td th:text="${detailOfPayment.interest}">Interest</td>
+              <td th:text="${simulator.payment}">Payment</td>
+              <td th:text="${detailOfPayment.iva}">IVA</td>
+              <td th:text="${detailOfPayment.capitalAfterPayment}">CapitalAfterPayment</td>
+              <td th:text="${detailOfPayment.paymentDate}">PaymentDate</td>
+              <td th:text="${detailOfPayment.insurance}">Insurance</td>
             </tr>
           </tbody>
         </table>
