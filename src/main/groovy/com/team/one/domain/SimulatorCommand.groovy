@@ -1,5 +1,8 @@
 package com.team.one.domain
 
+import javax.validation.constraints.DecimalMin
+import javax.validation.constraints.NotNull
+
 class SimulatorCommand {
 
   String rfc
@@ -12,7 +15,11 @@ class SimulatorCommand {
   BigDecimal iva
   BigDecimal openingCommission
   BigDecimal payment
+
+  @NotNull
+  @DecimalMin(value="0.01", inclusive=true)
   BigDecimal loan
+
   BigDecimal principle
   BigDecimal lifeInsurance = 0
 
