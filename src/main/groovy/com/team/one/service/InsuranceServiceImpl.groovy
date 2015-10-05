@@ -1,20 +1,19 @@
 package com.team.one.service
 
-import com.team.one.domain.SimulatorCommand
+import com.team.one.domain.Simulator
 import org.springframework.stereotype.Service
 import com.team.one.domain.PaymentPeriod
-import com.team.one.domain.Paydays
 import com.team.one.exception.SimulatorException
 
 @Service
 class InsuranceServiceImpl implements InsuranceService {
 
-  def calculate(SimulatorCommand command){
-    if(!command.loan)
+  def calculate(Simulator simulator){
+    if(!simulator.loan)
       throw new SimulatorException()
 
-    command.principle = command.loan + command.lifeInsurance
-    command
+    simulator.principle = simulator.loan + simulator.lifeInsurance
+    simulator
   }
 
 }

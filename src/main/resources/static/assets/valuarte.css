@@ -127,3 +127,14 @@ html {
    background: #055285 !important;
    color: #ffffff;
 }
+.btn-justified{
+  display: inline-block !important;
+  width: 100% !important;
+  float: left !important;
+}
+
+.btn-justified .btn{
+  display: table-cell !important;
+  float: none !important;
+  width: 1% !important;
+}

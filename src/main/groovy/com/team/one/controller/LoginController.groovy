@@ -78,6 +78,7 @@ class LoginController {
     def link = generedLink("resetPassword",registrationCode.token,request)
     def map = [email: email, token: link]
     clientService.sendEmailForgotPassword(map)
+    model.addAttribute("success","Se ha enviado un correo con las instrucciones")
     return "login/forgotPassword"
   }
 

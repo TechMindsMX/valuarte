@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory
 import com.team.one.service.SimulatorService
 import com.team.one.service.InsuranceService
 import com.team.one.service.SimulatorDataService
+import com.team.one.service.DataBinderService
 
 @Controller
 @RequestMapping("/simulator")
@@ -26,30 +27,36 @@ class SimulatorController {
   InsuranceService insuranceService
   @Autowired
   SimulatorDataService simulatorDataService
+  @Autowired
+  DataBinderService dataBinderService
 
   Logger log = LoggerFactory.getLogger(getClass());
 
   @PreAuthorize("hasAuthority('USER')")
-  @RequestMapping(value="/create", method=RequestMethod.GET)
+  @RequestMapping(method=RequestMethod.GET)
   String create(Model model){
     log.info "Creating new simulator form"
-    def simulator = new SimulatorCommand()
-    simulator.now = new Date()
-    model.addAttribute("simulator", simulator)
+    def simulatorCommand = new SimulatorCommand()
+    simulatorCommand.now = new Date()
+    model.addAttribute("simulatorCommand", simulatorCommand)
     "simulator/form"
   }
 
   @PreAuthorize("hasAuthority('USER')")
-  @RequestMapping(value="/save", method=RequestMethod.POST)
-  ModelAndView save(@ModelAttribute("simulator") SimulatorCommand simulator){
-    log.info "Saving new simulator simulator"
-  	ModelAndView modelAndView = new ModelAndView("simulator/show")
+  @RequestMapping(method=RequestMethod.POST)
+  ModelAndView save(@ModelAttribute("simulator") SimulatorCommand simulatorCommand){
+    log.info "Simulating"
+  	ModelAndView modelAndView = new ModelAndView("simulator/form")
+    def client = dataBinderService.bindClient(simulatorCommand)
+    def simulator = dataBinderService.bindSimulator(simulatorCommand)
     insuranceService.calculate(simulator)
     simulatorService.calculate(simulator)
-    simulatorDataService.calculate(simulator)
+    def detailOfPaymentsFromSimulator = simulatorDataService.calculate(simulator)
+    modelAndView.addObject("simulatorCommand", simulatorCommand)
     modelAndView.addObject("simulator", simulator)
-  	modelAndView
+    modelAndView.addObject("client", client)
+    modelAndView.addObject("detailOfPaymentsFromSimulator", detailOfPaymentsFromSimulator)
+    modelAndView
   }
-
 
 }
