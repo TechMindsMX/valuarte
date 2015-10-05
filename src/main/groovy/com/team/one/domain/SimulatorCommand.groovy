@@ -1,5 +1,9 @@
 package com.team.one.domain
 
+import javax.validation.constraints.DecimalMin
+import javax.validation.constraints.NotNull
+import javax.validation.constraints.Min
+
 class SimulatorCommand {
 
   String rfc
@@ -8,17 +12,29 @@ class SimulatorCommand {
   String apellidoMaterno
   Date now
 
-  BigDecimal tia
-  BigDecimal iva
   BigDecimal openingCommission
   BigDecimal payment
-  BigDecimal loan
   BigDecimal principle
   BigDecimal lifeInsurance = 0
 
   PaymentPeriod paymentPeriod
   String paydays
-  Integer numberOfPayments
   Date startDate
+
+  @NotNull
+  @DecimalMin(value="0.01", inclusive=true)
+  BigDecimal tia
+
+  @NotNull
+  @DecimalMin(value="0.01", inclusive=true)
+  BigDecimal iva
+
+  @NotNull
+  @DecimalMin(value="0.01", inclusive=true)
+  BigDecimal loan
+
+  @NotNull
+  @Min(1L)
+  Integer numberOfPayments
 
 }

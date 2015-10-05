@@ -10,6 +10,11 @@
     <div layout:fragment="content">
       <div class="section registro">
         <h2>Simulación de crédito</h2>
+        <div th:if="${error}">
+          <p th:each="er : ${error}">
+            <p th:text="${er}" align="center" class="alert alert-error"/>
+          </p>
+        </div>
         <form id="simulator" action="#" th:object="${simulatorCommand}" method="post" class="col s12">
           <div class="row">
             <div class="input-field col s4">

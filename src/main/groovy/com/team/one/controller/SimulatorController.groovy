@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.ModelAttribute
+import org.springframework.validation.BindingResult
 import org.springframework.ui.Model
 import com.team.one.domain.SimulatorCommand
+import javax.validation.Valid
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -44,9 +46,21 @@ class SimulatorController {
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(method=RequestMethod.POST)
-  ModelAndView save(@ModelAttribute("simulator") SimulatorCommand simulatorCommand){
+  ModelAndView save(@Valid @ModelAttribute("simulator") SimulatorCommand simulatorCommand, BindingResult bindingResult){
     log.info "Simulating"
   	ModelAndView modelAndView = new ModelAndView("simulator/form")
+
+    if (bindingResult.hasErrors()) {
+      def mapErrors = []
+      bindingResult.getFieldErrors().each{ error ->
+        mapErrors.add("${error.field} ${ error.defaultMessage}")
+      }
+      log.info "We have errors at validate form"
+      ModelAndView error =  new ModelAndView("simulator/form","simulatorCommand", simulatorCommand)
+      error.addObject("error", mapErrors.flatten())
+      return error
+    }
+
     def client = dataBinderService.bindClient(simulatorCommand)
     def simulator = dataBinderService.bindSimulator(simulatorCommand)
     insuranceService.calculate(simulator)
