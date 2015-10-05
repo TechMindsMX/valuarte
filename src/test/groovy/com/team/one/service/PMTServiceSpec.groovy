@@ -12,6 +12,15 @@ class PMTServiceSpec extends Specification {
 
   PMTServiceImpl service = new PMTServiceImpl()
 
+  Integer decimals = 2
+  String roundingMode = 'HALF_UP'
+
+  def setup(){
+    service.decimals = decimals
+    service.roundingMode = roundingMode
+  }
+
+
   @Unroll
   void """When we have iva: #iva, tia: #tia, principle: #principle and number of payments as: #numberOfPayments, payment period: #paymentPeriod and we want calculate payment in a monthly period we expect: #result"""() {
     given:"A simulator"
@@ -53,5 +62,25 @@ class PMTServiceSpec extends Specification {
     then:"Thrown exception"
       thrown SimulatorException
   }
+
+  @Unroll
+  void """when we have tia: #tia and want to calculate we expect Exception"""() {
+    given:"A simulator simulator and principle"
+      def simulator = new Simulator()
+    and:"Input values"
+      simulator.iva = 16
+      simulator.tia = 40
+      simulator.principle = 15000
+      simulator.numberOfPayments = 12
+      simulator.paymentPeriod = PaymentPeriod.WEEKLY
+      simulator.tia = tia
+    when:"We calculate data"
+      def result = service.calculate(simulator)
+    then:"Thrown exception"
+      thrown SimulatorException
+    where:"We have next values"
+      tia << [null, 0, -1]
+  }
+
 
 }
