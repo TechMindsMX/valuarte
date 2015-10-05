@@ -11,6 +11,14 @@ class InterestServiceSpec extends Specification {
 
   InterestServiceImpl service = new InterestServiceImpl()
 
+  Integer decimals = 2
+  String roundingMode = 'HALF_UP'
+
+  def setup(){
+    service.decimals = decimals
+    service.roundingMode = roundingMode
+  }
+
   @Unroll
   void """When we have a tia: #tia, payment period: #paymentPeriod, and  capital before payment: #capitalBeforePayment calculating result we we expect: #result"""() {
     given:"A simulator simulator"
@@ -22,12 +30,6 @@ class InterestServiceSpec extends Specification {
       result == service.calculate(capitalBeforePayment, simulator)
     where:"We have next cases"
       capitalBeforePayment  | tia    | paymentPeriod            || result
-      null                  | 40     | PaymentPeriod.MONTHLY    || 0
-      null                  | 40     | PaymentPeriod.WEEKLY     || 0
-      null                  | 40     | PaymentPeriod.FORTNIGHT  || 0
-      35676.36              | null   | PaymentPeriod.MONTHLY    || 0
-      35676.36              | null   | PaymentPeriod.WEEKLY     || 0
-      35676.36              | null   | PaymentPeriod.FORTNIGHT  || 0
       35676.36              | 40     | PaymentPeriod.MONTHLY    || 1189.21
       34665.00              | 40     | PaymentPeriod.MONTHLY    || 1155.50
       35164.88              | 40     | PaymentPeriod.FORTNIGHT  || 586.08
@@ -41,6 +43,35 @@ class InterestServiceSpec extends Specification {
       34833.11              | 36     | PaymentPeriod.WEEKLY     || 261.25
       28044.50              | 36     | PaymentPeriod.WEEKLY     || 210.33
   }
+
+  void "should throw an exception when no tia"() {
+    given:"A simulator simulator and principle"
+      def simulator = new Simulator()
+      simulator.tia = tia
+    and: "Capital before payment"
+      def capitalBeforePayment = 35676.36
+    when:"We calculate data"
+      def result = service.calculate(capitalBeforePayment, simulator)
+    then:"Thrown exception"
+      thrown SimulatorException
+    where:"We have next values"
+      tia << [null, 0, -1]
+  }
+
+  void "should throw an exception when no capitalBeforePayment"() {
+    given:"A simulator simulator and principle"
+      def simulator = new Simulator()
+      simulator.tia = 40
+    and: "Capital before payment"
+      capitalBeforePayment = capitalBeforePayment
+    when:"We calculate data"
+      def result = service.calculate(capitalBeforePayment, simulator)
+    then:"Thrown exception"
+      thrown SimulatorException
+    where:"We have next values"
+      capitalBeforePayment << [null, 0, -1]
+  }
+
 
   void "should throw an exception when no payment period"() {
     given:"A simulator simulator and principle"

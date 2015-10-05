@@ -16,8 +16,13 @@ class InterestServiceImpl implements InterestService {
   String roundingMode
 
   BigDecimal calculate(BigDecimal capitalBeforePayment, Simulator simulator){
-    if(!capitalBeforePayment || !simulator?.tia)
-      return 0
+    if(!capitalBeforePayment){
+      throw new SimulatorException()
+    }
+
+    if(!simulator.tia) {
+      throw new SimulatorException()
+    }
 
     if(!simulator.paymentPeriod) {
       throw new SimulatorException()
