@@ -5,7 +5,6 @@ import java.math.RoundingMode
 import com.team.one.domain.Simulator
 import org.springframework.stereotype.Service
 import com.team.one.domain.PaymentPeriod
-import com.team.one.state.ApplicationConstants
 import com.team.one.exception.SimulatorException
 
 @Service
