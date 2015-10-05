@@ -1,5 +1,7 @@
 package com.team.one.service
 
+import org.springframework.beans.factory.annotation.*
+import java.math.RoundingMode
 import com.team.one.domain.Simulator
 import org.springframework.stereotype.Service
 import com.team.one.domain.PaymentPeriod
@@ -8,6 +10,11 @@ import com.team.one.exception.SimulatorException
 
 @Service
 class PMTServiceImpl implements PMTService {
+
+  @Value('${simulator.decimals}')
+  Integer decimals
+  @Value('${simulator.roundingMode}')
+  String roundingMode
 
   def calculate(Simulator simulator){
     if(!simulator.paymentPeriod){
@@ -19,7 +26,7 @@ class PMTServiceImpl implements PMTService {
     BigDecimal effectiveInterestPlusIVAPower = (1 + effectiveInterestPlusIVA) ** (-1 * simulator.numberOfPayments)
     BigDecimal effectiveInterestFactor = effectiveInterestPlusIVA / (1 - effectiveInterestPlusIVAPower)
     BigDecimal result = effectiveInterestFactor  * simulator.loan
-    simulator.payment = result.setScale(ApplicationConstants.DECIMALS, ApplicationConstants.ROUNDING_MODE)
+    simulator.payment = result.setScale(decimals, RoundingMode.valueOf(roundingMode))
     simulator
   }
 
