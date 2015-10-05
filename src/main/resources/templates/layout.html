@@ -53,30 +53,26 @@
           <div class="module-surround">
             <div class="module-content">
               <div align="center">
-                <p><a th:href="@{'/'}"><img th:src="@{/images/LogoValuarte.png}" src="../../images/LogoValuarte.png"  alt="Valuarte" height="1000" width="900" border="0" align="middle" style="margin-bottom:-110px;margin-top:-50px;" /></a></p>
+                <a th:href="@{'/'}"><img th:src="@{/images/LogoValuarte.png}" src="../../images/LogoValuarte.png"  alt="Valuarte" height="1000" width="860" border="0" align="middle" style="margin-bottom:-100px;margin-top:-60px;" /></a>
               </div>
             </div>
             <div class="container">
               <div class="row-fluid">
                 <div class="span12">
-                  <div class="span3 offset11 " >
+                  <div class="span3 offset9 " >
                     <br /><br />
                     <div class="btn-group btn-justified">
                       <div class="span6"><span th:unless="${session.SPRING_SECURITY_CONTEXT}"><a th:href="@{'/login'}" class="btn btn-login bnt-block">Login</a></span></div>
                       <div class="span6"><span th:unless="${session.SPRING_SECURITY_CONTEXT}"><a th:href="@{'/Users/create'}" class="btn btn-primary btn-block"><font>Registrate</font></a></span></div>
+                      <div class="span6"><span th:if="${session.SPRING_SECURITY_CONTEXT}"><a href="#" id="logout" class="btn btn-inverse btn-block">Cerrar sesión</a></span></div>
+                      <form th:action="@{/logout}" method="post" id="formLogout">
+                      </form>
                     </div>
-                    <div class="span6">
-                        <span th:if="${session.SPRING_SECURITY_CONTEXT}">
-                          <form th:action="@{/logout}" method="post">
-                            <button type="submit" class="btn btn-inverse btn-block" >Cerrar sesión</button>     
-                          </form>
-                        </span> 
-                      </div>
-                    <p></p>
-                  </div> 
+                  </div>
                 </div>
               </div>
             </div>
+            <br />
           </div>
         </div>
       </div>
@@ -165,6 +161,9 @@
     });
     $("#product").on('mouseleave',function(e){
       $("#product").slideUp(2000);
+    });
+    $("#logout").on('click', function() {
+      $("#formLogout").submit();
     });
   });
 </script>
