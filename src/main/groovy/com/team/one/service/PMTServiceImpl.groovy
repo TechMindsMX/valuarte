@@ -1,6 +1,6 @@
 package com.team.one.service
 
-import org.springframework.beans.factory.annotation.*
+import org.springframework.beans.factory.annotation.Value
 import java.math.RoundingMode
 import com.team.one.domain.Simulator
 import org.springframework.stereotype.Service
