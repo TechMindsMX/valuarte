@@ -24,11 +24,15 @@ class PMTServiceImpl implements PMTService {
       throw new SimulatorException()
     }
 
+    if(!simulator.principle || simulator.principle < 0){
+      throw new SimulatorException()
+    }
+
     BigDecimal effectiveInterest = simulator.tia / 100 / 12 / simulator.paymentPeriod.factor
     BigDecimal effectiveInterestPlusIVA = effectiveInterest * (1 + (simulator.iva / 100))
     BigDecimal effectiveInterestPlusIVAPower = (1 + effectiveInterestPlusIVA) ** (-1 * simulator.numberOfPayments)
     BigDecimal effectiveInterestFactor = effectiveInterestPlusIVA / (1 - effectiveInterestPlusIVAPower)
-    BigDecimal result = effectiveInterestFactor  * simulator.loan
+    BigDecimal result = effectiveInterestFactor  * simulator.principle
     simulator.payment = result.setScale(decimals, RoundingMode.valueOf(roundingMode))
     simulator
   }

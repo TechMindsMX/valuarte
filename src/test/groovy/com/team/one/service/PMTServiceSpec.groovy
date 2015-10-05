@@ -29,7 +29,7 @@ class PMTServiceSpec extends Specification {
       simulator.paymentPeriod = paymentPeriod
       simulator.iva = iva
       simulator.tia = tia
-      simulator.loan = principle
+      simulator.principle = principle
       simulator.numberOfPayments = numberOfPayments
     then:"We calculate values"
       result == service.calculate(simulator).payment
@@ -69,7 +69,6 @@ class PMTServiceSpec extends Specification {
       def simulator = new Simulator()
     and:"Input values"
       simulator.iva = 16
-      simulator.tia = 40
       simulator.principle = 15000
       simulator.numberOfPayments = 12
       simulator.paymentPeriod = PaymentPeriod.WEEKLY
@@ -81,6 +80,25 @@ class PMTServiceSpec extends Specification {
     where:"We have next values"
       tia << [null, 0, -1]
   }
+
+  @Unroll
+  void """when we have principle: #principle and want to calculate we expect Exception"""() {
+    given:"A simulator simulator and principle"
+      def simulator = new Simulator()
+    and:"Input values"
+      simulator.iva = 16
+      simulator.tia = 40
+      simulator.numberOfPayments = 12
+      simulator.paymentPeriod = PaymentPeriod.WEEKLY
+      simulator.principle = principle
+    when:"We calculate data"
+      def result = service.calculate(simulator)
+    then:"Thrown exception"
+      thrown SimulatorException
+    where:"We have next values"
+      principle << [null, 0, -1]
+  }
+
 
 
 }
