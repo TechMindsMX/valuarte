@@ -42,6 +42,7 @@ class InterestServiceSpec extends Specification {
       30896.74              | 36     | PaymentPeriod.FORTNIGHT  || 463.45
       34833.11              | 36     | PaymentPeriod.WEEKLY     || 261.25
       28044.50              | 36     | PaymentPeriod.WEEKLY     || 210.33
+      31732                 | 40     | PaymentPeriod.MONTHLY    || 1057.73
   }
 
   void "should throw an exception when no tia"() {
