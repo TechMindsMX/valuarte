@@ -100,7 +100,7 @@
               <td th:text="${simulator.payment}">Payment</td>
               <td th:text="${detailOfPayment.iva}">IVA</td>
               <td th:text="${detailOfPayment.capitalAfterPayment}">CapitalAfterPayment</td>
-              <td th:text="${detailOfPayment.paymentDate}">PaymentDate</td>
+              <td th:text="${beans.dateFormatter.format(detailOfPayment.paymentDate)}">PaymentDate</td>
               <td th:text="${detailOfPayment.insurance}">Insurance</td>
             </tr>
           </tbody>

@@ -45,7 +45,7 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
       data.capitalAfterPayment = (capitalBeforePayment - data.capital).setScale(decimals, RoundingMode.valueOf(roundingMode))
       capitalBeforePayment = (capitalBeforePayment - data.capital).setScale(decimals, RoundingMode.valueOf(roundingMode))
       data.paymentDate = paymentDates.get(n-1)
-      data.iva = data.interest * simulator.iva / 100
+      data.iva = (data.interest * simulator.iva / 100).setScale(decimals, RoundingMode.valueOf(roundingMode))
       rows.add(data)
     }
     rows
