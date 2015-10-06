@@ -8,14 +8,14 @@ import com.team.one.domain.PaymentPeriod
 import com.team.one.exception.SimulatorException
 
 @Service
-class PMTServiceImpl implements PMTService {
+class PPMTServiceImpl implements PPMTService {
 
   @Value('${simulator.decimals}')
   Integer decimals
   @Value('${simulator.roundingMode}')
   String roundingMode
 
-  def calculate(Simulator simulator){
+  def calculate(Simulator simulator, Integer numberPayment){
     if(!simulator.paymentPeriod){
       throw new SimulatorException()
     }
@@ -30,12 +30,10 @@ class PMTServiceImpl implements PMTService {
 
     BigDecimal effectiveInterest = simulator.tia / 100 / 12 / simulator.paymentPeriod.factor
     BigDecimal effectiveInterestPlusIVA = effectiveInterest * (1 + (simulator.iva / 100))
-    BigDecimal effectiveInterestPlusIVAPower = (1 + effectiveInterestPlusIVA) ** (-1 * simulator.numberOfPayments)
+    BigDecimal effectiveInterestPlusIVAPower = (1 + effectiveInterestPlusIVA) ** (-1 * numberPayment)
     BigDecimal effectiveInterestFactor = effectiveInterestPlusIVA / (1 - effectiveInterestPlusIVAPower)
     BigDecimal result = effectiveInterestFactor  * simulator.principle
-    simulator.capital = (effectiveInterestPlusIVAPower * result).setScale(decimals, RoundingMode.valueOf(roundingMode))
-    simulator.payment = result.setScale(decimals, RoundingMode.valueOf(roundingMode))
-    simulator
+    (effectiveInterestPlusIVAPower * result).setScale(decimals, RoundingMode.valueOf(roundingMode))
   }
 
 }

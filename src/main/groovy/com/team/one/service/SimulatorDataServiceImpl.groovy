@@ -13,6 +13,8 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
   DatePaymentService datePaymentService
   @Autowired
   InterestService interestService
+  @Autowired
+  PPMTService ppmtService
 
   def calculate(Simulator simulator){
     def rows = []
@@ -23,8 +25,9 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
     def paymentDates = datePaymentService.generatePaymentDates(simulator)
 
     (1..simulator.numberOfPayments).each { n ->
-      def data = new SimulatorRow(capital:228.92)
+      def data = new SimulatorRow()
       data.number = n
+      data.capital = ppmtService.calculate(simulator)
       data.capitalBeforePayment = capitalBeforePayment
       data.capitalAfterPayment = capitalBeforePayment - data.capital
       capitalBeforePayment -= data.capital
