@@ -5,11 +5,15 @@ import org.springframework.web.servlet.ModelAndView
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.InitBinder
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.validation.BindingResult
 import org.springframework.ui.Model
 import com.team.one.domain.SimulatorCommand
+import org.springframework.beans.propertyeditors.CustomDateEditor
+import org.springframework.web.bind.WebDataBinder
+import java.text.SimpleDateFormat
 import javax.validation.Valid
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -73,4 +77,10 @@ class SimulatorController {
     modelAndView
   }
 
+  @InitBinder
+  void initBinder(WebDataBinder binder) {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM, yyyy", new Locale('es'))
+    dateFormat.setLenient(false)
+    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true))
+  }
 }
