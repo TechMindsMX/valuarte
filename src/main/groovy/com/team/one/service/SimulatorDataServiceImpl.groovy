@@ -32,7 +32,7 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
     (1..simulator.numberOfPayments).each { n ->
       def data = new SimulatorRow()
       data.number = n
-      data.capital = ppmtService.calculate(simulator, n)
+      data.capital = ppmtService.calculate(simulator, simulator.numberOfPayments - (n-1))
       data.capitalBeforePayment = capitalBeforePayment
       data.capitalAfterPayment = capitalBeforePayment - data.capital
       capitalBeforePayment -= data.capital
