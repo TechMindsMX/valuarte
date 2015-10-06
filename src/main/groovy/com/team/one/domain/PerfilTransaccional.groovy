@@ -31,4 +31,10 @@ class PerfilTransaccional {
 	@Column(nullable = false)
 	InstrumentoPago instrumentoPago
 
+	@Column(nullable = false)
+	String numeroPagosFrecuencia
+
+	@Column(nullable = false)
+	String montoPagos
+
 }
