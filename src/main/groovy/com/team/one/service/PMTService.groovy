@@ -2,6 +2,6 @@ package com.team.one.service
 
 import com.team.one.domain.Simulator
 
-interface PPMTService {
+interface PMTService {
   BigDecimal calculate(Simulator simulator)
 }

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import com.team.one.exception.SimulatorException
 
 @Service
-class SimulatorServiceImpl implements SimulatorService{
+class SimulatorServiceImpl implements SimulatorService {
 
   @Autowired
   PMTService pmtService
@@ -17,7 +17,7 @@ class SimulatorServiceImpl implements SimulatorService{
       throw new SimulatorException()
     }
 
-    pmtService.calculate(simulator)
+    simulator.payment = pmtService.calculate(simulator)
     simulator
   }
 }

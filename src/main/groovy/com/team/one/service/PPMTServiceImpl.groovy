@@ -15,7 +15,7 @@ class PPMTServiceImpl implements PPMTService {
   @Value('${simulator.roundingMode}')
   String roundingMode
 
-  def calculate(Simulator simulator, Integer numberPayment){
+  BigDecimal calculate(Simulator simulator, Integer numberPayment){
     if(!simulator.paymentPeriod){
       throw new SimulatorException()
     }

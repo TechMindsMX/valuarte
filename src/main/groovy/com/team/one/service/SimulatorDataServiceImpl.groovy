@@ -1,5 +1,8 @@
 package com.team.one.service
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 import com.team.one.domain.Simulator
 import org.springframework.stereotype.Service
 import com.team.one.domain.SimulatorRow
@@ -16,6 +19,8 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
   @Autowired
   PPMTService ppmtService
 
+  Logger log = LoggerFactory.getLogger(getClass());
+
   def calculate(Simulator simulator){
     def rows = []
     if(!simulator.numberOfPayments || simulator.numberOfPayments < 0)
@@ -27,7 +32,7 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
     (1..simulator.numberOfPayments).each { n ->
       def data = new SimulatorRow()
       data.number = n
-      data.capital = ppmtService.calculate(simulator)
+      data.capital = ppmtService.calculate(simulator, n)
       data.capitalBeforePayment = capitalBeforePayment
       data.capitalAfterPayment = capitalBeforePayment - data.capital
       capitalBeforePayment -= data.capital
