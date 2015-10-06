@@ -39,7 +39,7 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
     (1..simulator.numberOfPayments).each { n ->
       def data = new SimulatorRow()
       data.number = n
-      data.capital = ppmtService.calculate(simulator, simulator.numberOfPayments - (n-1))
+      data.capital = ppmtService.calculate(simulator, simulator.principle, simulator.numberOfPayments - (n-1))
       data.interest = interestService.calculate(capitalBeforePayment, simulator)
       data.capitalBeforePayment = capitalBeforePayment
       data.capitalAfterPayment = (capitalBeforePayment - data.capital).setScale(decimals, RoundingMode.valueOf(roundingMode))

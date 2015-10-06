@@ -29,7 +29,7 @@ class SimulatorDataServiceSpec extends Specification {
 
     datePaymentService.generatePaymentDates(_) >> [new Date(), new Date(), new Date()]
     interestService.calculate(_, _) >> interest
-    ppmtService.calculate(_, _) >> capital
+    ppmtService.calculate(_, _, _) >> capital
 
     service.decimals = decimals
     service.roundingMode = roundingMode

@@ -28,10 +28,9 @@ class PPMTServiceSpec extends Specification {
       simulator.paymentPeriod = paymentPeriod
       simulator.iva = iva
       simulator.tia = tia
-      simulator.principle = principle
       simulator.numberOfPayments = numberOfPayments
     then:"We calculate values"
-      result == service.calculate(simulator, numberPayment)
+      result == service.calculate(simulator, principle, numberPayment)
     where:"We have next cases"
       numberPayment | principle     | tia     |  iva  | numberOfPayments | paymentPeriod            || result
       12            | 31732         | 40      |  16   | 12               | PaymentPeriod.MONTHLY    || 2128.04
@@ -47,11 +46,11 @@ class PPMTServiceSpec extends Specification {
     and:"Input values"
       simulator.iva = 16
       simulator.tia = 40
-      simulator.principle = 15000
       simulator.numberOfPayments = 12
       def numberPayment = 12
+      def principle = 15000
     when:"We calculate data"
-      service.calculate(simulator, numberPayment)
+      service.calculate(simulator, principle, numberPayment)
     then:"Thrown exception"
       thrown SimulatorException
   }
@@ -62,13 +61,13 @@ class PPMTServiceSpec extends Specification {
       def simulator = new Simulator()
     and:"Input values"
       simulator.iva = 16
-      simulator.principle = 15000
       simulator.numberOfPayments = 12
       simulator.paymentPeriod = PaymentPeriod.WEEKLY
       simulator.tia = tia
       def numberPayment = 12
+      def principle = 15000
     when:"We calculate data"
-      def result = service.calculate(simulator, numberPayment)
+      def result = service.calculate(simulator, principle, numberPayment)
     then:"Thrown exception"
       thrown SimulatorException
     where:"We have next values"
@@ -84,10 +83,9 @@ class PPMTServiceSpec extends Specification {
       simulator.tia = 40
       simulator.numberOfPayments = 12
       simulator.paymentPeriod = PaymentPeriod.WEEKLY
-      simulator.principle = principle
       def numberPayment = 12
     when:"We calculate data"
-      def result = service.calculate(simulator, numberPayment)
+      def result = service.calculate(simulator, principle, numberPayment)
     then:"Thrown exception"
       thrown SimulatorException
     where:"We have next values"

@@ -15,7 +15,7 @@ class PPMTServiceImpl implements PPMTService {
   @Value('${simulator.roundingMode}')
   String roundingMode
 
-  BigDecimal calculate(Simulator simulator, Integer numberPayment){
+  BigDecimal calculate(Simulator simulator, BigDecimal base, Integer numberPayment){
     if(!simulator.paymentPeriod){
       throw new SimulatorException()
     }
@@ -24,7 +24,7 @@ class PPMTServiceImpl implements PPMTService {
       throw new SimulatorException()
     }
 
-    if(!simulator.principle || simulator.principle < 0){
+    if(!base || base < 0){
       throw new SimulatorException()
     }
 
@@ -33,7 +33,7 @@ class PPMTServiceImpl implements PPMTService {
     BigDecimal effectiveInterestPlusIVAPower = (1 + effectiveInterestPlusIVA) ** (-1 * simulator.numberOfPayments)
     BigDecimal effectiveInterestPlusIVAPowerPayment = (1 + effectiveInterestPlusIVA) ** (-1 * numberPayment)
     BigDecimal effectiveInterestFactor = effectiveInterestPlusIVA / (1 - effectiveInterestPlusIVAPower)
-    BigDecimal result = effectiveInterestFactor  * simulator.principle
+    BigDecimal result = effectiveInterestFactor * base
     (effectiveInterestPlusIVAPowerPayment * result).setScale(decimals, RoundingMode.valueOf(roundingMode))
   }
 
