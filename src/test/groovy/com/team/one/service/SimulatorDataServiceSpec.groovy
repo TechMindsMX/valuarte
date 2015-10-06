@@ -13,16 +13,26 @@ class SimulatorDataServiceSpec extends Specification {
 
   SimulatorDataServiceImpl service = new SimulatorDataServiceImpl()
 
+  Integer decimals = 2
+  String roundingMode = 'HALF_UP'
+
   def datePaymentService = Mock(DatePaymentService)
   def interestService = Mock(InterestService)
+  def ppmtService = Mock(PPMTService)
   def interest = new BigDecimal(100.00)
+  def capital = new BigDecimal(228.92)
 
   def setup(){
     service.datePaymentService = datePaymentService
     service.interestService = interestService
+    service.ppmtService = ppmtService
 
     datePaymentService.generatePaymentDates(_) >> [new Date(), new Date(), new Date()]
     interestService.calculate(_, _) >> interest
+    ppmtService.calculate(_, _) >> capital
+
+    service.decimals = decimals
+    service.roundingMode = roundingMode
   }
 
   @Unroll

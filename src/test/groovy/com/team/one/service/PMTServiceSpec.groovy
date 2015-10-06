@@ -20,7 +20,6 @@ class PMTServiceSpec extends Specification {
     service.roundingMode = roundingMode
   }
 
-
   @Unroll
   void """When we have iva: #iva, tia: #tia, principle: #principle and number of payments as: #numberOfPayments, payment period: #paymentPeriod and we want calculate payment in a monthly period we expect: #result"""() {
     given:"A simulator"
@@ -32,7 +31,7 @@ class PMTServiceSpec extends Specification {
       simulator.principle = principle
       simulator.numberOfPayments = numberOfPayments
     then:"We calculate values"
-      result == service.calculate(simulator).payment
+      result == service.calculate(simulator)
     where:"We have next cases"
       principle     | tia     |  iva  | numberOfPayments | paymentPeriod            || result
       32267.95      | 40      |  16   | 12               | PaymentPeriod.MONTHLY    || 3411.67
@@ -98,7 +97,5 @@ class PMTServiceSpec extends Specification {
     where:"We have next values"
       principle << [null, 0, -1]
   }
-
-
 
 }

@@ -6,7 +6,9 @@ import org.slf4j.LoggerFactory
 import com.team.one.domain.Simulator
 import org.springframework.stereotype.Service
 import com.team.one.domain.SimulatorRow
+import java.math.RoundingMode
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import com.team.one.exception.SimulatorException
 
 @Service
@@ -18,6 +20,11 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
   InterestService interestService
   @Autowired
   PPMTService ppmtService
+
+  @Value('${simulator.decimals}')
+  Integer decimals
+  @Value('${simulator.roundingMode}')
+  String roundingMode
 
   Logger log = LoggerFactory.getLogger(getClass());
 
@@ -34,8 +41,8 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
       data.number = n
       data.capital = ppmtService.calculate(simulator, simulator.numberOfPayments - (n-1))
       data.capitalBeforePayment = capitalBeforePayment
-      data.capitalAfterPayment = capitalBeforePayment - data.capital
-      capitalBeforePayment -= data.capital
+      data.capitalAfterPayment = (capitalBeforePayment - data.capital).setScale(decimals, RoundingMode.valueOf(roundingMode))
+      capitalBeforePayment = (capitalBeforePayment - data.capital).setScale(decimals, RoundingMode.valueOf(roundingMode))
       data.paymentDate = paymentDates.get(n-1)
       data.interest = interestService.calculate(data.capital, simulator)
       data.iva = data.interest * simulator.iva / 100
