@@ -30,10 +30,11 @@ class PPMTServiceImpl implements PPMTService {
 
     BigDecimal effectiveInterest = simulator.tia / 100 / 12 / simulator.paymentPeriod.factor
     BigDecimal effectiveInterestPlusIVA = effectiveInterest * (1 + (simulator.iva / 100))
-    BigDecimal effectiveInterestPlusIVAPower = (1 + effectiveInterestPlusIVA) ** (-1 * numberPayment)
+    BigDecimal effectiveInterestPlusIVAPower = (1 + effectiveInterestPlusIVA) ** (-1 * simulator.numberOfPayments)
+    BigDecimal effectiveInterestPlusIVAPowerPayment = (1 + effectiveInterestPlusIVA) ** (-1 * numberPayment)
     BigDecimal effectiveInterestFactor = effectiveInterestPlusIVA / (1 - effectiveInterestPlusIVAPower)
     BigDecimal result = effectiveInterestFactor  * simulator.principle
-    (effectiveInterestPlusIVAPower * result).setScale(decimals, RoundingMode.valueOf(roundingMode))
+    (effectiveInterestPlusIVAPowerPayment * result).setScale(decimals, RoundingMode.valueOf(roundingMode))
   }
 
 }

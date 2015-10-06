@@ -4,13 +4,13 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 import com.team.one.domain.Simulator
-import com.team.one.service.PMTServiceImpl
+import com.team.one.service.PPMTServiceImpl
 import com.team.one.domain.PaymentPeriod
 import com.team.one.exception.SimulatorException
 
-class PMTServiceSpec extends Specification {
+class PPMTServiceSpec extends Specification {
 
-  PMTServiceImpl service = new PMTServiceImpl()
+  PPMTServiceImpl service = new PPMTServiceImpl()
 
   Integer decimals = 2
   String roundingMode = 'HALF_UP'
@@ -31,10 +31,10 @@ class PMTServiceSpec extends Specification {
       simulator.principle = principle
       simulator.numberOfPayments = numberOfPayments
     then:"We calculate values"
-      result == service.calculate(simulator)
+      result == service.calculate(simulator, numberPayment)
     where:"We have next cases"
-      principle     | tia     |  iva  | numberOfPayments | paymentPeriod            || result
-      32267.95      | 40      |  16   | 12               | PaymentPeriod.MONTHLY    || 2128.04
+      numberPayment | principle     | tia     |  iva  | numberOfPayments | paymentPeriod            || result
+      12            | 31732         | 40      |  16   | 12               | PaymentPeriod.MONTHLY    || 2128.04
   }
 
 }
