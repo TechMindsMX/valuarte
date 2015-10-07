@@ -3,6 +3,7 @@ package com.team.one.domain
 import com.team.one.domain.enums.*
 import javax.persistence.*
 
+@Entity
 class Address {
 
   @Id

@@ -4,6 +4,7 @@ import com.team.one.domain.enums.*
 import javax.persistence.*
 import static java.util.UUID.randomUUID
 
+@Entity
 class Client {
 
   @Id
