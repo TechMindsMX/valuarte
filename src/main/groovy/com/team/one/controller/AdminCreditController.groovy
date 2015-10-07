@@ -26,6 +26,7 @@ class AdminCreditController {
     "adminCredit/form"
   }
 
+  @PreAuthorize("hasAuthority('ADMIN')")
   @RequestMapping(value="/save", method=RequestMethod.POST)
   String save(CreditCommand command, BindingResult result,Model model) {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication()
