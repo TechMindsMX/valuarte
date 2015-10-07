@@ -10,15 +10,11 @@ import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.validation.BindingResult
 import org.springframework.ui.Model
-<<<<<<< HEAD
 import com.team.one.domain.SimulatorCommand
 import org.springframework.beans.propertyeditors.CustomDateEditor
 import org.springframework.web.bind.WebDataBinder
 import java.text.SimpleDateFormat
 import javax.validation.Valid
-=======
-import com.team.one.command.SimulatorCommand
->>>>>>> feature/52
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
