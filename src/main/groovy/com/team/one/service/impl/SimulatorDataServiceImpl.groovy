@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory
 import com.team.one.domain.Simulator
 import com.team.one.service.DatePaymentService
 import com.team.one.service.InterestService
+import com.team.one.service.PPMTService
 import com.team.one.service.SimulatorDataService
 import org.springframework.stereotype.Service
 import com.team.one.domain.SimulatorRow
