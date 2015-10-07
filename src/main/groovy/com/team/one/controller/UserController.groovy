@@ -2,13 +2,11 @@ package com.team.one.controller
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.ui.Model
 import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.stereotype.Controller
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.WebDataBinder
 import org.springframework.web.bind.annotation.*
@@ -17,10 +15,9 @@ import org.springframework.security.access.prepost.PreAuthorize
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import javax.validation.Valid
-import java.util.NoSuchElementException
 
-import com.team.one.domain.UserCommand
-import com.team.one.domain.UserRepository
+import com.team.one.command.UserCommand
+import com.team.one.repository.UserRepository
 import com.team.one.domain.User
 import com.team.one.domain.validator.UserCreateFormValidator
 import com.team.one.service.UserService

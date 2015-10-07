@@ -2,7 +2,7 @@ package com.team.one.domain
 
 import com.team.one.domain.enums.*
 import javax.persistence.*
-import static java.util.UUID.randomUUID 
+import static java.util.UUID.randomUUID
 
 class Client {
 
@@ -24,7 +24,7 @@ class Client {
 
   @Column(nullable = false)
   String apellidoMaterno
-  
+
   @Column(unique = true, nullable = false)
   String rfc
 
@@ -58,14 +58,25 @@ class Client {
 
   @Column(nullable = false)
   String fiel
-  
+
   @Column(nullable = false)
   String curp
-  
+
   @Column(nullable = false)
   String claveElector
 
   @Column(nullable = false)
   String nacionalidad
+
+  Long addressId
+  Long endorsementId
+  Long financialInfoId
+  Long referencesId
+  Long sureId
+  Long transactionalProfileId
+  Long workInfoId
+
+  @Column(nullable = false)
+  String userCreate
 
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.ui.Model
-import com.team.one.domain.SimulatorCommand
+import com.team.one.command.SimulatorCommand
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 

@@ -1,7 +1,5 @@
 package com.team.one.domain
 
-import com.team.one.domain.enums.*
-
 class ReferencesCommand {
 	
 	String nombreCompletoRefFamiliar
@@ -20,4 +18,27 @@ class ReferencesCommand {
   String parentescoPersonal2
   String telefonoPersonal2
   String domicilioPersonal2
+
+
+  References generateReferences() {
+    new References (
+      nombreCompletoRefFamiliar: this.nombreCompletoRefFamiliar,
+      parentescoFamiliar: this.parentescoFamiliar,
+      telefonoFamiliar: this.telefonoFamiliar,
+      domicilioFamiliar: this.domicilioFamiliar,
+      nombreCompletoRefLaboral: this.nombreCompletoRefLaboral,
+      parentescoLaboral: this.parentescoLaboral,
+      telefonoLaboral: this.telefonoLaboral,
+      domicilioLaboral: this.domicilioLaboral,
+      nombreCompletoRefPersonal1: this.nombreCompletoRefPersonal1,
+      parentescoPersonal1: this.parentescoPersonal1,
+      telefonoPersonal1: this.telefonoPersonal1,
+      domicilioPersonal1: this.domicilioPersonal1,
+      nombreCompletoRefPersonal2: this.nombreCompletoRefPersonal2,
+      parentescoPersonal2: this.parentescoPersonal2,
+      telefonoPersonal2: this.telefonoPersonal2,
+      domicilioPersonal2: this.domicilioPersonal2
+    )
+  }
+
 }

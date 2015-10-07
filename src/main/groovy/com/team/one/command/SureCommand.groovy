@@ -1,7 +1,5 @@
 package com.team.one.domain
 
-import com.team.one.domain.enums.*
-
 class SureCommand {
 
   String tipoSeguro
@@ -9,5 +7,15 @@ class SureCommand {
   String nombreBeneficiario2
   String domicilioBeneficiario1
   String domicilioBeneficiario2	
+
+  Sure generateSure() {
+  	new Sure (
+			tipoSeguro: this.tipoSeguro,
+			nombreBeneficiario1: this.nombreBeneficiario1,
+			nombreBeneficiario2: this.nombreBeneficiario2,
+			domicilioBeneficiario1: this.domicilioBeneficiario1,
+			domicilioBeneficiario2: this.domicilioBeneficiario2	
+		)
+  }
 
 }
