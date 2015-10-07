@@ -1,8 +1,7 @@
 package com.team.one.service
 
+import com.team.one.command.UserCommand
 import com.team.one.domain.*
-import java.util.Optional
-
 
 public interface UserService {
 
