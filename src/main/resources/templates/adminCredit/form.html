@@ -12,6 +12,9 @@
       <div class="container">
         <div class="row-fluid">
           <div class="span12 registro">
+            <div class="alert alert-success" th:if="${clientUuid}">
+              <span th:text="Se creo correctamente la solicitud con el uuid :${clientUuid}"></span>
+            </div>
             <h1 class="info">Solicitud de Préstamo y Formato de conocimiento del cliente</h1>
             <form id="credit" action="#" th:action="@{/adminCredit/save}" th:object="${creditCommand}" method="post" class="form">
               <div class="span12 info">
