@@ -1,9 +1,8 @@
 package com.team.one.service
 
+import com.team.one.service.impl.DataBinderServiceImpl
 import spock.lang.Specification
-import com.team.one.domain.Simulator
-import com.team.one.domain.SimulatorCommand
-import com.team.one.domain.Client
+import com.team.one.command.SimulatorCommand
 import com.team.one.domain.PaymentPeriod
 
 class DataBinderServiceSpec extends Specification {

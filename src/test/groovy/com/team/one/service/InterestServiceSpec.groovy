@@ -1,5 +1,6 @@
 package com.team.one.service
 
+import com.team.one.service.impl.InterestServiceImpl
 import spock.lang.Specification
 import spock.lang.Unroll
 
