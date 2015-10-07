@@ -1,11 +1,8 @@
 package com.team.one.service
 
 import spock.lang.Specification
-import spock.lang.Unroll
-
 import com.team.one.domain.Simulator
-import com.team.one.service.SimulatorServiceImpl
-import com.team.one.service.PMTService
+import com.team.one.service.impl.SimulatorServiceImpl
 import com.team.one.domain.PaymentPeriod
 import com.team.one.exception.SimulatorException
 
