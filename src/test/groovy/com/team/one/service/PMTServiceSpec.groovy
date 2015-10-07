@@ -4,7 +4,7 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 import com.team.one.domain.Simulator
-import com.team.one.service.PMTServiceImpl
+import com.team.one.service.impl.PMTServiceImpl
 import com.team.one.domain.PaymentPeriod
 import com.team.one.exception.SimulatorException
 
