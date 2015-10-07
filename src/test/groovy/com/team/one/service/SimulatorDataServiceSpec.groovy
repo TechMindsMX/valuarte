@@ -4,9 +4,7 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 import com.team.one.domain.Simulator
-import com.team.one.service.SimulatorDataServiceImpl
-import com.team.one.service.DatePaymentService
-import com.team.one.domain.PaymentPeriod
+import com.team.one.service.impl.SimulatorDataServiceImpl
 import com.team.one.exception.SimulatorException
 
 class SimulatorDataServiceSpec extends Specification {

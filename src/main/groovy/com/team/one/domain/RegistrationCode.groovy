@@ -1,5 +1,7 @@
 package com.team.one.domain
 
+import com.team.one.domain.enums.RegistrationCodeStatus
+
 import javax.persistence.*
 
 @Entity

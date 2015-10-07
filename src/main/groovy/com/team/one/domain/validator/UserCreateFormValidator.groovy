@@ -1,6 +1,6 @@
 package com.team.one.domain.validator
 
-import com.team.one.domain.*
+import com.team.one.command.UserCommand
 import com.team.one.service.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component

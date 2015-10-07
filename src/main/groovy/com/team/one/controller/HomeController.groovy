@@ -2,19 +2,15 @@ package com.team.one.controller
 
 import org.springframework.stereotype.Controller
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.*
-import org.springframework.web.bind.WebDataBinder
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RequestMethod
+
 import javax.validation.Valid
 import org.springframework.web.bind.annotation.RequestMapping
 import com.team.one.service.ClientService
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.servlet.ModelAndView
 import org.springframework.validation.BindingResult
-import com.team.one.domain.ContactCommand
 import org.springframework.ui.Model
-import com.team.one.domain.ContactCommand
+import com.team.one.command.ContactCommand
 
 @Controller
 class HomeController {
