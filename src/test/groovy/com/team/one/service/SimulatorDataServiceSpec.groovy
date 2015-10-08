@@ -136,4 +136,18 @@ class SimulatorDataServiceSpec extends Specification {
       16 == result.get(0).iva
   }
 
+  void "should set insurance value"() {
+    given:"A simulator and principle"
+      def simulator = new Simulator()
+      simulator.numberOfPayments = 3
+      simulator.principle = 35164.88
+      simulator.iva = 16
+    when:"We calculate data"
+      def result = service.calculate(simulator)
+    then:"We expect same principle with capital before payment"
+      result.get(0).insurance == 100
+      result.get(1).insurance == 200
+      result.get(2).insurance == 300
+  }
+
 }
