@@ -44,7 +44,7 @@ class ClientServiceImpl implements ClientService {
       String descripcion = "${params[2]}-${params[5]}-${params[6]}"
       propertiesCreateProduct.userId = 1
       propertiesCreateProduct.name = name.toString()
-      propertiesCreateProduct.subcategory = params[1]
+      propertiesCreateProduct.subcategory = obtainSubcategoryByNamey(params[1])
       propertiesCreateProduct.description = descripcion.toString()
       propertiesCreateProduct.photos = photoNameGeneratorService.getNames(params[2].toString(), params[3].toInteger())
       propertiesCreateProduct.token = token
@@ -111,7 +111,11 @@ class ClientServiceImpl implements ClientService {
     resultSubCat
   }
 
+  private Integer obtainSubcategoryByName(String name) {
+    def subcategory = findSubCategoryByName(name)
+    if(!subcategory)
+      subcategory = createSubCategoryByName(name)
+    subcategory
+  }
 
 }
-
-
