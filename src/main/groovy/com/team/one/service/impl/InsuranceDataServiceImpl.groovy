@@ -36,9 +36,7 @@ class InsuranceDataServiceImpl implements InsuranceDataService {
 
     (1..simulator.numberOfPayments).each { n ->
       def capital = ppmtService.calculate(simulator, simulator.loan, simulator.numberOfPayments - (n-1))
-      println "capital: ${capital}"
       def capitalAfterPayment = (capitalBeforePayment - capital)
-      println "capitalAfterPayment: ${capitalAfterPayment}"
       def insurance = capitalBeforePayment * factor / 1000
       rows.add(insurance.setScale(decimals, RoundingMode.valueOf(roundingMode)))
       capitalBeforePayment = capitalAfterPayment

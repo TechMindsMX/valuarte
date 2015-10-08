@@ -19,7 +19,6 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import com.team.one.service.SimulatorService
-import com.team.one.service.InsuranceService
 import com.team.one.service.SimulatorDataService
 import com.team.one.service.DataBinderService
 
@@ -29,8 +28,6 @@ class SimulatorController {
 
   @Autowired
   SimulatorService simulatorService
-  @Autowired
-  InsuranceService insuranceService
   @Autowired
   SimulatorDataService simulatorDataService
   @Autowired
@@ -67,7 +64,6 @@ class SimulatorController {
 
     def client = dataBinderService.bindClient(simulatorCommand)
     def simulator = dataBinderService.bindSimulator(simulatorCommand)
-    insuranceService.calculate(simulator)
     simulatorService.calculate(simulator)
     def detailOfPaymentsFromSimulator = simulatorDataService.calculate(simulator)
     modelAndView.addObject("simulatorCommand", simulatorCommand)

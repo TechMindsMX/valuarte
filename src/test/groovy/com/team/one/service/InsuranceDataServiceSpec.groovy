@@ -13,6 +13,7 @@ class InsuranceDataServiceSpec extends Specification {
 
   Integer decimals = 2
   String roundingMode = 'HALF_UP'
+
   def ppmtService = Mock(PPMTService)
 
   def setup(){
