@@ -7,6 +7,7 @@ import com.team.one.domain.Simulator
 import com.team.one.service.DatePaymentService
 import com.team.one.service.InterestService
 import com.team.one.service.PPMTService
+import com.team.one.service.InsuranceDataService
 import com.team.one.service.SimulatorDataService
 import org.springframework.stereotype.Service
 import com.team.one.domain.SimulatorRow
@@ -24,6 +25,8 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
   InterestService interestService
   @Autowired
   PPMTService ppmtService
+  @Autowired
+  InsuranceDataService insuranceDataService
 
   @Value('${simulator.decimals}')
   Integer decimals
@@ -39,6 +42,7 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
 
     def capitalBeforePayment = simulator.principle
     def paymentDates = datePaymentService.generatePaymentDates(simulator)
+    def insurances = insuranceDataService.calculate(simulator)
 
     (1..simulator.numberOfPayments).each { n ->
       def data = new SimulatorRow()
@@ -50,6 +54,7 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
       capitalBeforePayment = (capitalBeforePayment - data.capital).setScale(decimals, RoundingMode.valueOf(roundingMode))
       data.paymentDate = paymentDates.get(n-1)
       data.iva = (data.interest * simulator.iva / 100).setScale(decimals, RoundingMode.valueOf(roundingMode))
+      data.insurance = insurances.get(n-1)
       rows.add(data)
     }
     rows

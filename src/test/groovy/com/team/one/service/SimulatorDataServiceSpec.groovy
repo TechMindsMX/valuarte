@@ -17,15 +17,19 @@ class SimulatorDataServiceSpec extends Specification {
   def datePaymentService = Mock(DatePaymentService)
   def interestService = Mock(InterestService)
   def ppmtService = Mock(PPMTService)
+  def insuranceDataService = Mock(InsuranceDataService)
+
   def interest = new BigDecimal(100.00)
   def capital = new BigDecimal(228.92)
 
   def setup(){
     service.datePaymentService = datePaymentService
+    service.insuranceDataService = insuranceDataService
     service.interestService = interestService
     service.ppmtService = ppmtService
 
     datePaymentService.generatePaymentDates(_) >> [new Date(), new Date(), new Date()]
+    insuranceDataService.calculate(_) >> [100,200,300]
     interestService.calculate(_, _) >> interest
     ppmtService.calculate(_, _, _) >> capital
 
