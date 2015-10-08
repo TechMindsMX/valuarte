@@ -32,15 +32,17 @@ class InsuranceDataServiceImpl implements InsuranceDataService {
       throw new SimulatorException()
 
     def capitalBeforePayment = simulator.loan
-    def capitalAfterPayment = new BigDecimal()
-    def capital = new BigDecimal()
+    def capitalAfterPayment = 0
+    def capital = 0
+    def factor = 2.43
 
     (1..simulator.numberOfPayments).each { n ->
-      def insurance = new BigDecimal()
       capital = ppmtService.calculate(simulator, simulator.loan, simulator.numberOfPayments - (n-1))
-      data.capitalAfterPayment = (capitalBeforePayment - data.capital).setScale(decimals, RoundingMode.valueOf(roundingMode))
-      capitalBeforePayment = (capitalBeforePayment - data.capital).setScale(decimals, RoundingMode.valueOf(roundingMode))
-      rows.add(insurance)
+      println capital
+      capitalAfterPayment = (capitalBeforePayment - capital)
+      def insurance = capitalBeforePayment * factor / 1000
+      rows.add(insurance.setScale(decimals, RoundingMode.valueOf(roundingMode)))
+      capitalBeforePayment = capitalAfterPayment
     }
     rows
   }

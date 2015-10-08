@@ -48,7 +48,7 @@ class InsuranceDataServiceSpec extends Specification {
     when:"We calculate data"
       def result = service.calculate(simulator)
     then:"We expect same principle with capital before payment"
-      result.get(0) ==  71.11
+      result.get(0) ==  77.11
       result.get(1) ==  71.94
       result.get(2) ==  66.57
       result.get(3) ==  60.99
