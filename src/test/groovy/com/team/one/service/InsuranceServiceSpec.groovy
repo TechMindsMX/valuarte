@@ -2,8 +2,6 @@ package com.team.one.service
 
 import com.team.one.service.impl.InsuranceServiceImpl
 import spock.lang.Specification
-import spock.lang.Unroll
-
 import com.team.one.domain.Simulator
 import com.team.one.exception.SimulatorException
 
@@ -11,19 +9,21 @@ class InsuranceServiceSpec extends Specification {
 
   InsuranceServiceImpl service = new InsuranceServiceImpl()
 
-  @Unroll
-  void """When we have a life insurance: #lifeInsurance, loan: #loan: #loan and we want to compute insurance value we expect: #result """() {
+  def insuranceDataService = Mock(InsuranceDataService)
+
+  def setup(){
+    service.insuranceDataService = insuranceDataService
+    insuranceDataService.calculate(_) >> [100,200]
+  }
+
+  void "Should get life insurance value"() {
     given:"A simulator simulator"
       def simulator = new Simulator()
-    when:"Input values"
-      simulator.lifeInsurance = lifeInsurance
-      simulator.loan = loan
-    then:"We calculate values"
-      result == service.calculate(simulator).principle
-    where:"We have next cases"
-      loan  | lifeInsurance || result
-      31732 | 3432.88       || 35164.88
-      31732 | 0             || 31732
+      simulator.loan = 50
+    when:"Calculate values"
+      def result = service.calculate(simulator)
+    then:"We expect sum"
+      result == 300
   }
 
   void "should throw an exception when no loan"() {
