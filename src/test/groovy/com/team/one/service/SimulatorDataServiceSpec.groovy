@@ -1,98 +1,135 @@
 package com.team.one.service
 
 import spock.lang.Specification
-import com.team.one.domain.SimulatorCommand
-import com.team.one.service.SimulatorDataServiceImpl
-import com.team.one.service.DatePaymentService
-import com.team.one.domain.PaymentPeriod
-import com.team.one.domain.Paydays
+import spock.lang.Unroll
+
+import com.team.one.domain.Simulator
+import com.team.one.service.impl.SimulatorDataServiceImpl
 import com.team.one.exception.SimulatorException
 
 class SimulatorDataServiceSpec extends Specification {
 
   SimulatorDataServiceImpl service = new SimulatorDataServiceImpl()
 
+  Integer decimals = 2
+  String roundingMode = 'HALF_UP'
+
   def datePaymentService = Mock(DatePaymentService)
+  def interestService = Mock(InterestService)
+  def ppmtService = Mock(PPMTService)
+  def interest = new BigDecimal(100.00)
+  def capital = new BigDecimal(228.92)
 
   def setup(){
     service.datePaymentService = datePaymentService
+    service.interestService = interestService
+    service.ppmtService = ppmtService
+
+    datePaymentService.generatePaymentDates(_) >> [new Date(), new Date(), new Date()]
+    interestService.calculate(_, _) >> interest
+    ppmtService.calculate(_, _) >> capital
+
+    service.decimals = decimals
+    service.roundingMode = roundingMode
   }
 
-  void "should calculate table size depending on number of payments"() {
-    given:"A simulator command"
-      def command = new SimulatorCommand()
-      command.principle = 35165.88
-    and:"A payment mock"
-      def paymentDates = [new Date(), new Date(), new Date()]
-      datePaymentService.generatePaymentDates(command) >> paymentDates
+  @Unroll
+  void """When we have number of payments: #numberOfPayments and we expect #result rows in the table"""() {
+    given:"A simulator"
+      def simulator = new Simulator()
+      simulator.principle = 35165.88
+      simulator.iva = 16
     when:"Input values"
-      command.numberOfPayments = numberOfPayments
+      simulator.numberOfPayments = numberOfPayments
     then:"We calculate values"
-      result == service.calculate(command).rows.size()
+      result == service.calculate(simulator).size()
     where:"We have next cases"
     numberOfPayments || result
     3                || 3
     1                || 1
   }
 
-  void "should detect an invalid number at calculate table size depending on number of payments"() {
-    given:"A simulator command"
-      def command = new SimulatorCommand()
-      command.numberOfPayments = 0
+  @Unroll
+  void """given number of payments as: #numberOfPayments we expect thown exception"""() {
+    given:"A simulator"
+      def simulator = new Simulator()
+      simulator.numberOfPayments = numberOfPayments
+      simulator.principle = 35164.88
+      simulator.iva = 16
     when:"Input values"
-      service.calculate(command)
+      service.calculate(simulator)
     then:"We calculate values"
       thrown SimulatorException
+    where:"We have next cases"
+      numberOfPayments << [null, 0, -1]
   }
 
   void "should set capital before and after payment"() {
-    given:"A simulator command and principle"
-      def command = new SimulatorCommand()
-      command.numberOfPayments = 3
-      command.principle = 35164.88
-    and:"A payment mock"
-      def paymentDates = [new Date(), new Date(), new Date()]
+    given:"A simulator and principle"
+      def simulator = new Simulator()
+      simulator.numberOfPayments = 3
+      simulator.principle = 35164.88
+      simulator.iva = 16
     when:"We calculate data"
-      def result = service.calculate(command)
+      def result = service.calculate(simulator)
     then:"We expect same principle with capital before payment"
-      datePaymentService.generatePaymentDates(command) >> paymentDates
-      result.rows.get(0).capitalBeforePayment == command.principle
-      result.rows.get(0).capitalAfterPayment ==  34935.96
-      result.rows.get(1).capitalBeforePayment ==  34935.96
-      result.rows.get(1).capitalAfterPayment ==   34707.04
-      result.rows.get(2).capitalBeforePayment ==  34707.04
-      result.rows.get(2).capitalAfterPayment ==   34478.12
+      result.get(0).capitalBeforePayment == simulator.principle
+      result.get(0).capitalAfterPayment ==  34935.96
+      result.get(1).capitalBeforePayment ==  34935.96
+      result.get(1).capitalAfterPayment ==   34707.04
+      result.get(2).capitalBeforePayment ==  34707.04
+      result.get(2).capitalAfterPayment ==   34478.12
   }
 
   void "should set number depending on numberOfPayments"() {
-    given:"A simulator command and principle"
-      def command = new SimulatorCommand()
-      command.numberOfPayments = 3
-      command.principle = 35164.88
-    and:"A payment mock"
-      def paymentDates = [new Date(), new Date(), new Date()]
+    given:"A simulator and principle"
+      def simulator = new Simulator()
+      simulator.numberOfPayments = 3
+      simulator.principle = 35164.88
+      simulator.iva = 16
     when:"We calculate data"
-      def result = service.calculate(command)
+      def result = service.calculate(simulator)
     then:"We expect same principle with capital before payment"
-      datePaymentService.generatePaymentDates(command) >> paymentDates
-      result.rows.get(0).number == 1
-      result.rows.get(1).number == 2
-      result.rows.get(2).number == 3
+      result.get(0).number == 1
+      result.get(1).number == 2
+      result.get(2).number == 3
   }
 
   void "should set number dates depending on numberOfPayments"() {
-    given:"A simulator command and principle"
-      def command = new SimulatorCommand()
-      command.numberOfPayments = 2
-      command.principle = 35164.88
-    and:"A payment mock"
-      def paymentDates = [new Date(), new Date()]
+    given:"A simulator and principle"
+      def simulator = new Simulator()
+      simulator.numberOfPayments = 2
+      simulator.principle = 35164.88
+      simulator.iva = 16
     when:"We calculate data"
-      def result = service.calculate(command)
+      def result = service.calculate(simulator)
     then:"We expect same principle with capital before payment"
-      datePaymentService.generatePaymentDates(command) >> paymentDates
-      result.rows.get(0).paymentDate instanceof Date
-      result.rows.get(1).paymentDate instanceof Date
+      result.get(0).paymentDate instanceof Date
+      result.get(1).paymentDate instanceof Date
+  }
+
+  void "should get interest"() {
+    given:"A simulator"
+      def simulator = new Simulator()
+      simulator.numberOfPayments = 1
+      simulator.principle = 35164.88
+      simulator.iva = 16
+    when:"We compute data"
+      def result = service.calculate(simulator)
+    then:"We expect interest"
+      100.00 == result.get(0).interest
+  }
+
+  void "should get IVA"(){
+    given:"A simulator"
+      def simulator = new Simulator()
+      simulator.numberOfPayments = 1
+      simulator.principle = 35164.88
+      simulator.iva = 16
+    when:"We compute data"
+      def result = service.calculate(simulator)
+    then:"We expect IVA"
+      16 == result.get(0).iva
   }
 
 }

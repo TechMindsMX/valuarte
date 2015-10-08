@@ -1,65 +1,56 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
 xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-layout:decorator="main">
+layout:decorator="layout">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
   <div layout:fragment="content">
-    <br />
-    <div class="row">
-      <div align="center"><h1>*Productos*</h1></div>
-      <div class="span12 products">
-        <div class="carousel slide span12" id="productCarrousel">
-          <div class="carousel-inner span12" >
-            <div th:each="productList, plStat : ${productGroupList}" class="item" th:classappend="|${plStat.first ? 'active' : ''} ${plStat.odd ? 'odd' : 'even'}|" align="center">
-              <div class="span12" >
-                <p th:each="product : ${productList}">
-                  <div class="span4">
-                    <img style=" width: 186px !important;height: 244px !important;" th:attr="src=@{${pathUrl} + ${product.projectPhotos.get(0).url}},title=#{logo},alt=#{logo}" />
-                    <br />
-                    <a th:href="|@{/product/show(productId=${product.id})}|"><input type="image" th:src="@{/images/BotonInvertir_Beneficios2.png}"/></a>
-                  </div>
-                  <div class="span2"></div>
-                </p>
+    <div class="container">
+      <div class="row">
+        <div class="span12 products">
+          <h1><font color="white">Productos</font></h1>
+          <div class="carousel slide " id="productCarrousel" >
+            <div class="carousel-inner" >
+              <div th:each="productList, plStat : ${productGroupList}" class="item" th:classappend="|${plStat.first ? 'active' : ''} ${plStat.odd ? 'odd' : 'even'}|" align="center">
+                <div class="span12" >
+                  <p th:each="product : ${productList}">
+                    <div class="span3">
+                      <img style=" width: 186px !important;height: 244px !important;" th:attr="src=@{${pathUrl} + ${product.projectPhotos.get(0).url}}" />
+                      <br /><br /><br />
+                      <font size="4" color="white"><p th:text="${product.name.split('-')[1]}"></p></font>
+                      <p><HR COLOR="white" WIDTH="95%" size="5" /></p>
+                      <div class="row-fluid" align="center">
+                        <div class="span12" >
+                          <div class="span2"></div>
+                          <div class="span3"><font size="7">0</font><p>Financieros</p></div>
+                          <div class="span2"><font size="7"> | </font></div>
+                          <div class="span2"><font size="7">0</font><p>Inversionistas</p></div>
+                        </div>
+                      </div>
+                      <a th:href="|@{/product/show(productId=${product.id})}|"><input type="image" th:src="@{/images/BotonInvertir_Beneficios2.png}"/></a>
+                      <br /><br />                      
+                    </div>
+                    <div class="span1"></div>
+                  </p>
+                </div>
               </div>
             </div>
+            <a data-slide="prev" href="#productCarrousel" class="left carousel-control">‹</a>
+            <a data-slide="next" href="#productCarrousel" class="right carousel-control">›</a>
           </div>
-          <a data-slide="prev" href="#productCarrousel" class="left carousel-control">‹</a>
-          <a data-slide="next" href="#productCarrousel" class="right carousel-control">›</a>
         </div>
       </div>
+      <p><hr /></p>
     </div>
-    <p><hr /></p>
-    <br />
-    <div class="row">
-      <div align="center"><h1>*Proveedores*</h1></div>
-      <div class="span12">
-        <div class="span6">
-          <img th:src="@{/images/juguetron.png}" style=" width: 900px !important;height: 204px !important;border-style: outset; border-width: 1px;" align="middle"/>
-        </div>
-        <div class="span4">
-          <img th:src="@{/images/Mabe_logo.png}" style=" width: 900px !important;height: 204px !important; border-style: outset; border-width: 1px;" align="middle"/>
-        </div>
-      </div>
-      <div class="span12">
-        <p><br /></p> 
-        <div class="span4">
-          <img th:src="@{/images/AEROMEXICO-LOGO1.jpg}" style=" width: 900px !important;height: 204px !important;border-style: outset; border-width: 1px;" align="middle"/>
-        </div>
-        <div class="span6">
-          <img th:src="@{/images/benotoo.jpg}" style=" width: 900px !important;height: 204px !important;border-style: outset; border-width: 1px;" align="middle"/>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('#productCarrousel').carousel({
-        interval: 2000
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#productCarrousel').carousel({
+          interval: 3500
+        });
       });
-    });
-  </script>
+    </script>
+  </div>
 </body>
 </html>

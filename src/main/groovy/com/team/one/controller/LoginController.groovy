@@ -1,5 +1,6 @@
 package com.team.one.controller
 
+import com.team.one.repository.RegistrationCodeRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -8,23 +9,21 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.stereotype.Controller
 import org.springframework.web.servlet.ModelAndView
-import org.springframework.web.context.request.WebRequest
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.WebDataBinder
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
-import java.util.Optional
+
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import com.team.one.service.*
 import com.team.one.domain.*
 import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
+
 import com.team.one.service.ClientService
 import com.team.one.domain.validator.ChangePasswordFormValidator
 import com.team.one.command.ResetPasswordCommand
-import com.team.one.domain.UserRepository
-import com.team.one.domain.User
+import com.team.one.repository.UserRepository
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 
@@ -78,6 +77,7 @@ class LoginController {
     def link = generedLink("resetPassword",registrationCode.token,request)
     def map = [email: email, token: link]
     clientService.sendEmailForgotPassword(map)
+    model.addAttribute("success","Se ha enviado un correo con las instrucciones")
     return "login/forgotPassword"
   }
 

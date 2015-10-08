@@ -40,34 +40,39 @@
 
 </head>
 <body class="body">
+  <div class="container">
+    <div class="span12">
+      
+    </div>
+  </div>
+
   <div id="rt-drawer">
     <div class="rt-container">
       <div class="rt-grid-12 rt-alpha rt-omega">
         <div class="rt-block ">
           <div class="module-surround">
             <div class="module-content">
-              <div class="custom">
-                <div align="center" th:if="${session.SPRING_SECURITY_CONTEXT}">
-                 <div class="span12"></div>
-                  <form th:action="@{/logout}" method="post">
-                    <button type="submit" class="btn btn-inverse" >Cerrar sesión</button>
-                  </form>
-                </div>
-                <div align="center" th:unless="${session.SPRING_SECURITY_CONTEXT}">
-                 <div class="span12"></div>
-                  <span><a th:href="@{'/Users/create'}" class="btn btn-info"><font>Registrate</font></a></span>
-                </div>
+              <div align="center">
+                <a th:href="@{'/'}"><img th:src="@{/images/LogoValuarte.png}" src="../../images/LogoValuarte.png"  alt="Valuarte" height="1000" width="860" border="0" align="middle" style="margin-bottom:-100px;margin-top:-60px;" /></a>
               </div>
-              <div class="custom"  align="center">
-                <p><a th:href="@{'/'}"><img th:src="@{/images/LogoValuarte.png}" src="../../images/LogoValuarte.png"  alt="Valuarte" height="1300" width="900" border="0" align="middle"/></a></p>
-              </div>
-              <div class="custom" >
-                <div  align="center"  th:unless="${session.SPRING_SECURITY_CONTEXT}">
-                  <a th:href="@{'/login'}"><img src="../../images/Inicio.png" h:src="@{/images/Inicio.png}"/></a>
-                  <div class="span12"></div>
+            </div>
+            <div class="container">
+              <div class="row-fluid">
+                <div class="span12">
+                  <div class="span3 offset9 " >
+                    <br /><br />
+                    <div class="btn-group btn-justified">
+                      <div class="span6"><span th:unless="${session.SPRING_SECURITY_CONTEXT}"><a th:href="@{'/login'}" class="btn btn-login bnt-block">Login</a></span></div>
+                      <div class="span6"><span th:unless="${session.SPRING_SECURITY_CONTEXT}"><a th:href="@{'/Users/create'}" class="btn btn-primary btn-block"><font>Registrate</font></a></span></div>
+                      <div class="span6"><span th:if="${session.SPRING_SECURITY_CONTEXT}"><a href="#" id="logout" class="btn btn-inverse btn-block">Cerrar sesión</a></span></div>
+                      <form th:action="@{/logout}" method="post" id="formLogout">
+                      </form>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+            <br />
           </div>
         </div>
       </div>
@@ -78,8 +83,8 @@
   <div align="right">
     <div class="navbar navbar-inverse">
       <div class="navbar-inner">
-        <div class="span3"></div>
-        <div class="span8">
+        <div class="span2"></div>
+        <div class="span10">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -87,29 +92,29 @@
           </a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-               <li class="dropdown">
-                 <a th:href="@{'/who'}" id="who" data-toggle="dropdown" class="dropdown-toggle">QUIÉNES SOMOS<b class="caret"></b></a>
-                 <ul class="dropdown-menu" id="mision">
-                   <li><a th:href="@{'/mision'}">MISIÓN/VISIÓN</a></li>
-                 </ul>
-               </li>
-               <li><a th:href="@{'/products'}">PRODUCTOS</a></li>
-               <li class="dropdown">
-                 <a id="benefit" data-toggle="dropdown" class="dropdown-toggle">BENEFICIOS<b class="caret"></b></a>
-                 <ul class="dropdown-menu" id="product">
-                   <li><a th:href="@{'/benefits'}">CÓMO LOGRARLO</a></li>
-                   <li><a th:href="@{'/product/'}">ARTÍCULOS</a></li>
-                 </ul>
-               </li>
-               <li><a th:href="@{'/contact'}">CONTACTO</a></li>
-               <li><a th:href="@{'/education'}">EDUCACION FINANCIERA</a></li>
-               <li><a th:href="@{'/privacy'}">AVISO DE PRIVACIDAD</a></li>
-               <li sec:authorize="hasRole('ADMIN')">
-                 <a th:href="@{'/adminCredit/create'}">Solicitud de reestructura</a>
-               </li>
-               <li sec:authorize="hasRole('ADMIN')">
-                 <a th:href="@{'/upload/create'}">Subir productos</a>
-               </li>
+              <li class="dropdown">
+                <a th:href="@{'/who'}" id="who" data-toggle="dropdown" class="dropdown-toggle">QUIÉNES SOMOS<b class="caret"></b></a>
+                <ul class="dropdown-menu" id="mision">
+                  <li><a th:href="@{'/mision'}">MISIÓN/VISIÓN</a></li>
+                </ul>
+              </li>
+              <li><a th:href="@{'/products'}">PRODUCTOS</a></li>
+              <li class="dropdown">
+                <a id="benefit" data-toggle="dropdown" class="dropdown-toggle">BENEFICIOS<b class="caret"></b></a>
+                <ul class="dropdown-menu" id="product">
+                  <li><a th:href="@{'/benefits'}">CÓMO LOGRARLO</a></li>
+                  <li><a th:href="@{'/product/'}">ARTÍCULOS</a></li>
+                </ul>
+              </li>
+              <li><a th:href="@{'/contact'}">CONTACTO</a></li>
+              <li><a th:href="@{'/education'}">EDUCACION FINANCIERA</a></li>
+              <li><a th:href="@{'/privacy'}">AVISO DE PRIVACIDAD</a></li>
+              <li sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{'/adminCredit/create'}">Solicitud de reestructura</a>
+              </li>
+              <li sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{'/upload/create'}">Subir productos</a>
+              </li>
              </ul>
           </div>
         </div>
@@ -124,7 +129,7 @@
   </div>
 </div>
 </body>
-<div id="footer" class="footer">
+<div id="footer" class="footer" th:fragment="footer">
     <div class="row-fluid">
       <div class="span1"></div>
       <div class="span11">
@@ -156,6 +161,9 @@
     });
     $("#product").on('mouseleave',function(e){
       $("#product").slideUp(2000);
+    });
+    $("#logout").on('click', function() {
+      $("#formLogout").submit();
     });
   });
 </script>

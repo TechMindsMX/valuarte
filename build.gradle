@@ -1,62 +1,56 @@
 buildscript {
-    ext {
-        springBootVersion = '1.2.5.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
- //     classpath 'mysql:mysql-connector-java:5.1.34'
- //     classpath "org.liquibase:liquibase-gradle-plugin:1.1.0"
-      classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-      classpath("org.springframework:springloaded:1.2.4.RELEASE")
-      classpath 'com.bluepapa32:gradle-watch-plugin:0.1.5'
-    }
+  ext {
+    springBootVersion = '1.2.5.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+    jcenter()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    classpath("org.springframework:springloaded:1.2.4.RELEASE")
+    classpath 'com.bluepapa32:gradle-watch-plugin:0.1.4'
+  }
 }
 
+apply plugin: 'com.bluepapa32.watch'
 apply plugin: 'groovy'
+apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'war'
-apply plugin: 'com.bluepapa32.watch'
 
 war {
-    baseName = 'valuarte'
-    version = '0.0.1-SNAPSHOT'
+  baseName = 'valuarte'
+  version = '0.0.1-SNAPSHOT'
 }
-/*
-jar {
-    baseName = 'spring'
-      version = '0.0.1-SNAPSHOT'
-}*/
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-    compile('org.codehaus.jackson:jackson-mapper-asl:1.9.13')
-    compile('net.sourceforge.jexcelapi:jxl:2.6.12')
-    compile('org.springframework.boot:spring-boot-starter-security')
-    compile("org.springframework.boot:spring-boot-starter-actuator")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity3')
-    compile("org.codehaus.groovy:groovy-all:2.4.4")
-    compile("mysql:mysql-connector-java:5.1.34")
-    compile("org.codehaus.groovy:groovy-ant:2.0.1")
-    compile("com.google.code.gson:gson:2.3.1")
-    testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
-    testCompile("org.springframework.boot:spring-boot-starter-test")
-//    runtime 'org.liquibase:liquibase-groovy-dsl:1.1.0'
+  compile('org.codehaus.jackson:jackson-mapper-asl:1.9.13')
+  compile('net.sourceforge.jexcelapi:jxl:2.6.12')
+  compile('org.springframework.boot:spring-boot-starter-security')
+  compile("org.springframework.boot:spring-boot-starter-actuator")
+  compile("org.springframework.boot:spring-boot-starter-data-jpa")
+  compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+  compile("org.springframework.boot:spring-boot-starter-web")
+  compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity3')
+  compile("org.codehaus.groovy:groovy-all:2.4.4")
+  compile("mysql:mysql-connector-java:5.1.34")
+  compile("org.codehaus.groovy:groovy-ant:2.0.1")
+  compile("com.google.code.gson:gson:2.3.1")
+  testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
+  testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
+  gradleVersion = '2.3'
 }
 
 compileGroovy {
@@ -71,20 +65,21 @@ watch {
 }
 
 bootRun {
-    systemProperties = System.properties
+  systemProperties = System.properties
+} // This is because: gradle bootRun -Dspring.config.location=$HOME/.valuarte/application.yml
+
+run {
+  systemProperties = System.properties
 } // This is because: gradle bootRun -Dspring.config.location=$HOME/.valuarte/application.yml
 
 test {
-    systemProperties = System.properties
+  systemProperties = System.properties
 } // This is because: gradle -Dtest.single=ApplicationContextBaseTest -Dspring.config.location=$HOME/.valuarte/application.yml test
 
-/*liquibase {
-  activities {
-    main {
-     changeLogFile "${project.projectDir}/src/main/db/changelogs.groovy"
-     url 'jdbc:mysql://localhost:3306/valuarte'
-     username 'root'
-     password ''
-    }
-  }
-}*/
+task watching {
+  new Thread({
+    tasks.watch.execute()
+  } as Runnable).start()
+}
+
+//bootRun.dependsOn watching
