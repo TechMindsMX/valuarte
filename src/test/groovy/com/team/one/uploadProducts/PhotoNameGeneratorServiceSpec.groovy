@@ -1,7 +1,7 @@
 package com.team.one.uploadProducts
 
 import spock.lang.Specification
-import com.team.one.service.uploadProducts.PhotoNameGeneratorServiceImpl
+import com.team.one.service.impl.PhotoNameGeneratorServiceImpl
 
 class PhotoNameGeneratorServiceSpec extends Specification {
 

@@ -1,8 +1,8 @@
 package com.team.one.service
 
+import com.team.one.service.impl.DatePaymentServiceImpl
 import spock.lang.Specification
 import com.team.one.domain.Simulator
-import com.team.one.service.SimulatorDataServiceImpl
 import com.team.one.domain.PaymentPeriod
 import com.team.one.exception.SimulatorException
 
