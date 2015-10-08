@@ -13,14 +13,11 @@ class InsuranceDataServiceSpec extends Specification {
 
   Integer decimals = 2
   String roundingMode = 'HALF_UP'
-
   def ppmtService = Mock(PPMTService)
-  def interest = new BigDecimal(100.00)
-  def capital = new BigDecimal(228.92)
 
   def setup(){
     service.ppmtService = ppmtService
-    ppmtService.calculate(_, _, _) >> capital
+    ppmtService.calculate(_, _, _) >> 2128.04 >> 2210.32 >> 2295.79 >> 2384.56 >> 2476.76
 
     service.decimals = decimals
     service.roundingMode = roundingMode
@@ -43,7 +40,7 @@ class InsuranceDataServiceSpec extends Specification {
     given:"A simulator and principle"
       def simulator = new Simulator()
       simulator.numberOfPayments = 12
-      simulator.loan = 31732.00
+      simulator.loan = 31732
       simulator.iva = 16
     when:"We calculate data"
       def result = service.calculate(simulator)
