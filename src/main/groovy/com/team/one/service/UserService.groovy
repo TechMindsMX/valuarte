@@ -1,8 +1,7 @@
 package com.team.one.service
 
+import com.team.one.command.UserCommand
 import com.team.one.domain.*
-import java.util.Optional
-
 
 public interface UserService {
 
@@ -11,6 +10,8 @@ public interface UserService {
 	Optional<User> getUserByUsername(String username)
 
     Optional<User> getAllUsers()
+
+    User getUserByEmail(String email)
 
     User create(UserCommand command)
 

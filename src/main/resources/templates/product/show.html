@@ -1,17 +1,90 @@
 <!DOCTYPE HTML>
-
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+layout:decorator="layout">
   <head>
-    <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+      /*Change the colour*/
+      .active img {
+        border: 2px solid #333 !important;
+      }
+    </style>
   </head>
-  <body>
-    <p th:text="'name: '+${product.name}" />
-    <p th:text="'category: Producto'" />
-    <p th:text="${'dateCreated: '+beans.dateFormatter.format(product.timeCreated)}" />
-    <p th:text="'ROI Financiadores: 0%'" />
-    <p th:text="'ROI Inversionistas: 0%'" />
-    <p th:text="'Balance: $0.00'" />
-    <img th:attr="src=@{'http://192.168.0.122/avatar/' + ${product.avatar}},title=#{logo},alt=#{logo}" />
-  </body>
+    <body>
+      <div layout:fragment="content">
+        <div class="container">
+          <div class="row-fluid" style="background-color:white;">
+            <div class="span10" >
+              <br />
+              <div class="span12">
+                <div class="span5" >
+                  <img id="images" th:attr="src=@{${pathUrl} + ${product.projectPhotos.get(0)['url']}}, data-zoom-image=@{${pathUrl} + ${product.projectPhotos.get(0)['url']}}" width="400" height="460"/>
+                  <div class="span12" align="center">
+                    <p><font size="6" color="black"><p th:text="'$'+${product.getElementInDescriptionByPosition(1)}"/></font></p>
+                  </div>
+                </div>
+                <div class="span7">
+                  <div class="alert alert-info">
+                    <h1><p th:text="${product.getNameOfProduct()}" /></h1>
+                  </div>
+                  Descripción
+                  <p th:utext="${product.getElementInDescriptionByPosition(2)}"></p>
+                </div>
+              </div>
+            </div>
+            <div class="span2">
+              <br />
+              <div id="gal1">
+                <span th:each="images : ${product.projectPhotos}">
+                  <a href="#" th:attr="data-image=@{${pathUrl} + ${images['url']}}, data-zoom-image=@{${pathUrl} + ${images['url']}}">
+                    <img id="img_01" th:attr="src=@{${pathUrl} + ${images['url']}}" height="68px" width="100px" />
+                  </a>
+                </span>
+              </div>
+            </div>
+            <div class="span11">
+              <p><hr style="background-color: #055285;height: 3px;" /></p>
+              <div class="span11">
+                <div class="span5" style="border-style: solid;border-color: #ffffff;border-right-color: #055285;">
+                  <br />
+                  <div class="progress progress-info progress-striped">
+                    <div class="bar" style="width: 20%"></div>
+                    <p>*porcentaje de inversión 20%</p>
+                  </div>
+                </div>
+                <div class="span2" align="center" style="border-style: solid;border-color: #ffffff;border-right-color: #055285;">
+                  <p align="">ROI Financiadores:</p>
+                  <font color="#055285" size="5"> 0%</font>
+                </div>
+                <div class="span2" style="border-style: solid;border-color: #ffffff;border-right-color: #055285;" align="center">
+                  <p align="">ROI Inversionistas:</p>
+                  <font color="#055285" size="5"> 0%</font>
+                </div>
+                <div class="span3" align="center">
+                  <br />
+                  <a href="" class="btn btn-login btn-large ">Invertir</a>
+                </div>
+              </div>
+              <br /><br /> 
+              <br /><br /> 
+            </div>
+          </div>
+          <br /><br />
+        </div>
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $('#images').ezPlus({
+              gallery: 'gal1', cursor: 'pointer', galleryActiveClass: 'active',
+              imageCrossfade: true, loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'
+            });
+            $('#images').bind('click', function (e) {
+              var ez = $('#images').data('ezPlus');
+              $.fancyboxPlus(ez.getGalleryList());
+              return false;
+            });          
+          });
+        </script>
+      </div>
+    </body>
   </html>

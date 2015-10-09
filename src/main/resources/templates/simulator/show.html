@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <p th:text="'RFC: ' + ${client.rfc}" />
+    <p th:text="'firstName: ' + ${client.firstName}" />
+    <p th:text="'lastName: ' + ${client.lastName}" />
+    <p th:text="'Total del Crédito: ' + ${simulator.loan}" />
+    <p th:text="'Tasa de interés Anualizada: ' + ${simulator.tia}" />
+    <p th:text="'Comisión por Apertura: ' + ${simulator.openingCommission}" />
+    <p th:text="'IVA: ' + ${simulator.iva}" />
+    <p th:text="'Frecuencia de Pago: ' + ${simulator.paymentPeriod}" />
+    <p th:text="'Número de Pagos: ' + ${simulator.numberOfPayments}" />
+    <p th:text="'Días de Pago: ' + ${simulator.paymentPeriod.value}" />
+    <p th:text="'Fecha de Inicio: ' + ${simulator.startDate}" />
+    <p th:text="'Seguro de Vida y Desempleo: ' + ${simulator.lifeInsurance}" />
+    <p th:text="'Pago: ' + ${simulator.payment}" />
+  </body>
+</html>

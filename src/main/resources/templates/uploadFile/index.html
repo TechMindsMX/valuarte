@@ -1,10 +1,24 @@
-<html>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="layout">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
   <body>
-    <form method="POST" enctype="multipart/form-data" action="/upload/save">
-      File to Upload: <input type="file" name="file"/><br />
-      Zip File to Upload: <input type="file" name="zipFile"/><br />
-      Name : <input type="text" name="name"/><br />
-      <input type="submit" value="Upload"/>
-    </form>
+    <div layout:fragment="content">
+    	<header id="rt-top-surround" class="rt-dark">
+    	  <div class="row-fluid">
+    	    <div class="span1"></div>
+    	    <div class="span10 back-lines-who info" >  
+				    <form method="POST" enctype="multipart/form-data" action="/upload/save">
+					    Archivo Excel de productos : <input type="file" name="file"/><br />
+					    Archivo zip con la imagenes de los productos : <input type="file" name="zipFile"/><br />
+					    <input type="submit" class="btn btn-large btn-primary" value="Cargar"/>
+					  </form>
+					</div>
+				</div>
+			</header>
+		</div>
   </body>
 </html>

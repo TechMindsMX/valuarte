@@ -3,3 +3,8 @@
 build/
 .DS_Store
 src/main/resources/static/assets/third-party/
+**/*.iml
+.idea/
+gradle/
+gradlew.bat
+gradlew

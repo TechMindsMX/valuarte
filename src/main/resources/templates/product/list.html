@@ -7,48 +7,30 @@ layout:decorator="layout">
 </head>
 <body>
   <div layout:fragment="content">
-   <header id="rt-top-surround" class="rt-dark">
-    <div class="row-fluid">
-      <div class="span12">
-        <div class="span1"></div>
-        <div class="span10 products">
-          <br />
-          <h1 class="info">PRODUCTOS</h1>
-          <div class="span12">
-              <div class="span3"><button style="border-radius: 25px; background-color: #606060; color:white; border-style:none;" class="btn-large">MÁS APOYADOS</button></div>
-              <div class="span3"><button style="border-radius: 25px; background-color: #606060; color:white; border-style:none;" class="btn-large">PROXIMOS A CERRAR</button></div>
-              <div class="span2"><button style="border-radius: 25px; background-color: #606060; color:white; border-style:none;" class="btn-large">VER TODOS</button></div>
-              <div class="span2">
-                <form class="form-horizontal">
-                  <div class="control-group">
-                    <label class="control-label" for="busqueda"><img src="../../images/Lupa_Beneficios.png" h:src="@{/images/Lupa_Beneficios.png}" width="13%" />&nbsp;<font size="5">BÚSQUEDA</font></label>  
-                    <div class="controls">
-                      <input type="text" class="input-large search-query" />
-                    </div>
-                  </div>
-                </form>
-              </div>
-            <p><br /><br /></p>
-            <p><HR COLOR="white" WIDTH="95%" size="5" /></p>
-          </div>
-          <div class="carousel slide span11" id="productCarrousel">
-            <div class="carousel-inner span11" >
+    <div class="container">
+      <div class="row">
+        <div class="span12 products">
+          <h1><font color="white">Productos</font></h1>
+          <div class="carousel slide " id="productCarrousel" >
+            <div class="carousel-inner" >
               <div th:each="productList, plStat : ${productGroupList}" class="item" th:classappend="|${plStat.first ? 'active' : ''} ${plStat.odd ? 'odd' : 'even'}|" align="center">
                 <div class="span12" >
-                  <div class="span1"></div>
                   <p th:each="product : ${productList}">
                     <div class="span3">
-                      <img th:attr="src=@{'http://192.168.0.122/cienhundreds/photos/' + ${product.projectPhotos.get(0).url}},title=#{logo},alt=#{logo}" />
-                      <p><br /></p>
-                      <font size="5" align="left"><p th:text="${product.name}" /></font>
+                      <img style=" width: 186px !important;height: 244px !important;" th:attr="src=@{${pathUrl} + ${product.projectPhotos.get(0).url}}" />
+                      <br /><br /><br />
+                      <font size="4" color="white"><p th:text="${product.name.split('-')[1]}"></p></font>
                       <p><HR COLOR="white" WIDTH="95%" size="5" /></p>
-                      <div align="center">
-                        <div class="span2"></div>
-                        <div class="span3"><font size="9">NA</font><p>Financieros</p></div>
-                        <div class="span2"><font size="9">|</font></div>
-                        <div class="span2"><font size="9">NA</font><p>Inversionistas</p></div>
+                      <div class="row-fluid" align="center">
+                        <div class="span12" >
+                          <div class="span2"></div>
+                          <div class="span3"><font size="7">0</font><p>Financieros</p></div>
+                          <div class="span2"><font size="7"> | </font></div>
+                          <div class="span2"><font size="7">0</font><p>Inversionistas</p></div>
+                        </div>
                       </div>
-                      <input type="image" th:src="@{/images/ BotonInvertir_Beneficios2.png}"/>
+                      <a th:href="|@{/product/show(productId=${product.id})}|"><input type="image" th:src="@{/images/BotonInvertir_Beneficios2.png}"/></a>
+                      <br /><br />                      
                     </div>
                     <div class="span1"></div>
                   </p>
@@ -57,18 +39,18 @@ layout:decorator="layout">
             </div>
             <a data-slide="prev" href="#productCarrousel" class="left carousel-control">‹</a>
             <a data-slide="next" href="#productCarrousel" class="right carousel-control">›</a>
-         </div>
-       </div>
-     </div>
-   </div>
- </header>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('#productCarrousel').carousel({
-        interval: 2000
+          </div>
+        </div>
+      </div>
+      <p><hr /></p>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#productCarrousel').carousel({
+          interval: 3500
+        });
       });
-  });
-</script>
-</div>
+    </script>
+  </div>
 </body>
 </html>

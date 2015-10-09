@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Valuarte</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="../../images/favicon.ico"  th:href="@{/images/favicon.ico}" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+  <link rel="stylesheet" th:href="@{/assets/third-party/bootstrap/docs/assets/css/bootstrap.css}" href="../../assets/third-party/bootstrap/docs/assets/css/bootstrap.css"/>
+
+  <link rel="stylesheet" href="../../assets/third-party/bootstrap/docs/assets/css/bootstrap-responsive.css" th:href="@{/assets/third-party/bootstrap/docs/assets/css/bootstrap-responsive.css}" />
+  
+  <link rel="stylesheet" th:href="@{/assets/fonts/Muli/fonts.css}" href="../../assets/fonts/Muli/fonts.css" />
+  <link rel="stylesheet" th:href="@{/assets/fonts/Muli-Bold/fonts.css}" href="../../assets/fonts/Muli-Bold/fonts.css" />
+  <link rel="stylesheet" th:href="@{/assets/fonts/Muli-BoldItalic/fonts.css}" href="../../assets/fonts/Muli-BoldItalic/fonts.css" />
+  <link rel="stylesheet" th:href="@{/assets/fonts/Muli-Italic/fonts.css}" href="../../assets/fonts/Muli-Italic/fonts.css" />
+  <link rel="stylesheet" th:href="@{/assets/fonts/Muli-SemiBold/fonts.css}" href="../../assets/fonts/Muli-SemiBold/fonts.css" />
+
+  <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css-compiled/master-2a71248fdddc7d84748cd15f74ded47e.css}" href="../../assets/rt_hexeris/css-compiled/master-2a71248fdddc7d84748cd15f74ded47e.css"/>
+  <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css-compiled/section-2a71248fdddc7d84748cd15f74ded47e.css}" href="../../assets/rt_hexeris/css-compiled/section-2a71248fdddc7d84748cd15f74ded47e.css"/>
+  <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css-compiled/mediaqueries.css}" href="../../assets/rt_hexeris/css-compiled/mediaqueries.css"/>
+  <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css-compiled/rtl.css}" href="../../assets/rt_hexeris/css-compiled/rtl.css"/>
+  <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css-compiled/thirdparty-k2.css}" href="../../assets/rt_hexeris/css-compiled/thirdparty-k2.css"/>
+  <link rel="stylesheet" th:href="@{/assets/rt_hexeris/css/rt_hexeris-custom.css}" href="../../assets/rt_hexeris/css/rt_hexeris-custom.css"/>
+  <link rel="stylesheet" th:href="@{/assets/third-party/pickadate/lib/themes/default.css}" href="../../assets/third-party/pickadate/lib/themes/default.css" />
+  <link rel="stylesheet" th:href="@{/assets/third-party/pickadate/lib/themes/default.date.css}" href="../../assets/third-party/pickadate/lib/themes/default.date.css" />
+  <link rel="stylesheet" th:href="@{/assets/third-party/pickadate/lib/themes/default.time.css}" href="../../assets/third-party/pickadate/lib/themes/default.time.css" />
+  <link rel="stylesheet" th:href="@{/assets/third-party/fontawesome/css/font-awesome.css}" href="../../assets/third-party/fontawesome/css/font-awesome.css" />
+
+  <script src="../../assets/third-party/jquery/jquery.js" th:src="@{/assets/third-party/jquery/jquery.js}"/>
+  <script th:src="@{/assets/third-party/bootstrap/docs/assets/js/bootstrap.js}" src="../../assets/third-party/bootstrap/docs/assets/js/bootstrap.js"/>
+  <script th:src="@{/assets/third-party/bootstrap/docs/assets/js/bootstrap-collapse.js}" src="../../assets/third-party/bootstrap/docs/assets/js/bootstrap-collapse.js"/>
+  <script th:src="@{/assets/third-party/elevatezoom-plus/src/jquery.ez-plus.js}" src="../../assets/third-party/elevatezoom-plus/src/jquery.ez-plus.js"/>
+  <script th:src="@{/assets/third-party/pickadate/lib/picker.js}" src="../../assets/third-party/pickadate/lib/picker.js"/>
+  <script th:src="@{/assets/third-party/pickadate/lib/picker.date.js}" src="../../assets/third-party/pickadate/lib/picker.date.js"/>
+  <script th:src="@{/assets/third-party/pickadate/lib/picker.time.js}" src="../../assets/third-party/pickadate/lib/picker.time.js"/>
+
+</head>
+<body >
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="span4"></div>
+        <div class="span4">
+          <img th:src="@{/images/LogoValuarte.png}" src="../../images/LogoValuarte.png"  alt="Valuarte" height="200" width="350" border="0" align="middle"/>
+        </div>
+        <div class="span4">
+          <div class="span12">
+            <div class="span3 offset2"></div>
+            <div class="span3 offset2">
+              <div align="center" th:if="${session.SPRING_SECURITY_CONTEXT}">
+                <div class="span12"></div>
+                <form th:action="@{/logout}" method="post">
+                  <button type="submit" class="btn btn-inverse" >Cerrar sesión</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="container">
+    <div class="span12">
+      <div class="span5">
+        <a href="" class="btn btn-large"><i class="fa fa-shield"></i> Marcas</a>
+        <a href="" th:href="@{'/product/'}" class="btn btn-large"><i class="fa fa-desktop"></i> Productos</a>
+        <a href="" class="btn btn-large"><i class="fa fa-area-chart"></i> Top 5</a>
+      </div>
+      <div class="span4"></div>
+      <div class="span2">
+        <a href="" th:href="@{'/'}" class="btn btn-large"><i class="fa fa-caret-square-o-up"></i> Inicio</a>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div layout:fragment="content" class="container">
+
+    </div>
+  </div>
+  </body>
+  <br /><br /><br /><br /><br /><br />
+  <div id="footer" style="background-color:#606060;">
+    <div class="container">
+      <div class="row-fluid">
+        <div class="span12">
+        <br />
+          <div class="span6" align="left">
+            <font color="white"> 
+              <h1>CONTACTO</h1>
+              <font size="4">Teléfono: 0155 1664 6771      Mail: servicio@valuarte.mx </font>
+              <h1>AVISO DE PRIVACIDAD 2015</h1>
+              <font size="4">Servicios Financieros con Valores S.A. de C.V. (VALUARTE)<br />
+              Sistemas de Inversiones al Consumo S.A. de C.V.</font>
+              <p><br /></p>
+            </font>
+          </div>
+          <div class="span5" style="border-left: solid white;padding-left:2em;">
+            <br />
+            <p><a th:href="@{'/privacy'}">AVISO DE PRIVACIDAD</a></p>
+            <p><a th:href="@{'/mision'}">MISIÓN/VISIÓN</a></p>
+            <p><a th:href="@{'/contact'}">CONTACTO</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>

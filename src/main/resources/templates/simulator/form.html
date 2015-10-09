@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="materialize">
+  <head>
+    <title>Valuarte</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <div layout:fragment="content">
+      <div class="section registro">
+        <h2>Simulación de crédito</h2>
+        <div th:if="${error}">
+          <p th:each="er : ${error}">
+            <p th:text="${er}" align="center" class="alert alert-error"/>
+          </p>
+        </div>
+        <form id="simulator" action="#" th:object="${simulatorCommand}" method="post" class="col s12">
+          <div class="row">
+            <div class="input-field col s4">
+              <label>RFC:</label>
+              <input type="text" th:field="*{rfc}"/>
+            </div>
+            <div class="input-field col s4">
+              <label>Nombre:</label>
+              <input type="text" th:field="*{nombre}"/>
+            </div>
+            <div class="input-field col s4">
+              <label>Apellido Paterno:</label>
+              <input type="text" th:field="*{apellidoPaterno}"/>
+            </div>
+            <div class="input-field col s4">
+              <label>Apellido Materno:</label>
+              <input type="text" th:field="*{apellidoMaterno}"/>
+            </div>
+          </div>
+          <div class="row">
+            <h3>Condiciones de crédito</h3>
+            <div class="input-field col s4">
+              <label>Total del Crédito:</label>
+              <input type="text" th:field="*{loan}"/>
+            </div>
+            <div class="input-field col s4">
+              <label>Tasa de Interés Anualizada:</label>
+              <input type="text" th:field="*{tia}"/>
+            </div>
+            <div class="input-field col s4">
+              <label>Comisión por Apertura:</label>
+              <input type="text" th:field="*{openingCommission}"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s3">
+              <label>IVA:</label>
+              <input type="text" th:field="*{iva}"/>
+            </div>
+            <div class="input-field col s3">
+              <select class="browser-default" name="paymentPeriod" th:field="*{paymentPeriod}">
+                <option th:each="period : ${T(com.team.one.domain.PaymentPeriod).values()}" th:value="${period}" th:text="${period.label}"></option>
+              </select>
+            </div>
+            <div class="input-field col s3">
+              <label>Número de Pagos:</label>
+              <input type="text" th:field="*{numberOfPayments}"/>
+            </div>
+            <div class="input-field col s3">
+              <label for="datepicker">Fecha de Inicio:</label>
+              <input type="text" class="datepicker" th:field="*{startDate}" />
+            </div>
+          </div>
+          <button type="submit" class="btn waves-effect waves-light blue darken-4">
+            Mostrar la simulación <i class="material-icons right">send</i>
+          </button>
+        </form>
+      </div>
+
+      <div class="section registro" th:if="${detailOfPaymentsFromSimulator} != null">
+        <h5>Resultados de la simulación</h5>
+        <h6>Seguro de vida y desempleo: <strong th:text="${simulator.lifeInsurance}"></strong></h6>
+        <table class="striped">
+          <thead>
+            <tr>
+              <th data-field="id">#</th>
+              <th data-field="capitalBeforePayment">Antes de Pago</th>
+              <th data-field="capital">Capital</th>
+              <th data-field="interest">Interés</th>
+              <th data-field="payment">Pago</th>
+              <th data-field="iva">IVA</th>
+              <th data-field="iva">Después de Pago</th>
+              <th data-field="iva">Fecha de Pago</th>
+              <th data-field="insurance">Seguros</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr th:each="detailOfPayment : ${detailOfPaymentsFromSimulator}">
+              <td th:text="${detailOfPayment.number}">Number</td>
+              <td th:text="${detailOfPayment.capitalBeforePayment}">CapitalBeforePayment</td>
+              <td th:text="${detailOfPayment.capital}">Capital</td>
+              <td th:text="${detailOfPayment.interest}">Interest</td>
+              <td th:text="${simulator.payment}">Payment</td>
+              <td th:text="${detailOfPayment.iva}">IVA</td>
+              <td th:text="${detailOfPayment.capitalAfterPayment}">CapitalAfterPayment</td>
+              <td th:text="${beans.dateFormatter.format(detailOfPayment.paymentDate)}">PaymentDate</td>
+              <td th:text="${detailOfPayment.insurance}">Insurance</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <script src="../../js/simulator/app.js" th:src="@{/js/simulator/app.js}"/>
+    </div>
+  </body>
+</html>
