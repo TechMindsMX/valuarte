@@ -1,6 +1,11 @@
 package com.team.one.domain
 
+import org.springframework.data.annotation.Id
+
 class Simulator {
+
+  @Id
+  String id
 
   BigDecimal tia
   BigDecimal iva
