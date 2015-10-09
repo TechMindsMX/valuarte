@@ -35,9 +35,7 @@ class SimulatorServiceImpl implements SimulatorService {
     simulator.payment = pmtService.calculate(simulator)
     simulatorRepository.save(simulator)
 
-    simulatorRepository.findAll().each {
-      log.info it.dump()
-    }
+    log.info simulatorRepository.findOne(simulator.id).dump()
 
     simulator
   }
