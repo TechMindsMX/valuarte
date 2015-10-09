@@ -4,10 +4,14 @@ import com.team.one.domain.Simulator
 import com.team.one.service.PMTService
 import com.team.one.service.InsuranceService
 import com.team.one.service.SimulatorService
+import com.team.one.repository.SimulatorRepository
 import org.springframework.stereotype.Service
 import com.team.one.domain.PaymentPeriod
 import org.springframework.beans.factory.annotation.Autowired
 import com.team.one.exception.SimulatorException
+
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 @Service
 class SimulatorServiceImpl implements SimulatorService {
@@ -16,6 +20,10 @@ class SimulatorServiceImpl implements SimulatorService {
   PMTService pmtService
   @Autowired
   InsuranceService insuranceService
+  @Autowired
+  SimulatorRepository simulatorRepository
+
+  Logger log = LoggerFactory.getLogger(getClass())
 
   def calculate(Simulator simulator){
     if(!simulator.paymentPeriod){
@@ -25,6 +33,12 @@ class SimulatorServiceImpl implements SimulatorService {
     simulator.lifeInsurance = insuranceService.calculate(simulator)
     simulator.principle = simulator.loan + simulator.lifeInsurance
     simulator.payment = pmtService.calculate(simulator)
+    simulatorRepository.save(simulator)
+
+    simulatorRepository.findAll().each {
+      log.info it.dump()
+    }
+
     simulator
   }
 }

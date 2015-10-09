@@ -33,7 +33,7 @@ class SimulatorController {
   @Autowired
   DataBinderService dataBinderService
 
-  Logger log = LoggerFactory.getLogger(getClass());
+  Logger log = LoggerFactory.getLogger(getClass())
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(method=RequestMethod.GET)
@@ -73,10 +73,20 @@ class SimulatorController {
     modelAndView
   }
 
+  @PreAuthorize("hasAuthority('USER')")
+  @RequestMapping(value='save', method=RequestMethod.POST)
+  ModelAndView save(@ModelAttribute("simulator") SimulatorCommand simulatorCommand){
+    log.info "Creating snapshot"
+  	ModelAndView modelAndView = new ModelAndView("simulator/form")
+    modelAndView.addObject("simulatorCommand", simulatorCommand)
+    modelAndView
+  }
+
   @InitBinder
   void initBinder(WebDataBinder binder) {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM, yyyy", new Locale('es'))
     dateFormat.setLenient(false)
     binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true))
   }
+
 }
