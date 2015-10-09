@@ -9,6 +9,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.util.*
 import com.team.one.command.ProjectCommand
+import com.team.one.command.CategoryCommand
 import org.springframework.http.*
 import org.codehaus.jackson.map.ObjectMapper
 
@@ -44,7 +45,7 @@ class ClientServiceImpl implements ClientService {
       String descripcion = "${params[2]}-${params[5]}-${params[6]}"
       propertiesCreateProduct.userId = 1
       propertiesCreateProduct.name = name.toString()
-      propertiesCreateProduct.subcategory = obtainSubcategoryByNamey(params[1])
+      propertiesCreateProduct.subcategory = obtainSubcategoryByName(params[0].toString())
       propertiesCreateProduct.description = descripcion.toString()
       propertiesCreateProduct.photos = photoNameGeneratorService.getNames(params[2].toString(), params[3].toInteger())
       propertiesCreateProduct.token = token
@@ -99,8 +100,10 @@ class ClientServiceImpl implements ClientService {
 
   def findSubCategoryByName(String name) {
     RestTemplate restTemplate = new RestTemplate()
-    def resultCat = RestTemplate.getForObject(pathFindSubcategory + name,String.class)
-    resultCat
+    def resultCat = restTemplate.getForObject(pathFindSubcategory + name,String.class)
+    ObjectMapper mapper = new ObjectMapper()
+    CategoryCommand command = mapper.readValue(resultCat,CategoryCommand.class)
+    command.id
   }
 
   def createSubCategoryByName(String name) {
@@ -111,7 +114,7 @@ class ClientServiceImpl implements ClientService {
     resultSubCat
   }
 
-  private Integer obtainSubcategoryByName(String name) {
+  private def  obtainSubcategoryByName(def name) {
     def subcategory = findSubCategoryByName(name)
     if(!subcategory)
       subcategory = createSubCategoryByName(name)
