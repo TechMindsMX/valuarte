@@ -1,7 +1,6 @@
 package com.team.one.service
 
-import com.team.one.domain.*
-import com.team.one.command.*
+import com.team.one.domain.Client
 
 interface AdminCreditService {
 
