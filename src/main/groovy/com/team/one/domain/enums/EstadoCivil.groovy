@@ -1,7 +1,7 @@
 package com.team.one.domain.enums
 
 enum EstadoCivil {
-  CASADOi("Casado"),
+  CASADO("Casado"),
   SOLTERO("Soltero/a"),
   UNIONLIBRE("Union Libre"),
   VIUDO("Viudo/a")
