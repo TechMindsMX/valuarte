@@ -5,6 +5,7 @@ import org.springframework.web.servlet.ModelAndView
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.InitBinder
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.ModelAttribute
@@ -47,8 +48,9 @@ class SimulatorController {
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(method=RequestMethod.POST)
-  ModelAndView save(@Valid @ModelAttribute("simulator") SimulatorCommand simulatorCommand, BindingResult bindingResult){
+  ModelAndView save(@Valid @ModelAttribute("simulator") SimulatorCommand simulatorCommand, @RequestParam(required=false, defaultValue="") String type, BindingResult bindingResult){
     log.info "Simulating"
+    log.info "Type: ${type}"
   	ModelAndView modelAndView = new ModelAndView("simulator/form")
 
     if (bindingResult.hasErrors()) {
