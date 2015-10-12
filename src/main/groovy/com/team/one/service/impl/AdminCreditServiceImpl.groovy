@@ -28,9 +28,11 @@ class AdminCreditServiceImpl implements AdminCreditService {
     WorkInfoRepository workR
     @Autowired
     ClientRepository clientR
+    @Autowired
+    UserClientRepository userClientRepository
 
     @Override
-    Client create(List domainList,String userCreate) {
+    Client create(List domainList,String userCreate,User user) {
       def address = addressR.save(domainList.address)
       def endorsement = endorsementR.save(domainList.endorsement)
       def financial = financialR.save(domainList.financial)
@@ -48,7 +50,13 @@ class AdminCreditServiceImpl implements AdminCreditService {
       client.workInfo = workInfo
       client.userCreate = userCreate
       clientR.save(client)
+      createClientRelationshipWithUser(client,user)
+      client
+    }
 
+    private def createClientRelationshipWithUser(Client client, User user) {
+      UserClient userClient = new UserClient(user: user,client: client)
+      userClientRepository.save(userClient)
     }
 
 }
