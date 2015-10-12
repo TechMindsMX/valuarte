@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory
 import com.team.one.service.SimulatorService
 import com.team.one.service.SimulatorDataService
 import com.team.one.service.DataBinderService
+import com.team.one.repository.SimulatorRepository
 
 @Controller
 @RequestMapping("/simulator")
@@ -31,6 +32,8 @@ class SimulatorController {
   SimulatorService simulatorService
   @Autowired
   SimulatorDataService simulatorDataService
+  @Autowired
+  SimulatorRepository simulatorRepository
   @Autowired
   DataBinderService dataBinderService
 
@@ -67,6 +70,11 @@ class SimulatorController {
     def client = dataBinderService.bindClient(simulatorCommand)
     def simulator = dataBinderService.bindSimulator(simulatorCommand)
     simulatorService.calculate(simulator)
+
+    if (type.equals("save")) {
+      simulatorRepository.save(simulator)
+    }
+
     def detailOfPaymentsFromSimulator = simulatorDataService.calculate(simulator)
     modelAndView.addObject("simulatorCommand", simulatorCommand)
     modelAndView.addObject("simulator", simulator)
