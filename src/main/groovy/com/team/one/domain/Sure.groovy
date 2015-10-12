@@ -10,19 +10,19 @@ class Sure {
   	@GeneratedValue(strategy=GenerationType.AUTO)
   	Long id
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String tipoSeguro
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String nombreBeneficiario1
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String nombreBeneficiario2
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String domicilioBeneficiario1
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String domicilioBeneficiario2
 
 }

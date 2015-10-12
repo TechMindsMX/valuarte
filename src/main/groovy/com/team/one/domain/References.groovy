@@ -11,40 +11,40 @@ class References {
   	Long id
 
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String nombreCompletoRefFamiliar
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String parentescoFamiliar
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String telefonoFamiliar
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String domicilioFamiliar
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String nombreCompletoRefLaboral
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String parentescoLaboral
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String telefonoLaboral
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String domicilioLaboral
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String nombreCompletoRefPersonal1
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String parentescoPersonal1
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String telefonoPersonal1
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String domicilioPersonal1
 	
 	@Column(nullable = true)

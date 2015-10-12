@@ -10,31 +10,31 @@ class TransactionalProfile {
   	@GeneratedValue(strategy=GenerationType.AUTO)
   	Long id
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	FuenteIngresos fuenteIngresos
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String fuenteIngresosOtros
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String profesionOcupacion
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String actividadGiroNegocio
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	RangoMensual rangoMensual
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	OrigenRecursos origenRecursos
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	InstrumentoPago instrumentoPago
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String numeroPagosFrecuencia
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	String montoPagos
 
 }
