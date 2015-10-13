@@ -31,7 +31,8 @@ class SimulatorServiceImpl implements SimulatorService {
     }
 
     simulator.lifeInsurance = insuranceService.calculate(simulator)
-    simulator.principle = simulator.loan + simulator.lifeInsurance + openingCommissionService.calculate(simulator)
+    simulator.principle = openingCommissionService.calculate(simulator)
+    simulator.principle += simulator.lifeInsurance
     simulator.payment = pmtService.calculate(simulator)
 
     simulator
