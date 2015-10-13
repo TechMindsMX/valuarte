@@ -45,7 +45,7 @@ class Client {
   @Column(nullable = false)
   GradoMaximoEstudios grado
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   String gradoOtro
 
   @Column(nullable = false)
@@ -54,7 +54,7 @@ class Client {
   @Column(nullable = false)
   TipoIdentificacion identificacion
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   String identificacionOtro
 
 
