@@ -1,7 +1,7 @@
 package com.team.one.service
 
 interface DocumentService {
-	
-	def createDocumentStartedKit(def userCommand)
+
+	def createDocumentStartedKit(def client, def docuemntName)
 
 }
