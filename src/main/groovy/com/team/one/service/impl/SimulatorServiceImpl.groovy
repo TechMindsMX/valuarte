@@ -19,6 +19,8 @@ class SimulatorServiceImpl implements SimulatorService {
   PMTService pmtService
   @Autowired
   InsuranceService insuranceService
+  @Autowired
+  OpeningCommissionService openingCommissionService
 
   Logger log = LoggerFactory.getLogger(getClass())
 
@@ -28,7 +30,7 @@ class SimulatorServiceImpl implements SimulatorService {
     }
 
     simulator.lifeInsurance = insuranceService.calculate(simulator)
-    simulator.principle = simulator.loan + simulator.lifeInsurance
+    simulator.principle = simulator.loan + simulator.lifeInsurance + openingCommissionService.calculate(simulator)
     simulator.payment = pmtService.calculate(simulator)
 
     simulator
