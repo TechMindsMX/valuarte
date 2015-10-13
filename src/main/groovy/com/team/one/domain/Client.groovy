@@ -2,6 +2,7 @@ package com.team.one.domain
 
 import com.team.one.domain.enums.*
 import javax.persistence.*
+import com.team.one.domain.*
 import static java.util.UUID.randomUUID
 
 @Entity
@@ -44,7 +45,7 @@ class Client {
   @Column(nullable = false)
   GradoMaximoEstudios grado
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   String gradoOtro
 
   @Column(nullable = false)
@@ -53,7 +54,7 @@ class Client {
   @Column(nullable = false)
   TipoIdentificacion identificacion
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   String identificacionOtro
 
 
@@ -69,15 +70,35 @@ class Client {
   @Column(nullable = false)
   String nacionalidad
 
-  Long addressId
-  Long endorsementId
-  Long financialInfoId
-  Long referencesId
-  Long sureId
-  Long transactionalProfileId
-  Long workInfoId
-
   @Column(nullable = false)
   String userCreate
+
+  @OneToOne(fetch=FetchType.LAZY)
+  @JoinColumn(name="ADDRESS_ID")
+  Address address
+
+  @OneToOne(fetch=FetchType.LAZY)
+  @JoinColumn(name="ENDORSENMENT_ID")
+  Endorsement endorsement
+
+  @OneToOne(fetch=FetchType.LAZY)
+  @JoinColumn(name="FINANCIAL_INFO_ID")
+  FinancialInfo financialInfo
+
+  @OneToOne(fetch=FetchType.LAZY)
+  @JoinColumn(name="REFERENCE_ID")
+  References references
+
+  @OneToOne(fetch=FetchType.LAZY)
+  @JoinColumn(name="SURE_ID")
+  Sure sure
+  
+  @OneToOne(fetch=FetchType.LAZY)
+  @JoinColumn(name="TRANSACTIONAL_PROFILE_ID")
+  TransactionalProfile transactionalProfile
+  
+  @OneToOne(fetch=FetchType.LAZY)
+  @JoinColumn(name="WORK_INFO_ID")
+  WorkInfo workInfo
 
 }

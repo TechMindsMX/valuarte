@@ -10,31 +10,31 @@ class WorkInfo {
   @GeneratedValue(strategy=GenerationType.AUTO)
   Long id
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   String profecion
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   String empresa
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   String giroActividad
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   TipoContrato contrato
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   Date fechaIngreso
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   String sueldoMensual
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   String domicilioEmpresa
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   String ciudadEstadoEmpresa
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   String telefonoEmpresa
 
 }

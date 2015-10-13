@@ -15,8 +15,6 @@ class AdminCreditServiceImpl implements AdminCreditService {
     @Autowired
     AddressRepository addressR
     @Autowired
-    ClientRepository clientR
-    @Autowired
     EndorsementRepository endorsementR
     @Autowired
     FinancialInfoRepository financialR
@@ -28,27 +26,36 @@ class AdminCreditServiceImpl implements AdminCreditService {
     TransactionalProfileRepository transactionalR
     @Autowired
     WorkInfoRepository workR
+    @Autowired
+    ClientRepository clientR
+    @Autowired
+    UserClientRepository userClientRepository
 
     @Override
-    Client create(List domainList,String userCreate) {
+    Client create(Map domainList,String userCreate,User user) {
       def address = addressR.save(domainList.address)
       def endorsement = endorsementR.save(domainList.endorsement)
       def financial = financialR.save(domainList.financial)
-      def reference = referenceR.save(domainList.refrence)
+      def reference = referenceR.save(domainList.reference)
       def sure = sureR.save(domainList.sure)
       def transactional = transactionalR.save(domainList.transactional)
       def workInfo = workR.save(domainList.work)
       def client = domainList.client
-      client.addressId = address.id
-      client.endorsementId = endorsement.id
-      client.financialInfoId = financial.id
-      client.referencesId = reference.id
-      client.sureId = sure.id
-      client.transactionalProfileId = transactional.id
-      client.workInfoId = workInfo.id
+      client.address = address
+      client.endorsement = endorsement
+      client.financialInfo = financial
+      client.references = reference
+      client.sure = sure
+      client.transactionalProfile = transactional
+      client.workInfo = workInfo
       client.userCreate = userCreate
       clientR.save(client)
+      client
+    }
 
+    private def createClientRelationshipWithUser(Client client, User user) {
+      UserClient userClient = new UserClient(user: user,client: client)
+      userClientRepository.save(userClient)
     }
 
 }

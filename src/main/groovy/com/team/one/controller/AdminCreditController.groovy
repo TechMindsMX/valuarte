@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder
 import com.team.one.domain.*
 import org.springframework.ui.Model
 import com.team.one.service.AdminCreditService
+import com.team.one.repository.UserRepository
 
 @Controller
 @RequestMapping("/adminCredit")
@@ -18,6 +19,8 @@ class AdminCreditController {
 
   @Autowired
   AdminCreditService service
+  @Autowired
+  UserRepository userRepository
 
   @PreAuthorize("hasAuthority('ADMIN')")
   @RequestMapping(value="/create",method=RequestMethod.GET)
@@ -30,16 +33,17 @@ class AdminCreditController {
   @RequestMapping(value="/save", method=RequestMethod.POST)
   String save(CreditCommand command, BindingResult result,Model model) {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication()
-    String name = auth.getName()
+    String userCreate = auth.getName()
     def address = command.addressCommand.generateAddress()
     def endorsement = command.endorsementCommand.generateEndorsement()
     def financialInfo = command.financialInfoCommand.generateFinancialInfo()
     def references = command.referencesCommand.generateReferences()
     def sure = command.sureCommand.generateSure()
     def transactionalProfile = command.transactionalProfileCommand.generateTransactionalProfile()
-    def workInfo = commad.workInfoCommand.generateWorkInfo()
+    def workInfo = command.workInfoCommand.generateWorkInfo()
     def client = command.clientCommand.generateClient()
-    List domainList = [
+    def user = userRepository.findByEmail(address.email)
+    Map domainList = [
                         address:address,
                         endorsement:endorsement,
                         financial:financialInfo,
@@ -50,8 +54,8 @@ class AdminCreditController {
                        client:client
                       ]
 
-    def clientPersistence = service.create(domainList,name)
-    model.aadAtribute("clientUuid",clientPersistence.uuid)
+    def clientPersistence = service.create(domainList,userCreate,new User())
+    model.addAtribute("clientUuid",clientPersistence.uuid)
     "adminCredit/form"
   }
 

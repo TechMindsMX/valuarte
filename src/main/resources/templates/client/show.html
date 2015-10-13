@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="layout">
+  <head>
+    <title>Valuarte-Admin</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <div layout:fragment="content">
+      <div class="container">
+      	<div class="span12">
+      		<table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Apellido Paterno</th>
+                  <th>Apellido Materno</th>
+                  <th>RFC</th>
+                  <th>CURP</th>
+                  <th>Monto del prestamo</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+              	<span th:each="client : ${clients}">
+                	<tr>
+                	  <td><span th:text="${client.nombre}"></span></td>
+                	  <td><span th:text="${client.apellidoPaterno}"></span></td>
+                	  <td><span th:text="${client.apellidoMaterno}"></span></td>
+                	  <td><span th:text="${client.rfc}"></span></td>
+                	  <td><span th:text="${client.curp}"></span></td>
+                	  <td><span th:text="${client.montoPrestamo}"></span></td>
+                	  <td><a th:href="|@{/startKit/create/(uuid=${client.uuid})}|" target="_blank"> <button class="btn btn-mini btn-primary" type="button">Generar</button></a></td>
+                	</tr>
+                </span>
+              </tbody>
+            </table>
+      	</div>
+      </div>
+    </div>
+  </body>
+</html>

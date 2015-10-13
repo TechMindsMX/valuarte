@@ -10,43 +10,43 @@ class Endorsement {
   @GeneratedValue(strategy=GenerationType.AUTO)
   Long id
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   String nombreAval
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String apellidoPaternoAval
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String apellidoMaternoAval
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   Date fechaNacimeintoAval
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   TipoIdentificacion identificacionAval
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String identificacionOtroAval
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String nombreEmpresaAval
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String giroActividadAval
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String telefonoTrabajoAval
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   TipoContrato contratoAval
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String sueldoMensualAval
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String domicilioEmpresaAval
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String ciudadEstadoAval
 
 }
