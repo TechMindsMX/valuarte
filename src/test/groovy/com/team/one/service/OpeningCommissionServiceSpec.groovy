@@ -24,8 +24,8 @@ class OpeningCommissionServiceSpec extends Specification {
       def simulator = new Simulator()
     when:"We have this values"
       simulator.loan = loan
-      simulator.openingCommission = openingCommission
       simulator.iva = iva
+      simulator.openingCommission = openingCommission
     then:"We calculate values"
       result == service.calculate(simulator)
     where:"We have next cases"
@@ -36,6 +36,18 @@ class OpeningCommissionServiceSpec extends Specification {
     31732  | 2                 | 15  || 32479.02
     31732  | 0                 | 16  || 31732
     31732  | 0                 | 0   || 31732
+  }
+
+  void "should throw an exception when no loan"() {
+    given:"A simulator"
+      def simulator = new Simulator()
+    and:"Input values"
+      simulator.iva = 16
+      simulator.openingCommission = 2
+    when:"We calculate data"
+      service.calculate(simulator)
+    then:"Thrown exception"
+      thrown SimulatorException
   }
 
 }
