@@ -10,55 +10,55 @@ class Address {
   @GeneratedValue(strategy=GenerationType.AUTO)
   Long id
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   String domicilio
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   String telefono
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String celular
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String telefonoOficina
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String email
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   TipoVivienda vivienda
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String tiempoResidencia
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String rentaCosto
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String hipotecaCosto
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   Integer dependientes
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String codigoPostal
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String calleYNumero
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String colonia
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String delegacionMunicipio
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String ciudadOEstado
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String pais
   
-  @Column(nullable = false)
+  @Column(nullable = true)
   String referenciaDomicilio
 
 }
