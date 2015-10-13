@@ -31,11 +31,11 @@ class InsuranceDataServiceImpl implements InsuranceDataService {
     if(!simulator.numberOfPayments || simulator.numberOfPayments < 0)
       throw new SimulatorException()
 
-    def capitalBeforePayment = simulator.loan
+    def capitalBeforePayment = simulator.principle
     def factor = 2.43
 
     (1..simulator.numberOfPayments).each { n ->
-      def capital = ppmtService.calculate(simulator, simulator.loan, simulator.numberOfPayments - (n-1))
+      def capital = ppmtService.calculate(simulator, simulator.principle, simulator.numberOfPayments - (n-1))
       def capitalAfterPayment = (capitalBeforePayment - capital)
       def insurance = capitalBeforePayment * factor / 1000
       rows.add(insurance.setScale(decimals, RoundingMode.valueOf(roundingMode)))

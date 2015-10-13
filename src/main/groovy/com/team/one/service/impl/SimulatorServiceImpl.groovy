@@ -30,8 +30,8 @@ class SimulatorServiceImpl implements SimulatorService {
       throw new SimulatorException()
     }
 
-    simulator.lifeInsurance = insuranceService.calculate(simulator)
     simulator.principle = openingCommissionService.calculate(simulator)
+    simulator.lifeInsurance = insuranceService.calculate(simulator)
     simulator.principle += simulator.lifeInsurance
     simulator.payment = pmtService.calculate(simulator)
 

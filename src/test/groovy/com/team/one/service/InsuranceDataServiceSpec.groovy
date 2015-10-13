@@ -41,7 +41,7 @@ class InsuranceDataServiceSpec extends Specification {
     given:"A simulator and principle"
       def simulator = new Simulator()
       simulator.numberOfPayments = 12
-      simulator.loan = 31732
+      simulator.principle = 31732
       simulator.iva = 16
     when:"We calculate data"
       def result = service.calculate(simulator)
