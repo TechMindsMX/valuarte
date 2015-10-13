@@ -32,6 +32,10 @@ class OpeningCommissionServiceSpec extends Specification {
     loan   | openingCommission | iva || result
     31732  | 2                 | 16  || 32485.67
     100000 | 2                 | 16  || 102375.10
+    31732  | 10                | 16  || 35895.93
+    31732  | 2                 | 15  || 32479.02
+    31732  | 0                 | 16  || 31732
+    31732  | 0                 | 0   || 31732
   }
 
 }
