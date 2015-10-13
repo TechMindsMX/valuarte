@@ -31,6 +31,7 @@ class OpeningCommissionServiceSpec extends Specification {
     where:"We have next cases"
     loan   | openingCommission | iva || result
     31732  | 2                 | 16  || 32485.67
+    100000 | 2                 | 16  || 102375.10
   }
 
 }
