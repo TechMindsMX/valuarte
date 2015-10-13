@@ -21,7 +21,6 @@ import org.slf4j.LoggerFactory
 
 import com.team.one.service.SimulatorService
 import com.team.one.service.SimulatorDataService
-import com.team.one.service.DataBinderService
 import com.team.one.repository.SimulatorRepository
 
 @Controller
@@ -34,8 +33,6 @@ class SimulatorController {
   SimulatorDataService simulatorDataService
   @Autowired
   SimulatorRepository simulatorRepository
-  @Autowired
-  DataBinderService dataBinderService
 
   Logger log = LoggerFactory.getLogger(getClass())
 
@@ -67,8 +64,8 @@ class SimulatorController {
       return error
     }
 
-    def client = dataBinderService.bindClient(simulatorCommand)
-    def simulator = dataBinderService.bindSimulator(simulatorCommand)
+    def client = simulatorCommand.bindClient()
+    def simulator = simulatorCommand.bindSimulator()
     simulatorService.calculate(simulator)
 
     if (type.equals("save")) {

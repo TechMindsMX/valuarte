@@ -1,13 +1,10 @@
 package com.team.one.service
 
-import com.team.one.service.impl.DataBinderServiceImpl
 import spock.lang.Specification
 import com.team.one.command.SimulatorCommand
 import com.team.one.domain.PaymentPeriod
 
-class DataBinderServiceSpec extends Specification {
-
-  DataBinderServiceImpl service = new DataBinderServiceImpl()
+class SimulatorCommandSpec extends Specification {
 
   void "Should get Simulator from simulatorCommand"(){
     given:"An simulator command"
@@ -23,7 +20,7 @@ class DataBinderServiceSpec extends Specification {
       command.numberOfPayments = 12
       command.startDate = new Date()
     when:"We bind command"
-      def simulator = service.bindSimulator(command)
+      def simulator = command.bindSimulator()
     then:"We Expect simulator"
       simulator.tia == 40
       simulator.iva == 16
@@ -45,7 +42,7 @@ class DataBinderServiceSpec extends Specification {
       command.apellidoPaterno = "lastName"
       command.apellidoMaterno = "motherLastName"
     when:"We bind command"
-      def client = service.bindClient(command)
+      def client = command.bindClient()
     then:"We expect client data"
       client.rfc == "rfc"
       client.nombre == "name"
