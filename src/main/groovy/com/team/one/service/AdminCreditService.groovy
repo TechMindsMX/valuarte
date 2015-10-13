@@ -5,6 +5,6 @@ import com.team.one.domain.User
 
 interface AdminCreditService {
 
-  Client create(List domainList,String userCreate,User user)
+  Client create(Map domainList,String userCreate,User user)
 
 }
