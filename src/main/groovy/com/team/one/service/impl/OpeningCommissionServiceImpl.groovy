@@ -23,7 +23,7 @@ class OpeningCommissionServiceImpl implements OpeningCommissionService {
       throw new SimulatorException()
     }
 
-    return (simulator.loan / (1-(simulator.openingCommission/100 * (1 + simulator.iva/100)))).setScale(decimals, RoundingMode.valueOf(roundingMode))
+    return ((simulator.loan / (1-(simulator.commission/100 * (1 + simulator.iva/100)))) - simulator.loan).setScale(decimals, RoundingMode.valueOf(roundingMode))
   }
 
 }

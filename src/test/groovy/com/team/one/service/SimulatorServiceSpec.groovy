@@ -20,20 +20,19 @@ class SimulatorServiceSpec extends Specification {
     service.openingCommissionService = openingCommissionService
 
     insuranceService.calculate(_) >> 100
-    openingCommissionService.calculate(_) >> 2200
+    openingCommissionService.calculate(_) >> 20
   }
 
   void "should call pmt calculation service"() {
     given:"A simulator simulator"
       def simulator = new Simulator()
-      simulator.loan = 100
+      simulator.loan = 2000
       simulator.paymentPeriod = PaymentPeriod.WEEKLY
     when:"We assign values to simulator"
       service.calculate(simulator)
     then:"We calculate values"
       1 * pmtService.calculate(simulator)
-      simulator.lifeInsurance == 100
-      simulator.principle == 2300
+      simulator.principle == 2120
   }
 
   void "should send an exception if no paymentPeriod"() {

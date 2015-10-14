@@ -16,9 +16,10 @@ class SimulatorCommand {
   String apellidoMaterno
   Date now
 
-  BigDecimal openingCommission
+  BigDecimal commission
   BigDecimal payment
   BigDecimal principle
+  BigDecimal openingCommission
   BigDecimal lifeInsurance = 0
 
   PaymentPeriod paymentPeriod
