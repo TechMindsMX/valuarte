@@ -101,15 +101,17 @@
 
           <tbody>
             <tr th:each="detailOfPayment : ${detailOfPaymentsFromSimulator}">
-              <td th:text="${detailOfPayment.number}">Number</td>
-              <td th:text="${detailOfPayment.capitalBeforePayment}">CapitalBeforePayment</td>
-              <td th:text="${detailOfPayment.capital}">Capital</td>
-              <td th:text="${detailOfPayment.interest}">Interest</td>
-              <td th:text="${simulator.payment}">Payment</td>
-              <td th:text="${detailOfPayment.iva}">IVA</td>
-              <td th:text="${detailOfPayment.capitalAfterPayment}">CapitalAfterPayment</td>
-              <td th:text="${beans.dateFormatter.format(detailOfPayment.paymentDate)}">PaymentDate</td>
-              <td th:text="${detailOfPayment.insurance}">Insurance</td>
+              <div class="valign-wrapper">
+                <td class="right-align" th:text="${detailOfPayment.number}">Number</td>
+                <td class="right-align" th:text="${detailOfPayment.capitalBeforePayment}">CapitalBeforePayment</td>
+                <td class="right-align" th:text="${detailOfPayment.capital}">Capital</td>
+                <td class="right-align" th:text="${detailOfPayment.interest}">Interest</td>
+                <td class="right-align" th:text="${simulator.payment}">Payment</td>
+                <td class="right-align" th:text="${detailOfPayment.iva}">IVA</td>
+                <td class="right-align" th:text="${detailOfPayment.capitalAfterPayment}">CapitalAfterPayment</td>
+                <td class="center-align" th:text="${beans.dateFormatter.format(detailOfPayment.paymentDate)}">PaymentDate</td>
+                <td class="right-align" th:text="${detailOfPayment.insurance}">Insurance</td>
+              </div>
             </tr>
           </tbody>
         </table>
