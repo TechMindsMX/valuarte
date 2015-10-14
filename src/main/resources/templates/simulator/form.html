@@ -15,6 +15,9 @@
             <p th:text="${er}" align="center" class="alert alert-error"/>
           </p>
         </div>
+        <div class="card-panel light-blue darken-4 text-white" th:if="${saved}">
+            <span style="color:white">El ejercicio del simulador ha sido salvado</span>
+        </div>
         <form id="simulator" action="#" th:object="${simulatorCommand}" method="post" class="col s12">
           <div class="row">
             <div class="input-field col s4">

@@ -21,7 +21,6 @@ import org.slf4j.LoggerFactory
 
 import com.team.one.service.SimulatorService
 import com.team.one.service.SimulatorDataService
-import com.team.one.repository.SimulatorRepository
 
 @Controller
 @RequestMapping("/simulator")
@@ -31,8 +30,6 @@ class SimulatorController {
   SimulatorService simulatorService
   @Autowired
   SimulatorDataService simulatorDataService
-  @Autowired
-  SimulatorRepository simulatorRepository
 
   Logger log = LoggerFactory.getLogger(getClass())
 
@@ -52,6 +49,7 @@ class SimulatorController {
     log.info "Simulating"
     log.info "Type: ${type}"
   	ModelAndView modelAndView = new ModelAndView("simulator/form")
+    Boolean saved
 
     if (bindingResult.hasErrors()) {
       def mapErrors = []
@@ -69,13 +67,14 @@ class SimulatorController {
     simulatorService.calculate(simulator)
 
     if (type.equals("save")) {
-      simulatorRepository.save(simulator)
+      saved = simulatorService.save(simulator)
     }
 
     def detailOfPaymentsFromSimulator = simulatorDataService.calculate(simulator)
     modelAndView.addObject("simulatorCommand", simulatorCommand)
     modelAndView.addObject("simulator", simulator)
     modelAndView.addObject("client", client)
+    modelAndView.addObject("saved", saved)
     modelAndView.addObject("detailOfPaymentsFromSimulator", detailOfPaymentsFromSimulator)
     modelAndView
   }

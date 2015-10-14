@@ -8,6 +8,8 @@ import com.team.one.service.OpeningCommissionService
 import org.springframework.stereotype.Service
 import com.team.one.domain.PaymentPeriod
 import org.springframework.beans.factory.annotation.Autowired
+
+import com.team.one.repository.SimulatorRepository
 import com.team.one.exception.SimulatorException
 
 import org.slf4j.Logger
@@ -22,6 +24,8 @@ class SimulatorServiceImpl implements SimulatorService {
   InsuranceService insuranceService
   @Autowired
   OpeningCommissionService openingCommissionService
+  @Autowired
+  SimulatorRepository simulatorRepository
 
   Logger log = LoggerFactory.getLogger(getClass())
 
@@ -36,5 +40,10 @@ class SimulatorServiceImpl implements SimulatorService {
     simulator.payment = pmtService.calculate(simulator)
 
     simulator
+  }
+
+  Boolean save(Simulator simulator){
+    simulatorRepository.save(simulator)
+    return true
   }
 }
