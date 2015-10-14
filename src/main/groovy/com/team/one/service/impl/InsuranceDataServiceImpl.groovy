@@ -31,7 +31,7 @@ class InsuranceDataServiceImpl implements InsuranceDataService {
     if(!simulator.numberOfPayments || simulator.numberOfPayments < 0)
       throw new SimulatorException()
 
-    def capitalBeforePayment = simulator.loan
+    def capitalBeforePayment = simulator.loan + simulator.openingCommission
     def factor = 2.43
 
     (1..simulator.numberOfPayments).each { n ->

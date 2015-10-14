@@ -12,25 +12,27 @@ class SimulatorServiceSpec extends Specification {
 
   def pmtService = Mock(PMTService)
   def insuranceService = Mock(InsuranceService)
+  def openingCommissionService = Mock(OpeningCommissionService)
 
   def setup(){
     service.pmtService = pmtService
     service.insuranceService = insuranceService
+    service.openingCommissionService = openingCommissionService
 
     insuranceService.calculate(_) >> 100
+    openingCommissionService.calculate(_) >> 20
   }
 
   void "should call pmt calculation service"() {
     given:"A simulator simulator"
       def simulator = new Simulator()
-      simulator.loan = 100
+      simulator.loan = 2000
       simulator.paymentPeriod = PaymentPeriod.WEEKLY
     when:"We assign values to simulator"
       service.calculate(simulator)
     then:"We calculate values"
       1 * pmtService.calculate(simulator)
-      simulator.lifeInsurance == 100
-      simulator.principle == 200
+      simulator.principle == 2120
   }
 
   void "should send an exception if no paymentPeriod"() {

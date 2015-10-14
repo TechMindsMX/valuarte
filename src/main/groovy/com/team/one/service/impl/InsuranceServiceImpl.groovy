@@ -1,5 +1,8 @@
 package com.team.one.service.impl
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 import com.team.one.domain.Simulator
 import com.team.one.service.InsuranceService
 import com.team.one.service.InsuranceDataService
@@ -13,6 +16,8 @@ class InsuranceServiceImpl implements InsuranceService {
 
   @Autowired
   InsuranceDataService insuranceDataService
+
+  Logger log = LoggerFactory.getLogger(getClass());
 
   BigDecimal calculate(Simulator simulator){
     if(!simulator.loan)

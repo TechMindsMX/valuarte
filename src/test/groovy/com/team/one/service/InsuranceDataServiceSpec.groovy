@@ -42,15 +42,16 @@ class InsuranceDataServiceSpec extends Specification {
       def simulator = new Simulator()
       simulator.numberOfPayments = 12
       simulator.loan = 31732
+      simulator.openingCommission = 753.67
       simulator.iva = 16
     when:"We calculate data"
       def result = service.calculate(simulator)
     then:"We expect same principle with capital before payment"
-      result.get(0) ==  77.11
-      result.get(1) ==  71.94
-      result.get(2) ==  66.57
-      result.get(3) ==  60.99
-      result.get(4) ==  55.19
+      result.get(0) ==  78.94
+      result.get(1) ==  73.77
+      result.get(2) ==  68.40
+      result.get(3) ==  62.82
+      result.get(4) ==  57.02
       result.size() ==  12
   }
 

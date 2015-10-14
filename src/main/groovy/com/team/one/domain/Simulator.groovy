@@ -9,11 +9,12 @@ class Simulator {
 
   BigDecimal tia
   BigDecimal iva
-  BigDecimal openingCommission
+  BigDecimal commission
   BigDecimal loan
   BigDecimal payment
   BigDecimal principle
   BigDecimal lifeInsurance = 0
+  BigDecimal openingCommission
 
   PaymentPeriod paymentPeriod
   Integer numberOfPayments

@@ -5,6 +5,8 @@ import com.team.one.domain.PaymentPeriod
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Min
+import com.team.one.domain.Simulator
+import com.team.one.domain.Client
 
 class SimulatorCommand {
 
@@ -14,9 +16,10 @@ class SimulatorCommand {
   String apellidoMaterno
   Date now
 
-  BigDecimal openingCommission
+  BigDecimal commission
   BigDecimal payment
   BigDecimal principle
+  BigDecimal openingCommission
   BigDecimal lifeInsurance = 0
 
   PaymentPeriod paymentPeriod
@@ -38,5 +41,20 @@ class SimulatorCommand {
   @NotNull
   @Min(1L)
   Integer numberOfPayments
+
+
+  Simulator bindSimulator(){
+    def commandProperties = this.properties.findAll { k, v ->
+      Simulator.metaClass.getProperties()*.name.contains(k) && k != "class"
+    }
+    new Simulator(commandProperties)
+  }
+
+  Client bindClient(){
+    def commandProperties = this.properties.findAll { k, v ->
+      Client.metaClass.getProperties()*.name.contains(k) && k != "class"
+    }
+    new Client(commandProperties)
+  }
 
 }
