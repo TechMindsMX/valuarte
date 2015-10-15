@@ -66,7 +66,7 @@ class SimulatorController {
     simulatorService.calculate(simulator)
 
     if (simulatorCommand.saved.equals("save")) {
-      saved = simulatorService.save(simulator)
+      simulatorService.save(simulator)
     }
 
     def detailOfPaymentsFromSimulator = simulatorDataService.calculate(simulator)
