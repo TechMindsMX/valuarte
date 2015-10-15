@@ -65,7 +65,7 @@ class SimulatorController {
     def simulator = simulatorCommand.bindSimulator()
     simulatorService.calculate(simulator)
 
-    if (simulatorCommand.saved.equals("save")) {
+    if (simulatorCommand.saved) {
       simulatorService.save(simulator)
     }
 

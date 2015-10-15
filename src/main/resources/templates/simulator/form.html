@@ -15,7 +15,7 @@
             <p th:text="${er}" align="center" class="alert alert-error"/>
           </p>
         </div>
-        <div class="card-panel light-blue darken-4 text-white" th:if="${simulatorCommand.saved == 'save'}">
+        <div class="card-panel light-blue darken-4 text-white" th:if="${simulatorCommand.saved}">
             <span style="color:white">El ejercicio del simulador ha sido salvado</span>
         </div>
         <form id="simulator" action="#" th:object="${simulatorCommand}" method="post" class="col s12">
@@ -71,10 +71,10 @@
               <input type="text" class="datepicker" th:field="*{startDate}" />
             </div>
           </div>
-          <button type="submit" name="saved" th:field="*{saved}" value="send" class="btn waves-effect waves-light blue darken-4">
+          <button type="submit" name="saved" th:field="*{saved}" value="false" class="btn waves-effect waves-light blue darken-4">
             Mostrar la simulación <i class="material-icons right">send</i>
           </button>
-          <button type="submit" name="saved" th:field="*{saved}" value="save" class="btn waves-effect waves-light blue darken-4">
+          <button type="submit" name="saved" th:field="*{saved}" value="true" class="btn waves-effect waves-light blue darken-4">
             Guardar la simulación <i class="material-icons right">save</i>
           </button>
         </form>

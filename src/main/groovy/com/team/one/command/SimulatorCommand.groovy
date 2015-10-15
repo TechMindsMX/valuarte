@@ -14,7 +14,7 @@ class SimulatorCommand {
   String nombre
   String apellidoPaterno
   String apellidoMaterno
-  String saved
+  Boolean saved
   Date now
 
   BigDecimal commission
