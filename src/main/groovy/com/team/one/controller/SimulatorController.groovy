@@ -35,22 +35,20 @@ class SimulatorController {
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(method=RequestMethod.GET)
-  String create(Model model){
+  ModelAndView form(){
     log.info "Creating new simulator form"
     def simulatorCommand = new SimulatorCommand()
     simulatorCommand.now = new Date()
-    model.addAttribute("simulatorCommand", simulatorCommand)
-    "simulator/form"
+    ModelAndView modelAndView = new ModelAndView()
+    modelAndView.setViewName("simulator/form")
+    modelAndView.addObject("simulatorCommand", simulatorCommand)
+    modelAndView
   }
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(method=RequestMethod.POST)
-  ModelAndView save(@Valid @ModelAttribute("simulator") SimulatorCommand simulatorCommand, @RequestParam(required=false, defaultValue="") String type, BindingResult bindingResult){
+  ModelAndView save(@ModelAttribute("simulator") @Valid SimulatorCommand simulatorCommand, BindingResult bindingResult){
     log.info "Simulating"
-    log.info "Type: ${type}"
-  	ModelAndView modelAndView = new ModelAndView("simulator/form")
-    Boolean saved
-
     if (bindingResult.hasErrors()) {
       def mapErrors = []
       bindingResult.getFieldErrors().each{ error ->
@@ -66,25 +64,16 @@ class SimulatorController {
     def simulator = simulatorCommand.bindSimulator()
     simulatorService.calculate(simulator)
 
-    if (type.equals("save")) {
+    if (simulatorCommand.saved.equals("save")) {
       saved = simulatorService.save(simulator)
     }
 
     def detailOfPaymentsFromSimulator = simulatorDataService.calculate(simulator)
+  	ModelAndView modelAndView = new ModelAndView("simulator/form")
     modelAndView.addObject("simulatorCommand", simulatorCommand)
     modelAndView.addObject("simulator", simulator)
     modelAndView.addObject("client", client)
-    modelAndView.addObject("saved", saved)
     modelAndView.addObject("detailOfPaymentsFromSimulator", detailOfPaymentsFromSimulator)
-    modelAndView
-  }
-
-  @PreAuthorize("hasAuthority('USER')")
-  @RequestMapping(value='save', method=RequestMethod.POST)
-  ModelAndView save(@ModelAttribute("simulator") SimulatorCommand simulatorCommand){
-    log.info "Creating snapshot"
-  	ModelAndView modelAndView = new ModelAndView("simulator/form")
-    modelAndView.addObject("simulatorCommand", simulatorCommand)
     modelAndView
   }
 

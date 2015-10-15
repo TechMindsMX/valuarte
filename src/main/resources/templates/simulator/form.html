@@ -71,10 +71,10 @@
               <input type="text" class="datepicker" th:field="*{startDate}" />
             </div>
           </div>
-          <button type="submit" name="type" value="send" class="btn waves-effect waves-light blue darken-4">
+          <button type="submit" th:field="*{saved}" value="send" class="btn waves-effect waves-light blue darken-4">
             Mostrar la simulación <i class="material-icons right">send</i>
           </button>
-          <button type="submit" name="type" value="save" class="btn waves-effect waves-light blue darken-4">
+          <button type="submit" th:field="*{saved}" value="save" class="btn waves-effect waves-light blue darken-4">
             Guardar la simulación <i class="material-icons right">save</i>
           </button>
         </form>
