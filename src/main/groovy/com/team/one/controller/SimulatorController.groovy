@@ -49,6 +49,7 @@ class SimulatorController {
   @RequestMapping(method=RequestMethod.POST)
   ModelAndView save(@ModelAttribute("simulator") @Valid SimulatorCommand simulatorCommand, BindingResult bindingResult){
     log.info "Simulating"
+    log.info "type: ${simulatorCommand.saved}"
     if (bindingResult.hasErrors()) {
       def mapErrors = []
       bindingResult.getFieldErrors().each{ error ->
