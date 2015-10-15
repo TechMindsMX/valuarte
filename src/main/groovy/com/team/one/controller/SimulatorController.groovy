@@ -39,17 +39,13 @@ class SimulatorController {
     log.info "Creating new simulator form"
     def simulatorCommand = new SimulatorCommand()
     simulatorCommand.now = new Date()
-    ModelAndView modelAndView = new ModelAndView()
-    modelAndView.setViewName("simulator/form")
-    modelAndView.addObject("simulatorCommand", simulatorCommand)
-    modelAndView
+    new ModelAndView("simulator/form", "simulatorCommand", simulatorCommand)
   }
 
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(method=RequestMethod.POST)
   ModelAndView save(@ModelAttribute("simulator") @Valid SimulatorCommand simulatorCommand, BindingResult bindingResult){
     log.info "Simulating"
-    log.info "type: ${simulatorCommand.saved}"
     if (bindingResult.hasErrors()) {
       def mapErrors = []
       bindingResult.getFieldErrors().each{ error ->

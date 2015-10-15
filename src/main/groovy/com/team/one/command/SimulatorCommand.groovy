@@ -17,10 +17,10 @@ class SimulatorCommand {
   Boolean saved
   Date now
 
-  BigDecimal commission
   BigDecimal payment
   BigDecimal principle
   BigDecimal openingCommission
+  BigDecimal commission = 0
   BigDecimal lifeInsurance = 0
 
   PaymentPeriod paymentPeriod
@@ -29,11 +29,11 @@ class SimulatorCommand {
 
   @NotNull
   @DecimalMin(value="0.01", inclusive=true)
-  BigDecimal tia
+  BigDecimal tia = 0
 
   @NotNull
   @DecimalMin(value="0.01", inclusive=true)
-  BigDecimal iva
+  BigDecimal iva = 0
 
   @NotNull
   @DecimalMin(value="0.01", inclusive=true)
@@ -41,7 +41,7 @@ class SimulatorCommand {
 
   @NotNull
   @Min(1L)
-  Integer numberOfPayments
+  Integer numberOfPayments = 0
 
 
   Simulator bindSimulator(){
