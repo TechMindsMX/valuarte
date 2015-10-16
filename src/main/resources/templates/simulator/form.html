@@ -115,6 +115,7 @@
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.insurance)}">Insurance</td>
             </tr>
             <tr>
+              <div style="font-weight:bold;">
                 <td></td>
                 <td></td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(totalCapital)}">Total Capital</td>
@@ -124,6 +125,7 @@
                 <td></td>
                 <td></td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(totalInsurance)}">Total Seguros</td>
+              </div>
             </tr>
             </div>
           </tbody>
