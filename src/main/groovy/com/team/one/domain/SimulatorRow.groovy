@@ -9,6 +9,7 @@ class SimulatorRow {
   BigDecimal interest
   BigDecimal iva
   BigDecimal insurance
+  BigDecimal ratio
   Date paymentDate
 
 }
