@@ -102,8 +102,8 @@
           </thead>
 
           <tbody>
+            <div class="valign-wrapper">
             <tr th:each="detailOfPayment : ${detailOfPaymentsFromSimulator}">
-              <div class="valign-wrapper">
                 <td class="right-align" th:text="${detailOfPayment.number}">Number</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.capitalBeforePayment)}">CapitalBeforePayment</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.capital)}">Capital</td>
@@ -113,8 +113,13 @@
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.capitalAfterPayment)}">CapitalAfterPayment</td>
                 <td class="center-align" th:text="${beans.dateFormatter.format(detailOfPayment.paymentDate)}">PaymentDate</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.insurance)}">Insurance</td>
-              </div>
             </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td class="right-align" th:text="Capital">Capital</td>
+            </tr>
+            </div>
           </tbody>
         </table>
       </div>
