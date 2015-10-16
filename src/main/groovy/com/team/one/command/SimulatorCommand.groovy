@@ -5,8 +5,10 @@ import com.team.one.domain.PaymentPeriod
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Min
+
 import com.team.one.domain.Simulator
 import com.team.one.domain.Client
+import com.team.one.domain.enums.SimulatorType
 
 class SimulatorCommand {
 
