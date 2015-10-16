@@ -71,6 +71,11 @@ class SimulatorController {
     modelAndView.addObject("simulator", simulator)
     modelAndView.addObject("client", client)
     modelAndView.addObject("detailOfPaymentsFromSimulator", detailOfPaymentsFromSimulator)
+    modelAndView.addObject("totalCapital", detailOfPaymentsFromSimulator.capital.sum())
+    modelAndView.addObject("totalInterest", detailOfPaymentsFromSimulator.interest.sum())
+    modelAndView.addObject("totalPayment", simulator.payment * detailOfPaymentsFromSimulator.size())
+    modelAndView.addObject("totalIVA", detailOfPaymentsFromSimulator.iva.sum())
+    modelAndView.addObject("totalInsurance", detailOfPaymentsFromSimulator.insurance.sum())
     modelAndView
   }
 

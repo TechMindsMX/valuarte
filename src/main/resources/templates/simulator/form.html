@@ -117,13 +117,13 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td class="right-align" th:text="Capital">Capital</td>
-                <td class="right-align" th:text="Interés">Interés</td>
-                <td class="right-align" th:text="Pago">Pago</td>
-                <td class="right-align" th:text="IVA">IVA</td>
+                <td class="right-align" th:text="${beans.currencyFormatter.format(totalCapital)}">Total Capital</td>
+                <td class="right-align" th:text="${beans.currencyFormatter.format(totalInterest)}">Total Interés</td>
+                <td class="right-align" th:text="${beans.currencyFormatter.format(totalPayment)}">Total Pago</td>
+                <td class="right-align" th:text="${beans.currencyFormatter.format(totalIVA)}">Total IVA</td>
                 <td></td>
                 <td></td>
-                <td class="right-align" th:text="Seguros">Seguros</td>
+                <td class="right-align" th:text="${beans.currencyFormatter.format(totalInsurance)}">Total Seguros</td>
             </tr>
             </div>
           </tbody>
