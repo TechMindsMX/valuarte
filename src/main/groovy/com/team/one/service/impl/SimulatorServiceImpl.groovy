@@ -42,8 +42,8 @@ class SimulatorServiceImpl implements SimulatorService {
     simulator
   }
 
-  Boolean save(Simulator simulator){
+  def save(Simulator simulator){
     simulatorRepository.save(simulator)
-    return true
   }
+
 }
