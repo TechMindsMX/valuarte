@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value
 import java.math.RoundingMode
 
 import com.team.one.service.RewardDataService
+import com.team.one.exception.SimulatorException
 import com.team.one.domain.Simulator
 
 class RewardDataServiceImpl implements RewardDataService {
@@ -14,6 +15,9 @@ class RewardDataServiceImpl implements RewardDataService {
   String roundingMode
 
   def calculate(def rows){
+    if(!rows)
+      throw new SimulatorException()
+
     def ratios = []
     BigDecimal sum = rows.sum()
 

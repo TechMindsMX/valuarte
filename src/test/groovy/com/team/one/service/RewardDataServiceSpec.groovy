@@ -1,7 +1,7 @@
 package com.team.one.service
 
 import com.team.one.service.impl.RewardDataServiceImpl
-import com.team.one.exception.BusinessException
+import com.team.one.exception.SimulatorException
 
 import java.math.RoundingMode
 import spock.lang.Specification
@@ -24,11 +24,13 @@ class RewardDataServiceSpec extends Specification {
     result == [0.14, 0.13, 0.12, 0.11, 0.10, 0.09, 0.08, 0.07, 0.06, 0.04, 0.03, 0.01]
   }
 
-  void "should throw an exception when no interest information"
+  void "should throw an exception when no interest information"(){
   given:"An empty interest collection"
     def interests = []
   when:"Ratio is calculated"
-    def service.calculate(interests)
+    service.calculate(interests)
   then:"An exception occurred"
-    thrown BusinessException()
+    thrown SimulatorException
+  }
+
 }
