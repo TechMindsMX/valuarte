@@ -97,6 +97,7 @@
                 <th class="center-align" data-field="iva">Después de Pago</th>
                 <th class="center-align" data-field="iva">Fecha de Pago</th>
                 <th class="center-align" data-field="iva">Proporción</th>
+                <th class="center-align" data-field="iva">Recompensa</th>
                 <th class="center-align" data-field="insurance">Seguros</th>
               </div>
             </tr>
@@ -114,6 +115,7 @@
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.capitalAfterPayment)}">CapitalAfterPayment</td>
                 <td class="center-align" th:text="${beans.dateFormatter.format(detailOfPayment.paymentDate)}">PaymentDate</td>
                 <td class="right-align" th:text="${beans.numberFormatter.format(detailOfPayment.ratio)}">Ratio</td>
+                <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.reward)}">Reward</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.insurance)}">Insurance</td>
             </tr>
             <tr>
@@ -127,6 +129,7 @@
                 <td></td>
                 <td></td>
                 <td class="right-align" th:text="${beans.numberFormatter.format(totalRatio)}">Total Proporción</td>
+                <td class="right-align" th:text="${beans.currencyFormatter.format(totalReward)}">Total Recompensa</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(totalInsurance)}">Total Seguros</td>
               </div>
             </tr>
