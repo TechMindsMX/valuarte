@@ -18,14 +18,13 @@ class RewardDataServiceImpl implements RewardDataService {
     if(!rows)
       throw new SimulatorException()
 
-    def ratios = []
-    BigDecimal sum = rows.sum()
+    BigDecimal sum = rows.interest.sum()
 
     rows.each {
-      ratios.add((it/sum).setScale(decimals, RoundingMode.valueOf(roundingMode)))
+      it.ratio = (it.interest/sum).setScale(decimals, RoundingMode.valueOf(roundingMode))
     }
 
-    ratios
+    rows
   }
 
 }
