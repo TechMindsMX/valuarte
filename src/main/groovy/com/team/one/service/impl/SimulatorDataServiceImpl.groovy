@@ -1,8 +1,5 @@
 package com.team.one.service.impl
 
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-
 import com.team.one.domain.Simulator
 import com.team.one.service.DatePaymentService
 import com.team.one.service.InterestService
@@ -15,6 +12,9 @@ import java.math.RoundingMode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import com.team.one.exception.SimulatorException
+
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 @Service
 class SimulatorDataServiceImpl implements SimulatorDataService {
