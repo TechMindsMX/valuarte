@@ -15,6 +15,8 @@ class RewardDataServiceImpl implements RewardDataService {
   Integer decimals
   @Value('${simulator.roundingMode}')
   String roundingMode
+  @Value('${simulator.cost}')
+  BigDecimal cost
 
   def calculate(def rows){
     if(!rows)
@@ -23,7 +25,9 @@ class RewardDataServiceImpl implements RewardDataService {
     BigDecimal sum = rows.interest.sum()
 
     rows.each {
-      it.ratio = (it.interest/sum).setScale(decimals, RoundingMode.valueOf(roundingMode))
+      def ratio = it.interest/sum
+      it.ratio = ratio.setScale(decimals, RoundingMode.valueOf(roundingMode))
+      it.reward = (ratio * cost).setScale(decimals, RoundingMode.valueOf(roundingMode))
     }
 
     rows

@@ -10,6 +10,7 @@ class SimulatorRow {
   BigDecimal iva
   BigDecimal insurance
   BigDecimal ratio
+  BigDecimal reward
   Date paymentDate
 
 }
