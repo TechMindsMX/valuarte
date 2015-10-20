@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory
 import com.team.one.service.SimulatorService
 import com.team.one.service.SimulatorDataService
 import com.team.one.service.RewardDataService
+import com.team.one.service.SourceService
 
 @Controller
 @RequestMapping("/simulator")
@@ -33,6 +34,8 @@ class SimulatorController {
   SimulatorDataService simulatorDataService
   @Autowired
   RewardDataService rewardDataService
+  @Autowired
+  SourceService sourceService
 
   Logger log = LoggerFactory.getLogger(getClass())
 
@@ -70,6 +73,8 @@ class SimulatorController {
 
     def detailOfPaymentsFromSimulator = simulatorDataService.calculate(simulator)
     rewardDataService.calculate(detailOfPaymentsFromSimulator)
+    def sources = sourceService.findSources()
+
   	ModelAndView modelAndView = new ModelAndView("simulator/form")
     modelAndView.addObject("simulatorCommand", simulatorCommand)
     modelAndView.addObject("simulator", simulator)
