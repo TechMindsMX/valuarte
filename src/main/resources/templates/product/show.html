@@ -34,7 +34,7 @@ layout:decorator="layout">
                       <p th:utext="${product.getElementInDescriptionByPosition(2)}"></p>
                     </div>
                     <div class="span1"></div>
-                    <div class="span6" style="border-style: outset; border-width: 1px;">
+                    <div class="span6" style="border-style: outset; border-width: 1px;" th:if="${product.cast == 'seguro'}">
                       <div class="accordion" id="accordion2">
                         <div class="accordion-group">
                           <div class="accordion-heading">
