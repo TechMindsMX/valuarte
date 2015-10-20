@@ -39,7 +39,7 @@ class SimulatorController {
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(method=RequestMethod.GET)
   ModelAndView form(){
-    log.info "Creating new simulator form"
+    log.info "CREATING simulator"
     def simulatorCommand = new SimulatorCommand()
     simulatorCommand.now = new Date()
     new ModelAndView("simulator/form", "simulatorCommand", simulatorCommand)
