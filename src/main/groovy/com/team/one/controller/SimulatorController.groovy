@@ -1,6 +1,6 @@
 package com.team.one.controller
 
-import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.*
 import org.springframework.web.servlet.ModelAndView
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMethod
@@ -23,6 +23,9 @@ import com.team.one.service.SimulatorService
 import com.team.one.service.SimulatorDataService
 import com.team.one.service.RewardDataService
 import com.team.one.service.SourceService
+import com.team.one.service.ClientService
+import com.team.one.command.SeguroMedicoCommand
+import com.team.one.command.ProjectCommand
 
 @Controller
 @RequestMapping("/simulator")
@@ -36,6 +39,11 @@ class SimulatorController {
   RewardDataService rewardDataService
   @Autowired
   SourceService sourceService
+  @Autowired
+  ClientService clientService
+
+  @Value('${path.photos}')
+  String pathPhotoUrl
 
   Logger log = LoggerFactory.getLogger(getClass())
 
@@ -95,6 +103,18 @@ class SimulatorController {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM, yyyy", new Locale('es'))
     dateFormat.setLenient(false)
     binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true))
+  }
+
+  @PreAuthorize("hasAuthority('USER')")
+  @RequestMapping(value="/cotizar", method=RequestMethod.POST)
+  ModelAndView cotizar(@ModelAttribute("form") SeguroMedicoCommand command){
+    log.info "cotizar seguro"
+    ProjectCommand product  = clientService.getProductById(command.product.toInteger())
+    ModelAndView modelAndView = new ModelAndView("product/show")
+    modelAndView.addObject("product", product)
+    modelAndView.addObject("pathUrl", pathPhotoUrl)
+    modelAndView.addObject("costo", '$5,763.00')
+    modelAndView
   }
 
 }

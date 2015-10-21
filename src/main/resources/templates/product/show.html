@@ -28,8 +28,132 @@ layout:decorator="layout">
                   <div class="alert alert-info">
                     <h1><p th:text="${product.getNameOfProduct()}" /></h1>
                   </div>
-                  Descripción
-                  <p th:utext="${product.getElementInDescriptionByPosition(2)}"></p>
+                  <div class="span12">
+                    <div class="span5">
+                      Descripción
+                      <p th:utext="${product.getElementInDescriptionByPosition(2)}"></p>
+                    </div>
+                    <div class="span1"></div>
+                    <div class="span6" style="border-style: outset; border-width: 1px;" >
+                      <div class="accordion" id="accordion2">
+                        <div class="accordion-group">
+                          <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                            <b>Opción 1</b>
+                            </a>
+                          </div>
+                          <div id="collapseOne" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                                <dt>Suma asegurada</dt>
+                                <dd>$ 20,000.00</dd>
+                                <dt>Deducible</dt>
+                                <dd>$ 7,500.00</dd>
+                                <dt>Coasegurados</dt>
+                                <dd>10%</dd>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="accordion-group">
+                          <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                              <b>Opción 2</b>
+                            </a>
+                          </div>
+                          <div id="collapseTwo" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <dt>Suma asegurada</dt>
+                                <dd>$ 20,000.00</dd>
+                                <dt>Deducible</dt>
+                                <dd>$ 15,000.00</dd>
+                                <dt>Coasegurados</dt>
+                                <dd>10%</dd>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="accordion-group">
+                          <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                              <b>Opción 3</b>
+                            </a>
+                          </div>
+                          <div id="collapseThree" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <dt>Suma asegurada</dt>
+                                <dd>$ 30,000.00</dd>
+                                <dt>Deducible</dt>
+                                <dd>$ 7,500.00</dd>
+                                <dt>Coasegurados</dt>
+                                <dd>10%</dd>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="accordion-group">
+                          <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
+                              <b>Opción 4</b>
+                            </a>
+                          </div>
+                          <div id="collapseFour" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <dt>Suma asegurada</dt>
+                                <dd>$ 30,000.00</dd>
+                                <dt>Deducible</dt>
+                                <dd>$ 15,000.00</dd>
+                                <dt>Coasegurados</dt>
+                                <dd>10%</dd>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <form id="cotiza" action="#" th:action="@{/simulator/cotizar}" method="post">
+                       <input type="hidden" th:value="${productId}" name="product" />
+                        <div class="span5">
+                          <label class="radio">
+                            <input type="radio" name="optionsRadios" value="option1" checked="checked" />
+                            Opción 1
+                          </label>
+                          <label class="radio">
+                            <input type="radio" name="optionsRadios" value="option2" />
+                            Opción 2
+                          </label>
+                          <label class="radio">
+                            <input type="radio" name="optionsRadios" value="option3" />
+                            Opción 3
+                          </label>
+                          <label class="radio">
+                            <input type="radio" name="optionsRadios" value="option4" />
+                            Opción 4
+                          </label>
+                        </div>
+                        <div class="span1"></div>
+                        <div class="form-horizontal span6">
+                          SEXO :  
+                          <div class="control-group">
+                            <label class="radio inline">
+                              <input type="radio" name="sex" value="male" checked="checked" />
+                              M
+                            </label>
+                            <label class="radio inline">
+                              <input type="radio" name="sex" value="female" />
+                              F
+                            </label>
+                          </div>
+                          <p></p>
+                          <label>Edad</label>
+                          <input type="number" name="edad" class="span8" />
+                        </div>
+                        <div align="center">
+                          <p><br /><br /><br /></p>
+                          <p><br /><br /><br /></p>
+                         <button class="btn btn-small btn-primary" type="submit">Cotizar mi Seguro</button>
+                        </div>
+                      </form>
+                      <div class="alert" th:if="${costo}" align="center">
+                        Costo de la prima
+                        <p th:text="${costo}"></p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -63,7 +187,7 @@ layout:decorator="layout">
                 </div>
                 <div class="span3" align="center">
                   <br />
-                  <a href="" class="btn btn-login btn-large ">Invertir</a>
+                  <a href="" class="btn btn-login btn-large ">Adquirir</a>
                 </div>
               </div>
               <br /><br /> 

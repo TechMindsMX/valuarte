@@ -32,6 +32,7 @@ class ProductController {
     ModelAndView modelAndView = new ModelAndView("product/show")
     modelAndView.addObject("product", product)
     modelAndView.addObject("pathUrl", pathPhotoUrl)
+    modelAndView.addObject("productId", product.id)
   	modelAndView
   }
 

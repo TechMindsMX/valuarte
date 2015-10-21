@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired
 
 import com.team.one.repository.SimulatorRepository
 import com.team.one.exception.SimulatorException
+import com.team.one.command.SeguroMedicoCommand
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -44,6 +45,19 @@ class SimulatorServiceImpl implements SimulatorService {
 
   def save(Simulator simulator){
     simulatorRepository.save(simulator)
+  }
+
+
+  def getCostOfHealthInsurance(SeguroMedicoCommand command) {
+    def agePivot = getAge(command.edad)
+    agePivot
+
+  }
+
+  private def getAge(def edad) {
+    if (edad < 20)
+      return 1
+    edad
   }
 
 }

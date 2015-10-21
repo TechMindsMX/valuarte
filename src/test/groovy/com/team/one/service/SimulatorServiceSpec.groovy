@@ -5,6 +5,8 @@ import com.team.one.domain.Simulator
 import com.team.one.service.impl.SimulatorServiceImpl
 import com.team.one.domain.PaymentPeriod
 import com.team.one.exception.SimulatorException
+import com.team.one.command.SeguroMedicoCommand
+
 
 class SimulatorServiceSpec extends Specification {
 
@@ -42,6 +44,22 @@ class SimulatorServiceSpec extends Specification {
       service.calculate(simulator)
     then:"We expect an exception"
       thrown SimulatorException
+  }
+
+  void "get the cost of health insurance"() {
+    given: "create a seguroMedicoCommand"
+      def command = new SeguroMedicoCommand(edad:edad)
+    when:
+      def result  = service.getCostOfHealthInsurance(command)
+    then:
+      result == value
+    where:
+    edad || value
+     2   ||  1
+     16  ||  1
+     25  || 25
+     39  || 39
+     10  ||  1
   }
 
 }
