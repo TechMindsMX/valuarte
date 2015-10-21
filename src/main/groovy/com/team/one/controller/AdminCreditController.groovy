@@ -26,6 +26,7 @@ class AdminCreditController {
   @RequestMapping(value="/create",method=RequestMethod.GET)
   String createCreditValuarte(Map model) {
     model.creditCommand = new CreditCommand()
+    model.date = new Date().format("dd-MMM-yyyy")
     "adminCredit/form"
   }
 
