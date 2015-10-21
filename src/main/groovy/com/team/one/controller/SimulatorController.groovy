@@ -53,7 +53,10 @@ class SimulatorController {
     log.info "CREATING simulator"
     def simulatorCommand = new SimulatorCommand()
     simulatorCommand.now = new Date()
-    new ModelAndView("simulator/form", "simulatorCommand", simulatorCommand)
+  	ModelAndView modelAndView = new ModelAndView("simulator/form")
+    modelAndView.addObject("simulatorCommand", simulatorCommand)
+    modelAndView.addObject("sources", sourceService.findSources())
+    modelAndView
   }
 
   @PreAuthorize("hasAuthority('USER')")
@@ -81,12 +84,12 @@ class SimulatorController {
 
     def detailOfPaymentsFromSimulator = simulatorDataService.calculate(simulator)
     rewardDataService.calculate(detailOfPaymentsFromSimulator)
-    def sources = sourceService.findSources()
 
-  	ModelAndView modelAndView = new ModelAndView("simulator/form")
+    ModelAndView modelAndView = new ModelAndView("simulator/form")
     modelAndView.addObject("simulatorCommand", simulatorCommand)
     modelAndView.addObject("simulator", simulator)
     modelAndView.addObject("client", client)
+    modelAndView.addObject("sources", sourceService.findSources())
     modelAndView.addObject("detailOfPaymentsFromSimulator", detailOfPaymentsFromSimulator)
     modelAndView.addObject("totalCapital", detailOfPaymentsFromSimulator.capital.sum())
     modelAndView.addObject("totalInterest", detailOfPaymentsFromSimulator.interest.sum())

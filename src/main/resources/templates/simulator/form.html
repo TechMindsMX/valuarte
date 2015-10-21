@@ -36,6 +36,11 @@
               <label>Apellido Materno:</label>
               <input type="text" th:field="*{apellidoMaterno}"/>
             </div>
+            <div class="input-field col s3">
+              <select class="browser-default" name="source" th:field="${sources}">
+                <option th:each="source : ${sources}" th:value="${source.id}" th:text="${source.name}"></option>
+              </select>
+            </div>
           </div>
           <div class="row">
             <h3>Condiciones de crédito</h3>
