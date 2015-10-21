@@ -25,7 +25,7 @@ class SimulatorCommand {
   BigDecimal lifeInsurance = 0
 
   PaymentPeriod paymentPeriod
-  SimulatorType type = SimulatorType.RESTRUCTURE
+  SimulatorType type
   String paydays
   Date startDate
 
