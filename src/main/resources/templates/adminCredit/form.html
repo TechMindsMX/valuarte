@@ -18,9 +18,15 @@
             <h1 class="info">Solicitud de Préstamo y Formato de conocimiento del cliente</h1>
             <form id="credit" action="#" th:action="@{/adminCredit/save}" th:object="${creditCommand}" method="post" class="form">
               <div class="span12 info">
-                <div class="control-group">
-                  <label>Monto Solicitado</label>
-                  <input type="text" th:field="*{clientCommand.montoPrestamo}" class="span4 search-query" />
+                <div class="span12">
+                  <div class="control-group span10">
+                    <label>Monto Solicitado</label>
+                    <input type="text" th:field="*{clientCommand.montoPrestamo}" class="span4 search-query" />
+                  </div>
+                  <div class="control-group span2">
+                     <label>Fecha de captura</label>
+                    <b th:text="${date}" align="right"/>
+                  </div>
                 </div>
                 <hr />
                 <h1>1.- Datos Personales</h1>
@@ -93,11 +99,7 @@
                   </div>
                   <div class="span12"></div>
                   <div class="span12">
-                    <div class="span3">
-                      <label>F.I.E.L</label>
-                      <input type="text" class="span10 search-query" th:field="*{clientCommand.fiel}" />
-                    </div>
-                    <div class="span3">
+                    <div class="span4">
                       <label>CURP</label>
                       <input type="text" class="span10 search-query" th:field="*{clientCommand.curp}" />
                     </div>
@@ -116,13 +118,13 @@
                 <div class="row-fluid">
                   <div class="span12"></div>
                   <div class="span12">
-                    <div class="span5">
-                      <label>Telefono + Clave Lada</label>
-                      <input type="tel" class="span10 search-query" th:field="*{addressCommand.telefono}" />
-                    </div>
                     <div class="span6">
                       <label>Domicilio</label>
                       <input type="tel" class="span10 search-query" th:field="*{addressCommand.domicilio}" />
+                    </div>
+                     <div class="span5">
+                      <label>Telefono + Clave Lada</label>
+                      <input type="tel" class="span10 search-query" th:field="*{addressCommand.telefono}" />
                     </div>
                   </div>
                   <div class="span12"></div>
@@ -147,8 +149,8 @@
                       <input type="text" class="span10 search-query" th:field="*{addressCommand.ciudadOEstado}" />
                     </div>
                     <div class="span3">
-                      <label>Pais</label>
-                      <input type="text" class="span10 search-query" th:field="*{addressCommand.pais}" />
+                      <label>Codigo Postal</label>
+                      <input class="span10 search-query" th:field="*{addressCommand.codigoPostal}" type="text" />
                     </div>
                     <div class="span3">
                       <label>Referencia y/o Ubicación</label>
@@ -164,6 +166,10 @@
                     <div class="span3">
                       <label>Oficina o Trabajo</label>
                       <input type="tel" class="span10 search-query" th:field="*{addressCommand.telefonoOficina}" />
+                    </div>
+                    <div class="span3">
+                      <label>Pais</label>
+                      <input type="text" class="span10 search-query" th:field="*{addressCommand.pais}" />
                     </div>
                   </div>
                   <div class="span12"></div>
@@ -196,10 +202,6 @@
                     <div class="span3">
                       <label>Dependientes economicos</label>
                       <input class="span10 search-query" th:field="*{addressCommand.dependientes}" type="text" />
-                    </div>
-                    <div class="span3">
-                      <label>Codigo Postal</label>
-                      <input class="span10 search-query" th:field="*{addressCommand.codigoPostal}" type="text" />
                     </div>
                   </div>
                 </div>
@@ -329,7 +331,7 @@
                 <hr />
                 <h1>5.- Referencias</h1>
                 <div class="row-fluid">
-                  <div class="span12"><h3>Referencia Familiar</h3></div>
+                  <div class="span12"><h2>Referencia Familiar</h2></div>
                   <div class="span12">
                     <div class="span4">
                       <label>Nombre(s) y Apellidos paterno, materno</label>
@@ -348,10 +350,10 @@
                   <div class="span12">
                     <div class="span4">
                       <label>Domicilio: calle,núm,colonia,C.P</label>
-                      <textarea class="span10 search-query" type="text" rows="6" th:field="*{referencesCommand.domicilioFamiliar}" />
+                      <input class="span10 search-query" type="text"  th:field="*{referencesCommand.domicilioFamiliar}" />
                     </div>
                   </div>
-                  <div class="span12"><h2>Referencia Laboral</h2></div>
+                  <div class="span12"><h2>Referencia Familiares</h2></div>
                   <div class="span12">
                     <div class="span4">
                       <label>Nombre(s) y Apellidos paterno, materno</label>
@@ -370,7 +372,7 @@
                   <div class="span12">
                     <div class="span4">
                       <label>Domicilio: calle,núm,colonia,C.P</label>
-                      <textarea class="span10 search-query" type="text" rows="6" th:field="*{referencesCommand.domicilioLaboral}" />
+                      <input class="span10 search-query" type="text"  th:field="*{referencesCommand.domicilioLaboral}" />
                     </div>
                   </div>
                   <div class="span12"><h2>Referencia Personal</h2></div>
@@ -392,7 +394,7 @@
                   <div class="span12">
                     <div class="span4">
                       <label>Domicilio: calle,núm,colonia,C.P</label>
-                      <textarea class="span10 search-query" type="text" rows="6" th:field="*{referencesCommand.domicilioPersonal1}" />
+                      <input class="span10 search-query" type="text" th:field="*{referencesCommand.domicilioPersonal1}" />
                     </div>
                   </div>
                   <div class="span12"><h2>Referencia Personal</h2></div>
@@ -414,7 +416,7 @@
                   <div class="span12">
                     <div class="span4">
                       <label>Domicilio: calle,núm,colonia,C.P</label>
-                      <textarea class="span10 search-query" type="text" rows="6" th:field="*{referencesCommand.domicilioPersonal2}" />
+                      <input class="span10 search-query" type="text" rows="6" th:field="*{referencesCommand.domicilioPersonal2}" />
                     </div>
                   </div>
                 </div>
@@ -458,14 +460,6 @@
                     <div class="span12"></div>
                     <div class="span12">
                       <div class="span4">
-                        <label>Fecha de apertura</label>
-                        <input class="datepicker span10 search-query"  th:field="*{financialInfoCommand.fechaAperturaDeuda1}" />
-                      </div>
-                      <div class="span4">
-                        <label>Fecha de término</label>
-                        <input class="datepicker span10 search-query"  th:field="*{financialInfoCommand.fechaTerminoDeuda1}" />
-                      </div>
-                      <div class="span4">
                         <label>Monto otorgado</label>
                         <input class="span10 search-query" type="text" rows="6" th:field="*{financialInfoCommand.montoOtorgadoDeuda1}" />
                       </div>
@@ -490,14 +484,6 @@
                     </div>
                     <div class="span12"></div>
                     <div class="span12">
-                      <div class="span4">
-                        <label>Fecha de apertura</label>
-                        <input class="datepicker span10 search-query"  th:field="*{financialInfoCommand.fechaAperturaDeuda2}" />
-                      </div>
-                      <div class="span4">
-                        <label>Fecha de término</label>
-                        <input class="datepicker span10 search-query"  th:field="*{financialInfoCommand.fechaTerminoDeuda2}" />
-                      </div>
                       <div class="span4">
                         <label>Monto otorgado</label>
                         <input class="span10 search-query" type="text" rows="6" th:field="*{financialInfoCommand.montoOtorgadoDeuda2}" />
@@ -524,14 +510,6 @@
                     <div class="span12"></div>
                     <div class="span12">
                       <div class="span4">
-                        <label>Fecha de apertura</label>
-                        <input class="datepicker span10 search-query"  th:field="*{financialInfoCommand.fechaAperturaDeuda3}" />
-                      </div>
-                      <div class="span4">
-                        <label>Fecha de término</label>
-                        <input class="datepicker span10 search-query"  th:field="*{financialInfoCommand.fechaTerminoDeuda3}" />
-                      </div>
-                      <div class="span4">
                         <label>Monto otorgado</label>
                         <input class="span10 search-query" type="text" rows="6" th:field="*{financialInfoCommand.montoOtorgadoDeuda3}" />
                       </div>
@@ -557,50 +535,9 @@
                     <div class="span12"></div>
                     <div class="span12">
                       <div class="span4">
-                        <label>Fecha de apertura</label>
-                        <input class="datepicker span10 search-query"  th:field="*{financialInfoCommand.fechaAperturaDeuda4}" />
-                      </div>
-                      <div class="span4">
-                        <label>Fecha de término</label>
-                        <input class="datepicker span10 search-query" th:field="*{financialInfoCommand.fechaTerminoDeuda4}" />
-                      </div>
-                      <div class="span4">
                         <label>Monto otorgado</label>
                         <input class="span10 search-query" type="text" th:field="*{financialInfoCommand.montoOtorgadoDeuda4}" />
                       </div>
-                    </div>
-                  </div>
-                </div>
-                <hr />
-                <h1>7.- Seguros (Designacion de Beneficiarios)</h1>
-                <div class="row-fluid">
-                  <div class="span4">
-                    <h2>1)</h2>
-                    <div class="control-group">
-                      <label>Nombre Completo</label>
-                      <input class="span10 search-query" type="text" th:field="*{sureCommand.nombreBeneficiario1}" />
-                    </div>
-                    <div class="control-group">
-                      <label>Domicilio Particular</label>
-                      <textarea class="span10 search-query" type="text" rows="6" th:field="*{sureCommand.domicilioBeneficiario1}" />
-                    </div>
-                  </div>
-                  <div class="span4">
-                    <h2>2)</h2>
-                    <div class="control-group">
-                      <label>Nombre Completo</label>
-                      <input class="span10 search-query" type="text" th:field="*{sureCommand.nombreBeneficiario2}" />
-                    </div>
-                    <div class="control-group">
-                      <label>Domicilio Particular</label>
-                      <textarea class="span10 search-query" type="text" rows="6" th:field="*{sureCommand.domicilioBeneficiario2}" />
-                    </div>
-                  </div>
-                  <div class="span2">
-                    <div class="control-group">
-                      <label>Tipo de Seguro</label>
-                      <input class="span10 search-query" type="text" th:field="*{sureCommand.tipoSeguro}" />
-                      <p>*Desempleo, Vida</p>
                     </div>
                   </div>
                 </div>
