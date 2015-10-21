@@ -553,7 +553,7 @@
                       <input type="text" id="fuenteIngresosOtros" class="span10 search-query" th:field="*{transactionalProfileCommand.fuenteIngresosOtros}"  disabled="disabled"/>
                     </div>
                     <div class="control-group">
-                      <label>Fuente de Ingresos</label>
+                      <label>Rango de Ingresos</label>
                       <select name="rangoMensualEnum" class="form-control span10 search-query" th:field="*{transactionalProfileCommand.rangoMensual}">
                         <option th:each="rangoM :${T(com.team.one.domain.enums.RangoMensual).values()}" th:value="${rangoM}" th:text="${rangoM.value}"></option>
                       </select>
