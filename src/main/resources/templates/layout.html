@@ -115,6 +115,9 @@
               <li sec:authorize="hasRole('ADMIN')">
                 <a th:href="@{'/upload/create'}">Subir productos</a>
               </li>
+              <li sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{'/simulator'}">Simulador Reestructura</a>
+              </li>
              </ul>
           </div>
         </div>
