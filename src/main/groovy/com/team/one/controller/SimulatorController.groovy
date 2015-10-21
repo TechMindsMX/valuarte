@@ -33,7 +33,7 @@ class SimulatorController {
 
   Logger log = LoggerFactory.getLogger(getClass())
 
-  @PreAuthorize("hasAuthority('USER')")
+  @PreAuthorize("hasAuthority('ADMIN')")
   @RequestMapping(method=RequestMethod.GET)
   ModelAndView form(){
     log.info "Creating new simulator form"
@@ -42,7 +42,7 @@ class SimulatorController {
     new ModelAndView("simulator/form", "simulatorCommand", simulatorCommand)
   }
 
-  @PreAuthorize("hasAuthority('USER')")
+  @PreAuthorize("hasAuthority('ADMIN')")
   @RequestMapping(method=RequestMethod.POST)
   ModelAndView save(@ModelAttribute("simulator") @Valid SimulatorCommand simulatorCommand, BindingResult bindingResult){
     log.info "SIMULATING"
