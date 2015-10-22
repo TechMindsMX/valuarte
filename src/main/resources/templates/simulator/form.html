@@ -89,7 +89,7 @@
 
       </div>
 
-      <div class="section registro" th:if="${detailOfPaymentsFromSimulator} != null">
+      <div class="section registro" th:if="${detailOfPayments} != null">
         <h5>Resultados de la simulación</h5>
         <h6>Seguro de vida y desempleo: <strong th:text="${beans.currencyFormatter.format(simulator.lifeInsurance)}"></strong></h6>
         <table class="striped responsive-table">
@@ -113,7 +113,7 @@
 
           <tbody>
             <div class="valign-wrapper">
-            <tr th:each="detailOfPayment : ${detailOfPaymentsFromSimulator}">
+            <tr th:each="detailOfPayment : ${detailOfPayments}">
                 <td class="right-align" th:text="${detailOfPayment.number}">Number</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.capitalBeforePayment)}">CapitalBeforePayment</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.capital)}">Capital</td>
