@@ -31,7 +31,7 @@ class SimulatorCommand {
   Date startDate
 
   @NotNull
-  @DecimalMin(value="0.01", inclusive=true)
+  @DecimalMin(value="36", inclusive=true)
   BigDecimal tia = 0
 
   @NotNull

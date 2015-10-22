@@ -4,6 +4,7 @@ import spock.lang.Specification
 import com.team.one.domain.Simulator
 import com.team.one.service.impl.SimulatorServiceImpl
 import com.team.one.domain.PaymentPeriod
+import com.team.one.domain.enums.SimulatorType
 import com.team.one.exception.SimulatorException
 import com.team.one.command.SeguroMedicoCommand
 
@@ -23,6 +24,8 @@ class SimulatorServiceSpec extends Specification {
 
     insuranceService.calculate(_) >> 100
     openingCommissionService.calculate(_) >> 20
+
+    service.tiav = 36
   }
 
   void "should call pmt calculation service"() {
@@ -35,6 +38,18 @@ class SimulatorServiceSpec extends Specification {
     then:"We calculate values"
       1 * pmtService.calculate(simulator)
       simulator.principle == 2120
+  }
+
+  void "should set tiav if simulator is valuarte type"() {
+    given:"A simulator simulator"
+      def simulator = new Simulator()
+      simulator.loan = 2000
+      simulator.paymentPeriod = PaymentPeriod.WEEKLY
+      simulator.type = SimulatorType.VALUARTE
+    when:"We assign values to simulator"
+      service.calculate(simulator)
+    then:"We calculate values"
+      simulator.tia == 36
   }
 
   void "should send an exception if no paymentPeriod"() {
