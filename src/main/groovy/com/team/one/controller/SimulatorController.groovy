@@ -26,6 +26,7 @@ import com.team.one.service.SourceService
 import com.team.one.service.ClientService
 import com.team.one.command.SeguroMedicoCommand
 import com.team.one.command.ProjectCommand
+import com.team.one.domain.enums.SimulatorType
 
 @Controller
 @RequestMapping("/simulator")
@@ -78,11 +79,11 @@ class SimulatorController {
     def simulator = simulatorCommand.bindSimulator()
     simulatorService.calculate(simulator)
 
-    if (simulatorCommand.saved) {
+    if (simulatorCommand.type == SimulatorType.SNAPSHOT) {
       simulatorService.save(simulator)
     }
 
-    log.info "Valuarte type: ${type}"
+    log.info "Valuarte type: ${simulatorCommand.type}"
 
     def detailOfPaymentsFromSimulator = simulatorDataService.calculate(simulator)
     rewardDataService.calculate(detailOfPaymentsFromSimulator)
