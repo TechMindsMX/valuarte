@@ -33,7 +33,6 @@ class SimulatorServiceImpl implements SimulatorService {
   def calculate(Simulator simulator){
     def restructure = simulator.copy()
 
-    log.info "simulator: ${restructure.dump()}"
     if(!restructure.paymentPeriod){
       throw new SimulatorException()
     }

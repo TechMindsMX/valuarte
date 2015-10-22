@@ -24,8 +24,6 @@ class SimulatorServiceSpec extends Specification {
 
     insuranceService.calculate(_) >> 100
     openingCommissionService.calculate(_) >> 20
-
-    service.tiav = 36
   }
 
   void "should call pmt calculation service"() {
@@ -34,22 +32,10 @@ class SimulatorServiceSpec extends Specification {
       simulator.loan = 2000
       simulator.paymentPeriod = PaymentPeriod.WEEKLY
     when:"We assign values to simulator"
-      service.calculate(simulator)
+      def result = service.calculate(simulator)
     then:"We calculate values"
-      1 * pmtService.calculate(simulator)
-      simulator.principle == 2120
-  }
-
-  void "should set tiav if simulator is valuarte type"() {
-    given:"A simulator simulator"
-      def simulator = new Simulator()
-      simulator.loan = 2000
-      simulator.paymentPeriod = PaymentPeriod.WEEKLY
-      simulator.type = SimulatorType.VALUARTE
-    when:"We assign values to simulator"
-      service.calculate(simulator)
-    then:"We calculate values"
-      simulator.tia == 36
+      1 * pmtService.calculate(_ as Simulator)
+      result.principle == 2120
   }
 
   void "should send an exception if no paymentPeriod"() {
