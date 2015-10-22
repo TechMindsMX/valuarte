@@ -547,8 +547,8 @@
                   <div class="span12"></div>
                   <div class="span10">
                     <label>Para los efectos de esta solictud, ¿Usted actua a nombre propio o por cuenta de un tercero?</label>
-                    <input type="radio" name="actuar" value="propio" />Propio<br/>
-                    <input type="radio" name="actuar" value="tercero" />Tercero<br/>
+                    <input type="radio" name="actuar" th:field="*{ownerCommand.actuar}" value="propio" />Propio<br/>
+                    <input type="radio" name="actuar" th:field="*{ownerCommand.actuar}" value="tercero" />Tercero<br/>
                   </div>
                   <div class="span12"></div>
                   <div class="span10">
