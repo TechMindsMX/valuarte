@@ -8,6 +8,7 @@ import com.team.one.service.OpeningCommissionService
 import org.springframework.stereotype.Service
 import com.team.one.domain.PaymentPeriod
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 
 import com.team.one.repository.SimulatorRepository
 import com.team.one.command.SeguroMedicoCommand
@@ -17,7 +18,10 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 @Service
-class SimulatorServiceImpl implements SimulatorService {
+class SimulatorValuarteServiceImpl implements SimulatorService {
+
+  @Value('${simulator.tiav}')
+  BigDecimal tiav
 
   @Autowired
   PMTService pmtService
@@ -31,35 +35,20 @@ class SimulatorServiceImpl implements SimulatorService {
   Logger log = LoggerFactory.getLogger(getClass())
 
   def calculate(Simulator simulator){
-    def restructure = simulator.copy()
-
-    log.info "simulator: ${restructure.dump()}"
-    if(!restructure.paymentPeriod){
+    def valuarte = simulator.copy()
+    if(!valuarte.paymentPeriod){
       throw new SimulatorException()
     }
 
-    restructure.openingCommission = openingCommissionService.calculate(restructure)
-    restructure.lifeInsurance = insuranceService.calculate(restructure)
-    restructure.principle = restructure.loan + restructure.lifeInsurance + restructure.openingCommission
-    restructure.payment = pmtService.calculate(restructure)
+    valuarte.tia = tiav
+    valuarte.openingCommission = openingCommissionService.calculate(valuarte)
+    valuarte.lifeInsurance = insuranceService.calculate(valuarte)
+    valuarte.principle = valuarte.loan + valuarte.lifeInsurance + valuarte.openingCommission
+    valuarte.payment = pmtService.calculate(valuarte)
 
-    restructure
+    valuarte
   }
 
-  def save(Simulator simulator){
-    simulatorRepository.save(simulator)
-  }
-
-  def getCostOfHealthInsurance(SeguroMedicoCommand command) {
-    def agePivot = getAge(command.edad)
-    agePivot
-
-  }
-
-  private def getAge(def edad) {
-    if (edad < 20)
-      return 1
-    edad
-  }
+  def getCostOfHealthInsurance(SeguroMedicoCommand command) {}
 
 }

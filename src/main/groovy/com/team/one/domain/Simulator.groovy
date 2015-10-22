@@ -24,4 +24,11 @@ class Simulator {
 
   def rows = []
 
+  Simulator copy(){
+    def properties = this.properties.findAll { k, v ->
+      Simulator.metaClass.getProperties()*.name.contains(k) && k != "class"
+    }
+    new Simulator(properties)
+  }
+
 }

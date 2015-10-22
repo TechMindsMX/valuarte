@@ -16,10 +16,10 @@ import org.springframework.beans.propertyeditors.CustomDateEditor
 import org.springframework.web.bind.WebDataBinder
 import java.text.SimpleDateFormat
 import javax.validation.Valid
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 
 import com.team.one.service.SimulatorService
+import com.team.one.service.impl.SimulatorServiceImpl
+import com.team.one.service.impl.SimulatorValuarteServiceImpl
 import com.team.one.service.SimulatorDataService
 import com.team.one.service.RewardDataService
 import com.team.one.service.SourceService
@@ -28,12 +28,13 @@ import com.team.one.command.SeguroMedicoCommand
 import com.team.one.command.ProjectCommand
 import com.team.one.domain.enums.SimulatorType
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 @Controller
 @RequestMapping("/simulator")
 class SimulatorController {
 
-  @Autowired
-  SimulatorService simulatorService
   @Autowired
   SimulatorDataService simulatorDataService
   @Autowired
@@ -42,6 +43,11 @@ class SimulatorController {
   SourceService sourceService
   @Autowired
   ClientService clientService
+
+  @Autowired
+  SimulatorServiceImpl simulatorService
+  @Autowired
+  SimulatorValuarteServiceImpl simulatorValuarteService
 
   @Value('${path.photos}')
   String pathPhotoUrl
@@ -75,27 +81,32 @@ class SimulatorController {
       return error
     }
 
+
     def client = simulatorCommand.bindClient()
     def simulator = simulatorCommand.bindSimulator()
-    simulatorService.calculate(simulator)
 
     if (simulatorCommand.saved) {
       simulatorService.save(simulator)
     }
 
+    def restructure = simulatorService.calculate(simulator)
+    def valuarte = simulatorValuarteService.calculate(simulator)
     def detailOfPayments = []
-    def detailOfPaymentsRestructure = simulatorDataService.calculate(simulator)
-    def detailOfPaymentsValuarte = simulatorDataService.calculate(simulator)
+    def detailOfPaymentsRestructure = simulatorDataService.calculate(restructure)
+    def detailOfPaymentsValuarte = simulatorDataService.calculate(valuarte)
 
     switch(simulatorCommand.type){
       case SimulatorType.RESTRUCTURE:
-      detailOfPayments = detailOfPaymentsRestructure
-      break
+        detailOfPayments = detailOfPaymentsRestructure
+        simulator = restructure
+        break
       case SimulatorType.VALUARTE:
-      detailOfPayments = detailOfPaymentsValuarte
-      break
+        detailOfPayments = detailOfPaymentsValuarte
+        simulator = valuarte
+        break
       default:
-      detailOfPayments = detailOfPaymentsRestructure
+        detailOfPayments = detailOfPaymentsRestructure
+        simulator = restructure
     }
 
     rewardDataService.calculate(detailOfPayments)
