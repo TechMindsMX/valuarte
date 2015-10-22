@@ -10,8 +10,9 @@ import com.team.one.domain.PaymentPeriod
 import org.springframework.beans.factory.annotation.Autowired
 
 import com.team.one.repository.SimulatorRepository
-import com.team.one.exception.SimulatorException
+import com.team.one.domain.enums.SimulatorType
 import com.team.one.command.SeguroMedicoCommand
+import com.team.one.exception.SimulatorException
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -33,6 +34,10 @@ class SimulatorServiceImpl implements SimulatorService {
   def calculate(Simulator simulator){
     if(!simulator.paymentPeriod){
       throw new SimulatorException()
+    }
+
+    if(simulator.type == SimulatorType.VALUARTE){
+      simulator.tia = 36
     }
 
     simulator.openingCommission = openingCommissionService.calculate(simulator)

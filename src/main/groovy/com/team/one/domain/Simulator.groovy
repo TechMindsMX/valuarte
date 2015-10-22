@@ -1,6 +1,7 @@
 package com.team.one.domain
 
 import org.springframework.data.annotation.Id
+import com.team.one.domain.enums.SimulatorType
 
 class Simulator {
 
@@ -15,6 +16,7 @@ class Simulator {
   BigDecimal principle
   BigDecimal lifeInsurance = 0
   BigDecimal openingCommission
+  SimulatorType type
 
   PaymentPeriod paymentPeriod
   Integer numberOfPayments

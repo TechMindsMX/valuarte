@@ -63,7 +63,7 @@ class SimulatorController {
   @PreAuthorize("hasAuthority('USER')")
   @RequestMapping(method=RequestMethod.POST)
   ModelAndView save(@ModelAttribute("simulator") @Valid SimulatorCommand simulatorCommand, BindingResult bindingResult){
-    log.info "SIMULATING ${simulatorCommand.dump()}"
+    log.info "SIMULATING"
     if (bindingResult.hasErrors()) {
       def mapErrors = []
       bindingResult.getFieldErrors().each{ error ->
@@ -79,12 +79,9 @@ class SimulatorController {
     def simulator = simulatorCommand.bindSimulator()
     simulatorService.calculate(simulator)
 
-    if (simulatorCommand.type == SimulatorType.SNAPSHOT) {
+    if (simulatorCommand.saved) {
       simulatorService.save(simulator)
     }
-
-    log.info "Valuarte type: ${simulatorCommand.type}"
-
     def detailOfPaymentsFromSimulator = simulatorDataService.calculate(simulator)
     rewardDataService.calculate(detailOfPaymentsFromSimulator)
 
