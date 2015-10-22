@@ -8,6 +8,7 @@ import com.team.one.service.OpeningCommissionService
 import org.springframework.stereotype.Service
 import com.team.one.domain.PaymentPeriod
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 
 import com.team.one.repository.SimulatorRepository
 import com.team.one.domain.enums.SimulatorType
@@ -19,6 +20,9 @@ import org.slf4j.LoggerFactory
 
 @Service
 class SimulatorServiceImpl implements SimulatorService {
+
+  @Value('${simulator.tiav}')
+  BigDecimal tiav
 
   @Autowired
   PMTService pmtService
@@ -37,7 +41,7 @@ class SimulatorServiceImpl implements SimulatorService {
     }
 
     if(simulator.type == SimulatorType.VALUARTE){
-      simulator.tia = 36
+      simulator.tia = tiav
     }
 
     simulator.openingCommission = openingCommissionService.calculate(simulator)
