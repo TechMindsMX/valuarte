@@ -81,7 +81,6 @@ class SimulatorController {
       return error
     }
 
-
     def client = simulatorCommand.bindClient()
     def simulator = simulatorCommand.bindSimulator()
 
@@ -91,38 +90,35 @@ class SimulatorController {
 
     def restructure = simulatorService.calculate(simulator)
     def valuarte = simulatorValuarteService.calculate(simulator)
-    def detailOfPayments = []
+
     def detailOfPaymentsRestructure = simulatorDataService.calculate(restructure)
     def detailOfPaymentsValuarte = simulatorDataService.calculate(valuarte)
 
     switch(simulatorCommand.type){
       case SimulatorType.RESTRUCTURE:
-        detailOfPayments = detailOfPaymentsRestructure
         simulator = restructure
         break
       case SimulatorType.VALUARTE:
-        detailOfPayments = detailOfPaymentsValuarte
         simulator = valuarte
         break
       default:
-        detailOfPayments = detailOfPaymentsRestructure
         simulator = restructure
     }
 
-    rewardDataService.calculate(detailOfPayments)
+    rewardDataService.calculate(detailOfPaymentsRestructure, detailOfPaymentsValuarte)
     ModelAndView modelAndView = new ModelAndView("simulator/form")
     modelAndView.addObject("simulatorCommand", simulatorCommand)
     modelAndView.addObject("simulator", simulator)
     modelAndView.addObject("client", client)
     modelAndView.addObject("sources", sourceService.findSources())
-    modelAndView.addObject("detailOfPayments", detailOfPayments)
-    modelAndView.addObject("totalCapital", detailOfPayments.capital.sum())
-    modelAndView.addObject("totalInterest", detailOfPayments.interest.sum())
-    modelAndView.addObject("totalPayment", simulator.payment * detailOfPayments.size())
-    modelAndView.addObject("totalIVA", detailOfPayments.iva.sum())
-    modelAndView.addObject("totalRatio", detailOfPayments.ratio.sum())
-    modelAndView.addObject("totalReward", detailOfPayments.reward.sum())
-    modelAndView.addObject("totalInsurance", detailOfPayments.insurance.sum())
+    modelAndView.addObject("detailOfPayments", detailOfPaymentsValuarte)
+    modelAndView.addObject("totalCapital", detailOfPaymentsValuarte.capital.sum())
+    modelAndView.addObject("totalInterest", detailOfPaymentsValuarte.interest.sum())
+    modelAndView.addObject("totalPayment", simulator.payment * detailOfPaymentsValuarte.size())
+    modelAndView.addObject("totalIVA", detailOfPaymentsValuarte.iva.sum())
+    modelAndView.addObject("totalRatio", detailOfPaymentsValuarte.ratio.sum())
+    modelAndView.addObject("totalReward", detailOfPaymentsValuarte.reward.sum())
+    modelAndView.addObject("totalInsurance", detailOfPaymentsValuarte.insurance.sum())
     modelAndView
   }
 
