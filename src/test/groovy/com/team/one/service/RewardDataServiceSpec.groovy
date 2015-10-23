@@ -13,8 +13,8 @@ class RewardDataServiceSpec extends Specification {
 
   def setup(){
     service.decimals = 2
-    service.roundingMode = RoundingMode.HALF_UP
     service.cost = 32.48
+    service.roundingMode = RoundingMode.HALF_UP
   }
 
   void "should get ratio from interest"(){
@@ -60,6 +60,29 @@ class RewardDataServiceSpec extends Specification {
     rows[1].reward == 62.07
     rows[2].reward == 31.56
   }
+
+  void "should get profit from interest"(){
+  given:"Three restructure simulator with interest"
+    def restructureRow1 = new SimulatorRow(interest:1062.94)
+    def restructureRow2 = new SimulatorRow(interest:721.98)
+    def restructureRow3 = new SimulatorRow(interest:367.84)
+  and:"Three valuarte simulator with interest"
+    def valuarteRow1 = new SimulatorRow(interest:956.65)
+    def valuarteRow2 = new SimulatorRow(interest:648.61)
+    def valuarteRow3 = new SimulatorRow(interest:329.85)
+  and:"A result rows"
+    def rows = [new SimulatorRow(), new SimulatorRow(), new SimulatorRow()]
+  and:"A restructure and valuarte row collection"
+    def restructure = [restructureRow1, restructureRow2, restructureRow3]
+    def valuarte = [valuarteRow1, valuarteRow2, valuarteRow3]
+  when:"An reward is calculated"
+    service.calculate(rows, restructure, valuarte)
+  then:"we expect following results"
+    rows[0].profit == 971.40
+    rows[1].profit == 659.91
+    rows[2].profit == 336.27
+  }
+
 
   void "should throw an exception when no restructure interest information"(){
   given:"An empty interest collection"

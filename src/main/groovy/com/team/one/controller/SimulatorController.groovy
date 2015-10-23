@@ -60,7 +60,7 @@ class SimulatorController {
     log.info "CREATING simulator"
     def simulatorCommand = new SimulatorCommand()
     simulatorCommand.now = new Date()
-  	ModelAndView modelAndView = new ModelAndView("simulator/form")
+    ModelAndView modelAndView = new ModelAndView("simulator/form")
     modelAndView.addObject("simulatorCommand", simulatorCommand)
     modelAndView.addObject("sources", sourceService.findSources())
     modelAndView
@@ -95,9 +95,10 @@ class SimulatorController {
     def detailOfPaymentsRestructure = simulatorDataService.calculate(restructure)
     def detailOfPaymentsValuarte = simulatorDataService.calculate(valuarte)
 
+
     if(simulatorCommand.type == SimulatorType.RESTRUCTURE){
-       simulator = restructure
-       detailOfPayments = detailOfPaymentsRestructure
+      simulator = restructure
+      detailOfPayments = detailOfPaymentsRestructure
     } else {
       simulator = valuarte
       detailOfPayments = detailOfPaymentsValuarte

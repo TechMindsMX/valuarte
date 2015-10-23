@@ -28,8 +28,10 @@ class RewardDataServiceImpl implements RewardDataService {
 
     valuarte.eachWithIndex { row, index ->
       def ratio = row.interest/valuarteSum
+      def reward = ratio * totalReward
       rows[index].ratio = ratio.setScale(decimals, RoundingMode.valueOf(roundingMode))
-      rows[index].reward = (ratio * totalReward).setScale(decimals, RoundingMode.valueOf(roundingMode))
+      rows[index].reward = reward.setScale(decimals, RoundingMode.valueOf(roundingMode))
+      rows[index].profit = (restructure[index].interest - reward).setScale(decimals, RoundingMode.valueOf(roundingMode))
     }
   }
 
