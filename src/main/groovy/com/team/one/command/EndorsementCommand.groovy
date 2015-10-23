@@ -1,6 +1,7 @@
-package com.team.one.domain
+package com.team.one.command
 
 import com.team.one.domain.enums.*
+import com.team.one.domain.Endorsement
 
 class EndorsementCommand {
 

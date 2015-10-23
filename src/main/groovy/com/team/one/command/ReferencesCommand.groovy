@@ -1,4 +1,6 @@
-package com.team.one.domain
+package com.team.one.command
+
+import com.team.one.domain.References
 
 class ReferencesCommand {
 	
