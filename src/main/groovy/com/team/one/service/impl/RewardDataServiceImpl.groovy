@@ -34,8 +34,6 @@ class RewardDataServiceImpl implements RewardDataService {
       rows[index].reward = reward.setScale(decimals, RoundingMode.valueOf(roundingMode))
       rows[index].profit = (restructure[index].interest - reward).setScale(decimals, RoundingMode.valueOf(roundingMode))
       rows[index].capitalCut = capitalCut.setScale(decimals, RoundingMode.valueOf(roundingMode))
-      println restructure[index].capitalBeforePayment
-      println capitalCut
       rows[index].balance = (restructure[index].capitalBeforePayment - capitalCut).setScale(decimals, RoundingMode.valueOf(roundingMode))
     }
   }
