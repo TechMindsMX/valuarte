@@ -23,12 +23,12 @@ class RewardDataServiceSpec extends Specification {
     def restructureRow2 = new SimulatorRow(interest:721.98)
     def restructureRow3 = new SimulatorRow(interest:367.84)
   and:"Three valuarte simulator with interest"
-    def valuarteRow1 = new SimulatorRow(interest:1062.94)
-    def valuarteRow2 = new SimulatorRow(interest:721.98)
-    def valuarteRow3 = new SimulatorRow(interest:367.84)
+    def valuarteRow1 = new SimulatorRow(interest:956.65)
+    def valuarteRow2 = new SimulatorRow(interest:648.61)
+    def valuarteRow3 = new SimulatorRow(interest:329.85)
   and:"A restructure and valuarte row collection"
-    def restrcuture = [restructureRow1, restructureRow2, restructureRow3]
-    def restrcuture = [valuarteRow1, valuarteRow2, valuarteRow3]
+    def restructure = [restructureRow1, restructureRow2, restructureRow3]
+    def valuarte = [valuarteRow1, valuarteRow2, valuarteRow3]
   when:"An reward is calculated"
     def result = service.calculate(restructure, valuarte)
   then:"we expect following results"
@@ -38,25 +38,36 @@ class RewardDataServiceSpec extends Specification {
   }
 
   void "should get reward from interest"(){
-  given:"Three simulator rows with interest"
-    def simulatorRow1 = new SimulatorRow(interest:1062.94)
-    def simulatorRow2 = new SimulatorRow(interest:721.98)
-    def simulatorRow3 = new SimulatorRow(interest:367.84)
-  and:"A Simulator row collection"
-    def rows = [simulatorRow1, simulatorRow2, simulatorRow3]
+  given:"Three restructure simulator with interest"
+    def restructureRow1 = new SimulatorRow(interest:1062.94)
+    def restructureRow2 = new SimulatorRow(interest:721.98)
+    def restructureRow3 = new SimulatorRow(interest:367.84)
+  and:"Three valuarte simulator with interest"
+    def valuarteRow1 = new SimulatorRow(interest:956.65)
+    def valuarteRow2 = new SimulatorRow(interest:648.61)
+    def valuarteRow3 = new SimulatorRow(interest:329.85)
+  and:"A restructure and valuarte row collection"
+    def restructure = [restructureRow1, restructureRow2, restructureRow3]
+    def valuarte = [valuarteRow1, valuarteRow2, valuarteRow3]
   when:"An reward is calculated"
-    def result = service.calculate(rows)
+    def result = service.calculate(restructure, valuarte)
   then:"we expect following results"
-    result[0].reward == 16.04
-    result[1].reward == 10.89
-    result[2].reward == 5.55
+    result[0].reward == 91.54
+    result[1].reward == 62.07
+    result[2].reward == 31.56
   }
 
-  void "should throw an exception when no interest information"(){
+  void "should throw an exception when no restructure interest information"(){
   given:"An empty interest collection"
     def rows = []
+  and:"Three valuarte simulator with interest"
+    def valuarteRow1 = new SimulatorRow(interest:1062.94)
+    def valuarteRow2 = new SimulatorRow(interest:721.98)
+    def valuarteRow3 = new SimulatorRow(interest:367.84)
+  and:"A restructure and valuarte row collection"
+    def valuarte = [valuarteRow1, valuarteRow2, valuarteRow3]
   when:"Ratio is calculated"
-    service.calculate(rows)
+    service.calculate(rows, valuarte)
   then:"An exception occurred"
     thrown SimulatorException
   }

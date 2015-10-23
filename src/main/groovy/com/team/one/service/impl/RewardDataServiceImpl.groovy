@@ -26,6 +26,11 @@ class RewardDataServiceImpl implements RewardDataService {
     BigDecimal valuarteSum = valuarte.interest.sum()
     BigDecimal totalReward = restructureSum - valuarteSum - cost
 
+    println restructureSum
+    println valuarteSum
+    println cost
+    println totalReward
+
     valuarte.each { row ->
       def ratio = row.interest/valuarteSum
       row.ratio = ratio.setScale(decimals, RoundingMode.valueOf(roundingMode))
