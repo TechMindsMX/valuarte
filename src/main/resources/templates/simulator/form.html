@@ -108,7 +108,7 @@
                 <th class="center-align" data-field="reward">Recompensa</th>
                 <th class="center-align" data-field="profit" style="display:none;">Utilidad</th>
                 <th class="center-align" data-field="capitalCut" style="display:none;">A. Capital</th>
-                <th class="center-align" data-field="balance">S. Cartera</th>
+                <th class="center-align" data-field="balance" style="display:none;">S. Cartera</th>
                 <th class="center-align" data-field="insurance">Seguros</th>
               </div>
             </tr>
@@ -129,7 +129,7 @@
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.reward)}">Reward</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.profit)}" style="display:none;">Pofit</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.capitalCut)}" style="display:none;">CapitalCut</td>
-                <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.balance)}">Balance</td>
+                <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.balance)}" style="display:none;">Balance</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.insurance)}">Insurance</td>
             </tr>
             <tr>
@@ -146,7 +146,6 @@
                 <td class="right-align" th:text="${beans.currencyFormatter.format(totalReward)}">Total Recompensa</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(totalProfit)}" style="display:none;">Total Utilidad</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(totalCapitalCut)}" style="display:none;">Total Aplicación de Capital</td>
-                <td></td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(totalInsurance)}">Total Seguros</td>
               </div>
             </tr>
