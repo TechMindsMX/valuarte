@@ -43,7 +43,9 @@ class AdminCreditController {
     def workInfo = command.workInfoCommand.generateWorkInfo()
     def client = command.clientCommand.generateClient()
     def user = userRepository.findByEmail(address.email)
-    def owner = command.ownerCommand.generateOwnerIdentification()
+    def owner
+    if (command.ownerCommand)
+      owner = command.ownerCommand.generateOwnerIdentification()
     Map domainList = [
                         address:address,
                         endorsement:endorsement,
