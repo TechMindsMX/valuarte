@@ -105,7 +105,6 @@ class RewardDataServiceSpec extends Specification {
     rows[2].capitalCut == 11008.42
   }
 
-
   void "should throw an exception when no restructure interest information"(){
   given:"An empty interest collection"
     def rows = []
