@@ -37,7 +37,7 @@
               <input type="text" th:field="*{apellidoMaterno}"/>
             </div>
             <div class="input-field col s3">
-              <select class="browser-default" name="source" th:field="${sources}">
+            <select class="browser-default" name="source">
                 <option th:each="source : ${sources}" th:value="${source.id}" th:text="${source.name}"></option>
               </select>
             </div>
@@ -76,8 +76,11 @@
               <input type="text" class="datepicker" th:field="*{startDate}" />
             </div>
           </div>
-          <button type="submit" name="saved" th:field="*{saved}" value="false" class="btn waves-effect waves-light blue darken-4">
-            Mostrar la simulación <i class="material-icons right">send</i>
+          <button type="submit" name="type" th:field="*{type}" value="RESTRUCTURE" class="btn waves-effect waves-light blue darken-4">
+            Mostrar Reestructura <i class="material-icons right">restructure</i>
+          </button>
+          <button type="submit" name="type" th:field="*{type}" value="VALUARTE" class="btn waves-effect waves-light blue darken-4">
+            Mostrar Valuarte <i class="material-icons right">valuarte</i>
           </button>
           <button type="submit" name="saved" th:field="*{saved}" value="true" class="btn waves-effect waves-light blue darken-4">
             Guardar la simulación <i class="material-icons right">save</i>
@@ -86,7 +89,7 @@
 
       </div>
 
-      <div class="section registro" th:if="${detailOfPaymentsFromSimulator} != null">
+      <div class="section registro" th:if="${detailOfPayments} != null">
         <h5>Resultados de la simulación</h5>
         <h6>Seguro de vida y desempleo: <strong th:text="${beans.currencyFormatter.format(simulator.lifeInsurance)}"></strong></h6>
         <table class="striped responsive-table">
@@ -110,7 +113,7 @@
 
           <tbody>
             <div class="valign-wrapper">
-            <tr th:each="detailOfPayment : ${detailOfPaymentsFromSimulator}">
+            <tr th:each="detailOfPayment : ${detailOfPayments}">
                 <td class="right-align" th:text="${detailOfPayment.number}">Number</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.capitalBeforePayment)}">CapitalBeforePayment</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.capital)}">Capital</td>

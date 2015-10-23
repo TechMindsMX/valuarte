@@ -18,19 +18,19 @@ class RewardDataServiceImpl implements RewardDataService {
   @Value('${simulator.cost}')
   BigDecimal cost
 
-  def calculate(def rows){
-    if(!rows)
+  def calculate(def rows, def restructure, def valuarte){
+    if(!restructure || !valuarte)
       throw new SimulatorException()
 
-    BigDecimal sum = rows.interest.sum()
+    BigDecimal restructureSum = restructure.interest.sum()
+    BigDecimal valuarteSum = valuarte.interest.sum()
+    BigDecimal totalReward = restructureSum - valuarteSum - cost
 
-    rows.each {
-      def ratio = it.interest/sum
-      it.ratio = ratio.setScale(decimals, RoundingMode.valueOf(roundingMode))
-      it.reward = (ratio * cost).setScale(decimals, RoundingMode.valueOf(roundingMode))
+    valuarte.eachWithIndex { row, index ->
+      def ratio = row.interest/valuarteSum
+      rows[index].ratio = ratio.setScale(decimals, RoundingMode.valueOf(roundingMode))
+      rows[index].reward = (ratio * totalReward).setScale(decimals, RoundingMode.valueOf(roundingMode))
     }
-
-    rows
   }
 
 }

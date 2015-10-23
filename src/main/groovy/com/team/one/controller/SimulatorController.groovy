@@ -16,23 +16,25 @@ import org.springframework.beans.propertyeditors.CustomDateEditor
 import org.springframework.web.bind.WebDataBinder
 import java.text.SimpleDateFormat
 import javax.validation.Valid
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 
 import com.team.one.service.SimulatorService
+import com.team.one.service.impl.SimulatorServiceImpl
+import com.team.one.service.impl.SimulatorValuarteServiceImpl
 import com.team.one.service.SimulatorDataService
 import com.team.one.service.RewardDataService
 import com.team.one.service.SourceService
 import com.team.one.service.ClientService
 import com.team.one.command.SeguroMedicoCommand
 import com.team.one.command.ProjectCommand
+import com.team.one.domain.enums.SimulatorType
+
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 @Controller
 @RequestMapping("/simulator")
 class SimulatorController {
 
-  @Autowired
-  SimulatorService simulatorService
   @Autowired
   SimulatorDataService simulatorDataService
   @Autowired
@@ -41,6 +43,11 @@ class SimulatorController {
   SourceService sourceService
   @Autowired
   ClientService clientService
+
+  @Autowired
+  SimulatorServiceImpl simulatorService
+  @Autowired
+  SimulatorValuarteServiceImpl simulatorValuarteService
 
   @Value('${path.photos}')
   String pathPhotoUrl
@@ -76,28 +83,40 @@ class SimulatorController {
 
     def client = simulatorCommand.bindClient()
     def simulator = simulatorCommand.bindSimulator()
-    simulatorService.calculate(simulator)
 
     if (simulatorCommand.saved) {
       simulatorService.save(simulator)
     }
 
-    def detailOfPaymentsFromSimulator = simulatorDataService.calculate(simulator)
-    rewardDataService.calculate(detailOfPaymentsFromSimulator)
+    def restructure = simulatorService.calculate(simulator)
+    def valuarte = simulatorValuarteService.calculate(simulator)
 
+    def detailOfPayments = []
+    def detailOfPaymentsRestructure = simulatorDataService.calculate(restructure)
+    def detailOfPaymentsValuarte = simulatorDataService.calculate(valuarte)
+
+    if(simulatorCommand.type == SimulatorType.RESTRUCTURE){
+       simulator = restructure
+       detailOfPayments = detailOfPaymentsRestructure
+    } else {
+      simulator = valuarte
+      detailOfPayments = detailOfPaymentsValuarte
+    }
+
+    rewardDataService.calculate(detailOfPayments, detailOfPaymentsRestructure, detailOfPaymentsValuarte)
     ModelAndView modelAndView = new ModelAndView("simulator/form")
     modelAndView.addObject("simulatorCommand", simulatorCommand)
     modelAndView.addObject("simulator", simulator)
     modelAndView.addObject("client", client)
     modelAndView.addObject("sources", sourceService.findSources())
-    modelAndView.addObject("detailOfPaymentsFromSimulator", detailOfPaymentsFromSimulator)
-    modelAndView.addObject("totalCapital", detailOfPaymentsFromSimulator.capital.sum())
-    modelAndView.addObject("totalInterest", detailOfPaymentsFromSimulator.interest.sum())
-    modelAndView.addObject("totalPayment", simulator.payment * detailOfPaymentsFromSimulator.size())
-    modelAndView.addObject("totalIVA", detailOfPaymentsFromSimulator.iva.sum())
-    modelAndView.addObject("totalRatio", detailOfPaymentsFromSimulator.ratio.sum())
-    modelAndView.addObject("totalReward", detailOfPaymentsFromSimulator.reward.sum())
-    modelAndView.addObject("totalInsurance", detailOfPaymentsFromSimulator.insurance.sum())
+    modelAndView.addObject("detailOfPayments", detailOfPayments)
+    modelAndView.addObject("totalCapital", detailOfPayments.capital.sum())
+    modelAndView.addObject("totalInterest", detailOfPayments.interest.sum())
+    modelAndView.addObject("totalPayment", simulator.payment * detailOfPayments.size())
+    modelAndView.addObject("totalIVA", detailOfPayments.iva.sum())
+    modelAndView.addObject("totalRatio", detailOfPayments.ratio.sum())
+    modelAndView.addObject("totalReward", detailOfPayments.reward.sum())
+    modelAndView.addObject("totalInsurance", detailOfPayments.insurance.sum())
     modelAndView
   }
 

@@ -26,11 +26,12 @@ class SimulatorCommand {
 
   PaymentPeriod paymentPeriod
   SimulatorType type = SimulatorType.RESTRUCTURE
+
   String paydays
   Date startDate
 
   @NotNull
-  @DecimalMin(value="0.01", inclusive=true)
+  @DecimalMin(value="36", inclusive=true)
   BigDecimal tia = 0
 
   @NotNull
