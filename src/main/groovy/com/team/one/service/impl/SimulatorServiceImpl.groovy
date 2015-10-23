@@ -1,17 +1,13 @@
 package com.team.one.service.impl
 
 import com.team.one.domain.Simulator
-import com.team.one.service.PMTService
-import com.team.one.service.InsuranceService
-import com.team.one.service.SimulatorService
-import com.team.one.service.OpeningCommissionService
 import org.springframework.stereotype.Service
-import com.team.one.domain.PaymentPeriod
 import org.springframework.beans.factory.annotation.Autowired
 
+import com.team.one.service.SimulatorService
 import com.team.one.repository.SimulatorRepository
+import com.team.one.collaborator.SimulatorCollaborator
 import com.team.one.command.SeguroMedicoCommand
-import com.team.one.exception.SimulatorException
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -20,29 +16,15 @@ import org.slf4j.LoggerFactory
 class SimulatorServiceImpl implements SimulatorService {
 
   @Autowired
-  PMTService pmtService
-  @Autowired
-  InsuranceService insuranceService
-  @Autowired
-  OpeningCommissionService openingCommissionService
-  @Autowired
   SimulatorRepository simulatorRepository
+  @Autowired
+  SimulatorCollaborator simulatorCollaborator
 
   Logger log = LoggerFactory.getLogger(getClass())
 
   def calculate(Simulator simulator){
     def restructure = simulator.copy()
-
-    if(!restructure.paymentPeriod){
-      throw new SimulatorException()
-    }
-
-    restructure.openingCommission = openingCommissionService.calculate(restructure)
-    restructure.lifeInsurance = insuranceService.calculate(restructure)
-    restructure.principle = restructure.loan + restructure.lifeInsurance + restructure.openingCommission
-    restructure.payment = pmtService.calculate(restructure)
-
-    restructure
+    simulatorCollaborator.calculate(restructure)
   }
 
   def save(Simulator simulator){
