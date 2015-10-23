@@ -19,9 +19,9 @@ class RewardDataServiceSpec extends Specification {
 
   void "should get ratio from interest"(){
   given:"Three restructure simulator with interest"
-    def restructureRow1 = new SimulatorRow(interest:1062.94)
-    def restructureRow2 = new SimulatorRow(interest:721.98)
-    def restructureRow3 = new SimulatorRow(interest:367.84)
+    def restructureRow1 = new SimulatorRow(interest:1062.94, capital:10228.78, insurance:77.11)
+    def restructureRow2 = new SimulatorRow(interest:721.98, capital:10624.29, insurance:52.37)
+    def restructureRow3 = new SimulatorRow(interest:367.84, capital:11035.10, insurance:26.68)
   and:"Three valuarte simulator with interest"
     def valuarteRow1 = new SimulatorRow(interest:956.65)
     def valuarteRow2 = new SimulatorRow(interest:648.61)
@@ -41,9 +41,9 @@ class RewardDataServiceSpec extends Specification {
 
   void "should get reward from interest"(){
   given:"Three restructure simulator with interest"
-    def restructureRow1 = new SimulatorRow(interest:1062.94)
-    def restructureRow2 = new SimulatorRow(interest:721.98)
-    def restructureRow3 = new SimulatorRow(interest:367.84)
+    def restructureRow1 = new SimulatorRow(interest:1062.94, capital:10228.78, insurance:77.11)
+    def restructureRow2 = new SimulatorRow(interest:721.98, capital:10624.29, insurance:52.37)
+    def restructureRow3 = new SimulatorRow(interest:367.84, capital:11035.10, insurance:26.68)
   and:"Three valuarte simulator with interest"
     def valuarteRow1 = new SimulatorRow(interest:956.65)
     def valuarteRow2 = new SimulatorRow(interest:648.61)
@@ -63,9 +63,9 @@ class RewardDataServiceSpec extends Specification {
 
   void "should get profit from interest"(){
   given:"Three restructure simulator with interest"
-    def restructureRow1 = new SimulatorRow(interest:1062.94)
-    def restructureRow2 = new SimulatorRow(interest:721.98)
-    def restructureRow3 = new SimulatorRow(interest:367.84)
+    def restructureRow1 = new SimulatorRow(interest:1062.94, capital:10228.78, insurance:77.11)
+    def restructureRow2 = new SimulatorRow(interest:721.98, capital:10624.29, insurance:52.37)
+    def restructureRow3 = new SimulatorRow(interest:367.84, capital:11035.10, insurance:26.68)
   and:"Three valuarte simulator with interest"
     def valuarteRow1 = new SimulatorRow(interest:956.65)
     def valuarteRow2 = new SimulatorRow(interest:648.61)
@@ -102,7 +102,7 @@ class RewardDataServiceSpec extends Specification {
   then:"we expect following results"
     rows[0].capitalCut == 10151.67
     rows[1].capitalCut == 10571.92
-    rows[2].capitalCut == 11008.41
+    rows[2].capitalCut == 11008.42
   }
 
 
