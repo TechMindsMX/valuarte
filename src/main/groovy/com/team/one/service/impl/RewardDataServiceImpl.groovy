@@ -29,11 +29,14 @@ class RewardDataServiceImpl implements RewardDataService {
     valuarte.eachWithIndex { row, index ->
       def ratio = row.interest/valuarteSum
       def reward = ratio * totalReward
+      def capitalCut = restructure[index].capital - restructure[index].insurance
       rows[index].ratio = ratio.setScale(decimals, RoundingMode.valueOf(roundingMode))
       rows[index].reward = reward.setScale(decimals, RoundingMode.valueOf(roundingMode))
       rows[index].profit = (restructure[index].interest - reward).setScale(decimals, RoundingMode.valueOf(roundingMode))
-      rows[index].capitalCut = (restructure[index].capital - restructure[index].insurance).setScale(decimals, RoundingMode.valueOf(roundingMode))
-      rows[index].balance = (restructure[index].capitalBeforePayment - reward).setScale(decimals, RoundingMode.valueOf(roundingMode))
+      rows[index].capitalCut = capitalCut.setScale(decimals, RoundingMode.valueOf(roundingMode))
+      println restructure[index].capitalBeforePayment
+      println capitalCut
+      rows[index].balance = (restructure[index].capitalBeforePayment - capitalCut).setScale(decimals, RoundingMode.valueOf(roundingMode))
     }
   }
 
