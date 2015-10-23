@@ -547,19 +547,19 @@
                   <div class="span12"></div>
                   <div class="span10">
                     <label>Para los efectos de esta solictud, ¿Usted actua a nombre propio o por cuenta de un tercero?</label>
-                    <input type="radio" th:field="*{ownerCommand.actuar}" value="propio" />Propio<br/>
+                    <input type="radio" th:field="*{ownerCommand.actuar}" value="propio" checked="true" />Propio<br/>
                     <input type="radio" th:field="*{ownerCommand.actuar}" value="tercero" />Tercero<br/>
                   </div>
                   <div class="span12"></div>
                   <div class="span10">
                     <label>¿Los recursos con los que liquidara su <b>PRESTAMO</b> otorgado por SERVICIOS FINANCIEROS CON VALORES S.A DE C.V son propios o de un tercero? </label>
-                    <input type="radio" th:field="*{ownerCommand.recursos}"  value="propio" />Propio<br/>
+                    <input type="radio" th:field="*{ownerCommand.recursos}"  value="propio" checked="checked"/>Propio<br/>
                     <input type="radio" th:field="*{ownerCommand.recursos}"  value="tercero" />Tercero<br/>
                   </div>
                   <div class="span12"></div>
                   <div class="span10">
                     <label>¿Una persona distinta a usted, aportara recursos de forma regular para el pago de su prestamo con SERVICIOS FINANCIEROS CON VALORES S.A de C.V? </label>
-                    <input type="radio" th:field="*{ownerCommand.aportaciones}" value="si" />Si<br/>
+                    <input type="radio" th:field="*{ownerCommand.aportaciones}" value="si" checked="checked"/>Si<br/>
                     <input type="radio" th:field="*{ownerCommand.aportaciones}" value="no" />No<br/>
                   </div>
                 </div>
@@ -615,13 +615,14 @@
                 <hr />
                 <h1>9.- Entrevista PLD</h1>
                 <div class="row-fluid">
-                  <div class="span8">
+                  <div class="span12"></div>
+                  <div class="span11">
                     <label>¿Desempeña actualmente o desempeño en el ultimo año alguna función publica en el pais o en el extranjero?(Jefe de estado, lider politico, funcionario gubernamental, judicial o militar de alta jerarquia, alto ejecutivo de empresa estatal, funcionario o miembro importante de partido politico).</label>
                     <input type="radio" th:field="*{pldInterview.gobierno}" value="si" />Si<br/>
                     <input type="radio" th:field="*{pldInterview.gobierno}" value="no" />No<br/>
                   </div>
                   <div class="span12"></div>
-                  <div class="span12">
+                  <div class="span11">
                     <label>Su cónyuge o parientes consanguineos o afines, hasta el segundo grado(abuelos, padres, hermanos, hijos, primos) actualmente desempeñan o han desempeñado en el ultimo año alguna función pública destacada en el pais o en el extrangero</label>
                     <input type="radio" th:field="*{pldInterview.consanguineo}" value="si" />Si<br/>
                     <input type="radio" th:field="*{pldInterview.consanguineo}" value="no" />No<br/>
