@@ -20,4 +20,5 @@ class ClientController {
   def findClientByRfc(@RequestParam String rfc){
     log.info "FINDING Client by rfc: $rfc"
   }
+
 }

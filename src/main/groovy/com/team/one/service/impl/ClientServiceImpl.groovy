@@ -1,5 +1,6 @@
 package com.team.one.service.impl
 
+import com.team.one.domain.Client
 import com.team.one.service.ClientService
 import com.team.one.service.PhotoNameGeneratorService
 import org.springframework.stereotype.Service
@@ -119,6 +120,10 @@ class ClientServiceImpl implements ClientService {
     if(!subcategory)
       subcategory = createSubCategoryByName(name)
     subcategory
+  }
+
+  def findByRfc(String rfc){
+    return new Client()
   }
 
 }
