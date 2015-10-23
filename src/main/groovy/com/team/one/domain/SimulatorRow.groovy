@@ -11,6 +11,7 @@ class SimulatorRow {
   BigDecimal insurance
   BigDecimal ratio
   BigDecimal reward
+  BigDecimal profit
   Date paymentDate
 
 }

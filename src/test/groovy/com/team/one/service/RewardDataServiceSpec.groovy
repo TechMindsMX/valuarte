@@ -80,9 +80,8 @@ class RewardDataServiceSpec extends Specification {
   then:"we expect following results"
     rows[0].profit == 971.40
     rows[1].profit == 659.91
-    rows[2].profit == 336.27
+    rows[2].profit == 336.28
   }
-
 
   void "should throw an exception when no restructure interest information"(){
   given:"An empty interest collection"
