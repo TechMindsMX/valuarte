@@ -12,6 +12,7 @@ class SimulatorRow {
   BigDecimal ratio
   BigDecimal reward
   BigDecimal profit
+  BigDecimal capitalCut
   Date paymentDate
 
 }

@@ -83,6 +83,29 @@ class RewardDataServiceSpec extends Specification {
     rows[2].profit == 336.28
   }
 
+  void "should get capital cut from capital and insurance"(){
+  given:"Three restructure simulator with interest"
+    def restructureRow1 = new SimulatorRow(interest:1062.94, capital:10228.78, insurance:77.11)
+    def restructureRow2 = new SimulatorRow(interest:721.98, capital:10624.29, insurance:52.37)
+    def restructureRow3 = new SimulatorRow(interest:367.84, capital:11035.10, insurance:26.68)
+  and:"Three valuarte simulator with interest"
+    def valuarteRow1 = new SimulatorRow(interest:956.65)
+    def valuarteRow2 = new SimulatorRow(interest:648.61)
+    def valuarteRow3 = new SimulatorRow(interest:329.85)
+  and:"A result rows"
+    def rows = [new SimulatorRow(), new SimulatorRow(), new SimulatorRow()]
+  and:"A restructure and valuarte row collection"
+    def restructure = [restructureRow1, restructureRow2, restructureRow3]
+    def valuarte = [valuarteRow1, valuarteRow2, valuarteRow3]
+  when:"An reward is calculated"
+    service.calculate(rows, restructure, valuarte)
+  then:"we expect following results"
+    rows[0].capitalCut == 10151.67
+    rows[1].capitalCut == 10571.92
+    rows[2].capitalCut == 11008.41
+  }
+
+
   void "should throw an exception when no restructure interest information"(){
   given:"An empty interest collection"
     def rows = []
