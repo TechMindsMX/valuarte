@@ -94,7 +94,6 @@ class SimulatorController {
     def detailOfPayments = []
     def detailOfPaymentsRestructure = simulatorDataService.calculate(restructure)
     def detailOfPaymentsValuarte = simulatorDataService.calculate(valuarte)
-    rewardDataService.calculate(detailOfPaymentsRestructure, detailOfPaymentsValuarte)
 
     if(simulatorCommand.type == SimulatorType.RESTRUCTURE){
        simulator = restructure
@@ -104,6 +103,7 @@ class SimulatorController {
       detailOfPayments = detailOfPaymentsValuarte
     }
 
+    rewardDataService.calculate(detailOfPayments, detailOfPaymentsRestructure, detailOfPaymentsValuarte)
     ModelAndView modelAndView = new ModelAndView("simulator/form")
     modelAndView.addObject("simulatorCommand", simulatorCommand)
     modelAndView.addObject("simulator", simulator)
@@ -114,8 +114,8 @@ class SimulatorController {
     modelAndView.addObject("totalInterest", detailOfPayments.interest.sum())
     modelAndView.addObject("totalPayment", simulator.payment * detailOfPayments.size())
     modelAndView.addObject("totalIVA", detailOfPayments.iva.sum())
-    modelAndView.addObject("totalRatio", detailOfPaymentsRestructure.ratio.sum())
-    modelAndView.addObject("totalReward", detailOfPaymentsRestructure.reward.sum())
+    modelAndView.addObject("totalRatio", detailOfPayments.ratio.sum())
+    modelAndView.addObject("totalReward", detailOfPayments.reward.sum())
     modelAndView.addObject("totalInsurance", detailOfPayments.insurance.sum())
     modelAndView
   }
