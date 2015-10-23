@@ -13,5 +13,6 @@ class CreditCommand{
   FinancialInfoCommand financialInfoCommand
   OwnerIdentificationCommand ownerCommand
   TransactionalProfileCommand transactionalProfileCommand
+  PLDInterviewCommand pldInterview
 
 }
