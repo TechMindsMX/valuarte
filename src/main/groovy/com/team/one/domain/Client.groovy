@@ -59,9 +59,6 @@ class Client {
 
 
   @Column(nullable = false)
-  String fiel
-
-  @Column(nullable = false)
   String curp
 
   @Column(nullable = false)
@@ -90,13 +87,14 @@ class Client {
   References references
 
   @OneToOne(fetch=FetchType.LAZY)
-  @JoinColumn(name="SURE_ID")
-  Sure sure
-  
+  @JoinColumn(name="OWNER_IDENTIFICATION_ID")
+  OwnerIdentification ownerIdentification
+
+
   @OneToOne(fetch=FetchType.LAZY)
   @JoinColumn(name="TRANSACTIONAL_PROFILE_ID")
   TransactionalProfile transactionalProfile
-  
+
   @OneToOne(fetch=FetchType.LAZY)
   @JoinColumn(name="WORK_INFO_ID")
   WorkInfo workInfo
