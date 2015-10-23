@@ -102,10 +102,11 @@
                 <th class="center-align" data-field="interest">Interés</th>
                 <th class="center-align" data-field="payment">Pago</th>
                 <th class="center-align" data-field="iva">IVA</th>
-                <th class="center-align" data-field="iva">Después de Pago</th>
-                <th class="center-align" data-field="iva">Fecha de Pago</th>
-                <th class="center-align" data-field="iva">Proporción</th>
-                <th class="center-align" data-field="iva">Recompensa</th>
+                <th class="center-align" data-field="capitalAfterPayment">Después de Pago</th>
+                <th class="center-align" data-field="paymentDate">Fecha de Pago</th>
+                <th class="center-align" data-field="ratio">Proporción</th>
+                <th class="center-align" data-field="reward">Recompensa</th>
+                <th class="center-align" data-field="profit">Utilidad</th>
                 <th class="center-align" data-field="insurance">Seguros</th>
               </div>
             </tr>
@@ -124,6 +125,7 @@
                 <td class="center-align" th:text="${beans.dateFormatter.format(detailOfPayment.paymentDate)}">PaymentDate</td>
                 <td class="right-align" th:text="${beans.numberFormatter.format(detailOfPayment.ratio)}">Ratio</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.reward)}">Reward</td>
+                <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.profit)}">Pofit</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(detailOfPayment.insurance)}">Insurance</td>
             </tr>
             <tr>
@@ -138,6 +140,7 @@
                 <td></td>
                 <td class="right-align" th:text="${beans.numberFormatter.format(totalRatio)}">Total Proporción</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(totalReward)}">Total Recompensa</td>
+                <td class="right-align" th:text="${beans.currencyFormatter.format(totalProfit)}">Total Utilidad</td>
                 <td class="right-align" th:text="${beans.currencyFormatter.format(totalInsurance)}">Total Seguros</td>
               </div>
             </tr>
