@@ -39,24 +39,24 @@ class AdminCreditController {
     def endorsement = command.endorsementCommand.generateEndorsement()
     def financialInfo = command.financialInfoCommand.generateFinancialInfo()
     def references = command.referencesCommand.generateReferences()
-    def sure = command.sureCommand.generateSure()
     def transactionalProfile = command.transactionalProfileCommand.generateTransactionalProfile()
     def workInfo = command.workInfoCommand.generateWorkInfo()
     def client = command.clientCommand.generateClient()
     def user = userRepository.findByEmail(address.email)
+    def owner = command.ownerCommand.generateOwnerIdentification()
     Map domainList = [
                         address:address,
                         endorsement:endorsement,
                         financial:financialInfo,
                         reference:references,
-                        sure:sure,
                         transactional:transactionalProfile,
                         work:workInfo,
-                       client:client
+                        owner:owner,
+                        client:client
                       ]
 
-    def clientPersistence = service.create(domainList,userCreate,new User())
-    model.addAtribute("clientUuid",clientPersistence.uuid)
+    def clientPersistence = service.create(domainList,userCreate)
+    model.clientUuid = clientPersistence
     "adminCredit/form"
   }
 
