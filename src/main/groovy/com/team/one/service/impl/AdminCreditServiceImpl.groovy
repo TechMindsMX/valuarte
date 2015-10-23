@@ -33,6 +33,7 @@ class AdminCreditServiceImpl implements AdminCreditService {
     @Autowired
     OwnerIdentificationRepository ownerR
 
+
     Client create(Map domainList,String userCreate) {
       def address = addressR.save(domainList.address)
       def endorsement = endorsementR.save(domainList.endorsement)
@@ -40,7 +41,7 @@ class AdminCreditServiceImpl implements AdminCreditService {
       def reference = referenceR.save(domainList.reference)
       def transactional = transactionalR.save(domainList.transactional)
       def workInfo = workR.save(domainList.work)
-      def ownerIdentification = ownerR.save(domainList.owner)
+      def ownerIdentification = ownerR.save(domainList.owner ?: new OwnerIdentification())
       def client = domainList.client
       client.address = address
       client.endorsement = endorsement
