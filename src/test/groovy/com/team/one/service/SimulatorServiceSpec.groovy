@@ -35,11 +35,11 @@ class SimulatorServiceSpec extends Specification {
 
   void "should save simulator"(){
     given:"An simulator"
-      def simulator = new Simulator()
+      def simulator = new Simulator(rfc:'MOCS801001ABC')
     when:"We tryed to save"
       service.save(simulator)
     then:"We expect repository saves"
-      1 * simulatorRepository.save(simulador)
+      1 * simulatorRepository.save(simulator)
   }
 
   void "should not save simulator"(){
