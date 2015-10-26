@@ -99,4 +99,7 @@ class Client {
   @JoinColumn(name="WORK_INFO_ID")
   WorkInfo workInfo
 
+  @OneToOne(fetch=FetchType.LAZY)
+  @JoinColumn(name="PLD_INTERVIEW_ID")
+  PLDInterview pldInterview
 }
