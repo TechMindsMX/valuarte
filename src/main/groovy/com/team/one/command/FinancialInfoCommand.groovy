@@ -1,8 +1,10 @@
-package com.team.one.domain
+package com.team.one.command
+
+import com.team.one.domain.FinancialInfo
 
 class FinancialInfoCommand {
 
-    Boolean creditoActual
+  Boolean creditoActual
   Boolean avalCreditoTercero
   String tipoCreditoDeuda1
   String institucionDeuda1

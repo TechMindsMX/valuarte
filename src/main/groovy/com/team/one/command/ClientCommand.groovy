@@ -19,7 +19,6 @@ class ClientCommand {
   Genero genero
   TipoIdentificacion identificacion
   String identificacionOtro
-  String fiel
   String curp
   String claveElector
   String nacionalidad
@@ -40,7 +39,6 @@ class ClientCommand {
       genero: this.genero,
       identificacion: this.identificacion,
       identificacionOtro: this.identificacionOtro,
-      fiel: this.fiel,
       curp: this.curp,
       claveElector: this.claveElector,
       nacionalidad: this.nacionalidad
