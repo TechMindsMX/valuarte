@@ -32,7 +32,8 @@ class AdminCreditServiceImpl implements AdminCreditService {
     UserClientRepository userClientRepository
     @Autowired
     OwnerIdentificationRepository ownerR
-
+    @Autowired
+    PLDInterviewRepository pldR
 
     Client create(Map domainList,String userCreate) {
       def address = addressR.save(domainList.address)
@@ -42,6 +43,7 @@ class AdminCreditServiceImpl implements AdminCreditService {
       def transactional = transactionalR.save(domainList.transactional)
       def workInfo = workR.save(domainList.work)
       def ownerIdentification = ownerR.save(domainList.owner ?: new OwnerIdentification())
+      def pldInterview = pldR.save(domainList.pld)
       def client = domainList.client
       client.address = address
       client.endorsement = endorsement
@@ -50,6 +52,7 @@ class AdminCreditServiceImpl implements AdminCreditService {
       client.transactionalProfile = transactional
       client.workInfo = workInfo
       client.ownerIdentification = ownerIdentification
+      client.pldInterview = pldInterview
       client.userCreate = userCreate
       clientR.save(client)
       client
