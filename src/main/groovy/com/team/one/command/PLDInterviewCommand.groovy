@@ -12,7 +12,7 @@ class PLDInterviewCommand {
   PLDInterview generatePLDInterview() {
     new PLDInterview(
       gobierno: this.gobierno,
-      consanguimeo: this.consanguineo,
+      consanguineo: this.consanguineo,
       ingresos: this.ingresos,
       monto: this.monto
     )
