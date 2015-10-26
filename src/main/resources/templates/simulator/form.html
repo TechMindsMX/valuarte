@@ -101,26 +101,26 @@
   </div>
 
   <div th:if="${detailOfPayments} != null">
-    <h5>Resultados de la simulación</h5>
+    <h3>Resultados de la simulación</h3>
     <h6>Seguro de vida y desempleo: <strong th:text="${beans.currencyFormatter.format(simulator.lifeInsurance)}"></strong></h6>
-    <table >
+    <table class="table-striped">
       <thead>
         <tr>
           <div>
-            <th data-field="id">#</th>
-            <th data-field="capitalBeforePayment">Antes de Pago</th>
-            <th data-field="capital">Capital</th>
-            <th data-field="interest">Interés</th>
-            <th data-field="payment">Pago</th>
-            <th data-field="iva">IVA</th>
-            <th data-field="capitalAfterPayment">Después de Pago</th>
-            <th data-field="paymentDate">Fecha de Pago</th>
-            <th data-field="ratio">Proporción</th>
-            <th data-field="reward">Recompensa</th>
-            <th data-field="profit" style="display:none;">Utilidad</th>
-            <th data-field="capitalCut" style="display:none;">A. Capital</th>
-            <th data-field="balance" style="display:none;">S. Cartera</th>
-            <th data-field="insurance">Seguros</th>
+            <th class="text-center" data-field="id">#</th>
+            <th class="text-center" data-field="capitalBeforePayment">Antes de Pago</th>
+            <th class="text-center" data-field="capital">Capital</th>
+            <th class="text-center" data-field="interest">Interés</th>
+            <th class="text-center" data-field="payment">Pago</th>
+            <th class="text-center" data-field="iva">IVA</th>
+            <th class="text-center" data-field="capitalAfterPayment">Después de Pago</th>
+            <th class="text-center" data-field="paymentDate">Fecha de Pago</th>
+            <th class="text-center" data-field="ratio">Proporción</th>
+            <th class="text-center" data-field="reward">Recompensa</th>
+            <th class="text-center" data-field="profit" style="display:none;">Utilidad</th>
+            <th class="text-center" data-field="capitalCut" style="display:none;">A. Capital</th>
+            <th class="text-center" data-field="balance" style="display:none;">S. Cartera</th>
+            <th class="text-center" data-field="insurance">Seguros</th>
           </div>
         </tr>
       </thead>
@@ -128,36 +128,36 @@
       <tbody>
         <div class="valign-wrapper">
           <tr th:each="detailOfPayment : ${detailOfPayments}">
-            <td th:text="${detailOfPayment.number}">Number</td>
-            <td th:text="${beans.currencyFormatter.format(detailOfPayment.capitalBeforePayment)}">CapitalBeforePayment</td>
-            <td th:text="${beans.currencyFormatter.format(detailOfPayment.capital)}">Capital</td>
-            <td th:text="${beans.currencyFormatter.format(detailOfPayment.interest)}">Interest</td>
-            <td th:text="${beans.currencyFormatter.format(simulator.payment)}">Payment</td>
-            <td th:text="${beans.currencyFormatter.format(detailOfPayment.iva)}">IVA</td>
-            <td th:text="${beans.currencyFormatter.format(detailOfPayment.capitalAfterPayment)}">CapitalAfterPayment</td>
-            <td th:text="${beans.dateFormatter.format(detailOfPayment.paymentDate)}">PaymentDate</td>
-            <td th:text="${beans.numberFormatter.format(detailOfPayment.ratio)}">Ratio</td>
-            <td th:text="${beans.currencyFormatter.format(detailOfPayment.reward)}">Reward</td>
-            <td th:text="${beans.currencyFormatter.format(detailOfPayment.profit)}" style="display:none;">Pofit</td>
-            <td th:text="${beans.currencyFormatter.format(detailOfPayment.capitalCut)}" style="display:none;">CapitalCut</td>
-            <td th:text="${beans.currencyFormatter.format(detailOfPayment.balance)}" style="display:none;">Balance</td>
-            <td th:text="${beans.currencyFormatter.format(detailOfPayment.insurance)}">Insurance</td>
+            <td class="text-right" th:text="${detailOfPayment.number}">Number</td>
+            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.capitalBeforePayment)}">CapitalBeforePayment</td>
+            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.capital)}">Capital</td>
+            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.interest)}">Interest</td>
+            <td class="text-right" th:text="${beans.currencyFormatter.format(simulator.payment)}">Payment</td>
+            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.iva)}">IVA</td>
+            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.capitalAfterPayment)}">CapitalAfterPayment</td>
+            <td class="text-center" th:text="${beans.dateFormatter.format(detailOfPayment.paymentDate)}">PaymentDate</td>
+            <td class="text-right" th:text="${beans.numberFormatter.format(detailOfPayment.ratio)}">Ratio</td>
+            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.reward)}">Reward</td>
+            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.profit)}" style="display:none;">Pofit</td>
+            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.capitalCut)}" style="display:none;">CapitalCut</td>
+            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.balance)}" style="display:none;">Balance</td>
+            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.insurance)}">Insurance</td>
           </tr>
           <tr>
             <div style="font-weight:bold;">
               <td></td>
               <td></td>
-              <td th:text="${beans.currencyFormatter.format(totalCapital)}">Total Capital</td>
-              <td th:text="${beans.currencyFormatter.format(totalInterest)}">Total Interés</td>
-              <td th:text="${beans.currencyFormatter.format(totalPayment)}">Total Pago</td>
-              <td th:text="${beans.currencyFormatter.format(totalIVA)}">Total IVA</td>
+              <td class="text-right" th:text="${beans.currencyFormatter.format(totalCapital)}">Total Capital</td>
+              <td class="text-right" th:text="${beans.currencyFormatter.format(totalInterest)}">Total Interés</td>
+              <td class="text-right" th:text="${beans.currencyFormatter.format(totalPayment)}">Total Pago</td>
+              <td class="text-right" th:text="${beans.currencyFormatter.format(totalIVA)}">Total IVA</td>
               <td></td>
               <td></td>
-              <td th:text="${beans.numberFormatter.format(totalRatio)}">Total Proporción</td>
-              <td th:text="${beans.currencyFormatter.format(totalReward)}">Total Recompensa</td>
-              <td th:text="${beans.currencyFormatter.format(totalProfit)}" style="display:none;">Total Utilidad</td>
-              <td th:text="${beans.currencyFormatter.format(totalCapitalCut)}" style="display:none;">Total Aplicación de Capital</td>
-              <td th:text="${beans.currencyFormatter.format(totalInsurance)}">Total Seguros</td>
+              <td class="text-right" th:text="${beans.numberFormatter.format(totalRatio)}">Total Proporción</td>
+              <td class="text-right" th:text="${beans.currencyFormatter.format(totalReward)}">Total Recompensa</td>
+              <td class="text-right" th:text="${beans.currencyFormatter.format(totalProfit)}" style="display:none;">Total Utilidad</td>
+              <td class="text-right" th:text="${beans.currencyFormatter.format(totalCapitalCut)}" style="display:none;">Total Aplicación de Capital</td>
+              <td class="text-right" th:text="${beans.currencyFormatter.format(totalInsurance)}">Total Seguros</td>
             </div>
           </tr>
         </div>
