@@ -44,6 +44,7 @@ class AdminCreditController {
     def client = command.clientCommand.generateClient()
     def user = userRepository.findByEmail(address.email)
     def owner
+    def pld =  command.pldInterview.generatePLDInterview()
     if (command.ownerCommand)
       owner = command.ownerCommand.generateOwnerIdentification()
     Map domainList = [
@@ -54,6 +55,7 @@ class AdminCreditController {
                         transactional:transactionalProfile,
                         work:workInfo,
                         owner:owner,
+                        pld:pld,
                         client:client
                       ]
 
