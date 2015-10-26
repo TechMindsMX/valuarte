@@ -83,18 +83,12 @@ class SimulatorController {
 
     def client = simulatorCommand.bindClient()
     def simulator = simulatorCommand.bindSimulator()
-
-    if (simulatorCommand.saved) {
-      simulatorService.save(simulator)
-    }
-
     def restructure = simulatorService.calculate(simulator)
     def valuarte = simulatorValuarteService.calculate(simulator)
 
     def detailOfPayments = []
     def detailOfPaymentsRestructure = simulatorDataService.calculate(restructure)
     def detailOfPaymentsValuarte = simulatorDataService.calculate(valuarte)
-
 
     if(simulatorCommand.type == SimulatorType.RESTRUCTURE){
       simulator = restructure
@@ -105,6 +99,12 @@ class SimulatorController {
     }
 
     rewardDataService.calculate(detailOfPayments, detailOfPaymentsRestructure, detailOfPaymentsValuarte)
+
+    if (simulatorCommand.saved) {
+      simulator.rows = detailOfPayments
+      simulatorService.save(simulator)
+    }
+
     ModelAndView modelAndView = new ModelAndView("simulator/form")
     modelAndView.addObject("simulatorCommand", simulatorCommand)
     modelAndView.addObject("simulator", simulator)

@@ -103,7 +103,8 @@
   <div th:if="${detailOfPayments} != null">
     <h3>Resultados de la simulación</h3>
     <h6>Seguro de vida y desempleo: <strong th:text="${beans.currencyFormatter.format(simulator.lifeInsurance)}"></strong></h6>
-    <table class="table-striped">
+    <div class="table-responsive">
+    <table class="table table-striped">
       <thead>
         <tr>
           <div>
@@ -163,6 +164,7 @@
         </div>
       </tbody>
     </table>
+    </div>
   </div>
 </div>
 <script src="../../js/simulator/ajax.js" th:src="@{/js/simulator/ajax.js}"></script>

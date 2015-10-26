@@ -28,6 +28,7 @@ class SimulatorServiceImpl implements SimulatorService {
   }
 
   def save(Simulator simulator){
+    log.info "SAVING simulator: ${simulator.dump()}"
     simulatorRepository.save(simulator)
   }
 
