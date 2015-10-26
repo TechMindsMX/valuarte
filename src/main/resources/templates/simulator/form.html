@@ -7,30 +7,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-    $('#search').click(function(){
-
-          $.ajax('//localhost:8080/client', {
-                  method: 'GET',
-                  dataType: 'json',
-                  data: {
-                      rfc: $('#rfc').val()
-                      }
-                 })
-          .done(function(data) {
-              var simulator = $('#simulator');
-              simulator.find('#rfc').val(data.rfc);
-              simulator.find('#nombre').val(data.nombre);
-              simulator.find('#apellidoPaterno').val(data.apellidoPaterno);
-              simulator.find('#apellidoMaterno').val(data.apellidoMaterno);
-            })
-          .fail(function(data, status){
-              console.log(data, status)
-              });
-      });
-  });
-</script>
 </head>
 <body>
 <div class="container-fluid">
@@ -188,9 +164,7 @@ $(document).ready(function(){
       </tbody>
     </table>
   </div>
-<!--
-<script src="../../js/simulator/ajax.js" th:src="@{/js/simulator/ajax.js}"/>
--->
 </div>
+<script src="../../js/simulator/ajax.js" th:src="@{/js/simulator/ajax.js}"></script>
 </body>
 </html>
