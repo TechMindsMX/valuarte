@@ -51,6 +51,8 @@ class SimulatorController {
 
   @Value('${path.photos}')
   String pathPhotoUrl
+  @Value('${simulator.findClientUrl}')
+  String findClientUrl
 
   Logger log = LoggerFactory.getLogger(getClass())
 
@@ -63,6 +65,7 @@ class SimulatorController {
     ModelAndView modelAndView = new ModelAndView("simulator/form")
     modelAndView.addObject("simulatorCommand", simulatorCommand)
     modelAndView.addObject("sources", sourceService.findSources())
+    modelAndView.addObject("findClientUrl", findClientUrl)
     modelAndView
   }
 
@@ -111,6 +114,7 @@ class SimulatorController {
     modelAndView.addObject("client", client)
     modelAndView.addObject("sources", sourceService.findSources())
     modelAndView.addObject("detailOfPayments", detailOfPayments)
+    modelAndView.addObject("findClientUrl", findClientUrl)
     modelAndView.addObject("totalCapital", detailOfPayments.capital.sum())
     modelAndView.addObject("totalInterest", detailOfPayments.interest.sum())
     modelAndView.addObject("totalPayment", simulator.payment * detailOfPayments.size())

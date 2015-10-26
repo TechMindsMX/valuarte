@@ -1,6 +1,6 @@
 $("#search").click(function(){
 
-  $.ajax('//localhost:8080/client', {
+  $.ajax($("#findClientUrl").val(), {
       method: 'GET',
       dataType: 'json',
       data: {
