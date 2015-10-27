@@ -25,7 +25,7 @@
                   <div class="col-md-12 form-group">
                     <div class="control-group col-md-8">
                       <label class="control-label">Monto Solicitado</label>
-                      <input type="text" th:field="*{clientCommand.montoPrestamo}" class="form-control search-query" />
+                      <input type="text" data-msg="Se requiere agregar un monto" data-msg-number="solo se aceptan numeros" number="number" th:field="*{clientCommand.montoPrestamo}" class="form-control search-query" required="required"/>
                     </div>
                     <div class="control-group col-md-4">
                        <label class="control-label">Fecha de captura</label>
@@ -38,25 +38,25 @@
                     <div class="col-md-12 form-group">
                       <div class="col-md-4">
                         <label class="control-label">Nombre(s)</label>
-                        <input type="text" th:field="*{clientCommand.nombre}" class="form-control search-query" />
+                        <input data-msg="Se requiere agregar un nombre(s)" type="text" th:field="*{clientCommand.nombre}" class="form-control search-query" required="required"/>
                       </div>
                       <div class="col-md-4">
                         <label class="control-label">Apellido Paterno</label>
-                        <input type="text" th:field="*{clientCommand.apellidoPaterno}" class="form-control search-query" />
+                        <input type="text" th:field="*{clientCommand.apellidoPaterno}" class="form-control search-query" required="required" data-msg="Se requiere agregar Apellido Paterno" />
                       </div>
                       <div class="col-md-4">
                         <label class="control-label">Apellido Materno</label>
-                        <input type="text" th:field="*{clientCommand.apellidoMaterno}" class="form-control search-query" />
+                        <input type="text" th:field="*{clientCommand.apellidoMaterno}" class="form-control search-query" required="required" data-msg="Se requiere agregar Apellido Materno"/>
                       </div>
                     </div>
                     <div class="col-md-12 form-group">
                       <div class="col-md-3">
                        <label class="control-label">Fecha de nacimeinto</label>
-                       <input class="datepicker col-md-10 search-query" id="edad" th:field="*{clientCommand.fechaNacimiento}" />
+                       <input class="datepicker col-md-10 search-query" id="edad" th:field="*{clientCommand.fechaNacimiento}" required="required" data-msg="Agregar una fecha de nacimiento"/>
                       </div>
                       <div class="col-md-3">
                         <label class="control-label">Edad</label>
-                        <input type="text" th:field="*{clientCommand.edad}" class="form-control search-query" />
+                        <input type="text" th:field="*{clientCommand.edad}" class="form-control search-query" required="required" digits="digits" data-msg="Se requiere agregar una edad" data-msg-digits="Solo se aceptan numeros"/>
                       </div>
                       <div class="col-md-3">
                         <label class="control-label">Estado civil</label>
@@ -96,21 +96,21 @@
                       </div>
                       <div class="col-md-3">
                         <label class="control-label">RFC con Homoclave</label>
-                        <input type="text" class="form-control search-query" th:field="*{clientCommand.rfc}" />
+                        <input type="text" class="form-control search-query" th:field="*{clientCommand.rfc}" required="required" data-msg="Agregar un RFC con Homoclave"/>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="col-md-4">
                         <label class="control-label">CURP</label>
-                        <input type="text" class="form-control search-query" th:field="*{clientCommand.curp}" />
+                        <input type="text" class="form-control search-query" th:field="*{clientCommand.curp}" required="required" data-msg="Agregar una Curp"/>
                       </div>
                       <div class="col-md-3">
                         <label class="control-label">Clave de Elector</label>
-                        <input type="text" class="form-control search-query" th:field="*{clientCommand.claveElector}" />
+                        <input type="text" class="form-control search-query" th:field="*{clientCommand.claveElector}" required="required" data-msg="Agregar la Clave de elector"/>
                       </div>
                       <div class="col-md-3">
                         <label class="control-label">Nacionalidad</label>
-                        <input type="text" class="form-control search-query" th:field="*{clientCommand.nacionalidad}" />
+                        <input type="text" class="form-control search-query" th:field="*{clientCommand.nacionalidad}" required="required" data-msg="Agregar una nacionalidad"/>
                       </div>
                     </div>
                   </div>
@@ -595,22 +595,22 @@
                   <div class="row-fluid">
                     <div class="col-md-12 form-group">
                       <label class="control-label">¿Desempeña actualmente o desempeño en el ultimo año alguna función publica en el pais o en el extranjero?(Jefe de estado, lider politico, funcionario gubernamental, judicial o militar de alta jerarquia, alto ejecutivo de empresa estatal, funcionario o miembro importante de partido politico).</label>
-                      <input type="radio" class="checkbox-inline" th:field="*{pldInterview.gobierno}" value="si" /> Si<br/>
+                      <input type="radio" class="checkbox-inline required" th:field="*{pldInterview.gobierno}" value="si" data-msg="Se requiere indicar si tuvo Cargo de funcion publica" /> Si<br/>
                       <input type="radio" class="checkbox-inline" th:field="*{pldInterview.gobierno}" value="no" /> No<br/>
                     </div>
                     <div class="col-md-12 form-group">
                       <label class="control-label">Su cónyuge o parientes consanguineos o afines, hasta el segundo grado(abuelos, padres, hermanos, hijos, primos) actualmente desempeñan o han desempeñado en el ultimo año alguna función pública destacada en el pais o en el extrangero</label>
-                      <input type="radio" class="checkbox-inline" th:field="*{pldInterview.consanguineo}" value="si" /> Si<br/>
+                      <input type="radio" class="checkbox-inline required" th:field="*{pldInterview.consanguineo}" value="si" data-msg="Se requiere indicar si existe algun tuvo cargos de funciones publicas" /> Si<br/>
                       <input type="radio" class="checkbox-inline" th:field="*{pldInterview.consanguineo}" value="no" /> No<br/>
                     </div>
                     <div class="col-md-12 form-group">
                       <label class="control-label">Usted peribe algún otro ingreso</label>
                       <p></p>
-                      <input type="radio" class="checkbox-inline" th:field="*{pldInterview.ingresos}" value="si" /> Si<br/>
+                      <input type="radio" class="checkbox-inline required" data-msg="Se requiere indicar si persibe otro ingreso"  th:field="*{pldInterview.ingresos}" value="si" /> Si<br/>
                       <input type="radio" class="checkbox-inline" th:field="*{pldInterview.ingresos}" value="no" /> No<br/>
                     </div>
                     <div class="col-md-12 form-group">
-                      <label class="control-label">¿A cuanto ascuende?</label>
+                      <label class="control-label">¿A cuanto asciende?</label>
                       <input type="text" th:field="*{pldInterview.monto}" /> MXP
                     </div>
 
@@ -622,11 +622,12 @@
               </form>
             </div>
           </div>
-         </div> 
+         </div>
         </div>
       </div>
       <br /><br />
       <script type="text/javascript">
+        $("#credit").validate();
         $('#grado').change(function() {
           var option = $(this).find('option:selected');
           if (option.text() == "Otro") {
