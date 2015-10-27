@@ -22,7 +22,9 @@ class HandlerException implements HandlerExceptionResolver {
     if(ex instanceof SimulatorException){
       def data = [:]
       data.message = ex.message
-      new ModelAndView("error", data)
+      ModelAndView modelAndView = new ModelAndView("error")
+      modelAndView.addObject("data", data)
+      modelAndView
     }
   }
 
