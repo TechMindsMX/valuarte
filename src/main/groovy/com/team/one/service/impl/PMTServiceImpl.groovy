@@ -18,15 +18,15 @@ class PMTServiceImpl implements PMTService {
 
   BigDecimal calculate(Simulator simulator){
     if(!simulator.paymentPeriod){
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado un periodo de pago')
     }
 
     if(!simulator.tia || simulator.tia < 0){
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado una tasa de interés anual válida')
     }
 
     if(!simulator.principle || simulator.principle < 0){
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado el monto total del préstamo')
     }
 
     BigDecimal effectiveInterest = simulator.tia / 100 / 12 / simulator.paymentPeriod.factor

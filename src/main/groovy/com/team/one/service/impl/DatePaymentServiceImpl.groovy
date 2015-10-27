@@ -28,7 +28,7 @@ class DatePaymentServiceImpl implements DatePaymentService{
           date = date + 1.weeks
             break
           default:
-            throw new SimulatorException()
+            throw new SimulatorException('No se ha proporcionado un periodo de pago válido')
         }
       }
     }

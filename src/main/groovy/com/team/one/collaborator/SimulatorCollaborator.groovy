@@ -23,7 +23,7 @@ class SimulatorCollaborator {
 
   def calculate(Simulator simulator){
     if(!simulator.paymentPeriod){
-      throw new SimulatorException()
+      throw new SimulatorException('Es necesario incluir un periodo de pago para el cálculo')
     }
 
     simulator.openingCommission = openingCommissionService.calculate(simulator)

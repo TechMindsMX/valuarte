@@ -20,7 +20,7 @@ class OpeningCommissionServiceImpl implements OpeningCommissionService {
 
   BigDecimal calculate(Simulator simulator){
     if(!simulator.loan){
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado el monto base del préstamo')
     }
 
     return ((simulator.loan / (1-(simulator.commission/100 * (1 + simulator.iva/100)))) - simulator.loan).setScale(decimals, RoundingMode.valueOf(roundingMode))

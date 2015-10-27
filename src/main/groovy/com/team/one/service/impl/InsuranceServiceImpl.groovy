@@ -21,7 +21,7 @@ class InsuranceServiceImpl implements InsuranceService {
 
   BigDecimal calculate(Simulator simulator){
     if(!simulator.loan)
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado el monto de préstamo base')
 
     def insurances = insuranceDataService.calculate(simulator)
     insurances.sum()

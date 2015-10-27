@@ -20,7 +20,7 @@ class RewardDataServiceImpl implements RewardDataService {
 
   def calculate(def rows, def restructure, def valuarte){
     if(!restructure || !valuarte)
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado los registros de reestructura o valuarte')
 
     BigDecimal restructureSum = restructure.interest.sum()
     BigDecimal valuarteSum = valuarte.interest.sum()

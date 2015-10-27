@@ -39,7 +39,7 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
   def calculate(Simulator simulator){
     def rows = []
     if(!simulator.numberOfPayments || simulator.numberOfPayments < 0)
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado un número de pagos válido')
 
     def capitalBeforePayment = simulator.principle
     def paymentDates = datePaymentService.generatePaymentDates(simulator)

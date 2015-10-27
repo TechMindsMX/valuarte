@@ -29,7 +29,7 @@ class InsuranceDataServiceImpl implements InsuranceDataService {
   def calculate(Simulator simulator){
     def rows = []
     if(!simulator.numberOfPayments || simulator.numberOfPayments < 0)
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado un periodo de pago válido')
 
     def capitalBeforePayment = simulator.loan + simulator.openingCommission
     def factor = 2.43
