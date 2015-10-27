@@ -6,11 +6,24 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import org.springframework.stereotype.Component
 
+import com.team.one.exception.SimulatorException
+
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 @Component
 class HandlerException implements HandlerExceptionResolver {
 
+  Logger log = LoggerFactory.getLogger(getClass())
+
   ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex){
-    new ModelAndView("error",[:])
+    log.info ex.message
+
+    if(ex instanceof SimulatorException){
+      def data = [:]
+      data.message = ex.message
+      new ModelAndView("error", data)
+    }
   }
 
 }

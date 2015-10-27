@@ -34,7 +34,7 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
   @Value('${simulator.roundingMode}')
   String roundingMode
 
-  Logger log = LoggerFactory.getLogger(getClass());
+  Logger log = LoggerFactory.getLogger(getClass())
 
   def calculate(Simulator simulator){
     def rows = []
