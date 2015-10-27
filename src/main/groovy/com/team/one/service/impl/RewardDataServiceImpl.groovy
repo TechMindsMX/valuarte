@@ -8,6 +8,8 @@ import com.team.one.service.RewardDataService
 import com.team.one.domain.Simulator
 import com.team.one.exception.SimulatorException
 
+//TODO: Externalizar los mensajes de error
+
 @Service
 class RewardDataServiceImpl implements RewardDataService {
 

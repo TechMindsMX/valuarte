@@ -7,6 +7,8 @@ import com.team.one.domain.PaymentPeriod
 import groovy.time.TimeCategory
 import com.team.one.exception.SimulatorException
 
+//TODO: Externalizar los mensajes de error
+
 @Service
 class DatePaymentServiceImpl implements DatePaymentService{
 

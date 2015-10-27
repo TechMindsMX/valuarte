@@ -17,6 +17,8 @@ import com.team.one.exception.SimulatorException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+//TODO: Externalizar los mensajes de error
+
 @Service
 class SimulatorDataServiceImpl implements SimulatorDataService {
 

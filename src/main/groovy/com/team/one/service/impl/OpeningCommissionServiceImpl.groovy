@@ -10,6 +10,8 @@ import java.math.RoundingMode
 
 import com.team.one.exception.SimulatorException
 
+//TODO: Externalizar los mensajes de error
+
 @Service
 class OpeningCommissionServiceImpl implements OpeningCommissionService {
 

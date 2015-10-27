@@ -11,6 +11,8 @@ import com.team.one.service.OpeningCommissionService
 import com.team.one.domain.PaymentPeriod
 import com.team.one.exception.SimulatorException
 
+//TODO: Externalizar los mensajes de error
+
 @Component
 class SimulatorCollaborator {
 

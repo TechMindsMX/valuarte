@@ -11,6 +11,8 @@ import com.team.one.domain.PaymentPeriod
 import org.springframework.beans.factory.annotation.Autowired
 import com.team.one.exception.SimulatorException
 
+//TODO: Externalizar los mensajes de error
+
 @Service
 class InsuranceServiceImpl implements InsuranceService {
 
