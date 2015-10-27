@@ -17,6 +17,7 @@
       <p th:text="${er}" align="center" />
       </p>
     </div>
+    <strong th:text="${simulatorCommand.type}"></strong>
     <div th:if="${simulatorCommand.saved}">
       <p class="bg-success">El ejercicio del simulador ha sido salvado</p>
     </div>
@@ -119,9 +120,11 @@
             <th class="text-center" data-field="paymentDate">Fecha de Pago</th>
             <th class="text-center" data-field="ratio">Proporción</th>
             <th class="text-center" data-field="reward">Recompensa</th>
-            <th class="text-center" data-field="profit" style="display:none;">Utilidad</th>
-            <th class="text-center" data-field="capitalCut" style="display:none;">A. Capital</th>
-            <th class="text-center" data-field="balance" style="display:none;">S. Cartera</th>
+            <div th:if="${simulatorCommand.type == T(com.team.one.domain.enums.SimulatorType).VALUARTE}">
+            <th class="text-center" data-field="profit">Utilidad</th>
+            <th class="text-center" data-field="capitalCut">A. Capital</th>
+            <th class="text-center" data-field="balance">S. Cartera</th>
+            </div>
             <th class="text-center" data-field="insurance">Seguros</th>
           </div>
         </tr>
@@ -140,9 +143,11 @@
             <td class="text-center" th:text="${beans.dateFormatter.format(detailOfPayment.paymentDate)}">PaymentDate</td>
             <td class="text-right" th:text="${beans.numberFormatter.format(detailOfPayment.ratio)}">Ratio</td>
             <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.reward)}">Reward</td>
-            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.profit)}" style="display:none;">Pofit</td>
-            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.capitalCut)}" style="display:none;">CapitalCut</td>
-            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.balance)}" style="display:none;">Balance</td>
+            <div th:if="${simulatorCommand.type == T(com.team.one.domain.enums.SimulatorType).VALUARTE}">
+            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.profit)}">Pofit</td>
+            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.capitalCut)}">CapitalCut</td>
+            <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.balance)}">Balance</td>
+            </div>
             <td class="text-right" th:text="${beans.currencyFormatter.format(detailOfPayment.insurance)}">Insurance</td>
           </tr>
           <tr>
@@ -157,8 +162,11 @@
               <td></td>
               <td class="text-right" th:text="${beans.numberFormatter.format(totalRatio)}">Total Proporción</td>
               <td class="text-right" th:text="${beans.currencyFormatter.format(totalReward)}">Total Recompensa</td>
-              <td class="text-right" th:text="${beans.currencyFormatter.format(totalProfit)}" style="display:none;">Total Utilidad</td>
-              <td class="text-right" th:text="${beans.currencyFormatter.format(totalCapitalCut)}" style="display:none;">Total Aplicación de Capital</td>
+              <div th:if="${simulatorCommand.type == T(com.team.one.domain.enums.SimulatorType).VALUARTE}">
+              <td class="text-right" th:text="${beans.currencyFormatter.format(totalProfit)}">Total Utilidad</td>
+              <td class="text-right" th:text="${beans.currencyFormatter.format(totalCapitalCut)}">Total Aplicación de Capital</td>
+              <td></td>
+              </div>
               <td class="text-right" th:text="${beans.currencyFormatter.format(totalInsurance)}">Total Seguros</td>
             </div>
           </tr>
