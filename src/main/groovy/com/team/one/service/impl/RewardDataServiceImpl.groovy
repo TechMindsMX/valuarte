@@ -8,6 +8,8 @@ import com.team.one.service.RewardDataService
 import com.team.one.domain.Simulator
 import com.team.one.exception.SimulatorException
 
+//TODO: Externalizar los mensajes de error
+
 @Service
 class RewardDataServiceImpl implements RewardDataService {
 
@@ -20,7 +22,7 @@ class RewardDataServiceImpl implements RewardDataService {
 
   def calculate(def rows, def restructure, def valuarte){
     if(!restructure || !valuarte)
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado los registros de reestructura o valuarte')
 
     BigDecimal restructureSum = restructure.interest.sum()
     BigDecimal valuarteSum = valuarte.interest.sum()

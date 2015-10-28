@@ -17,6 +17,8 @@ import com.team.one.exception.SimulatorException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+//TODO: Externalizar los mensajes de error
+
 @Service
 class SimulatorDataServiceImpl implements SimulatorDataService {
 
@@ -34,12 +36,12 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
   @Value('${simulator.roundingMode}')
   String roundingMode
 
-  Logger log = LoggerFactory.getLogger(getClass());
+  Logger log = LoggerFactory.getLogger(getClass())
 
   def calculate(Simulator simulator){
     def rows = []
     if(!simulator.numberOfPayments || simulator.numberOfPayments < 0)
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado un número de pagos válido')
 
     def capitalBeforePayment = simulator.principle
     def paymentDates = datePaymentService.generatePaymentDates(simulator)

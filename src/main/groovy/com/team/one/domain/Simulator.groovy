@@ -7,6 +7,7 @@ class Simulator {
 
   @Id
   String id
+  String rfc
 
   BigDecimal tia
   BigDecimal iva

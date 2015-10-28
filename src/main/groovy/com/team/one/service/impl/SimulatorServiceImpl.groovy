@@ -8,6 +8,7 @@ import com.team.one.service.SimulatorService
 import com.team.one.repository.SimulatorRepository
 import com.team.one.collaborator.SimulatorCollaborator
 import com.team.one.command.SeguroMedicoCommand
+import com.team.one.exception.SimulatorException
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -28,6 +29,10 @@ class SimulatorServiceImpl implements SimulatorService {
   }
 
   def save(Simulator simulator){
+    log.info "SAVING simulator: ${simulator.dump()}"
+    if(!simulator.rfc){
+      throw new SimulatorException("No es posible salvar el ejercicio simulador si no tiene RFC")
+    }
     simulatorRepository.save(simulator)
   }
 

@@ -18,4 +18,6 @@ interface ClientService {
 
   def createSubCategoryByName(String name)
 
+  def findByRfc(String rfc)
+
 }

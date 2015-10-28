@@ -1,17 +1,21 @@
 package com.team.one.service.impl
 
-import com.team.one.service.ClientService
-import com.team.one.service.PhotoNameGeneratorService
 import org.springframework.stereotype.Service
 import org.springframework.beans.factory.annotation.*
 import org.springframework.web.client.RestTemplate
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.util.*
-import com.team.one.command.ProjectCommand
-import com.team.one.command.CategoryCommand
 import org.springframework.http.*
 import org.codehaus.jackson.map.ObjectMapper
+
+import com.team.one.domain.Client
+import com.team.one.repository.ClientRepository
+import com.team.one.service.ClientService
+import com.team.one.service.PhotoNameGeneratorService
+import com.team.one.command.ProjectCommand
+import com.team.one.command.CategoryCommand
+
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 @Service
 class ClientServiceImpl implements ClientService {
@@ -35,6 +39,8 @@ class ClientServiceImpl implements ClientService {
 
   @Autowired
   PhotoNameGeneratorService photoNameGeneratorService
+  @Autowired
+  ClientRepository clientRepository
 
   static final Logger log = LoggerFactory.getLogger(this.getClass())
 
@@ -119,6 +125,10 @@ class ClientServiceImpl implements ClientService {
     if(!subcategory)
       subcategory = createSubCategoryByName(name)
     subcategory
+  }
+
+  def findByRfc(String rfc){
+    return clientRepository.findByRfc(rfc)
   }
 
 }
