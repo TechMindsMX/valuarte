@@ -5,7 +5,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-  <p th:text="'Error: ' + ${data.message}" />
-  <a th:href="@{/simulator}">Regresar</a>
+  <div th:if="${data}">
+    <p th:text="'Error: ' + ${data.message}" />
+    <a th:href="@{/simulator}">Regresar</a>i
+  </div>
+  <div th:if="${!data}">
+    <p th:text="'Error: Acceso negado" />
+    <a th:href="@{/}">Regresar</a>i
+  </div>
 </body>
 </html>
