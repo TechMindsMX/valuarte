@@ -140,10 +140,11 @@ class SimulatorController {
   ModelAndView cotizar(@ModelAttribute("form") SeguroMedicoCommand command){
     log.info "cotizar seguro"
     ProjectCommand product  = clientService.getProductById(command.product.toInteger())
+    def cost = simulatorService.getCostOfHealthInsurance(command)
     ModelAndView modelAndView = new ModelAndView("product/show")
     modelAndView.addObject("product", product)
     modelAndView.addObject("pathUrl", pathPhotoUrl)
-    modelAndView.addObject("costo", '$5,763.00')
+    modelAndView.addObject("costo", cost)
     modelAndView
   }
 
