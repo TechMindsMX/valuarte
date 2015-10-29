@@ -6,6 +6,8 @@ import javax.persistence.*
 @Entity
 class User implements Serializable {
 
+  static final long serialVersionUID = 7526472295622776147L
+
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   Long id
