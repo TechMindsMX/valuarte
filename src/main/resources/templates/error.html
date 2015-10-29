@@ -9,7 +9,7 @@
     <p th:text="'Error: ' + ${data.message}" />
     <a th:href="@{/simulator}">Regresar</a>i
   </div>
-  <div th:if="${!data}">
+  <div th:if="${data == null}">
     <p th:text="'Error: Acceso negado" />
     <a th:href="@{/}">Regresar</a>i
   </div>
