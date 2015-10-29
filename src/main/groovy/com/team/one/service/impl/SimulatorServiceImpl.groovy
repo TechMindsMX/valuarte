@@ -9,6 +9,7 @@ import com.team.one.repository.SimulatorRepository
 import com.team.one.collaborator.SimulatorCollaborator
 import com.team.one.command.SeguroMedicoCommand
 import com.team.one.exception.SimulatorException
+import com.team.one.repository.CostHealthInsurenceRepository
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -22,6 +23,8 @@ class SimulatorServiceImpl implements SimulatorService {
   SimulatorRepository simulatorRepository
   @Autowired
   SimulatorCollaborator simulatorCollaborator
+  @Autowired
+  CostHealthInsurenceRepository costRepository
 
   Logger log = LoggerFactory.getLogger(getClass())
 
@@ -39,15 +42,15 @@ class SimulatorServiceImpl implements SimulatorService {
   }
 
   def getCostOfHealthInsurance(SeguroMedicoCommand command) {
-    def agePivot = getAge(command.edad)
-    agePivot
-
+    def agePivot = getAge(command.age)
+    def costHealth = costRepository.findByOptionPackAndSexAndAge(command.optionsPack,command.sex,agePivot)
+    costHealth.cost
   }
 
-  private def getAge(def edad) {
-    if (edad < 20)
+  private def getAge(def age) {
+    if (age < 20)
       return 1
-    edad
+    age
   }
 
 }
