@@ -1,24 +1,41 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-  layout:decorator="layout">
+  layout:decorator="inspiria">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
   <body>
     <div layout:fragment="content">
-    	<header id="rt-top-surround" class="rt-dark">
+    	<div class="container">
     	  <div class="row-fluid">
-    	    <div class="span1"></div>
-    	    <div class="span10 back-lines-who info" >  
-				    <form method="POST" enctype="multipart/form-data" action="/upload/save">
-					    Archivo Excel de productos : <input type="file" name="file"/><br />
-					    Archivo zip con la imagenes de los productos : <input type="file" name="zipFile"/><br />
-					    <input type="submit" class="btn btn-large btn-primary" value="Cargar"/>
-					  </form>
+    	    <div class="col-md-12" >
+            <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                <h1>Subir Productos e imagenes</h1>
+              </div>
+              <div class="ibox-content">
+    				    <div class="col-md-12">
+                  <div class="col-md-6">
+                    <h2>Instrucciones</h2>
+                    <p></p>
+                    1.- Se debera de tener el archivo Excel(xls), con los productos(con la estrcutura definida por sistemas).<br />
+                    2.- Se debera de tener el archivo Zip, con las imagenes de los productos con las convenciones designadas por sistemas.<br />
+                    3.- se deberan de subir los 2 archivos simultaneamente, agregando los archvios en las areas correspondientes.
+                  </div>
+                  <div class="col-md-6">
+                    <form method="POST" enctype="multipart/form-data" action="/upload/save">
+                      Archivo Excel de productos : <input type="file" name="file"/><br />
+                      Archivo zip con la imagenes de los productos : <input type="file" name="zipFile"/><br />
+                      <input type="submit" class="btn btn-large btn-primary" value="Cargar"/>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
 					</div>
 				</div>
-			</header>
+			</div>
 		</div>
   </body>
 </html>
