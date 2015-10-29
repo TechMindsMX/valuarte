@@ -1,4 +1,4 @@
-rackage com.team.one.service.impl
+package com.team.one.service.impl
 
 import com.team.one.domain.Simulator
 import org.springframework.stereotype.Service
