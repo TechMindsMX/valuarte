@@ -34,7 +34,7 @@ layout:decorator="layout">
                       <p th:utext="${product.getElementInDescriptionByPosition(2)}"></p>
                     </div>
                     <div class="span1"></div>
-                    <div class="span6" style="border-style: outset; border-width: 1px;" th:if="${product.cast}">
+                    <div class="span6" style="border-style: outset; border-width: 1px;" th:if="${product.cast}" >
                       <div class="accordion" id="accordion2">
                         <div class="accordion-group">
                           <div class="accordion-heading">
@@ -109,25 +109,25 @@ layout:decorator="layout">
                        <input type="hidden" th:value="${productId}" name="product" />
                         <div class="span5">
                           <label class="radio">
-                            <input type="radio" name="optionsRadios" value="option1" checked="checked" />
+                            <input type="radio" name="optionsPack" value="option1" checked="checked" />
                             Opción 1
                           </label>
                           <label class="radio">
-                            <input type="radio" name="optionsRadios" value="option2" />
+                            <input type="radio" name="optionsPack" value="option2" />
                             Opción 2
                           </label>
                           <label class="radio">
-                            <input type="radio" name="optionsRadios" value="option3" />
+                            <input type="radio" name="optionsPack" value="option3" />
                             Opción 3
                           </label>
                           <label class="radio">
-                            <input type="radio" name="optionsRadios" value="option4" />
+                            <input type="radio" name="optionsPack" value="option4" />
                             Opción 4
                           </label>
                         </div>
                         <div class="span1"></div>
                         <div class="form-horizontal span6">
-                          SEXO :  
+                          SEXO :
                           <div class="control-group">
                             <label class="radio inline">
                               <input type="radio" name="sex" value="male" checked="checked" />
@@ -140,7 +140,7 @@ layout:decorator="layout">
                           </div>
                           <p></p>
                           <label>Edad</label>
-                          <input type="number" name="edad" class="span8" />
+                          <input type="number" name="age" class="span8" />
                         </div>
                         <div align="center">
                           <p><br /><br /><br /></p>
@@ -190,8 +190,8 @@ layout:decorator="layout">
                   <a href="" class="btn btn-login btn-large ">Adquirir</a>
                 </div>
               </div>
-              <br /><br /> 
-              <br /><br /> 
+              <br /><br />
+              <br /><br />
             </div>
           </div>
           <br /><br />
@@ -206,7 +206,7 @@ layout:decorator="layout">
               var ez = $('#images').data('ezPlus');
               $.fancyboxPlus(ez.getGalleryList());
               return false;
-            });          
+            });
           });
         </script>
       </div>

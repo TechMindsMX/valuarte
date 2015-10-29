@@ -3,8 +3,8 @@ package com.team.one.command
 class SeguroMedicoCommand {
 
 	BigInteger product
-	String optionsRadios
+	String optionsPack
 	String sex
-	Integer edad
+	Integer age
 
 }
