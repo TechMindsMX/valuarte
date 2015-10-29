@@ -1,4 +1,4 @@
-package com.team.one.service.impl
+rackage com.team.one.service.impl
 
 import com.team.one.domain.Simulator
 import org.springframework.stereotype.Service
@@ -12,6 +12,8 @@ import com.team.one.exception.SimulatorException
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+
+//TODO: Externalizar los mensajes de error
 
 @Service
 class SimulatorServiceImpl implements SimulatorService {
