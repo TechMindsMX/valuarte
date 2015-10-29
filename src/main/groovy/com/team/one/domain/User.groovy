@@ -1,9 +1,10 @@
 package com.team.one.domain
 
+import java.io.Serializable
 import javax.persistence.*
 
 @Entity
-class User {
+class User implements Serializable {
 
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
