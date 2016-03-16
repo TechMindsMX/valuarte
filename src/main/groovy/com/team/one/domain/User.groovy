@@ -1,9 +1,12 @@
 package com.team.one.domain
 
+import java.io.Serializable
 import javax.persistence.*
 
 @Entity
-class User {
+class User implements Serializable {
+
+  static final long serialVersionUID = 7526472295622776147L
 
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)

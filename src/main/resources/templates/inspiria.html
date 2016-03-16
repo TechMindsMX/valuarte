@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Valuarte</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../../images/favicon.ico"  th:href="@{/images/favicon.ico}" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+    <link rel="stylesheet" th:href="@{/assets/third-party/bootstrap-3/dist/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/third-party/fontawesome/css/font-awesome.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/animate.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/style.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/third-party/pickadate/lib/themes/default.css}" />
+    <link rel="stylesheet" th:href="@{/assets/third-party/pickadate/lib/themes/default.date.css}" />
+    <link rel="stylesheet" th:href="@{/assets/third-party/pickadate/lib/themes/default.time.css}" />
+
+    <script th:src="@{/assets/third-party/jquery-2/dist/jquery.js}"/>
+    <script th:src="@{/assets/third-party/bootstrap-3/dist/js/bootstrap.min.js}"/>
+    <script th:src="@{/assets/third-party/elevatezoom-plus/src/jquery.ez-plus.js}"/>
+    <script th:src="@{/assets/third-party/metisMenu/dist/metisMenu.js}"/>
+    <script th:src="@{/assets/third-party/slimScroll/jquery.slimscroll.min.js}"/>
+    <script th:src="@{/js/inspiria/inspinia.js}"/>
+    <script th:src="@{/assets/third-party/jquery-ui/jquery-ui.js}"/>
+    <script th:src="@{/assets/third-party/pickadate/lib/picker.js}" />
+    <script th:src="@{/assets/third-party/pickadate/lib/picker.date.js}" />
+    <script th:src="@{/assets/third-party/pickadate/lib/picker.time.js}" />
+    <script th:src="@{/assets/third-party/jquery-validate/dist/jquery.validate.js}" />
+    <script th:src="@{/assets/third-party/jquery-validate/dist/additional-methods.js}" />
+
+
+  </head>
+  <body>
+    <div id="wrapper">
+      <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+          <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+              <div class="dropdown profile-element"> <span>
+                <img th:src="@{/images/iconoValuarteLogin.png}" width="25%"  />
+                </span>
+              </div>
+              <div class="logo-element">
+                Va
+              </div>
+            </li>
+            <li>
+              <a th:href="@{'/adminCredit/create'}"> <i class="fa fa-file-word-o"></i>Solicitud de reestructura</a>
+            </li>
+            <li>
+              <a th:href="@{'/simulator'}"><i class="fa fa-desktop"></i>Simulador Reestructura</a>
+            </li>
+            <li>
+              <a th:href="@{'/upload/create'}"><i class="fa fa-cloud-upload"></i>Subir productos</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+          <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+              <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            </div>
+            <ul class="nav navbar-top-links navbar-right">
+              <li>
+                <span class="m-r-sm text-muted welcome-message">Bienvenido a Valuarte Administrador.</span>
+              </li>
+              <li>
+                <div class="span6"><span th:if="${session.SPRING_SECURITY_CONTEXT}"><a href="#" id="logout" ><i class="fa fa-sign-out"></i> Cerrar sesión</a></span></div>
+                <form th:action="@{/logout}" method="post" id="formLogout">
+                </form>
+              </li>
+            </ul>
+          </nav>
+        </div>
+          <div layout:fragment="content">
+          </div>
+      </div>
+    </div>
+    <!-- Mainly scripts -->
+
+
+<script>
+  $(document).ready(function(){
+    $("#logout").on('click', function() {
+      $("#formLogout").submit();
+    });
+  });
+</script>
+  </body>
+</html>

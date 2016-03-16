@@ -5,8 +5,10 @@ import com.team.one.domain.PaymentPeriod
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Min
+
 import com.team.one.domain.Simulator
 import com.team.one.domain.Client
+import com.team.one.domain.enums.SimulatorType
 
 class SimulatorCommand {
 
@@ -20,15 +22,16 @@ class SimulatorCommand {
   BigDecimal payment
   BigDecimal principle
   BigDecimal openingCommission
-  BigDecimal commission = 0
   BigDecimal lifeInsurance = 0
 
   PaymentPeriod paymentPeriod
+  SimulatorType type = SimulatorType.RESTRUCTURE
+
   String paydays
   Date startDate
 
   @NotNull
-  @DecimalMin(value="0.01", inclusive=true)
+  @DecimalMin(value="36", inclusive=true)
   BigDecimal tia = 0
 
   @NotNull
@@ -38,6 +41,10 @@ class SimulatorCommand {
   @NotNull
   @DecimalMin(value="0.01", inclusive=true)
   BigDecimal loan
+
+  @NotNull
+  @DecimalMin(value="0.00", inclusive=true)
+  BigDecimal commission = 0
 
   @NotNull
   @Min(1L)

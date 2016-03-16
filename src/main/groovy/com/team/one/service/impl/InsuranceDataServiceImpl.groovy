@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import com.team.one.exception.SimulatorException
 
+//TODO: Externalizar los mensajes de error
+
 @Service
 class InsuranceDataServiceImpl implements InsuranceDataService {
 
@@ -29,7 +31,7 @@ class InsuranceDataServiceImpl implements InsuranceDataService {
   def calculate(Simulator simulator){
     def rows = []
     if(!simulator.numberOfPayments || simulator.numberOfPayments < 0)
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado un periodo de pago válido')
 
     def capitalBeforePayment = simulator.loan + simulator.openingCommission
     def factor = 2.43

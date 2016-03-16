@@ -1,45 +1,62 @@
 package com.team.one.service
 
 import spock.lang.Specification
-import com.team.one.domain.Simulator
 import com.team.one.service.impl.SimulatorServiceImpl
-import com.team.one.domain.PaymentPeriod
+import com.team.one.command.SeguroMedicoCommand
+import com.team.one.domain.Simulator
+import com.team.one.repository.SimulatorRepository
+import com.team.one.repository.CostHealthInsurenceRepository
 import com.team.one.exception.SimulatorException
+import com.team.one.domain.CostHealthInsurence
 
 class SimulatorServiceSpec extends Specification {
 
   SimulatorServiceImpl service = new SimulatorServiceImpl()
 
-  def pmtService = Mock(PMTService)
-  def insuranceService = Mock(InsuranceService)
-  def openingCommissionService = Mock(OpeningCommissionService)
+  def simulatorRepository = Mock(SimulatorRepository)
+  def costRepository = Mock(CostHealthInsurenceRepository)
+
 
   def setup(){
-    service.pmtService = pmtService
-    service.insuranceService = insuranceService
-    service.openingCommissionService = openingCommissionService
-
-    insuranceService.calculate(_) >> 100
-    openingCommissionService.calculate(_) >> 20
+    service.simulatorRepository = simulatorRepository
+    service.costRepository = costRepository
   }
 
-  void "should call pmt calculation service"() {
-    given:"A simulator simulator"
-      def simulator = new Simulator()
-      simulator.loan = 2000
-      simulator.paymentPeriod = PaymentPeriod.WEEKLY
-    when:"We assign values to simulator"
-      service.calculate(simulator)
-    then:"We calculate values"
-      1 * pmtService.calculate(simulator)
-      simulator.principle == 2120
+  void "get the cost of health insurance"() {
+    given: "create a seguroMedicoCommand"
+      def command = new SeguroMedicoCommand(
+                        age:edad,
+                        optionsPack:optionsRadios,
+                        sex:sex)
+    and:
+      def costHealth = new CostHealthInsurence(cost:cost)
+    when:
+      costRepository.findByOptionPackAndSexAndAge(optionsRadios,sex,edad) >> costHealth
+      def result  = service.getCostOfHealthInsurance(command)
+    then:
+      result == value
+    where:
+    optionsRadios |  sex     | edad | cost     || value
+    "option1"     | "male"   |  1   | 1000.00  ||  1000.00
+    "option2"     | "female" |  1   | 1001.00  ||  1001.00
+    "option3"     | "female" |  25  | 1003.00  ||  1003.00
+    "option4"     | "male"   |  1   | 1002.00  ||  1002.00
   }
 
-  void "should send an exception if no paymentPeriod"() {
-    given:"A simulator simulator"
+  void "should save simulator"(){
+    given:"An simulator"
+      def simulator = new Simulator(rfc:'MOCS801001ABC')
+    when:"We tryed to save"
+      service.save(simulator)
+    then:"We expect repository saves"
+      1 * simulatorRepository.save(simulator)
+  }
+
+  void "should not save simulator"(){
+    given:"An simulator"
       def simulator = new Simulator()
-    when:"We calculate values"
-      service.calculate(simulator)
+    when:"We tryed to save"
+      service.save(simulator)
     then:"We expect an exception"
       thrown SimulatorException
   }

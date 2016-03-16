@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-  layout:decorator="layout">
+  layout:decorator="inspiria">
   <head>
     <title>Valuarte-Admin</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -11,663 +11,724 @@
     <div layout:fragment="content">
       <div class="container">
         <div class="row-fluid">
-          <div class="span12 registro">
+          <div class="col-md-12">
+           <div class="ibox float-e-margins">
             <div class="alert alert-success" th:if="${clientUuid}">
-              <span th:text="Se creo correctamente la solicitud con el uuid :${clientUuid}"></span>
+             Se creo correctamente la solicitud : <span th:text="${clientUuid.uuid}"></span>
             </div>
-            <h1 class="info">Solicitud de Préstamo y Formato de conocimiento del cliente</h1>
-            <form id="credit" action="#" th:action="@{/adminCredit/save}" th:object="${creditCommand}" method="post" class="form">
-              <div class="span12 info">
-                <div class="control-group">
-                  <label>Monto Solicitado</label>
-                  <input type="text" th:field="*{clientCommand.montoPrestamo}" class="span4 search-query" />
-                </div>
-                <hr />
-                <h1>1.- Datos Personales</h1>
-                <div class="row-fluid">
-                  <div class="span12">
-                    <div class="span4">
-                      <label>Nombre(s)</label>
-                      <input type="text" th:field="*{clientCommand.nombre}" class="span10 search-query" />
-                    </div>
-                    <div class="span4">
-                      <label>Apellido Paterno</label>
-                      <input type="text" th:field="*{clientCommand.apellidoPaterno}" class="span10 search-query" />
-                    </div>
-                    <div class="span4">
-                      <label>Apellido Materno</label>
-                      <input type="text" th:field="*{clientCommand.apellidoMaterno}" class="span10 search-query" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12 ">
-                    <div class="span3">
-                     <label>Fecha de nacimeinto</label>
-                     <input class="datepicker span10 search-query" id="edad" th:field="*{clientCommand.fechaNacimiento}" />
-                    </div>
-                    <div class="span3">
-                      <label>Edad</label>
-                      <input type="text" th:field="*{clientCommand.edad}" class="span10 search-query" />
-                    </div>
-                    <div class="span3">
-                      <label>Estado civil</label>
-                      <select name="estadoCivilEnum" class="form-control span10 search-query" th:field="*{clientCommand.estadoCivil}">
-                        <option th:each=" estado : ${T(com.team.one.domain.enums.EstadoCivil).values()}" th:value="${estado}" th:text="${estado.value}"></option>
-                      </select>
-                    </div>
-                    <div class="span3">
-                      <label>Regimen Matrimonial</label>
-                      <select name="regimenMatrimonialEnum" class="form-control span10 search-query" th:field="*{clientCommand.regimen}">
-                        <option th:each="regimenM :${T(com.team.one.domain.enums.RegimenMatrimonial).values()}" th:value="${regimenM}" th:text="${regimenM.value}"></option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span3">
-                      <label>Grado Maximo de Estudios</label>
-                      <select name="gradoMaximoEnum" class="form-control span10 search-query" th:field="*{clientCommand.grado}">
-                        <option th:each="gradoM : ${T(com.team.one.domain.enums.GradoMaximoEstudios).values()}" th:value="${gradoM}" th:text="${gradoM.value}"></option>
-                      </select>
-                      <p></p>
-                      <input type="text" class="span10 search-query" id="gradoMaximoOtro" th:field="*{clientCommand.gradoOtro}" disabled="disabled" />
-                    </div>
-                    <div class="span3">
-                      <label>Genero</label>
-                      <select name="generoM" class="form-control span10 search-query" th:field="*{clientCommand.genero}">
-                        <option th:each="generoM : ${T(com.team.one.domain.enums.Genero).values()}" th:value="${generoM}" th:text="${generoM.value}"></option>
-                      </select>
-                    </div>
-                    <div class="span3">
-                      <label>Tipo de Identificación</label>
-                      <select class="form-control span10 search-query" name="TipoIdentificacionEnum" th:field="*{clientCommand.identificacion}">
-                        <option th:each="tipo : ${T(com.team.one.domain.enums.TipoIdentificacion).values()}" th:value="${tipo}" th:text="${tipo.value}" ></option>
-                      </select>
-                      <p></p>
-                      <input type="text" class="span10 search-query" th:field="*{clientCommand.identificacionOtro}"  disabled="disabled"/>
-                    </div>
-                    <div class="span3">
-                      <label>RFC con Homoclave</label>
-                      <input type="text" class="span10 search-query" th:field="*{clientCommand.rfc}" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span3">
-                      <label>F.I.E.L</label>
-                      <input type="text" class="span10 search-query" th:field="*{clientCommand.fiel}" />
-                    </div>
-                    <div class="span3">
-                      <label>CURP</label>
-                      <input type="text" class="span10 search-query" th:field="*{clientCommand.curp}" />
-                    </div>
-                    <div class="span3">
-                      <label>Clave de Elector</label>
-                      <input type="text" class="span10 search-query" th:field="*{clientCommand.claveElector}" />
-                    </div>
-                    <div class="span3">
-                      <label>Nacionalidad</label>
-                      <input type="text" class="span10 search-query" th:field="*{clientCommand.nacionalidad}" />
-                    </div>
-                  </div>
-                </div>
-                <hr />
-                <h1>2.- Información Domiciliaria</h1>
-                <div class="row-fluid">
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span5">
-                      <label>Telefono + Clave Lada</label>
-                      <input type="tel" class="span10 search-query" th:field="*{addressCommand.telefono}" />
-                    </div>
-                    <div class="span6">
-                      <label>Domicilio</label>
-                      <input type="tel" class="span10 search-query" th:field="*{addressCommand.domicilio}" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span5">
-                      <label>Calle y Numero(exterior e interior)</label>
-                      <input type="text" class="span10 search-query" th:field="*{addressCommand.calleYNumero}" />
-                    </div>
-                    <div class="span6">
-                      <label>Colonia o Urbanización</label>
-                      <input type="text" class="span10 search-query" th:field="*{addressCommand.colonia}" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span3">
-                      <label>Delegación,Municipio</label>
-                      <input type="text" class="span10 search-query" th:field="*{addressCommand.delegacionMunicipio}" />
-                    </div>
-                    <div class="span3">
-                      <label>Ciudad y Estado</label>
-                      <input type="text" class="span10 search-query" th:field="*{addressCommand.ciudadOEstado}" />
-                    </div>
-                    <div class="span3">
-                      <label>Pais</label>
-                      <input type="text" class="span10 search-query" th:field="*{addressCommand.pais}" />
-                    </div>
-                    <div class="span3">
-                      <label>Referencia y/o Ubicación</label>
-                      <input type="text" class="span10 search-query" th:field="*{addressCommand.referenciaDomicilio}" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span3">
-                      <label>Celular</label>
-                      <input type="tel" class="span10 search-query" th:field="*{addressCommand.celular}" />
-                    </div>
-                    <div class="span3">
-                      <label>Oficina o Trabajo</label>
-                      <input type="tel" class="span10 search-query" th:field="*{addressCommand.telefonoOficina}" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span3" >
-                      <label>Correo Electronico</label>
-                      <input type="email" class="span10 search-query" th:field="*{addressCommand.email}" />
-                    </div>
-                    <div class="span3">
-                      <label>Tipo Vivienda</label>
-                      <select class="form-control span10 search-query" name="tipoViviendaEnum" th:field="*{addressCommand.vivienda}">
-                        <option th:each="viviendaM : ${T(com.team.one.domain.enums.TipoVivienda).values()}" th:value="${viviendaM}" th:text="${viviendaM.value}"></option>
-                      </select>
-                    </div>
-                    <div class="span3">
-                      <label>Tiempo de Residencia</label>
-                      <input class="span10 search-query" th:field="*{addressCommand.tiempoResidencia}" type="text" />
-                    </div>
-                    <div class="span3">
-                      <label>Renta</label>
-                      <input class="span10 search-query" th:field="*{addressCommand.rentaCosto}" type="text" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12"> 
-                    <div class="span3">
-                      <label>Hipoteca</label>
-                      <input class="span10 search-query" th:field="*{addressCommand.hipotecaCosto}" type="text" />
-                    </div>
-                    <div class="span3">
-                      <label>Dependientes economicos</label>
-                      <input class="span10 search-query" th:field="*{addressCommand.dependientes}" type="text" />
-                    </div>
-                    <div class="span3">
-                      <label>Codigo Postal</label>
-                      <input class="span10 search-query" th:field="*{addressCommand.codigoPostal}" type="text" />
-                    </div>
-                  </div>
-                </div>
-                <hr />
-                <h1>3.- Información Laboral</h1>
-                <div class="row-fluid">
-                  <div class="span12">
-                    <div class="span4">
-                      <label>Profesión / Ocupación</label>
-                      <input type="text" class="span10 search-query" th:field="*{workInfoCommand.profecion}" />
-                    </div>
-                    <div class="span4">
-                      <label>Nombre de la empresa/negocio</label>
-                      <input type="text" class="span10 search-query" th:field="*{workInfoCommand.empresa}" />
-                    </div>
-                    <div class="span4">
-                      <label>Giro o Actividad</label>
-                      <input type="text" class="span10 search-query" th:field="*{workInfoCommand.giroActividad}" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                     <div class="span4">
-                      <label>Tipo contrato</label>
-                      <select class="form-span4 search-query" name="tipoContratoEnum" th:field="*{workInfoCommand.contrato}">
-                        <option th:each="contratoM : ${T(com.team.one.domain.enums.TipoContrato).values()}" th:value="${contratoM}" th:text="${contratoM.value}"></option>
-                      </select>
-                    </div>
-                    <div class="span4">
-                      <label>Fecha de Ingreso</label>
-                      <input class="datepicker span10 search-query" id="ingreso" th:field="*{workInfoCommand.fechaIngreso}" />
-                    </div>
-                    <div class="span4">
-                      <label>Sueldo Mensual</label>
-                      <input type="text" class="span10 search-query" th:field="*{workInfoCommand.sueldoMensual}" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span5">
-                      <label>Domicilio de la Empresa(calle, número, colonia, código postal)</label>
-                      <input type="text" class="span10 search-query" th:field="*{workInfoCommand.domicilioEmpresa}" />
-                    </div>
-                    <div class="span4">
-                      <label>Telélefono trabajo</label>
-                      <input type="text" class="span10 search-query" th:field="*{workInfoCommand.telefonoEmpresa}" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span5">
-                      <label>Ciudad y Estado</label>
-                      <input type="text" class="span10 search-query" th:field="*{workInfoCommand.ciudadEstadoEmpresa}" />
-                    </div>
-                  </div>
-                </div>
-                <hr />
-                <h1>4.- Datos del aval(De ser necesarios)</h1>
-                <div class="row-fluid">
-                  <div class="span12">
-                    <div class="span3">
-                      <label>Nombre(s)</label>
-                      <input class="span10 search-query" type="text" th:field="*{endorsementCommand.nombreAval}" />
-                    </div>
-                    <div class="span3">
-                      <label>Apellido paterno</label>
-                      <input class="span10 search-query" type="text" th:field="*{endorsementCommand.apellidoPaternoAval}" />
-                    </div>
-                    <div class="span3">
-                      <label>Apellido materno</label>
-                      <input class="span10 search-query" type="text" th:field="*{endorsementCommand.apellidoMaternoAval}" />
-                    </div>
-                    <div class="span3">
-                     <label>Fecha de nacimeinto</label>
-                     <input class="datepicker span10 search-query"  th:field="*{endorsementCommand.fechaNacimeintoAval}" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span3">
-                      <label>Tipo de Identificación</label>
-                      <select class="form-control span10 search-query" name="TipoIdentificacionEnum" th:field="*{endorsementCommand.identificacionAval}">
-                        <option th:each="tipo : ${T(com.team.one.domain.enums.TipoIdentificacion).values()}" th:value="${tipo}" th:text="${tipo.value}" ></option>
-                      </select>
-                      <p></p>
-                      <input type="text" class="span10 search-query" th:field="*{endorsementCommand.identificacionOtroAval}"  disabled="disabled"/>
-                    </div>
-                    <div class="span3">
-                      <label>Nombre de la empresa / Negocio</label>
-                      <input class="span10 search-query" type="text" th:field="*{endorsementCommand.nombreEmpresaAval}" />
-                    </div>
-                    <div class="span3">
-                      <label>Giro o Actividad</label>
-                      <input class="span10 search-query" type="text" th:field="*{endorsementCommand.giroActividadAval}" />
-                    </div>
-                    <div class="span3">
-                      <label>Telefono Fijo</label>
-                      <input class="span10 search-query" type="text" th:field="*{endorsementCommand.telefonoTrabajoAval}" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span5">
-                      <label>Tipo contrato</label>
-                      <select class="form-control span10 search-query" name="tipoContratoEnum" th:field="*{endorsementCommand.contratoAval}">
-                        <option th:each="contratoM : ${T(com.team.one.domain.enums.TipoContrato).values()}" th:value="${contratoM}" th:text="${contratoM.value}"></option>
-                      </select>
-                    </div>
-                    <div class="span5">
-                      <label>Sueldo Mensual</label>
-                      <input class="span10 search-query" type="text" th:field="*{endorsementCommand.sueldoMensualAval}" />
-                    </div>
-                    
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span5">
-                      <label>Domicilio de la Empresa(calle, número, colonia,código postal)</label>
-                      <input class="span10 search-query" type="text" th:field="*{endorsementCommand.domicilioEmpresaAval}" />
-                    </div>
-                    <div class="span5">
-                      <label>Cuidad y Estado</label>
-                      <input class="span10 search-query" type="text" th:field="*{endorsementCommand.ciudadEstadoAval}" />
-                    </div>
-                  </div>
-                </div>
-                <hr />
-                <h1>5.- Referencias</h1>
-                <div class="row-fluid">
-                  <div class="span12"><h3>Referencia Familiar</h3></div>
-                  <div class="span12">
-                    <div class="span4">
-                      <label>Nombre(s) y Apellidos paterno, materno</label>
-                      <input class="span10 search-query" type="text" th:field="*{referencesCommand.nombreCompletoRefFamiliar}" />
-                    </div>
-                    <div class="span4">
-                      <label>Parentesco</label>
-                      <input class="span10 search-query" type="text" th:field="*{referencesCommand.parentescoFamiliar}" />
-                    </div>
-                    <div class="span3">
-                      <label>Telefono Fijo</label>
-                      <input class="span10 search-query" type="text" th:field="*{referencesCommand.telefonoFamiliar}" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span4">
-                      <label>Domicilio: calle,núm,colonia,C.P</label>
-                      <textarea class="span10 search-query" type="text" rows="6" th:field="*{referencesCommand.domicilioFamiliar}" />
-                    </div>
-                  </div>
-                  <div class="span12"><h2>Referencia Laboral</h2></div>
-                  <div class="span12">
-                    <div class="span4">
-                      <label>Nombre(s) y Apellidos paterno, materno</label>
-                      <input class="span10 search-query" type="text" th:field="*{referencesCommand.nombreCompletoRefLaboral}" />
-                    </div>
-                    <div class="span4">
-                      <label>Parentesco</label>
-                      <input class="span10 search-query" type="text" th:field="*{referencesCommand.parentescoLaboral}" />
-                    </div>
-                    <div class="span3">
-                      <label>Telefono Fijo</label>
-                      <input class="span10 search-query" type="text" th:field="*{referencesCommand.telefonoLaboral}" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span4">
-                      <label>Domicilio: calle,núm,colonia,C.P</label>
-                      <textarea class="span10 search-query" type="text" rows="6" th:field="*{referencesCommand.domicilioLaboral}" />
-                    </div>
-                  </div>
-                  <div class="span12"><h2>Referencia Personal</h2></div>
-                  <div class="span12">
-                    <div class="span4">
-                      <label>Nombre(s) y Apellidos paterno, materno</label>
-                      <input class="span10 search-query" type="text" th:field="*{referencesCommand.nombreCompletoRefPersonal1}" />
-                    </div>
-                    <div class="span4">
-                      <label>Parentesco</label>
-                      <input class="span10 search-query" type="text" th:field="*{referencesCommand.parentescoPersonal1}" />
-                    </div>
-                    <div class="span4">
-                      <label>Telefono Fijo</label>
-                      <input class="span10 search-query" type="text" th:field="*{referencesCommand.telefonoPersonal1}" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span4">
-                      <label>Domicilio: calle,núm,colonia,C.P</label>
-                      <textarea class="span10 search-query" type="text" rows="6" th:field="*{referencesCommand.domicilioPersonal1}" />
-                    </div>
-                  </div>
-                  <div class="span12"><h2>Referencia Personal</h2></div>
-                  <div class="span12">
-                    <div class="span4">
-                      <label>Nombre(s) y Apellidos paterno, materno</label>
-                      <input class="span10 search-query" type="text" th:field="*{referencesCommand.nombreCompletoRefPersonal2}" />
-                    </div>
-                    <div class="span4">
-                      <label>Parentesco</label>
-                      <input class="span10 search-query" type="text" th:field="*{referencesCommand.parentescoPersonal2}" />
-                    </div>
-                    <div class="span4">
-                      <label>Telefono Fijo</label>
-                      <input class="span10 search-query" type="text" th:field="*{referencesCommand.telefonoPersonal2}" />
-                    </div>
-                  </div>
-                  <div class="span12"></div>
-                  <div class="span12">
-                    <div class="span4">
-                      <label>Domicilio: calle,núm,colonia,C.P</label>
-                      <textarea class="span10 search-query" type="text" rows="6" th:field="*{referencesCommand.domicilioPersonal2}" />
-                    </div>
-                  </div>
-                </div>
-                <hr />
-                <h1>6.- Información Financiera a Reestructurar</h1>
-                <div class="row-fluid">
-                  <div class="span12">
-                    <div class="span5">
-                      <div class="control-group">
-                        <label>¿Cuenta usted con otros créditos actualmente?</label>
-                        <input type="radio" name="creditoActual" value="true" />Si<br/>
-                        <input type="radio" name="creditoActual" value="false" />No<br/>
-                        <input type="hidden" th:field="*{financialInfoCommand.creditoActual}"/>
+            <div class="ibox-title">
+              <h1 class="info">Solicitud de Préstamo y Formato de conocimiento del cliente</h1>
+            </div>
+            <div class="ibox-content">
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <form id="credit" action="#" th:action="@{/adminCredit/save}" th:object="${creditCommand}" method="post" class="form">
+                  <div class="col-md-12 info">
+                    <div class="col-md-12 form-group">
+                      <div class="control-group col-md-8">
+                        <label class="control-label">Monto Solicitado</label>
+                        <input type="text" data-msg="Se requiere agregar un monto" data-msg-number="solo se aceptan numeros" number="number" th:field="*{clientCommand.montoPrestamo}" class="form-control search-query" required="required"/>
+                      </div>
+                      <div class="control-group col-md-4">
+                         <label class="control-label">Fecha de captura</label>
+                        <b th:text="${date}" align="right"/>
                       </div>
                     </div>
-                    <div class="span5">
-                      <div class="control-group">
-                        <label>¿Actualmente garantiza o es aval de algua deuda de terceros?</label>
-                        <input type="radio" name="avalCreditoTercero" value="true" />Si<br/>
-                        <input type="radio" name="avalCreditoTercero" value="false" />No<br/>
-                        <input type="hidden" th:field="*{financialInfoCommand.avalCreditoTercero}"/>
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            1.- Datos Personales
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                          <div class="row-fluid">
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-4">
+                                <label class="control-label">Nombre(s)</label>
+                                <input data-msg="Se requiere agregar un nombre(s)" type="text" th:field="*{clientCommand.nombre}" class="form-control search-query" required="required"/>
+                              </div>
+                              <div class="col-md-4">
+                                <label class="control-label">Apellido Paterno</label>
+                                <input type="text" th:field="*{clientCommand.apellidoPaterno}" class="form-control search-query" required="required" data-msg="Se requiere agregar Apellido Paterno" />
+                              </div>
+                              <div class="col-md-4">
+                                <label class="control-label">Apellido Materno</label>
+                                <input type="text" th:field="*{clientCommand.apellidoMaterno}" class="form-control search-query" required="required" data-msg="Se requiere agregar Apellido Materno"/>
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-3">
+                               <label class="control-label">Fecha de nacimeinto</label>
+                               <input class="datepicker col-md-10 search-query" id="edad" th:field="*{clientCommand.fechaNacimiento}" required="required" data-msg="Agregar una fecha de nacimiento"/>
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Edad</label>
+                                <input type="text" th:field="*{clientCommand.edad}" class="form-control search-query" required="required" digits="digits" data-msg="Se requiere agregar una edad" data-msg-digits="Solo se aceptan numeros"/>
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Estado civil</label>
+                                <select name="estadoCivilEnum" class="form-control col-md-10 search-query" th:field="*{clientCommand.estadoCivil}">
+                                  <option th:each=" estado : ${T(com.team.one.domain.enums.EstadoCivil).values()}" th:value="${estado}" th:text="${estado.value}"></option>
+                                </select>
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Regimen Matrimonial</label>
+                                <select name="regimenMatrimonialEnum" class="form-control col-md-10 search-query" th:field="*{clientCommand.regimen}">
+                                  <option th:each="regimenM :${T(com.team.one.domain.enums.RegimenMatrimonial).values()}" th:value="${regimenM}" th:text="${regimenM.value}"></option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-3">
+                                <label class="control-label">Grado Maximo de Estudios</label>
+                                <select name="gradoMaximoEnum" class="form-control col-md-10 search-query" th:field="*{clientCommand.grado}">
+                                  <option th:each="gradoM : ${T(com.team.one.domain.enums.GradoMaximoEstudios).values()}" th:value="${gradoM}" th:text="${gradoM.value}"></option>
+                                </select>
+                                <p></p>
+                                <input type="text" class="form-control search-query" id="gradoMaximoOtro" th:field="*{clientCommand.gradoOtro}" disabled="disabled" />
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Genero</label>
+                                <select name="generoM" class="form-control col-md-10 search-query" th:field="*{clientCommand.genero}">
+                                  <option th:each="generoM : ${T(com.team.one.domain.enums.Genero).values()}" th:value="${generoM}" th:text="${generoM.value}"></option>
+                                </select>
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Tipo de Identificación</label>
+                                <select class="form-control col-md-10 search-query" name="TipoIdentificacionEnum" th:field="*{clientCommand.identificacion}">
+                                  <option th:each="tipo : ${T(com.team.one.domain.enums.TipoIdentificacion).values()}" th:value="${tipo}" th:text="${tipo.value}" ></option>
+                                </select>
+                                <p></p>
+                                <input type="text" class="form-control search-query" th:field="*{clientCommand.identificacionOtro}"  disabled="disabled"/>
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">RFC con Homoclave</label>
+                                <input type="text" class="form-control search-query" th:field="*{clientCommand.rfc}" required="required" data-msg="Agregar un RFC con Homoclave"/>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="col-md-4">
+                                <label class="control-label">CURP</label>
+                                <input type="text" class="form-control search-query" th:field="*{clientCommand.curp}" required="required" data-msg="Agregar una Curp"/>
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Clave de Elector</label>
+                                <input type="text" class="form-control search-query" th:field="*{clientCommand.claveElector}" required="required" data-msg="Agregar la Clave de elector"/>
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Nacionalidad</label>
+                                <input type="text" class="form-control search-query" th:field="*{clientCommand.nacionalidad}" required="required" data-msg="Agregar una nacionalidad"/>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            2.- Información Domiciliaria
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                          <div class="row-fluid">
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-6">
+                                <label class="control-label">Domicilio</label>
+                                <input type="tel" class="form-control search-query" th:field="*{addressCommand.domicilio}" />
+                              </div>
+                               <div class="col-md-5">
+                                <label class="control-label">Telefono + Clave Lada</label>
+                                <input type="tel" class="form-control search-query" th:field="*{addressCommand.telefono}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group" >
+                              <div class="col-md-5">
+                                <label class="control-label">Calle y Numero(exterior e interior)</label>
+                                <input type="text" class="form-control search-query" th:field="*{addressCommand.calleYNumero}" />
+                              </div>
+                              <div class="col-md-6">
+                                <label class="control-label">Colonia o Urbanización</label>
+                                <input type="text" class="form-control search-query" th:field="*{addressCommand.colonia}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-3">
+                                <label class="control-label">Delegación,Municipio</label>
+                                <input type="text" class="form-control search-query" th:field="*{addressCommand.delegacionMunicipio}" />
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Ciudad y Estado</label>
+                                <input type="text" class="form-control search-query" th:field="*{addressCommand.ciudadOEstado}" />
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Codigo Postal</label>
+                                <input class="form-control search-query" th:field="*{addressCommand.codigoPostal}" type="text" />
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Referencia y/o Ubicación</label>
+                                <input type="text" class="form-control search-query" th:field="*{addressCommand.referenciaDomicilio}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-3">
+                                <label class="control-label">Celular</label>
+                                <input type="tel" class="form-control search-query" th:field="*{addressCommand.celular}" />
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Oficina o Trabajo</label>
+                                <input type="tel" class="form-control search-query" th:field="*{addressCommand.telefonoOficina}" />
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Pais</label>
+                                <input type="text" class="form-control search-query" th:field="*{addressCommand.pais}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-3" >
+                                <label class="control-label">Correo Electronico</label>
+                                <input type="email" class="form-control search-query" th:field="*{addressCommand.email}" />
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Tipo Vivienda</label>
+                                <select class="form-control col-md-10 search-query" name="tipoViviendaEnum" th:field="*{addressCommand.vivienda}">
+                                  <option th:each="viviendaM : ${T(com.team.one.domain.enums.TipoVivienda).values()}" th:value="${viviendaM}" th:text="${viviendaM.value}"></option>
+                                </select>
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Tiempo de Residencia</label>
+                                <input class="form-control search-query" th:field="*{addressCommand.tiempoResidencia}" type="text" />
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Renta</label>
+                                <input class="form-control search-query" th:field="*{addressCommand.rentaCosto}" type="text" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-3">
+                                <label class="control-label">Hipoteca</label>
+                                <input class="form-control search-query" th:field="*{addressCommand.hipotecaCosto}" type="text" />
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Dependientes economicos</label>
+                                <input class="form-control search-query" th:field="*{addressCommand.dependientes}" type="text" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          3.- Información Laboral
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                          <div class="row-fluid">
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-4">
+                                <label class="control-label">Profesión / Ocupación</label>
+                                <input type="text" class="form-control search-query" th:field="*{workInfoCommand.profecion}" />
+                              </div>
+                              <div class="col-md-4">
+                                <label class="control-label">Nombre de la empresa/negocio</label>
+                                <input type="text" class="form-control search-query" th:field="*{workInfoCommand.empresa}" />
+                              </div>
+                              <div class="col-md-4">
+                                <label class="control-label">Giro o Actividad</label>
+                                <input type="text" class="form-control search-query" th:field="*{workInfoCommand.giroActividad}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                               <div class="col-md-4">
+                                <label class="control-label">Tipo contrato</label>
+                                <select class="form-control col-md-4 search-query" name="tipoContratoEnum" th:field="*{workInfoCommand.contrato}">
+                                  <option th:each="contratoM : ${T(com.team.one.domain.enums.TipoContrato).values()}" th:value="${contratoM}" th:text="${contratoM.value}"></option>
+                                </select>
+                              </div>
+                              <div class="col-md-4">
+                                <label class="control-label">Fecha de Ingreso</label>
+                                <input class="datepicker col-md-10 search-query" id="ingreso" th:field="*{workInfoCommand.fechaIngreso}" />
+                              </div>
+                              <div class="col-md-4">
+                                <label class="control-label">Sueldo Mensual</label>
+                                <input type="text" class="form-control search-query" th:field="*{workInfoCommand.sueldoMensual}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-5">
+                                <label class="control-label">Domicilio de la Empresa(calle, número, colonia, código postal)</label>
+                                <input type="text" class="form-control search-query" th:field="*{workInfoCommand.domicilioEmpresa}" />
+                              </div>
+                              <div class="col-md-4">
+                                <label class="control-label">Telélefono trabajo</label>
+                                <input type="text" class="form-control search-query" th:field="*{workInfoCommand.telefonoEmpresa}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-5">
+                                <label class="control-label">Ciudad y Estado</label>
+                                <input type="text" class="form-control search-query" th:field="*{workInfoCommand.ciudadEstadoEmpresa}" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            4.- Datos del aval(De ser necesarios)
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                          <div class="row-fluid">
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-3">
+                                <label class="control-label">Nombre(s)</label>
+                                <input class="form-control search-query" type="text" th:field="*{endorsementCommand.nombreAval}" />
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Apellido paterno</label>
+                                <input class="form-control search-query" type="text" th:field="*{endorsementCommand.apellidoPaternoAval}" />
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Apellido materno</label>
+                                <input class="form-control search-query" type="text" th:field="*{endorsementCommand.apellidoMaternoAval}" />
+                              </div>
+                              <div class="col-md-3">
+                               <label class="control-label">Fecha de nacimeinto</label>
+                               <input class="datepicker col-md-10 search-query"  th:field="*{endorsementCommand.fechaNacimeintoAval}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-3">
+                                <label class="control-label">Tipo de Identificación</label>
+                                <select class="form-control col-md-10 search-query" name="TipoIdentificacionEnum" th:field="*{endorsementCommand.identificacionAval}">
+                                  <option th:each="tipo : ${T(com.team.one.domain.enums.TipoIdentificacion).values()}" th:value="${tipo}" th:text="${tipo.value}" ></option>
+                                </select>
+                                <p></p>
+                                <input type="text" class="form-control search-query" th:field="*{endorsementCommand.identificacionOtroAval}"  disabled="disabled"/>
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Nombre de la empresa / Negocio</label>
+                                <input class="form-control search-query" type="text" th:field="*{endorsementCommand.nombreEmpresaAval}" />
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Giro o Actividad</label>
+                                <input class="form-control search-query" type="text" th:field="*{endorsementCommand.giroActividadAval}" />
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Telefono Fijo</label>
+                                <input class="form-control search-query" type="text" th:field="*{endorsementCommand.telefonoTrabajoAval}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-5">
+                                <label class="control-label">Tipo contrato</label>
+                                <select class="form-control col-md-10 search-query" name="tipoContratoEnum" th:field="*{endorsementCommand.contratoAval}">
+                                  <option th:each="contratoM : ${T(com.team.one.domain.enums.TipoContrato).values()}" th:value="${contratoM}" th:text="${contratoM.value}"></option>
+                                </select>
+                              </div>
+                              <div class="col-md-5">
+                                <label class="control-label">Sueldo Mensual</label>
+                                <input class="form-control search-query" type="text" th:field="*{endorsementCommand.sueldoMensualAval}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-6">
+                                <label class="control-label">Domicilio de la Empresa(calle, número, colonia,código postal)</label>
+                                <input class="form-control search-query" type="text" th:field="*{endorsementCommand.domicilioEmpresaAval}" />
+                              </div>
+                              <div class="col-md-5">
+                                <label class="control-label">Cuidad y Estado</label>
+                                <input class="form-control search-query" type="text" th:field="*{endorsementCommand.ciudadEstadoAval}" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            5.- Referencias
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                          <div class="row-fluid">
+                            <h2>Referencia Familiar</h2>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-4">
+                                <label class="control-label">Nombre(s) y Apellidos paterno, materno</label>
+                                <input class="form-control search-query" type="text" th:field="*{referencesCommand.nombreCompletoRefFamiliar}" />
+                              </div>
+                              <div class="col-md-4">
+                                <label class="control-label">Parentesco</label>
+                                <input class="form-control search-query" type="text" th:field="*{referencesCommand.parentescoFamiliar}" />
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Telefono Fijo</label>
+                                <input class="form-control search-query" type="text" th:field="*{referencesCommand.telefonoFamiliar}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-4">
+                                <label class="control-label">Domicilio: calle,núm,colonia,C.P</label>
+                                <input class="form-control search-query" type="text"  th:field="*{referencesCommand.domicilioFamiliar}" />
+                              </div>
+                            </div>
+                            <h2>Referencia Familiares</h2>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-4">
+                                <label class="control-label">Nombre(s) y Apellidos paterno, materno</label>
+                                <input class="form-control search-query" type="text" th:field="*{referencesCommand.nombreCompletoRefLaboral}" />
+                              </div>
+                              <div class="col-md-4">
+                                <label class="control-label">Parentesco</label>
+                                <input class="form-control search-query" type="text" th:field="*{referencesCommand.parentescoLaboral}" />
+                              </div>
+                              <div class="col-md-3">
+                                <label class="control-label">Telefono Fijo</label>
+                                <input class="form-control search-query" type="text" th:field="*{referencesCommand.telefonoLaboral}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-4">
+                                <label class="control-label">Domicilio: calle,núm,colonia,C.P</label>
+                                <input class="form-control search-query" type="text"  th:field="*{referencesCommand.domicilioLaboral}" />
+                              </div>
+                            </div>
+                            <h2>Referencia Personal</h2>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-4">
+                                <label class="control-label">Nombre(s) y Apellidos paterno, materno</label>
+                                <input class="form-control search-query" type="text" th:field="*{referencesCommand.nombreCompletoRefPersonal1}" />
+                              </div>
+                              <div class="col-md-4">
+                                <label class="control-label">Parentesco</label>
+                                <input class="form-control search-query" type="text" th:field="*{referencesCommand.parentescoPersonal1}" />
+                              </div>
+                              <div class="col-md-4">
+                                <label class="control-label">Telefono Fijo</label>
+                                <input class="form-control search-query" type="text" th:field="*{referencesCommand.telefonoPersonal1}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-4">
+                                <label class="control-label">Domicilio: calle,núm,colonia,C.P</label>
+                                <input class="form-control search-query" type="text" th:field="*{referencesCommand.domicilioPersonal1}" />
+                              </div>
+                            </div>
+                            <h2>Referencia Personal</h2>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-4">
+                                <label class="control-label">Nombre(s) y Apellidos paterno, materno</label>
+                                <input class="form-control search-query" type="text" th:field="*{referencesCommand.nombreCompletoRefPersonal2}" />
+                              </div>
+                              <div class="col-md-4">
+                                <label class="control-label">Parentesco</label>
+                                <input class="form-control search-query" type="text" th:field="*{referencesCommand.parentescoPersonal2}" />
+                              </div>
+                              <div class="col-md-4">
+                                <label class="control-label">Telefono Fijo</label>
+                                <input class="form-control search-query" type="text" th:field="*{referencesCommand.telefonoPersonal2}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-4">
+                                <label class="control-label">Domicilio: calle,núm,colonia,C.P</label>
+                                <input class="form-control search-query" type="text" rows="6" th:field="*{referencesCommand.domicilioPersonal2}" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+                            6.- Información Financiera a Reestructurar
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapsesix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                          <div class="row-fluid">
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-5">
+                                <div class="control-group">
+                                  <label class="control-label">¿Cuenta usted con otros créditos actualmente?</label><p></p>
+                                  <input type="radio" th:field="*{financialInfoCommand.creditoActual}" name="creditoActual" value="true" /> Si<br/>
+                                  <input type="radio" th:field="*{financialInfoCommand.creditoActual}" name="creditoActual" value="false" /> No<br/>
+                                  <input type="hidden" th:field="*{financialInfoCommand.creditoActual}"/>
+                                </div>
+                              </div>
+                              <div class="col-md-5">
+                                <div class="control-group">
+                                  <label class="control-label">¿Actualmente garantiza o es aval de algua deuda de terceros?</label>
+                                  <input type="radio" th:field="*{financialInfoCommand.avalCreditoTercero}" name="avalCreditoTercero" value="true" /> Si<br/>
+                                  <input type="radio" th:field="*{financialInfoCommand.avalCreditoTercero}" name="avalCreditoTercero" value="false" /> No<br/>
+                                  <input type="hidden" th:field="*{financialInfoCommand.avalCreditoTercero}"/>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row-fluid">
+                              <div class="col-md-12 form-group">
+                                <div class="col-md-4">
+                                  <label class="control-label">Tipo de crédito o cuenta</label>
+                                  <input class="form-control search-query" type="text" rows="6" th:field="*{financialInfoCommand.tipoCreditoDeuda1}" />
+                                </div>
+                                <div class="col-md-4">
+                                  <label class="control-label">Institucion</label>
+                                  <input class="form-control search-query" type="text" rows="6" th:field="*{financialInfoCommand.institucionDeuda1}" />
+                                </div>
+                                <div class="col-md-4">
+                                  <label class="control-label">Numero de credito o cuenta</label>
+                                  <input class="form-control search-query" type="text" rows="6" th:field="*{financialInfoCommand.numeroCreditoDeuda1}" />
+                                </div>
+                              </div>
+                              <div class="col-md-12 form-group">
+                                <div class="col-md-4">
+                                  <label class="control-label">Monto otorgado</label>
+                                  <input class="form-control search-query" type="text" rows="6" th:field="*{financialInfoCommand.montoOtorgadoDeuda1}" />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row-fluid">
+                              <div class="col-md-12 form-group">
+                                <div class="col-md-4">
+                                  <label class="control-label">Tipo de crédito o cuenta</label>
+                                  <input class="form-control search-query" type="text" rows="6" th:field="*{financialInfoCommand.tipoCreditoDeuda2}" />
+                                </div>
+                                <div class="col-md-4">
+                                  <label class="control-label">Institucion</label>
+                                  <input class="form-control search-query" type="text" rows="6" th:field="*{financialInfoCommand.institucionDeuda2}" />
+                                </div>
+                                <div class="col-md-4">
+                                  <label class="control-label">Numero de credito o cuenta</label>
+                                  <input class="form-control search-query" type="text" rows="6" th:field="*{financialInfoCommand.numeroCreditoDeuda2}" />
+                                </div>
+                              </div>
+                              <div class="col-md-12 form-group">
+                                <div class="col-md-4">
+                                  <label class="control-label">Monto otorgado</label>
+                                  <input class="form-control search-query" type="text" rows="6" th:field="*{financialInfoCommand.montoOtorgadoDeuda2}" />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row-fluid">
+                              <div class="col-md-12 form-group">
+                                <div class="col-md-4">
+                                  <label class="control-label">Tipo de crédito o cuenta</label>
+                                  <input class="form-control search-query" type="text" rows="6" th:field="*{financialInfoCommand.tipoCreditoDeuda3}" />
+                                </div>
+                                <div class="col-md-4">
+                                  <label class="control-label">Institucion</label>
+                                  <input class="form-control search-query" type="text" rows="6" th:field="*{financialInfoCommand.institucionDeuda3}" />
+                                </div>
+                                <div class="col-md-4">
+                                  <label class="control-label">Numero de credito o cuenta</label>
+                                  <input class="form-control search-query" type="text" rows="6" th:field="*{financialInfoCommand.numeroCreditoDeuda3}" />
+                                </div>
+                              </div>
+                              <div class="col-md-12 form-group">
+                                <div class="col-md-4">
+                                  <label class="control-label">Monto otorgado</label>
+                                  <input class="form-control search-query" type="text" rows="6" th:field="*{financialInfoCommand.montoOtorgadoDeuda3}" />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row-fluid">
+                              <div class="col-md-12 form-group">
+                                <div class="col-md-4">
+                                  <label class="control-label">Tipo de crédito o cuenta</label>
+                                  <input class="form-control search-query" type="text" th:field="*{financialInfoCommand.tipoCreditoDeuda4}" />
+                                </div>
+                                <div class="col-md-4">
+                                  <label class="control-label">Institucion</label>
+                                  <input class="form-control search-query" type="text" th:field="*{financialInfoCommand.institucionDeuda4}" />
+                                </div>
+                                <div class="col-md-4">
+                                  <label class="control-label">Numero de credito o cuenta</label>
+                                  <input class="form-control search-query" type="text" th:field="*{financialInfoCommand.numeroCreditoDeuda4}" />
+                                </div>
+                              </div>
+                              <div class="col-md-12 form-group">
+                                <div class="col-md-4">
+                                  <label class="control-label">Monto otorgado</label>
+                                  <input class="form-control search-query" type="text" th:field="*{financialInfoCommand.montoOtorgadoDeuda4}" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseseven" aria-expanded="false" aria-controls="collapseseven">
+                            7.- Identificacion del Propietario Real / Otras Aportaciones
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseseven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                          <div class="row-fluid">
+                            <div class="col-md-12 form-group">
+                              <label class="control-label">Para los efectos de esta solictud, ¿Usted actua a nombre propio o por cuenta de un tercero?</label><p></p>
+                              <input type="radio" th:field="*{ownerCommand.actuar}" value="propio" checked="true" /> Propio<br/>
+                              <input type="radio" th:field="*{ownerCommand.actuar}" value="tercero" /> Tercero<br/>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <label class="control-label">¿Los recursos con los que liquidara su <b>PRESTAMO</b> otorgado por SERVICIOS FINANCIEROS CON VALORES S.A DE C.V son propios o de un tercero? </label><p></p>
+                              <input type="radio" th:field="*{ownerCommand.recursos}"  value="propio" checked="checked"/> Propio<br/>
+                              <input type="radio" th:field="*{ownerCommand.recursos}"  value="tercero" /> Tercero<br/>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <label class="control-label">¿Una persona distinta a usted, aportara recursos de forma regular para el pago de su prestamo con SERVICIOS FINANCIEROS CON VALORES S.A de C.V? </label><p></p>
+                              <input type="radio" th:field="*{ownerCommand.aportaciones}" value="si" checked="checked"/> Si<br/>
+                              <input type="radio" th:field="*{ownerCommand.aportaciones}" value="no" /> No<br/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseeight" aria-expanded="false" aria-controls="collapseeight">
+                            8.- Perfil Transaccional
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseeight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                          <div class="row-fluid">
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-6">
+                                <label class="control-label">Fuente de Ingresos</label>
+                                <select name="fuenteIngresosEnum" class="form-control col-md-10 search-query" th:field="*{transactionalProfileCommand.fuenteIngresos}">
+                                  <option th:each="fuenteM :${T(com.team.one.domain.enums.FuenteIngresos).values()}" th:value="${fuenteM}" th:text="${fuenteM.value}"></option>
+                                </select>
+                                <input type="text" id="fuenteIngresosOtros" class="form-control search-query" th:field="*{transactionalProfileCommand.fuenteIngresosOtros}"  disabled="disabled"/>
+                              </div>
+                              <div class="col-md-6">
+                                <label class="control-label">Rango de Ingresos</label>
+                                <select name="rangoMensualEnum" class="form-control col-md-10 search-query" th:field="*{transactionalProfileCommand.rangoMensual}">
+                                  <option th:each="rangoM :${T(com.team.one.domain.enums.RangoMensual).values()}" th:value="${rangoM}" th:text="${rangoM.value}"></option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-6">
+                                <label class="control-label">Profesión / Ocupasion</label>
+                                <input class="form-control search-query" type="text" th:field="*{transactionalProfileCommand.profesionOcupacion}" />
+                              </div>
+                              <div class="col-md-6">
+                                <label class="control-label">Actividad o Giro del Negocio</label>
+                                <input class="form-control search-query" type="text" th:field="*{transactionalProfileCommand.actividadGiroNegocio}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-6">
+                                <label class="control-label">Numero de pagos semanales, quincenales o mensuales</label>
+                                <input class="form-control search-query" type="text" th:field="*{transactionalProfileCommand.numeroPagosFrecuencia}" />
+                              </div>
+                              <div class="col-md-6">
+                                <label class="control-label">Monto semana, quincenal o mensual de los pagos</label>
+                                <input class="form-control search-query" type="text" th:field="*{transactionalProfileCommand.montoPagos}" />
+                              </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class="col-md-6">
+                                <label class="control-label">En caso de pagos adicionales, señalar el origen de los recursos</label>
+                                <select name="origenRecursosEnum" class="form-control col-md-10 search-query" th:field="*{transactionalProfileCommand.origenRecursos}">
+                                  <option th:each="orignM :${T(com.team.one.domain.enums.OrigenRecursos).values()}" th:value="${orignM}" th:text="${orignM.value}"></option>
+                                </select>
+                              </div>
+                              <div class="col-md-6">
+                                <label class="control-label">Y el instrumento de pago</label>
+                                <select name="instrumentoPagoEnum" class="form-control col-md-10 search-query" th:field="*{transactionalProfileCommand.instrumentoPago}">
+                                  <option th:each="instrumentoM :${T(com.team.one.domain.enums.InstrumentoPago).values()}" th:value="${instrumentoM}" th:text="${instrumentoM.value}"></option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsenine" aria-expanded="false" aria-controls="collapsenine">
+                            9.- Entrevista PLD
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapsenine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                          <div class="row-fluid">
+                            <div class="col-md-12 form-group">
+                              <label class="control-label">¿Desempeña actualmente o desempeño en el ultimo año alguna función publica en el pais o en el extranjero?(Jefe de estado, lider politico, funcionario gubernamental, judicial o militar de alta jerarquia, alto ejecutivo de empresa estatal, funcionario o miembro importante de partido politico).</label>
+                              <input type="radio" class="checkbox-inline required" th:field="*{pldInterview.gobierno}" value="si" data-msg="Se requiere indicar si tuvo Cargo de funcion publica" /> Si<br/>
+                              <input type="radio" class="checkbox-inline" th:field="*{pldInterview.gobierno}" value="no" /> No<br/>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <label class="control-label">Su cónyuge o parientes consanguineos o afines, hasta el segundo grado(abuelos, padres, hermanos, hijos, primos) actualmente desempeñan o han desempeñado en el ultimo año alguna función pública destacada en el pais o en el extrangero</label>
+                              <input type="radio" class="checkbox-inline required" th:field="*{pldInterview.consanguineo}" value="si" data-msg="Se requiere indicar si existe algun tuvo cargos de funciones publicas" /> Si<br/>
+                              <input type="radio" class="checkbox-inline" th:field="*{pldInterview.consanguineo}" value="no" /> No<br/>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <label class="control-label">Usted peribe algún otro ingreso</label>
+                              <p></p>
+                              <input type="radio" class="checkbox-inline required" data-msg="Se requiere indicar si persibe otro ingreso"  th:field="*{pldInterview.ingresos}" value="si" /> Si<br/>
+                              <input type="radio" class="checkbox-inline" th:field="*{pldInterview.ingresos}" value="no" /> No<br/>
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <label class="control-label">¿A cuanto asciende?</label>
+                              <input type="text" th:field="*{pldInterview.monto}" /> MXP
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div class="row-fluid">
-                    <div class="span12"></div>
-                    <div class="span12">
-                      <div class="span4">
-                        <label>Tipo de crédito o cuenta</label>
-                        <input class="span10 search-query" type="text" rows="6" th:field="*{financialInfoCommand.tipoCreditoDeuda1}" />
-                      </div>
-                      <div class="span4">
-                        <label>Institucion</label>
-                        <input class="span10 search-query" type="text" rows="6" th:field="*{financialInfoCommand.institucionDeuda1}" />
-                      </div>
-                      <div class="span4">
-                        <label>Numero de credito o cuenta</label>
-                        <input class="span10 search-query" type="text" rows="6" th:field="*{financialInfoCommand.numeroCreditoDeuda1}" />
-                      </div>
-                    </div>
-                    <div class="span12"></div>
-                    <div class="span12">
-                      <div class="span4">
-                        <label>Fecha de apertura</label>
-                        <input class="datepicker span10 search-query"  th:field="*{financialInfoCommand.fechaAperturaDeuda1}" />
-                      </div>
-                      <div class="span4">
-                        <label>Fecha de término</label>
-                        <input class="datepicker span10 search-query"  th:field="*{financialInfoCommand.fechaTerminoDeuda1}" />
-                      </div>
-                      <div class="span4">
-                        <label>Monto otorgado</label>
-                        <input class="span10 search-query" type="text" rows="6" th:field="*{financialInfoCommand.montoOtorgadoDeuda1}" />
-                      </div>
-                    </div>
+
+                  <div class="span11 form-group" align="right">
+                    <button class="btn btn-primary" type="submit">Guardar Solicitud</button>
                   </div>
-                  <div class="span11"><hr /></div>
-                  <div class="row-fluid">  
-                    <div class="span12"></div>
-                    <div class="span12">
-                      <div class="span4">
-                        <label>Tipo de crédito o cuenta</label>
-                        <input class="span10 search-query" type="text" rows="6" th:field="*{financialInfoCommand.tipoCreditoDeuda2}" />
-                      </div>
-                      <div class="span4">
-                        <label>Institucion</label>
-                        <input class="span10 search-query" type="text" rows="6" th:field="*{financialInfoCommand.institucionDeuda2}" />
-                      </div>
-                      <div class="span4">
-                        <label>Numero de credito o cuenta</label>
-                        <input class="span10 search-query" type="text" rows="6" th:field="*{financialInfoCommand.numeroCreditoDeuda2}" />
-                      </div>
-                    </div>
-                    <div class="span12"></div>
-                    <div class="span12">
-                      <div class="span4">
-                        <label>Fecha de apertura</label>
-                        <input class="datepicker span10 search-query"  th:field="*{financialInfoCommand.fechaAperturaDeuda2}" />
-                      </div>
-                      <div class="span4">
-                        <label>Fecha de término</label>
-                        <input class="datepicker span10 search-query"  th:field="*{financialInfoCommand.fechaTerminoDeuda2}" />
-                      </div>
-                      <div class="span4">
-                        <label>Monto otorgado</label>
-                        <input class="span10 search-query" type="text" rows="6" th:field="*{financialInfoCommand.montoOtorgadoDeuda2}" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="span11"><hr /></div>
-                  <div class="row-fluid">
-                    <div class="span12"></div>
-                    <div class="span12">
-                      <div class="span4">
-                        <label>Tipo de crédito o cuenta</label>
-                        <input class="span10 search-query" type="text" rows="6" th:field="*{financialInfoCommand.tipoCreditoDeuda3}" />
-                      </div>
-                      <div class="span4">
-                        <label>Institucion</label>
-                        <input class="span10 search-query" type="text" rows="6" th:field="*{financialInfoCommand.institucionDeuda3}" />
-                      </div>
-                      <div class="span4">
-                        <label>Numero de credito o cuenta</label>
-                        <input class="span10 search-query" type="text" rows="6" th:field="*{financialInfoCommand.numeroCreditoDeuda3}" />
-                      </div>
-                    </div>
-                    <div class="span12"></div>
-                    <div class="span12">
-                      <div class="span4">
-                        <label>Fecha de apertura</label>
-                        <input class="datepicker span10 search-query"  th:field="*{financialInfoCommand.fechaAperturaDeuda3}" />
-                      </div>
-                      <div class="span4">
-                        <label>Fecha de término</label>
-                        <input class="datepicker span10 search-query"  th:field="*{financialInfoCommand.fechaTerminoDeuda3}" />
-                      </div>
-                      <div class="span4">
-                        <label>Monto otorgado</label>
-                        <input class="span10 search-query" type="text" rows="6" th:field="*{financialInfoCommand.montoOtorgadoDeuda3}" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="span11"><hr /></div>
-                  <div class="row-fluid">
-                    <div class="span12"></div>
-                    <div class="span12">
-                      <div class="span4">
-                        <label>Tipo de crédito o cuenta</label>
-                        <input class="span10 search-query" type="text" th:field="*{financialInfoCommand.tipoCreditoDeuda4}" />
-                      </div>
-                      <div class="span4">
-                        <label>Institucion</label>
-                        <input class="span10 search-query" type="text" th:field="*{financialInfoCommand.institucionDeuda4}" />
-                      </div>
-                      <div class="span4">
-                        <label>Numero de credito o cuenta</label>
-                        <input class="span10 search-query" type="text" th:field="*{financialInfoCommand.numeroCreditoDeuda4}" />
-                      </div>
-                    </div>
-                    <div class="span12"></div>
-                    <div class="span12">
-                      <div class="span4">
-                        <label>Fecha de apertura</label>
-                        <input class="datepicker span10 search-query"  th:field="*{financialInfoCommand.fechaAperturaDeuda4}" />
-                      </div>
-                      <div class="span4">
-                        <label>Fecha de término</label>
-                        <input class="datepicker span10 search-query" th:field="*{financialInfoCommand.fechaTerminoDeuda4}" />
-                      </div>
-                      <div class="span4">
-                        <label>Monto otorgado</label>
-                        <input class="span10 search-query" type="text" th:field="*{financialInfoCommand.montoOtorgadoDeuda4}" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr />
-                <h1>7.- Seguros (Designacion de Beneficiarios)</h1>
-                <div class="row-fluid">
-                  <div class="span4">
-                    <h2>1)</h2>
-                    <div class="control-group">
-                      <label>Nombre Completo</label>
-                      <input class="span10 search-query" type="text" th:field="*{sureCommand.nombreBeneficiario1}" />
-                    </div>
-                    <div class="control-group">
-                      <label>Domicilio Particular</label>
-                      <textarea class="span10 search-query" type="text" rows="6" th:field="*{sureCommand.domicilioBeneficiario1}" />
-                    </div>
-                  </div>
-                  <div class="span4">
-                    <h2>2)</h2>
-                    <div class="control-group">
-                      <label>Nombre Completo</label>
-                      <input class="span10 search-query" type="text" th:field="*{sureCommand.nombreBeneficiario2}" />
-                    </div>
-                    <div class="control-group">
-                      <label>Domicilio Particular</label>
-                      <textarea class="span10 search-query" type="text" rows="6" th:field="*{sureCommand.domicilioBeneficiario2}" />
-                    </div>
-                  </div>
-                  <div class="span2">
-                    <div class="control-group">
-                      <label>Tipo de Seguro</label>
-                      <input class="span10 search-query" type="text" th:field="*{sureCommand.tipoSeguro}" />
-                      <p>*Desempleo, Vida</p>
-                    </div>
-                  </div>
-                </div>
-                <hr />
-                <h1>8.- Perfil Transaccional</h1>
-                <div class="row-fluid">
-                  <div class="span5">
-                    <div class="control-group">
-                      <label>Fuente de Ingresos</label>
-                      <select name="fuenteIngresosEnum" class="form-control span10 search-query" th:field="*{transactionalProfileCommand.fuenteIngresos}">
-                        <option th:each="fuenteM :${T(com.team.one.domain.enums.FuenteIngresos).values()}" th:value="${fuenteM}" th:text="${fuenteM.value}"></option>
-                      </select>
-                      <input type="text" id="fuenteIngresosOtros" class="span10 search-query" th:field="*{transactionalProfileCommand.fuenteIngresosOtros}"  disabled="disabled"/>
-                    </div>
-                    <div class="control-group">
-                      <label>Fuente de Ingresos</label>
-                      <select name="rangoMensualEnum" class="form-control span10 search-query" th:field="*{transactionalProfileCommand.rangoMensual}">
-                        <option th:each="rangoM :${T(com.team.one.domain.enums.RangoMensual).values()}" th:value="${rangoM}" th:text="${rangoM.value}"></option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="span5">
-                    <div class="control-group">
-                      <label>Profesión / Ocupasion</label>
-                      <input class="span10 search-query" type="text" th:field="*{transactionalProfileCommand.profesionOcupacion}" />
-                    </div>
-                    <div class="control-group">
-                      <label>Actividad o Giro del Negocio</label>
-                      <input class="span10 search-query" type="text" th:field="*{transactionalProfileCommand.actividadGiroNegocio}" />
-                    </div>
-                    <div class="control-group">
-                      <label>Numero de pagos semanales, quincenales o mensuales</label>
-                      <input class="span10 search-query" type="text" th:field="*{transactionalProfileCommand.numeroPagosFrecuencia}" />
-                    </div>
-                    <div class="control-group">
-                      <label>Monto semana, quincenal o mensual de los pagos</label>
-                      <input class="span10 search-query" type="text" th:field="*{transactionalProfileCommand.montoPagos}" />
-                    </div>
-                    <div class="control-group">
-                      <label>En caso de pagos adicionales, señalar el origen de los recursos</label>
-                      <select name="origenRecursosEnum" class="form-control span10 search-query" th:field="*{transactionalProfileCommand.origenRecursos}">
-                        <option th:each="orignM :${T(com.team.one.domain.enums.OrigenRecursos).values()}" th:value="${orignM}" th:text="${orignM.value}"></option>
-                      </select>
-                    </div>
-                    <div class="control-group">
-                      <label>Y el instrumento de pago</label>
-                      <select name="instrumentoPagoEnum" class="form-control span10 search-query" th:field="*{transactionalProfileCommand.instrumentoPago}">
-                        <option th:each="instrumentoM :${T(com.team.one.domain.enums.InstrumentoPago).values()}" th:value="${instrumentoM}" th:text="${instrumentoM.value}"></option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
+                </form>
               </div>
-              <div class="span11" align="right">
-                <button class="btn btn-primary" type="submit">Guardar Solicitud</button>
-              </div>
-            </form>
+            </div>
           </div>
+         </div>
         </div>
       </div>
       <br /><br />
       <script type="text/javascript">
-        $(".datepicker").pickadate({
-          format: 'mm/dd/yyyy',
-          formatSubmit: 'mm/dd/yyyy',
-          hiddenName: true
-        });
+        $("#credit").validate();
         $('#grado').change(function() {
           var option = $(this).find('option:selected');
           if (option.text() == "Otro") {
@@ -711,6 +772,11 @@
             }
              $("#fuenteIngresosOtros").attr("disabled","disabled");
           }
+        });
+        $(".datepicker").pickadate({
+          format: 'mm/dd/yyyy',
+          formatSubmit: 'mm/dd/yyyy',
+          hiddenName: true
         });
       </script>
     </div>

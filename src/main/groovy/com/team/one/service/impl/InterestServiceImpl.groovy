@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service
 import com.team.one.domain.PaymentPeriod
 import com.team.one.exception.SimulatorException
 
+//TODO: Externalizar los mensajes de error
+
 @Service
 class InterestServiceImpl implements InterestService {
 
@@ -18,15 +20,15 @@ class InterestServiceImpl implements InterestService {
 
   BigDecimal calculate(BigDecimal capitalBeforePayment, Simulator simulator){
     if(!capitalBeforePayment){
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado el valor del capital antes del pago')
     }
 
     if(!simulator.tia) {
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado el campo tasa de interés anual')
     }
 
     if(!simulator.paymentPeriod) {
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado un periodo de pago')
     }
 
     BigDecimal result = 0

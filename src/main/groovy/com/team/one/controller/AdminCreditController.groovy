@@ -26,6 +26,7 @@ class AdminCreditController {
   @RequestMapping(value="/create",method=RequestMethod.GET)
   String createCreditValuarte(Map model) {
     model.creditCommand = new CreditCommand()
+    model.date = new Date().format("dd-MMM-yyyy")
     "adminCredit/form"
   }
 
@@ -38,24 +39,28 @@ class AdminCreditController {
     def endorsement = command.endorsementCommand.generateEndorsement()
     def financialInfo = command.financialInfoCommand.generateFinancialInfo()
     def references = command.referencesCommand.generateReferences()
-    def sure = command.sureCommand.generateSure()
     def transactionalProfile = command.transactionalProfileCommand.generateTransactionalProfile()
     def workInfo = command.workInfoCommand.generateWorkInfo()
     def client = command.clientCommand.generateClient()
     def user = userRepository.findByEmail(address.email)
+    def owner
+    def pld =  command.pldInterview.generatePLDInterview()
+    if (command.ownerCommand)
+      owner = command.ownerCommand.generateOwnerIdentification()
     Map domainList = [
                         address:address,
                         endorsement:endorsement,
                         financial:financialInfo,
                         reference:references,
-                        sure:sure,
                         transactional:transactionalProfile,
                         work:workInfo,
-                       client:client
+                        owner:owner,
+                        pld:pld,
+                        client:client
                       ]
 
-    def clientPersistence = service.create(domainList,userCreate,new User())
-    model.addAtribute("clientUuid",clientPersistence.uuid)
+    def clientPersistence = service.create(domainList,userCreate)
+    model.clientUuid = clientPersistence
     "adminCredit/form"
   }
 

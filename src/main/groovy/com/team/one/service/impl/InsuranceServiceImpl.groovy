@@ -11,6 +11,8 @@ import com.team.one.domain.PaymentPeriod
 import org.springframework.beans.factory.annotation.Autowired
 import com.team.one.exception.SimulatorException
 
+//TODO: Externalizar los mensajes de error
+
 @Service
 class InsuranceServiceImpl implements InsuranceService {
 
@@ -21,7 +23,7 @@ class InsuranceServiceImpl implements InsuranceService {
 
   BigDecimal calculate(Simulator simulator){
     if(!simulator.loan)
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado el monto de préstamo base')
 
     def insurances = insuranceDataService.calculate(simulator)
     insurances.sum()

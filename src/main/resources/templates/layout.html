@@ -7,10 +7,10 @@
   <title>Valuarte</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="../../images/favicon.ico"  th:href="@{/images/favicon.ico}" rel="shortcut icon" type="image/vnd.microsoft.icon" />
-  <link rel="stylesheet" th:href="@{/assets/third-party/bootstrap/docs/assets/css/bootstrap.css}" href="../../assets/third-party/bootstrap/docs/assets/css/bootstrap.css"/>
+  <link rel="stylesheet" th:href="@{/assets/third-party/bootstrap-2/docs/assets/css/bootstrap.css}" href="../../assets/third-party/bootstrap-2/docs/assets/css/bootstrap.css"/>
 
-  <link rel="stylesheet" href="../../assets/third-party/bootstrap/docs/assets/css/bootstrap-responsive.css" th:href="@{/assets/third-party/bootstrap/docs/assets/css/bootstrap-responsive.css}" />
-  
+  <link rel="stylesheet" href="../../assets/third-party/bootstrap-2/docs/assets/css/bootstrap-responsive.css" th:href="@{/assets/third-party/bootstrap-2/docs/assets/css/bootstrap-responsive.css}" />
+
 
   <link rel="stylesheet" th:href="@{/assets/fonts/Muli/fonts.css}" href="../../assets/fonts/Muli/fonts.css" />
   <link rel="stylesheet" th:href="@{/assets/fonts/Muli-Bold/fonts.css}" href="../../assets/fonts/Muli-Bold/fonts.css" />
@@ -30,9 +30,9 @@
   <link rel="stylesheet" th:href="@{/assets/third-party/pickadate/lib/themes/default.date.css}" href="../../assets/third-party/pickadate/lib/themes/default.date.css" />
   <link rel="stylesheet" th:href="@{/assets/third-party/pickadate/lib/themes/default.time.css}" href="../../assets/third-party/pickadate/lib/themes/default.time.css" />
 
-  <script src="../../assets/third-party/jquery/jquery.js" th:src="@{/assets/third-party/jquery/jquery.js}"/>
-  <script th:src="@{/assets/third-party/bootstrap/docs/assets/js/bootstrap.js}" src="../../assets/third-party/bootstrap/docs/assets/js/bootstrap.js"/>
-  <script th:src="@{/assets/third-party/bootstrap/docs/assets/js/bootstrap-collapse.js}" src="../../assets/third-party/bootstrap/docs/assets/js/bootstrap-collapse.js"/>
+  <script src="../../assets/third-party/jquery/jquery.js" th:src="@{/assets/third-party/jquery/dist/jquery.js}"/>
+  <script th:src="@{/assets/third-party/bootstrap-2/docs/assets/js/bootstrap.js}" src="../../assets/third-party/bootstrap-2/docs/assets/js/bootstrap.js"/>
+  <script th:src="@{/assets/third-party/bootstrap-2/docs/assets/js/bootstrap-collapse.js}" src="../../assets/third-party/bootstrap-2/docs/assets/js/bootstrap-collapse.js"/>
   <script th:src="@{/assets/third-party/elevatezoom-plus/src/jquery.ez-plus.js}" src="../../assets/third-party/elevatezoom-plus/src/jquery.ez-plus.js"/>
   <script th:src="@{/assets/third-party/pickadate/lib/picker.js}" src="../../assets/third-party/pickadate/lib/picker.js"/>
   <script th:src="@{/assets/third-party/pickadate/lib/picker.date.js}" src="../../assets/third-party/pickadate/lib/picker.date.js"/>
@@ -42,7 +42,7 @@
 <body class="body">
   <div class="container">
     <div class="span12">
-      
+
     </div>
   </div>
 
@@ -114,6 +114,9 @@
               </li>
               <li sec:authorize="hasRole('ADMIN')">
                 <a th:href="@{'/upload/create'}">Subir productos</a>
+              </li>
+              <li sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{'/simulator'}">Simulador Reestructura</a>
               </li>
              </ul>
           </div>

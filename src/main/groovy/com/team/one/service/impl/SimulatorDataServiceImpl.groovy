@@ -1,8 +1,5 @@
 package com.team.one.service.impl
 
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-
 import com.team.one.domain.Simulator
 import com.team.one.service.DatePaymentService
 import com.team.one.service.InterestService
@@ -10,11 +7,17 @@ import com.team.one.service.PPMTService
 import com.team.one.service.InsuranceDataService
 import com.team.one.service.SimulatorDataService
 import org.springframework.stereotype.Service
-import com.team.one.domain.SimulatorRow
 import java.math.RoundingMode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+
+import com.team.one.domain.SimulatorRow
 import com.team.one.exception.SimulatorException
+
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
+//TODO: Externalizar los mensajes de error
 
 @Service
 class SimulatorDataServiceImpl implements SimulatorDataService {
@@ -33,12 +36,12 @@ class SimulatorDataServiceImpl implements SimulatorDataService {
   @Value('${simulator.roundingMode}')
   String roundingMode
 
-  Logger log = LoggerFactory.getLogger(getClass());
+  Logger log = LoggerFactory.getLogger(getClass())
 
   def calculate(Simulator simulator){
     def rows = []
     if(!simulator.numberOfPayments || simulator.numberOfPayments < 0)
-      throw new SimulatorException()
+      throw new SimulatorException('No se ha proporcionado un número de pagos válido')
 
     def capitalBeforePayment = simulator.principle
     def paymentDates = datePaymentService.generatePaymentDates(simulator)
