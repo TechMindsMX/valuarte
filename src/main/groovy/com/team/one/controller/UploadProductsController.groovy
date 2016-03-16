@@ -41,6 +41,7 @@ class UploadProductsController {
   @RequestMapping(value="/save", method=RequestMethod.POST)
   @ResponseBody String handleFileUpload( @RequestParam("file") MultipartFile file, @RequestParam("zipFile") MultipartFile zipFile) {
     if(!file.isEmpty()) {
+      LOGGER.info "save products"
       def countOfRowsSaved = uploadProductsService.uploadProductsInValuarte(file)
       uploadProductsService.uploadImagesInValuarte(zipFile)
       "El numero de filas procesadas fue de ${countOfRowsSaved}"
