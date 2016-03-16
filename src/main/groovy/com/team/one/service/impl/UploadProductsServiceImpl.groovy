@@ -25,6 +25,7 @@ class UploadProductsServiceImpl implements UploadProductsService {
 
   Integer uploadProductsInValuarte(MultipartFile file) {
     try {
+      LOGGER.info "subida de productos service"
       Workbook fileExcel = Workbook.getWorkbook(file.getInputStream())
       int numRows
       String token = ClientService.getTokenTimOneForBeginTransactions()
