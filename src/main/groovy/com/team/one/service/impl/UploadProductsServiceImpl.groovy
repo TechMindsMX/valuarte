@@ -28,7 +28,7 @@ class UploadProductsServiceImpl implements UploadProductsService {
       Workbook fileExcel = Workbook.getWorkbook(file.getInputStream())
       int numRows
       String token = ClientService.getTokenTimOneForBeginTransactions()
-
+      LOGGER.info "token: ${token}"
       (0..fileExcel.numberOfSheets-1).each{ sheetNo ->
         Sheet page = fileExcel.getSheet(sheetNo)
         int numColumns = page.columns
