@@ -120,10 +120,7 @@ class LoginController {
   }
 
   protected String generedLink(def action, def linkParams, HttpServletRequest request) {
-    String uri = request.getScheme() + "://" +
-             request.getServerName() +
-             ":" +
-             request.getServerPort()+ "/" +
+    String uri = "http://valuarte.mx/" +
              action + "?t=" +linkParams.value
     uri
   }
